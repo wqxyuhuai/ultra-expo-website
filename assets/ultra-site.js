@@ -1,6 +1,6 @@
 (function () {
   const REPO_BASE = window.__ULTRA_BASE_PATH || "/";
-  const CASES = window.UltraCases || [];
+  const CASES = loadCases();
   const STORAGE_KEY = "ultra-locale";
 
   const labels = {
@@ -249,6 +249,26 @@
     return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
   }
 
+  function loadCases() {
+    if (Array.isArray(window.UltraCases)) return window.UltraCases;
+    try {
+      const script = document.querySelector('script[src*="ultra-cases.js"]');
+      const url = script?.src || new URL("assets/ultra-cases.js", document.baseURI).href;
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url, false);
+      xhr.send(null);
+      if (xhr.status < 200 || xhr.status >= 300) return [];
+      const match = xhr.responseText.match(/window\.UltraCases\s*=\s*(\[[\s\S]*\]);?\s*$/);
+      if (!match) return [];
+      const parsed = JSON.parse(match[1]);
+      window.UltraCases = parsed;
+      return parsed;
+    } catch (error) {
+      console.warn("Unable to load Ultra Expo cases", error);
+      return [];
+    }
+  }
+
   function routeLink(path) {
     return `${withBase(path)}`;
   }
@@ -258,8 +278,11 @@
     return `
       <nav class="ultra-nav">
         <a class="ultra-brand" href="${routeLink("/")}" data-route="/">
-          ULTRA EXPO
-          <span>${L.brandSub}</span>
+          <span class="ultra-brand-mark">U</span>
+          <span class="ultra-brand-copy">
+            <span class="ultra-brand-name">ULTRA</span>
+            <span class="ultra-brand-sub">${lang === "zh" ? "皓创展览" : "皓创展览"}</span>
+          </span>
         </a>
         <div class="ultra-links">
           ${navItems.map(item => `<a href="${routeLink(item.path)}" data-route="${item.path}" class="${activePath === item.path || (item.path === "/cases" && activePath.startsWith("/cases")) ? "is-active" : ""}">${L.nav[item.key]}</a>`).join("")}
@@ -582,6 +605,7 @@
       root.id = "ultra-app";
       document.body.appendChild(root);
     }
+    document.documentElement.classList.remove("ultra-home-active");
     document.documentElement.classList.add("ultra-app-active");
     root.innerHTML = `<div class="ultra-site">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     document.title = `${path === "/" ? "Ultra Expo" : path.split("/")[1].replace(/^\w/, c => c.toUpperCase())} | Ultra Expo`;
@@ -599,8 +623,9 @@
 
   function enhanceHome(lang) {
     document.documentElement.classList.remove("ultra-app-active");
+    document.documentElement.classList.add("ultra-home-active");
     const root = document.getElementById("ultra-app");
-    if (root) root.innerHTML = "";
+    if (root) root.innerHTML = `<div class="ultra-site ultra-home-shell">${navHTML(lang, "/")}</div>`;
     const container = document.getElementById("container");
     if (container) {
       replaceText(container, lang === "zh" ? homeText.enToZh : homeText.zhToEn);
@@ -620,14 +645,8 @@
         }
       });
     }
-    let switcher = document.querySelector(".ultra-home-lang");
-    if (!switcher) {
-      switcher = document.createElement("div");
-      switcher.className = "ultra-home-lang";
-      switcher.innerHTML = `<button data-locale="en">EN</button><span>/</span><button data-locale="zh">CN</button>`;
-      document.body.appendChild(switcher);
-    }
-    switcher.querySelectorAll("button").forEach(btn => btn.classList.toggle("is-active", btn.dataset.locale === lang));
+    const switcher = document.querySelector(".ultra-home-lang");
+    if (switcher) switcher.remove();
   }
 
   function render() {
@@ -637,6 +656,7 @@
       setTimeout(() => enhanceHome(lang), 300);
       return;
     }
+    document.documentElement.classList.remove("ultra-home-active");
     const switcher = document.querySelector(".ultra-home-lang");
     if (switcher) switcher.remove();
     renderAppPage(path, lang);
