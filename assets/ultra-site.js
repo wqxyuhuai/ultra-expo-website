@@ -1,5 +1,8 @@
 (function () {
   const REPO_BASE = window.__ULTRA_BASE_PATH || "/";
+  const ADMIN_CONFIG_KEY = "ultra-admin-config-v1";
+  const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
+  const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
   const CASES = loadCases();
   const STORAGE_KEY = "ultra-locale";
 
@@ -60,14 +63,16 @@
       about: "About | Ultra Expo",
       services: "Services | Ultra Expo",
       cases: "Cases | Ultra Expo",
-      contact: "Contact | Ultra Expo"
+      contact: "Contact | Ultra Expo",
+      admin: "Admin | Ultra Expo"
     },
     zh: {
       home: "皓创展览 Ultra Expo｜全球展会与空间设计落地服务",
       about: "公司介绍｜Ultra Expo 皓创展览",
       services: "业务能力｜Ultra Expo 皓创展览",
       cases: "案例中心｜Ultra Expo 皓创展览",
-      contact: "联系我们｜Ultra Expo 皓创展览"
+      contact: "联系我们｜Ultra Expo 皓创展览",
+      admin: "后台配置｜Ultra Expo 皓创展览"
     }
   };
 
@@ -312,14 +317,14 @@
 
   function titleForPath(path, lang) {
     if (path.startsWith("/cases/")) {
-      return caseTitle(CASES.find(item => item.id === path.split("/").pop()), lang);
+      return caseTitle(activeCases().find(item => item.id === path.split("/").pop()), lang);
     }
     return pageTitles[lang][pageKey(path)] || pageTitles[lang].home;
   }
 
   function descriptionForPath(path, lang) {
     if (path.startsWith("/cases/")) {
-      const item = CASES.find(entry => entry.id === path.split("/").pop());
+      const item = activeCases().find(entry => entry.id === path.split("/").pop());
       const detailDescription = item?.description?.[lang];
       if (detailDescription && (lang === "en" || /[\u4e00-\u9fff]/.test(detailDescription))) return detailDescription;
     }
@@ -363,6 +368,109 @@
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
+  }
+
+  function defaultAdminConfig() {
+    return {
+      version: 1,
+      updatedAt: "",
+      modules: {
+        home: {
+          trusted: true,
+          services: true,
+          selectedWorks: true,
+          metrics: true,
+          footer: true
+        }
+      },
+      footer: {
+        contactLinks: [
+          { key: "business", labelEn: "Business Partnership", labelZh: "商务合作", href: "/contact", route: "/contact", enabled: true },
+          { key: "wechat-official", labelEn: "WeChat Official Account", labelZh: "微信公众号", href: "https://weixin.sogou.com/weixin?type=1&query=Ultra%20Expo", enabled: true },
+          { key: "phone-consultation", labelEn: "Phone Consultation", labelZh: "电话咨询", href: "tel:+8618506144181", enabled: true }
+        ],
+        socialLinks: [
+          { key: "phone", icon: "phone", labelEn: "Phone", labelZh: "电话", href: "tel:+8618506144181", enabled: true },
+          { key: "email", icon: "email", labelEn: "Email", labelZh: "邮箱", href: "mailto:jack@ultraexpo.com", enabled: true },
+          { key: "rednote", icon: "rednote", labelEn: "RED", labelZh: "小红书", href: "https://www.xiaohongshu.com/search_result?keyword=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", enabled: true },
+          { key: "wechat", icon: "wechat", labelEn: "WeChat", labelZh: "微信公众号", href: "https://weixin.sogou.com/weixin?type=1&query=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", enabled: true },
+          { key: "linkedin", icon: "linkedin", labelEn: "LinkedIn", labelZh: "领英", href: "https://www.linkedin.com/search/results/companies/?keywords=Ultra%20Expo", enabled: true }
+        ]
+      },
+      integrations: {
+        aliyun: {
+          enabled: false,
+          ossBucket: "",
+          ossRegion: "",
+          cdnDomain: "",
+          accessKeyId: "",
+          accessKeySecret: "",
+          notes: "Do not store production secrets in a static site."
+        },
+        notion: {
+          enabled: false,
+          workspace: "",
+          databaseId: "",
+          apiEndpoint: "",
+          integrationToken: "",
+          notes: "Use a backend proxy before connecting a real Notion token."
+        }
+      },
+      cases: {
+        items: null
+      }
+    };
+  }
+
+  function mergeAdminConfig(base, saved) {
+    if (!saved || typeof saved !== "object") return base;
+    const output = { ...base, ...saved };
+    output.modules = { ...base.modules, ...(saved.modules || {}) };
+    output.modules.home = { ...base.modules.home, ...(saved.modules?.home || {}) };
+    output.footer = { ...base.footer, ...(saved.footer || {}) };
+    output.integrations = { ...base.integrations, ...(saved.integrations || {}) };
+    output.integrations.aliyun = { ...base.integrations.aliyun, ...(saved.integrations?.aliyun || {}) };
+    output.integrations.notion = { ...base.integrations.notion, ...(saved.integrations?.notion || {}) };
+    output.cases = { ...base.cases, ...(saved.cases || {}) };
+    return output;
+  }
+
+  function getAdminConfig() {
+    const base = defaultAdminConfig();
+    try {
+      const raw = localStorage.getItem(ADMIN_CONFIG_KEY);
+      return raw ? mergeAdminConfig(base, JSON.parse(raw)) : base;
+    } catch (error) {
+      console.warn("Unable to read Ultra admin config", error);
+      return base;
+    }
+  }
+
+  function saveAdminConfig(config) {
+    const next = mergeAdminConfig(defaultAdminConfig(), config);
+    next.updatedAt = new Date().toISOString();
+    localStorage.setItem(ADMIN_CONFIG_KEY, JSON.stringify(next));
+    return next;
+  }
+
+  function activeCases() {
+    const override = getAdminConfig().cases?.items;
+    return Array.isArray(override) && override.length ? override : CASES;
+  }
+
+  function adminLabel(item, lang) {
+    return lang === "zh" ? (item.labelZh || item.labelEn || item.label || item.key || "") : (item.labelEn || item.labelZh || item.label || item.key || "");
+  }
+
+  function adminHref(item) {
+    if (!item) return "#";
+    if (item.route) return routeLink(item.route);
+    const href = item.href || "#";
+    return href.startsWith("/") ? routeLink(href) : href;
+  }
+
+  function adminJSON(value) {
+    return esc(JSON.stringify(value, null, 2));
   }
 
   function loadCases() {
@@ -740,7 +848,7 @@
 
   function homeSelectedHTML(lang) {
     const zh = lang === "zh";
-    const cases = loadCases()
+    const cases = activeCases()
       .filter(item => item.image)
       .slice(0, 12);
     const fallback = [
@@ -840,6 +948,150 @@
     hideHomeSectionsByMarkers(container, ["Let's build your", "Let’s build your", "Start a Project", "Submit Project Brief", "Send an Email", "让我们一起为你的品牌", "提交项目需求", "发送邮件", "告诉我们你的展会名称"], "ultraOriginalBottom", "[data-ultra-home-bottom]");
   }
 
+  function homeHeroTitle(lang) {
+    return lang === "zh"
+      ? ["\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916", "\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001"]
+      : ["We make Chinese brands", "look at home \u2014 overseas."];
+  }
+
+  function homeHeroCopy(lang) {
+    return lang === "zh"
+      ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
+      : "Ultra Expo delivers the full stack for Chinese brands going global \u2014 strategy, spatial design, and end-to-end local build.";
+  }
+
+  function homeHeroHTML(lang) {
+    const zh = lang === "zh";
+    const heroTitle = homeHeroTitle(lang);
+    const titleText = heroTitle.join(" ");
+    const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
+    return `
+      <section class="ultra-home-hero-section ultra-home-hero-rebuilt-section" data-ultra-home-hero data-animate>
+        <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
+          <div class="ultra-home-hero-rebuilt-title">
+            <h1 class="hero-focus-title" aria-label="${esc(titleText)}">
+              <span class="title-blur" aria-hidden="true">${titleLines}</span>
+              <span class="title-sharp" aria-hidden="true">${titleLines}</span>
+            </h1>
+          </div>
+          <div class="ultra-home-hero-rebuilt-bottom">
+            <p>${esc(homeHeroCopy(lang))}</p>
+            <div class="ultra-home-hero-rebuilt-actions">
+              <a class="ultra-home-hero-rebuilt-primary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases"}</a>
+              <a class="ultra-home-hero-rebuilt-secondary" href="${routeLink("/services")}" data-route="/services">${zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services"}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function bindHomeHeroSection(section) {
+    if (!section || section.dataset.ultraHeroAmbientBound) return;
+    section.dataset.ultraHeroAmbientBound = "true";
+    let heroFrame = 0;
+    const setHeroAmbient = (x, y) => {
+      if (heroFrame) cancelAnimationFrame(heroFrame);
+      heroFrame = requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        const px = rect.width ? Math.max(0, Math.min(1, (x - rect.left) / rect.width)) : 0.5;
+        const py = rect.height ? Math.max(0, Math.min(1, (y - rect.top) / rect.height)) : 0.42;
+        section.style.setProperty("--ultra-hero-mx", `${(px * 100).toFixed(1)}%`);
+        section.style.setProperty("--ultra-hero-my", `${(py * 100).toFixed(1)}%`);
+        section.style.setProperty("--ultra-hero-shift-x", `${((px - 0.5) * 18).toFixed(1)}px`);
+        section.style.setProperty("--ultra-hero-shift-y", `${((py - 0.42) * 10).toFixed(1)}px`);
+      });
+    };
+    section.addEventListener("pointermove", event => setHeroAmbient(event.clientX, event.clientY), { passive: true });
+    section.addEventListener("pointerleave", () => setHeroAmbient(window.innerWidth / 2, window.innerHeight * 0.42), { passive: true });
+
+    const focusTitle = section.querySelector(".hero-focus-title");
+    if (!focusTitle || focusTitle.dataset.ultraFocusBound) return;
+    focusTitle.dataset.ultraFocusBound = "true";
+    let currentX = 50;
+    let currentY = 50;
+    let targetX = 50;
+    let targetY = 50;
+    let focusFrame = 0;
+    let focusActive = false;
+    const updateFocus = () => {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      focusTitle.style.setProperty("--title-mx", `${currentX.toFixed(2)}%`);
+      focusTitle.style.setProperty("--title-my", `${currentY.toFixed(2)}%`);
+      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        focusFrame = requestAnimationFrame(updateFocus);
+      } else {
+        focusFrame = 0;
+      }
+    };
+    const moveFocus = (x, y) => {
+      const rect = focusTitle.getBoundingClientRect();
+      targetX = rect.width ? Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100)) : 50;
+      targetY = rect.height ? Math.max(0, Math.min(100, ((y - rect.top) / rect.height) * 100)) : 50;
+      if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
+    };
+    const centerFocus = () => {
+      targetX = 50;
+      targetY = 50;
+      if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
+    };
+    const handleFocusPointer = event => {
+      const rect = focusTitle.getBoundingClientRect();
+      const inside = event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+      if (inside) {
+        focusActive = true;
+        moveFocus(event.clientX, event.clientY);
+      } else if (focusActive) {
+        focusActive = false;
+        centerFocus();
+      }
+    };
+    section.addEventListener("pointermove", handleFocusPointer, { passive: true });
+    section.addEventListener("mousemove", handleFocusPointer, { passive: true });
+    section.addEventListener("pointerleave", centerFocus, { passive: true });
+    section.addEventListener("mouseleave", centerFocus, { passive: true });
+    focusTitle.addEventListener("pointermove", event => moveFocus(event.clientX, event.clientY), { passive: true });
+    focusTitle.addEventListener("mousemove", event => moveFocus(event.clientX, event.clientY), { passive: true });
+    focusTitle.addEventListener("pointerleave", centerFocus, { passive: true });
+    focusTitle.addEventListener("mouseleave", centerFocus, { passive: true });
+  }
+
+  function homeTrustedHTML(lang) {
+    const title = lang === "zh"
+      ? "\u670d\u52a1\u65b0\u80fd\u6e90\u3001\u6c7d\u8f66\u51fa\u884c\u3001\u667a\u80fd\u5236\u9020\u3001\u6d88\u8d39\u79d1\u6280\u4e0e\u5168\u7403\u6d3b\u52a8\u7b49\u591a\u4e2a\u884c\u4e1a\u5ba2\u6237\u3002"
+      : "Trusted by China's most innovative global brands.";
+    const logos = [...clients, ...clients];
+    return `
+      <section class="ultra-home-trusted-section" data-ultra-home-trusted data-animate>
+        <h2 class="ultra-home-trusted-title">${esc(title)}</h2>
+        <div class="ultra-home-client-marquee" aria-label="${lang === "zh" ? "\u5408\u4f5c\u5ba2\u6237" : "Client logos"}">
+          <div class="ultra-home-client-track">
+            ${logos.map(name => `<span class="ultra-home-client">${esc(name)}</span>`).join("")}
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderHomeContent(container, lang) {
+    const homeModules = getAdminConfig().modules.home || {};
+    const sections = [homeHeroHTML(lang)];
+    if (homeModules.trusted !== false) sections.push(homeTrustedHTML(lang));
+    if (homeModules.services !== false) sections.push(homeServicesHTML(lang));
+    if (homeModules.selectedWorks !== false) sections.push(homeSelectedHTML(lang));
+    if (homeModules.metrics !== false) sections.push(homeWhyCardsHTML(lang));
+    if (homeModules.footer !== false) sections.push(`<div class="ultra-site ultra-home-bottom" data-ultra-home-bottom data-animate>${siteBottomHTML(lang)}</div>`);
+    container.innerHTML = sections.join("");
+    container.querySelectorAll(".ultra-home-services, .ultra-home-selected, .ultra-home-why").forEach(section => {
+      section.setAttribute("data-animate", "");
+    });
+    bindHomeHeroSection(container.querySelector(".ultra-home-hero-rebuilt-section"));
+  }
+
   function pageHero(label, title, description, lang) {
     return `
       <section class="ultra-hero">
@@ -900,30 +1152,19 @@
   function siteBottomHTML(lang) {
     const L = labels[lang];
     const zh = lang === "zh";
+    const adminConfig = getAdminConfig();
     const footerLinks = navItems.map(item => ({ href: routeLink(item.path), route: item.path, label: L.nav[item.key] }));
     const footerServices = services.map(s => ({ href: routeLink("/services"), route: "/services", label: zh ? s.zhTitle : s.enTitle }));
-    const footerContact = zh
-      ? [
-          { label: "商务合作", href: routeLink("/contact"), route: "/contact" },
-          { label: "微信公众号", href: "https://weixin.sogou.com/weixin?type=1&query=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88" },
-          { label: "电话咨询", href: "tel:+8618506144181" }
-        ]
-      : [
-          { label: "Business Partnership", href: routeLink("/contact"), route: "/contact" },
-          { label: "WeChat Official Account", href: "https://weixin.sogou.com/weixin?type=1&query=Ultra%20Expo" },
-          { label: "Phone Consultation", href: "tel:+8618506144181" }
-        ];
-    const socialItems = [
-      { label: zh ? "电话" : "Phone", href: "tel:+8618506144181", icon: "phone" },
-      { label: zh ? "邮箱" : "Email", href: "mailto:jack@ultraexpo.com", icon: "email" },
-      { label: zh ? "小红书" : "RED", href: "https://www.xiaohongshu.com/search_result?keyword=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", icon: "rednote" },
-      { label: zh ? "微信公众号" : "WeChat", href: "https://weixin.sogou.com/weixin?type=1&query=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", icon: "wechat" },
-      { label: zh ? "领英" : "LinkedIn", href: "https://www.linkedin.com/search/results/companies/?keywords=Ultra%20Expo", icon: "linkedin" }
-    ];
+    const footerContact = (adminConfig.footer.contactLinks || [])
+      .filter(item => item.enabled !== false)
+      .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }));
+    const socialItems = (adminConfig.footer.socialLinks || [])
+      .filter(item => item.enabled !== false)
+      .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }));
     const footerColumn = (heading, items) => `
       <nav class="ultra-footer-column" aria-label="${esc(heading.replace("/", ""))}">
         <h4>${esc(heading)}</h4>
-        ${items.map(item => `<a class="ultra-footer-link" href="${item.href}" ${item.route ? `data-route="${item.route}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
+        ${items.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
       </nav>
     `;
     const iconSVG = {
@@ -964,7 +1205,7 @@
             </div>
           </div>
           <div class="ultra-footer-social" aria-label="${zh ? "社媒与联系方式" : "Social and contact links"}">
-            ${socialItems.map(item => `<a class="ultra-social-card" href="${item.href}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon]}<span>${esc(item.label)}</span></a>`).join("")}
+            ${socialItems.map(item => `<a class="ultra-social-card" href="${esc(item.href)}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`).join("")}
           </div>
         </div>
       </footer>
@@ -1036,7 +1277,7 @@
   }
 
   function filteredCases(state) {
-    return CASES.filter(item => {
+    return activeCases().filter(item => {
       if (state.year !== "All" && String(item.year) !== state.year) return false;
       if (state.industry !== "All" && item.industry !== state.industry) return false;
       if (state.region !== "All" && item.region !== state.region) return false;
@@ -1052,7 +1293,15 @@
       region: ["All", "Europe", "North America", "South America", "Asia", "Middle East", "China", "Global"],
       type: ["All", "Design", "Delivered", "Event"]
     };
-    return fixed[field];
+    const values = activeCases()
+      .map(item => item[field])
+      .filter(Boolean)
+      .map(value => String(value));
+    const merged = [...new Set([...(fixed[field] || ["All"]), ...values])];
+    if (field === "year") {
+      return ["All", ...merged.filter(value => value !== "All").sort((a, b) => Number(b) - Number(a))];
+    }
+    return merged;
   }
 
   function optionLabel(field, value, lang) {
@@ -1098,7 +1347,7 @@
     const zh = lang === "zh";
     const state = filterState();
     const items = filteredCases(state);
-    const featured = CASES.filter(c => c.featured).slice(0, 8);
+    const featured = activeCases().filter(c => c.featured).slice(0, 8);
     return `
       ${pageHero(zh ? "案例中心" : "SELECTED WORKS", zh ? "以真实项目，展示从设计到交付的能力。" : "Real projects that prove design, delivery, and execution.", zh ? "从欧洲、北美、南美、亚洲到中东市场，Ultra Expo 为新能源、储能、工业制造、汽车、消费电子、科技、水处理、零售空间与活动发布等行业客户提供展会设计与海外交付服务。" : "From Europe, North America, South America, and Asia to the Middle East, Ultra Expo delivers exhibition and event projects for brands across energy, battery, industrial manufacturing, automotive, consumer electronics, technology, water treatment, retail, and launch event sectors.", lang)}
       <section class="ultra-section"><div class="ultra-wrap">
@@ -1115,7 +1364,8 @@
 
   function caseDetailPage(id, lang) {
     const zh = lang === "zh";
-    const item = CASES.find(c => c.id === id) || CASES[0];
+    const allCases = activeCases();
+    const item = allCases.find(c => c.id === id) || allCases[0];
     const overview = [
       ["Client", "客户", item.client],
       ["Event", "展会", item.event],
@@ -1125,7 +1375,7 @@
       ["Industry", "行业", item.industry],
       ["Services", "服务内容", (item.services || []).join(" / ")]
     ].filter(x => x[2]);
-    const related = CASES.filter(c => c.id !== item.id && (c.industry === item.industry || c.region === item.region)).slice(0, 3);
+    const related = allCases.filter(c => c.id !== item.id && (c.industry === item.industry || c.region === item.region)).slice(0, 3);
     return `
       ${pageHero(item.type || "CASE", item.client, `${item.event}${item.location ? " · " + item.location : ""}${item.year ? " · " + item.year : ""}`, lang)}
       <section class="ultra-section"><div class="ultra-wrap">
@@ -1182,12 +1432,120 @@
     `;
   }
 
+  function isAdminUnlocked() {
+    try {
+      return sessionStorage.getItem(ADMIN_SESSION_KEY) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  async function sha256Hex(value) {
+    const bytes = new TextEncoder().encode(value);
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+    return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  function adminLoginPage(lang) {
+    const zh = lang === "zh";
+    return `
+      ${pageHero("ADMIN", zh ? "后台配置中心" : "Site Control Center", zh ? "此页面没有前台入口。请输入管理员密码后配置网站模块、底部社媒、服务集成与案例数据。" : "This page has no public navigation entry. Enter the admin password to configure modules, footer social links, integrations, and case data.", lang)}
+      <section class="ultra-section ultra-admin-section"><div class="ultra-wrap">
+        <form class="ultra-admin-login" data-admin-login>
+          <div class="ultra-section-kicker">${zh ? "访问验证" : "ACCESS GATE"}</div>
+          <h2>${zh ? "输入复杂密码" : "Enter the complex password"}</h2>
+          <p>${zh ? "静态站点的密码只能作为前端门禁，不能替代真正的服务端权限控制。" : "This is a client-side gate for a static site. It is not a replacement for server-side access control."}</p>
+          <div class="ultra-field">
+            <label>${zh ? "管理员密码" : "Admin Password"}</label>
+            <input type="password" name="password" autocomplete="current-password" required>
+          </div>
+          <button class="ultra-primary ultra-admin-submit" type="submit">${zh ? "进入后台" : "Unlock Admin"}</button>
+          <p class="ultra-admin-status" data-admin-status></p>
+        </form>
+      </div></section>
+    `;
+  }
+
+  function adminPage(lang) {
+    const zh = lang === "zh";
+    if (!isAdminUnlocked()) return adminLoginPage(lang);
+    const config = getAdminConfig();
+    const home = config.modules.home || {};
+    const caseItems = config.cases.items || activeCases();
+    const moduleRow = (key, title, desc) => `
+      <label class="ultra-admin-check">
+        <input type="checkbox" name="module.${key}" ${home[key] !== false ? "checked" : ""}>
+        <span><strong>${esc(title)}</strong><em>${esc(desc)}</em></span>
+      </label>
+    `;
+    return `
+      ${pageHero("ADMIN", zh ? "后台配置中心" : "Site Control Center", zh ? "按模块维护首页、底栏社媒、第三方配置与案例信息。配置保存在当前浏览器，可导出 JSON 备份。" : "Maintain homepage modules, footer social links, third-party settings, and cases. Config is stored in this browser and can be exported as JSON.", lang)}
+      <section class="ultra-section ultra-admin-section"><div class="ultra-wrap">
+        <form class="ultra-admin" data-admin-config>
+          <div class="ultra-admin-toolbar">
+            <div>
+              <div class="ultra-section-kicker">${zh ? "本地配置" : "LOCAL CONFIG"}</div>
+              <h2>${zh ? "网站配置面板" : "Website configuration"}</h2>
+              <p>${zh ? "更新时间：" : "Updated: "}${esc(config.updatedAt || (zh ? "尚未保存" : "Not saved yet"))}</p>
+            </div>
+            <div class="ultra-admin-actions">
+              <button class="ultra-primary" type="submit">${zh ? "保存配置" : "Save Config"}</button>
+              <button class="ultra-secondary" type="button" data-admin-export>${zh ? "导出 JSON" : "Export JSON"}</button>
+              <label class="ultra-secondary ultra-admin-import">${zh ? "导入 JSON" : "Import JSON"}<input type="file" accept="application/json" data-admin-import></label>
+              <button class="ultra-secondary" type="button" data-admin-reset>${zh ? "恢复默认" : "Reset"}</button>
+              <button class="ultra-secondary" type="button" data-admin-logout>${zh ? "退出" : "Logout"}</button>
+            </div>
+          </div>
+          <p class="ultra-admin-status" data-admin-status></p>
+
+          <div class="ultra-admin-grid">
+            <section class="ultra-admin-panel">
+              <h3>${zh ? "首页模块" : "Homepage Modules"}</h3>
+              <div class="ultra-admin-checks">
+                ${moduleRow("trusted", zh ? "客户 logo / 信任背书" : "Trusted clients", zh ? "Hero 下方的合作客户标题与 logo 跑马灯。" : "Client headline and logo marquee below the hero.")}
+                ${moduleRow("services", zh ? "服务列表" : "Service list", zh ? "End-to-end Exhibition Services 模块。" : "End-to-end Exhibition Services module.")}
+                ${moduleRow("selectedWorks", zh ? "精选案例" : "Selected works", zh ? "案例图片横向滚动模块。" : "Scrolling selected work gallery.")}
+                ${moduleRow("metrics", zh ? "指标卡区" : "Metric cards", zh ? "交付能力与数据卡片。" : "Delivery capability metric cards.")}
+                ${moduleRow("footer", zh ? "底部 CTA / Footer" : "Bottom CTA / Footer", zh ? "首页底部 CTA 和页脚。" : "Homepage bottom CTA and footer.")}
+              </div>
+            </section>
+
+            <section class="ultra-admin-panel">
+              <h3>${zh ? "底部社媒" : "Footer Social"}</h3>
+              <p>${zh ? "支持字段：key、icon、labelEn、labelZh、href、enabled。icon 可用 phone/email/rednote/wechat/linkedin。" : "Supported fields: key, icon, labelEn, labelZh, href, enabled. Icons: phone/email/rednote/wechat/linkedin."}</p>
+              <textarea name="footer.socialLinks" spellcheck="false">${adminJSON(config.footer.socialLinks || [])}</textarea>
+            </section>
+
+            <section class="ultra-admin-panel">
+              <h3>${zh ? "底部联系链接" : "Footer Contact Links"}</h3>
+              <p>${zh ? "用于 footer CONTACT 列。站内链接可写 route: /contact，外链写 href。" : "Used by the footer CONTACT column. Use route for internal links and href for external links."}</p>
+              <textarea name="footer.contactLinks" spellcheck="false">${adminJSON(config.footer.contactLinks || [])}</textarea>
+            </section>
+
+            <section class="ultra-admin-panel">
+              <h3>${zh ? "阿里云 / Notion 等配置" : "Aliyun / Notion Integrations"}</h3>
+              <p>${zh ? "静态站不适合保存生产密钥。这里用于记录配置，正式接入请走后端代理。" : "Do not store production secrets in a static site. Use this for planning; route real integrations through a backend proxy."}</p>
+              <textarea name="integrations" spellcheck="false">${adminJSON(config.integrations || {})}</textarea>
+            </section>
+
+            <section class="ultra-admin-panel is-wide">
+              <h3>${zh ? "案例数据" : "Case Data"}</h3>
+              <p>${zh ? "填 JSON 数组会覆盖前台案例；留空或填 null 则使用 assets/ultra-cases.js。当前编辑数量：" : "A JSON array overrides the public cases; blank or null falls back to assets/ultra-cases.js. Current editable count: "}${Array.isArray(caseItems) ? caseItems.length : 0}</p>
+              <textarea name="cases.items" spellcheck="false">${adminJSON(caseItems)}</textarea>
+            </section>
+          </div>
+        </form>
+      </div></section>
+    `;
+  }
+
   function routeContent(path, lang) {
     if (path === "/about") return aboutPage(lang);
     if (path === "/services") return servicesPage(lang);
     if (path === "/cases") return casesPage(lang);
     if (path.startsWith("/cases/")) return caseDetailPage(path.split("/").pop(), lang);
     if (path === "/contact") return contactPage(lang);
+    if (path === "/admin") return adminPage(lang);
     return "";
   }
 
@@ -1378,8 +1736,8 @@
           const py = rect.height ? Math.max(0, Math.min(1, (y - rect.top) / rect.height)) : 0.42;
           section.style.setProperty("--ultra-hero-mx", `${(px * 100).toFixed(1)}%`);
           section.style.setProperty("--ultra-hero-my", `${(py * 100).toFixed(1)}%`);
-          section.style.setProperty("--ultra-hero-shift-x", `${((px - 0.5) * 34).toFixed(1)}px`);
-          section.style.setProperty("--ultra-hero-shift-y", `${((py - 0.42) * 18).toFixed(1)}px`);
+          section.style.setProperty("--ultra-hero-shift-x", `${((px - 0.5) * 18).toFixed(1)}px`);
+          section.style.setProperty("--ultra-hero-shift-y", `${((py - 0.42) * 10).toFixed(1)}px`);
         });
       };
       section.addEventListener("pointermove", event => setHeroAmbient(event.clientX, event.clientY), { passive: true });
@@ -1432,11 +1790,16 @@
     const heroCopy = zh
       ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
       : "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.";
+    const titleText = heroTitle.join(" ");
+    const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
 
     section.insertAdjacentHTML("beforeend", `
       <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
         <div class="ultra-home-hero-rebuilt-title">
-          <h1><span>${heroTitle[0]}</span><span>${heroTitle[1]}</span></h1>
+          <h1 class="hero-focus-title" aria-label="${esc(titleText)}">
+            <span class="title-blur" aria-hidden="true">${titleLines}</span>
+            <span class="title-sharp" aria-hidden="true">${titleLines}</span>
+          </h1>
         </div>
         <div class="ultra-home-hero-rebuilt-bottom">
           <p>${heroCopy}</p>
@@ -1447,6 +1810,61 @@
         </div>
       </div>
     `);
+
+    const focusTitle = section.querySelector(".hero-focus-title");
+    if (focusTitle && !focusTitle.dataset.ultraFocusBound) {
+      focusTitle.dataset.ultraFocusBound = "true";
+      let currentX = 50;
+      let currentY = 50;
+      let targetX = 50;
+      let targetY = 50;
+      let focusFrame = 0;
+      let focusActive = false;
+      const updateFocus = () => {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+        focusTitle.style.setProperty("--title-mx", `${currentX.toFixed(2)}%`);
+        focusTitle.style.setProperty("--title-my", `${currentY.toFixed(2)}%`);
+        if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+          focusFrame = requestAnimationFrame(updateFocus);
+        } else {
+          focusFrame = 0;
+        }
+      };
+      const moveFocus = (x, y) => {
+        const rect = focusTitle.getBoundingClientRect();
+        targetX = rect.width ? Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100)) : 50;
+        targetY = rect.height ? Math.max(0, Math.min(100, ((y - rect.top) / rect.height) * 100)) : 50;
+        if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
+      };
+      const centerFocus = () => {
+        targetX = 50;
+        targetY = 50;
+        if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
+      };
+      const handleFocusPointer = event => {
+        const rect = focusTitle.getBoundingClientRect();
+        const inside = event.clientX >= rect.left &&
+          event.clientX <= rect.right &&
+          event.clientY >= rect.top &&
+          event.clientY <= rect.bottom;
+        if (inside) {
+          focusActive = true;
+          moveFocus(event.clientX, event.clientY);
+        } else if (focusActive) {
+          focusActive = false;
+          centerFocus();
+        }
+      };
+      section.addEventListener("pointermove", handleFocusPointer, { passive: true });
+      section.addEventListener("mousemove", handleFocusPointer, { passive: true });
+      section.addEventListener("pointerleave", centerFocus, { passive: true });
+      section.addEventListener("mouseleave", centerFocus, { passive: true });
+      focusTitle.addEventListener("pointermove", event => moveFocus(event.clientX, event.clientY), { passive: true });
+      focusTitle.addEventListener("mousemove", event => moveFocus(event.clientX, event.clientY), { passive: true });
+      focusTitle.addEventListener("pointerleave", centerFocus, { passive: true });
+      focusTitle.addEventListener("mouseleave", centerFocus, { passive: true });
+    }
 
     const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
     const textParents = new Set();
@@ -1469,31 +1887,9 @@
     const root = document.getElementById("ultra-app");
     if (root) root.innerHTML = `<div class="ultra-site ultra-home-shell">${navHTML(lang, "/")}</div>`;
     const container = document.getElementById("container");
-    if (container) {
-      markHomeLayout(container);
-      localizeHomeContainer(container, lang);
-      markHomeLayout(container);
-      rebuildHomeHeroContent(container, lang);
-    }
+    if (container) renderHomeContent(container, lang);
     const switcher = document.querySelector(".ultra-home-lang");
     if (switcher) switcher.remove();
-    injectHomeServicesSection(lang);
-    injectHomeSelectedSection(lang);
-    injectHomeWhySection(lang);
-    injectHomeBottom(lang);
-    setTimeout(() => injectHomeServicesSection(lang), 180);
-    setTimeout(() => injectHomeSelectedSection(lang), 220);
-    setTimeout(() => injectHomeWhySection(lang), 260);
-    setTimeout(() => injectHomeBottom(lang), 320);
-    [420, 760, 1200].forEach(delay => setTimeout(() => {
-      const latestContainer = document.getElementById("container");
-      if (latestContainer) {
-        markHomeLayout(latestContainer);
-        localizeHomeContainer(latestContainer, lang);
-        markHomeLayout(latestContainer);
-        rebuildHomeHeroContent(latestContainer, lang);
-      }
-    }, delay));
   }
 
   function render() {
@@ -1521,6 +1917,51 @@
     render();
   }
 
+  function setAdminStatus(root, message, isError = false) {
+    const status = root?.querySelector("[data-admin-status]");
+    if (!status) return;
+    status.textContent = message;
+    status.classList.toggle("is-error", isError);
+  }
+
+  function parseAdminTextarea(form, name, fallback) {
+    const field = form.elements[name];
+    const raw = field ? String(field.value || "").trim() : "";
+    if (!raw || raw === "null") return fallback;
+    return JSON.parse(raw);
+  }
+
+  function collectAdminConfig(form) {
+    const current = getAdminConfig();
+    const casesItems = parseAdminTextarea(form, "cases.items", null);
+    if (casesItems !== null && !Array.isArray(casesItems)) throw new Error("cases.items must be a JSON array or null.");
+    const socialLinks = parseAdminTextarea(form, "footer.socialLinks", []);
+    const contactLinks = parseAdminTextarea(form, "footer.contactLinks", []);
+    if (!Array.isArray(socialLinks)) throw new Error("footer.socialLinks must be a JSON array.");
+    if (!Array.isArray(contactLinks)) throw new Error("footer.contactLinks must be a JSON array.");
+    return {
+      ...current,
+      modules: {
+        ...current.modules,
+        home: {
+          trusted: Boolean(form.elements["module.trusted"]?.checked),
+          services: Boolean(form.elements["module.services"]?.checked),
+          selectedWorks: Boolean(form.elements["module.selectedWorks"]?.checked),
+          metrics: Boolean(form.elements["module.metrics"]?.checked),
+          footer: Boolean(form.elements["module.footer"]?.checked)
+        }
+      },
+      footer: {
+        socialLinks,
+        contactLinks
+      },
+      integrations: parseAdminTextarea(form, "integrations", {}),
+      cases: {
+        items: casesItems
+      }
+    };
+  }
+
   document.addEventListener("click", event => {
     const localeToggle = event.target.closest("[data-locale-toggle]");
     if (localeToggle) {
@@ -1538,6 +1979,35 @@
     if (filterBtn) {
       event.preventDefault();
       updateFilters(filterBtn.dataset.filter, filterBtn.dataset.value);
+      return;
+    }
+    const adminLogout = event.target.closest("[data-admin-logout]");
+    if (adminLogout) {
+      event.preventDefault();
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      render();
+      return;
+    }
+    const adminReset = event.target.closest("[data-admin-reset]");
+    if (adminReset) {
+      event.preventDefault();
+      if (window.confirm("Reset local admin configuration?")) {
+        localStorage.removeItem(ADMIN_CONFIG_KEY);
+        render();
+      }
+      return;
+    }
+    const adminExport = event.target.closest("[data-admin-export]");
+    if (adminExport) {
+      event.preventDefault();
+      const blob = new Blob([JSON.stringify(getAdminConfig(), null, 2)], { type: "application/json" });
+      const anchor = document.createElement("a");
+      anchor.href = URL.createObjectURL(blob);
+      anchor.download = `ultra-admin-config-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      URL.revokeObjectURL(anchor.href);
+      anchor.remove();
       return;
     }
     if (event.target.closest("[data-clear-filters]")) {
@@ -1558,7 +2028,54 @@
     }
   });
 
-  document.addEventListener("submit", event => {
+  document.addEventListener("change", event => {
+    const input = event.target.closest("[data-admin-import]");
+    if (!input || !input.files?.length) return;
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result || "{}"));
+        saveAdminConfig(parsed);
+        render();
+      } catch (error) {
+        setAdminStatus(document, "Import failed: " + error.message, true);
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  document.addEventListener("submit", async event => {
+    const adminLogin = event.target.closest("[data-admin-login]");
+    if (adminLogin) {
+      event.preventDefault();
+      try {
+        const password = adminLogin.elements.password?.value || "";
+        const hash = await sha256Hex(password);
+        if (hash !== ADMIN_PASSWORD_HASH) {
+          setAdminStatus(adminLogin, "Password is incorrect.", true);
+          return;
+        }
+        sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
+        render();
+      } catch (error) {
+        setAdminStatus(adminLogin, "Unable to verify password.", true);
+      }
+      return;
+    }
+
+    const adminConfigForm = event.target.closest("[data-admin-config]");
+    if (adminConfigForm) {
+      event.preventDefault();
+      try {
+        saveAdminConfig(collectAdminConfig(adminConfigForm));
+        render();
+      } catch (error) {
+        setAdminStatus(adminConfigForm, "Save failed: " + error.message, true);
+      }
+      return;
+    }
+
     const form = event.target.closest("[data-contact-form]");
     if (!form) return;
     event.preventDefault();
