@@ -104,63 +104,43 @@ html.ultra-home-active #container [role="navigation"] {
 
 .ultra-nav {
   position: fixed;
-  top: 20px;
-  left: clamp(18px, 4vw, 72px);
-  right: clamp(18px, 4vw, 72px);
+  top: 14px;
+  left: 50%;
+  width: min(calc(100% - 48px), 1760px);
+  transform: translateX(-50%);
   z-index: 2000;
   display: grid;
-  grid-template-columns: minmax(220px, 0.72fr) minmax(360px, 1fr) auto;
+  grid-template-columns: auto minmax(360px, 1fr) auto;
   align-items: center;
-  gap: clamp(18px, 3vw, 42px);
-  min-height: 90px;
-  padding: 18px 42px;
-  background: #14161c;
-  box-shadow: 0 22px 48px rgba(22, 38, 75, 0.18);
+  gap: clamp(28px, 4vw, 72px);
+  height: 72px;
+  min-height: 72px;
+  padding: 0 28px;
+  background: rgba(19, 21, 24, 0.88);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  box-shadow: none;
 }
 
 .ultra-brand {
   display: flex;
   align-items: center;
-  gap: 16px;
   min-width: 0;
   color: #fff;
   text-decoration: none;
 }
 
-.ultra-brand-mark {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border: 3px solid #fff;
-  clip-path: polygon(50% 0, 94% 24%, 94% 76%, 50% 100%, 6% 76%, 6% 24%);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.ultra-brand-copy {
-  display: grid;
-  gap: 4px;
-}
-
-.ultra-brand-name {
-  font-size: clamp(24px, 2vw, 36px);
-  line-height: 0.82;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.ultra-brand-sub {
-  color: rgba(255,255,255,0.82);
-  font-size: 14px;
-  letter-spacing: 0.08em;
+.ultra-brand-logo {
+  display: block;
+  width: 143px;
+  height: auto;
+  color: #fff;
 }
 
 .ultra-links {
   display: flex;
   justify-content: center;
-  gap: clamp(22px, 3.2vw, 62px);
+  gap: 0;
   align-items: center;
 }
 
@@ -172,43 +152,52 @@ html.ultra-home-active #container [role="navigation"] {
   color: rgba(255,255,255,0.78);
   text-decoration: none;
   font-family: var(--ultra-font);
-  font-size: clamp(20px, 1.55vw, 31px);
+  font-size: 19px;
+  font-weight: 300;
   line-height: 1;
   cursor: pointer;
   white-space: nowrap;
 }
 
+.ultra-links a {
+  padding: 8px 22px;
+  opacity: 0.75;
+}
+
 .ultra-links a:hover,
 .ultra-links a.is-active,
 .ultra-lang button.is-active {
-  color: var(--ultra-blue);
+  color: #fff;
+  opacity: 1;
 }
 
 .ultra-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   justify-content: flex-end;
+  min-width: 0;
 }
 
 .ultra-lang {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  height: 46px;
-  padding: 0 16px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.16);
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
 }
 
 .ultra-lang button {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.65;
 }
 
 .ultra-lang span {
-  color: rgba(255,255,255,0.5);
-  font-size: 22px;
+  color: rgba(255,255,255,0.36);
+  font-size: 15px;
 }
 
 .ultra-primary,
@@ -231,12 +220,15 @@ html.ultra-home-active #container [role="navigation"] {
 }
 
 .ultra-nav .ultra-primary {
-  min-height: 72px;
-  padding: 0 clamp(28px, 3vw, 54px);
+  min-width: 0;
+  min-height: 0;
+  height: 47px;
+  padding: 0 26px;
   border-color: var(--ultra-blue);
   background: var(--ultra-blue);
   color: #02040a;
-  font-size: clamp(20px, 1.35vw, 30px);
+  font-size: 17px;
+  font-weight: 400;
 }
 
 .ultra-primary {
@@ -256,7 +248,7 @@ html.ultra-home-active #container [role="navigation"] {
 }
 
 .ultra-main {
-  padding-top: 130px;
+  padding-top: 112px;
 }
 
 .ultra-wrap {
@@ -648,7 +640,12 @@ html.ultra-home-active #container [role="navigation"] {
   .ultra-nav {
     grid-template-columns: 1fr auto;
     min-height: auto;
+    top: 12px;
     padding: 16px 18px;
+  }
+
+  .ultra-brand-logo {
+    width: 143px;
   }
 
   .ultra-links {
@@ -664,8 +661,19 @@ html.ultra-home-active #container [role="navigation"] {
   }
 
   .ultra-nav .ultra-primary {
-    min-height: 54px;
+    height: 47px;
+    min-height: 0;
+    min-width: 0;
     font-size: 17px;
+  }
+
+  .ultra-actions {
+    min-width: 0;
+  }
+
+  .ultra-lang {
+    position: static;
+    height: 36px;
   }
 }
 

@@ -278,20 +278,16 @@
     return `
       <nav class="ultra-nav">
         <a class="ultra-brand" href="${routeLink("/")}" data-route="/">
-          <span class="ultra-brand-mark">U</span>
-          <span class="ultra-brand-copy">
-            <span class="ultra-brand-name">ULTRA</span>
-            <span class="ultra-brand-sub">${lang === "zh" ? "皓创展览" : "皓创展览"}</span>
-          </span>
+          <img class="ultra-brand-logo" src="${routeLink("/assets/ultra-logo.svg")}" alt="Ultra Expo 皓创展览">
         </a>
         <div class="ultra-links">
           ${navItems.map(item => `<a href="${routeLink(item.path)}" data-route="${item.path}" class="${activePath === item.path || (item.path === "/cases" && activePath.startsWith("/cases")) ? "is-active" : ""}">${L.nav[item.key]}</a>`).join("")}
         </div>
         <div class="ultra-actions">
+          <a class="ultra-primary" href="${routeLink("/contact")}" data-route="/contact">${L.cta}</a>
           <div class="ultra-lang">
             <button class="${lang === "en" ? "is-active" : ""}" data-locale="en">EN</button><span>/</span><button class="${lang === "zh" ? "is-active" : ""}" data-locale="zh">CN</button>
           </div>
-          <a class="ultra-primary" href="${routeLink("/contact")}" data-route="/contact">${L.cta}</a>
         </div>
       </nav>
     `;
