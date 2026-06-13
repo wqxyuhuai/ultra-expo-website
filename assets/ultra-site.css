@@ -3071,7 +3071,7 @@ html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom {
 html.ultra-home-active #container .ultra-home-hero-rebuilt h1 {
   --title-mx: 50%;
   --title-my: 50%;
-  --title-focus-size: clamp(240px, 23vw, 470px);
+  --title-focus-size: clamp(340px, 32vw, 680px);
   margin: 0;
   color: #fff;
   font-size: clamp(58px, 5.45vw, 112px);
@@ -3095,12 +3095,12 @@ html.ultra-home-active #container .hero-focus-title .title-sharp {
 }
 
 html.ultra-home-active #container .hero-focus-title .title-blur {
-  color: rgba(255,255,255,0.82);
-  filter: blur(10px);
-  opacity: 0.82;
+  color: rgba(255,255,255,0.72);
+  filter: blur(6px);
+  opacity: 0.66;
   text-shadow:
-    0 0 18px color-mix(in srgb, var(--ultra-blue) 48%, transparent),
-    0 0 46px color-mix(in srgb, var(--ultra-blue-deep) 34%, transparent);
+    0 0 12px color-mix(in srgb, var(--ultra-blue) 34%, transparent),
+    0 0 32px color-mix(in srgb, var(--ultra-blue-deep) 24%, transparent);
 }
 
 html.ultra-home-active #container .hero-focus-title .title-sharp {
@@ -3114,18 +3114,18 @@ html.ultra-home-active #container .hero-focus-title .title-sharp {
   -webkit-mask-image: radial-gradient(
     circle var(--title-focus-size) at var(--title-mx) var(--title-my),
     #000 0%,
-    #000 28%,
-    rgba(0,0,0,0.74) 43%,
-    rgba(0,0,0,0.22) 66%,
-    transparent 82%
+    #000 36%,
+    rgba(0,0,0,0.82) 54%,
+    rgba(0,0,0,0.28) 76%,
+    transparent 92%
   );
   mask-image: radial-gradient(
     circle var(--title-focus-size) at var(--title-mx) var(--title-my),
     #000 0%,
-    #000 28%,
-    rgba(0,0,0,0.74) 43%,
-    rgba(0,0,0,0.22) 66%,
-    transparent 82%
+    #000 36%,
+    rgba(0,0,0,0.82) 54%,
+    rgba(0,0,0,0.28) 76%,
+    transparent 92%
   );
 }
 
