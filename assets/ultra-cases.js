@@ -2086,3 +2086,81 @@ window.UltraCases = [
     }
   }
 ];
+
+(function normalizeUltraContent() {
+  const sourceCases = Array.isArray(window.UltraCases) ? window.UltraCases : [];
+  const slug = value => String(value || "brand").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const parseArea = value => {
+    if (typeof value === "number") return value;
+    const match = String(value || "").match(/\d+(?:\.\d+)?/);
+    return match ? Number(match[0]) : null;
+  };
+  const toFiles = (value, fallbackName) => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value.filter(Boolean);
+    return [{ name: fallbackName || "local-mock-file", url: value, source: "local-mock" }];
+  };
+  const brandMap = new Map();
+  const normalizedCases = sourceCases.map((item, index) => {
+    const brandEnglishName = item.brandEnglishName || item.client || "";
+    const brandId = item.brandId || slug(brandEnglishName);
+    const areaSqm = item.areaSqm ?? parseArea(item.area);
+    const year = item.year ? Number(item.year) : null;
+    const title = item.title || [brandEnglishName, item.event, year].filter(Boolean).join(" · ");
+
+    if (brandEnglishName && !brandMap.has(brandId)) {
+      brandMap.set(brandId, {
+        id: brandId,
+        chineseName: item.brandChineseName || "",
+        englishName: brandEnglishName,
+        originalLogo: { files: toFiles(item.brandLogoOriginal, `${brandId}-original-logo`) },
+        grayLogo: { files: toFiles(item.brandLogoGray, `${brandId}-gray-logo`) },
+        industry: item.industry ? [item.industry] : [],
+        isFeaturedBrand: Boolean(item.isFeaturedBrand),
+        featuredBrandOrder: item.featuredBrandOrder ?? null,
+        brandOrder: item.brandOrder ?? index + 1,
+        isOnline: item.brandOnline !== false,
+        notes: ""
+      });
+    }
+
+    return {
+      ...item,
+      id: item.id || `case-${index + 1}`,
+      title,
+      brandId,
+      brandEnglishName,
+      exhibitionName: item.exhibitionName || item.event || "",
+      country: item.country || item.location || item.region || "",
+      year,
+      areaSqm,
+      industry: item.industry || "",
+      chineseIntro: item.chineseIntro || item.description?.zh || "",
+      englishIntro: item.englishIntro || item.description?.en || "",
+      coverImage: { files: toFiles(item.coverImage?.files || item.image, `${item.id || "case"}-cover`) },
+      galleryImages: { files: toFiles(item.galleryImages?.files || item.images || [], `${item.id || "case"}-gallery`) },
+      isFeaturedCase: item.isFeaturedCase ?? Boolean(item.featured),
+      featuredCaseOrder: item.featuredCaseOrder ?? (item.featured ? index + 1 : null),
+      casePageOrder: item.casePageOrder ?? index + 1,
+      isOnline: item.isOnline !== false,
+      notes: item.notes || ""
+    };
+  });
+
+  window.UltraBrands = Array.from(brandMap.values()).sort((a, b) => (a.brandOrder || 9999) - (b.brandOrder || 9999));
+  window.UltraCases = normalizedCases;
+  window.UltraContent = {
+    version: "2026-06-13-local-mock",
+    source: "local-mock",
+    sync: {
+      notion: { enabled: false, brandsDatabaseId: "", casesDatabaseId: "" },
+      aliyunOss: { enabled: false, bucket: "", region: "", publicBaseUrl: "" }
+    },
+    schemas: {
+      brands: ["chineseName", "englishName", "originalLogo", "grayLogo", "industry", "isFeaturedBrand", "featuredBrandOrder", "brandOrder", "isOnline", "notes"],
+      cases: ["title", "brandId", "exhibitionName", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
+    },
+    brands: window.UltraBrands,
+    cases: window.UltraCases
+  };
+})();

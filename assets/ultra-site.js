@@ -2,8 +2,12 @@
   const REPO_BASE = window.__ULTRA_BASE_PATH || "/";
   const ADMIN_CONFIG_KEY = "ultra-admin-config-v1";
   const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
+  const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
-  const CASES = loadCases();
+  let adminPendingConfirm = null;
+  const CONTENT = loadContent();
+  const CASES = CONTENT.cases;
+  const BRANDS = CONTENT.brands;
   const STORAGE_KEY = "ultra-locale";
 
   const labels = {
@@ -78,10 +82,12 @@
 
   const pageDescriptions = {
     en: {
-      home: "Ultra Expo provides global exhibition and spatial design delivery services for Chinese brands going abroad, covering strategy, space design, overseas localization, engineering, and on-site build."
+      home: "Ultra Expo provides global exhibition and spatial design delivery services for Chinese brands going abroad, covering strategy, space design, overseas localization, engineering, and on-site build.",
+      contact: "Contact Ultra Expo for overseas exhibition booth design, brand spaces, product launches, and end-to-end local delivery support."
     },
     zh: {
-      home: "皓创展览 Ultra Expo 为中国品牌出海提供全球展会与空间设计落地服务，覆盖品牌策划、空间设计、海外本地化、工程搭建与现场交付。"
+      home: "皓创展览 Ultra Expo 为中国品牌出海提供全球展会与空间设计落地服务，覆盖品牌策划、空间设计、海外本地化、工程搭建与现场交付。",
+      contact: "联系 Ultra Expo 皓创展览，咨询海外展会、展台设计、品牌空间、新品发布与本地化落地服务。"
     }
   };
 
@@ -160,7 +166,10 @@
   const filterLabels = {
     en: {
       year: "Year",
+      brand: "Brand",
       industry: "Industry",
+      country: "Country",
+      area: "Area",
       region: "Region",
       type: "Case Type",
       industries: {
@@ -181,7 +190,10 @@
     },
     zh: {
       year: "年份",
+      brand: "品牌",
       industry: "行业",
+      country: "展会国家",
+      area: "面积",
       region: "地区",
       type: "案例类型",
       industries: {
@@ -328,7 +340,7 @@
       const detailDescription = item?.description?.[lang];
       if (detailDescription && (lang === "en" || /[\u4e00-\u9fff]/.test(detailDescription))) return detailDescription;
     }
-    return pageDescriptions[lang].home;
+    return pageDescriptions[lang][pageKey(path)] || pageDescriptions[lang].home;
   }
 
   function setMetaContent(selector, value) {
@@ -370,6 +382,41 @@
     return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
   }
 
+  function defaultExhibitionLogos() {
+    return [
+      "IFA Berlin",
+      "CES Las Vegas",
+      "MWC Barcelona",
+      "Intersolar Europe",
+      "The Battery Show",
+      "RE+",
+      "Smart Energy",
+      "Solar Solutions International",
+      "Solar Storage Live",
+      "Intersolar South America",
+      "The Green Expo",
+      "ENERGAIA",
+      "Solar & Storage Live UK",
+      "SNEC PV Power Expo",
+      "EICMA",
+      "Key Energy",
+      "Green Energy Expo",
+      "ENEX",
+      "PV EXPO TOKYO",
+      "Aquatech",
+      "PCIM",
+      "SPS",
+      "OTC",
+      "APEX"
+    ].map((name, index) => ({
+      id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      name,
+      logo: "",
+      order: index + 1,
+      visible: true
+    }));
+  }
+
   function defaultAdminConfig() {
     return {
       version: 1,
@@ -382,6 +429,15 @@
           metrics: true,
           footer: true
         }
+      },
+      about: {
+        serviceMedia: [
+          { title: "STRATEGY", type: "image", url: "", poster: "", alt: "Strategy service media" },
+          { title: "DESIGN", type: "image", url: "", poster: "", alt: "Design service media" },
+          { title: "ABROAD", type: "image", url: "", poster: "", alt: "Abroad service media" },
+          { title: "BUILD", type: "image", url: "", poster: "", alt: "Build service media" }
+        ],
+        exhibitionLogos: defaultExhibitionLogos()
       },
       footer: {
         contactLinks: [
@@ -410,11 +466,46 @@
         notion: {
           enabled: false,
           workspace: "",
-          databaseId: "",
+          brandsDatabaseId: "",
+          casesDatabaseId: "",
           apiEndpoint: "",
           integrationToken: "",
           notes: "Use a backend proxy before connecting a real Notion token."
         }
+      },
+      contact: {
+        email: "jack@ultraexpo.com",
+        phone: "+86 185 0614 4181",
+        whatsapp: "",
+        wechat: "",
+        addressZh: "Suzhou, China",
+        addressEn: "Suzhou, China",
+        footerEntries: [
+          { labelZh: "商务合作", labelEn: "Business Partnership", value: "/contact" },
+          { labelZh: "电话咨询", labelEn: "Phone Consultation", value: "tel:+8618506144181" },
+          { labelZh: "联系邮箱", labelEn: "Email", value: "mailto:jack@ultraexpo.com" }
+        ]
+      },
+      contactMessages: {
+        items: []
+      },
+      siteSettings: {
+        siteNameZh: "皓创展览",
+        siteNameEn: "Ultra Expo",
+        logo: "/assets/ultra-logo.svg",
+        favicon: "/assets/favicon.svg",
+        defaultLanguage: "en",
+        notionToken: "",
+        notionBrandsDatabaseId: "",
+        notionCasesDatabaseId: "",
+        ossRegion: "",
+        ossBucket: "",
+        ossAccessKeyId: "",
+        ossAccessKeySecret: "",
+        ossCdnDomain: ""
+      },
+      brands: {
+        items: null
       },
       cases: {
         items: null
@@ -428,9 +519,17 @@
     output.modules = { ...base.modules, ...(saved.modules || {}) };
     output.modules.home = { ...base.modules.home, ...(saved.modules?.home || {}) };
     output.footer = { ...base.footer, ...(saved.footer || {}) };
+    output.about = { ...base.about, ...(saved.about || {}) };
+    output.about.serviceMedia = Array.isArray(saved.about?.serviceMedia) ? saved.about.serviceMedia : base.about.serviceMedia;
+    output.about.exhibitionLogos = Array.isArray(saved.about?.exhibitionLogos) ? saved.about.exhibitionLogos : base.about.exhibitionLogos;
     output.integrations = { ...base.integrations, ...(saved.integrations || {}) };
     output.integrations.aliyun = { ...base.integrations.aliyun, ...(saved.integrations?.aliyun || {}) };
     output.integrations.notion = { ...base.integrations.notion, ...(saved.integrations?.notion || {}) };
+    output.contact = { ...base.contact, ...(saved.contact || {}) };
+    output.contactMessages = { ...base.contactMessages, ...(saved.contactMessages || {}) };
+    output.contactMessages.items = Array.isArray(saved.contactMessages?.items) ? saved.contactMessages.items : base.contactMessages.items;
+    output.siteSettings = { ...base.siteSettings, ...(saved.siteSettings || {}) };
+    output.brands = { ...base.brands, ...(saved.brands || {}) };
     output.cases = { ...base.cases, ...(saved.cases || {}) };
     return output;
   }
@@ -453,9 +552,32 @@
     return next;
   }
 
+  function caseSortValue(item, index) {
+    const explicit = Number(item.casePageOrder);
+    if (Number.isFinite(explicit)) return [0, explicit, index];
+    const year = Number(item.year);
+    return [1, Number.isFinite(year) ? -year : 9999, index];
+  }
+
+  function sortCases(items) {
+    return [...items]
+      .map((item, index) => ({ item, sort: caseSortValue(item, index) }))
+      .sort((a, b) => a.sort[0] - b.sort[0] || a.sort[1] - b.sort[1] || a.sort[2] - b.sort[2])
+      .map(entry => entry.item);
+  }
+
   function activeCases() {
     const override = getAdminConfig().cases?.items;
-    return Array.isArray(override) && override.length ? override : CASES;
+    const items = Array.isArray(override) && override.length ? override : CASES;
+    return sortCases(items.filter(item => item?.isOnline !== false));
+  }
+
+  function activeBrands() {
+    const override = getAdminConfig().brands?.items;
+    const items = Array.isArray(override) && override.length ? override : BRANDS;
+    return [...items]
+      .filter(item => item?.isOnline !== false)
+      .sort((a, b) => (Number(a.brandOrder) || 9999) - (Number(b.brandOrder) || 9999));
   }
 
   function adminLabel(item, lang) {
@@ -473,6 +595,88 @@
     return esc(JSON.stringify(value, null, 2));
   }
 
+  function loadContent() {
+    if (window.UltraContent && Array.isArray(window.UltraContent.cases)) {
+      return {
+        brands: Array.isArray(window.UltraContent.brands) ? window.UltraContent.brands : [],
+        cases: window.UltraContent.cases
+      };
+    }
+    return normalizeContent(Array.isArray(window.UltraBrands) ? window.UltraBrands : [], loadCases());
+  }
+
+  function normalizeContent(sourceBrands, sourceCases) {
+    const slug = value => String(value || "brand").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const parseArea = value => {
+      if (typeof value === "number") return value;
+      const match = String(value || "").match(/\d+(?:\.\d+)?/);
+      return match ? Number(match[0]) : null;
+    };
+    const toFiles = (value, fallbackName) => {
+      if (!value) return [];
+      if (Array.isArray(value)) return value.filter(Boolean);
+      return [{ name: fallbackName || "local-mock-file", url: value, source: "local-mock" }];
+    };
+    const brandMap = new Map((sourceBrands || []).map(brand => [brand.id, brand]));
+    const cases = (sourceCases || []).map((item, index) => {
+      const brandEnglishName = item.brandEnglishName || item.client || "";
+      const brandId = item.brandId || slug(brandEnglishName);
+      const areaSqm = item.areaSqm ?? parseArea(item.area);
+      const year = item.year ? Number(item.year) : null;
+      if (brandEnglishName && !brandMap.has(brandId)) {
+        brandMap.set(brandId, {
+          id: brandId,
+          chineseName: item.brandChineseName || "",
+          englishName: brandEnglishName,
+          originalLogo: { files: toFiles(item.brandLogoOriginal, `${brandId}-original-logo`) },
+          grayLogo: { files: toFiles(item.brandLogoGray, `${brandId}-gray-logo`) },
+          industry: item.industry ? [item.industry] : [],
+          isFeaturedBrand: Boolean(item.isFeaturedBrand),
+          featuredBrandOrder: item.featuredBrandOrder ?? null,
+          brandOrder: item.brandOrder ?? index + 1,
+          isOnline: item.brandOnline !== false,
+          notes: ""
+        });
+      }
+      return {
+        ...item,
+        id: item.id || `case-${index + 1}`,
+        title: item.title || [brandEnglishName, item.event, year].filter(Boolean).join(" · "),
+        brandId,
+        brandEnglishName,
+        exhibitionName: item.exhibitionName || item.event || "",
+        country: item.country || item.location || item.region || "",
+        year,
+        areaSqm,
+        chineseIntro: item.chineseIntro || item.description?.zh || "",
+        englishIntro: item.englishIntro || item.description?.en || "",
+        coverImage: item.coverImage || { files: toFiles(item.image, `${item.id || "case"}-cover`) },
+        galleryImages: item.galleryImages || { files: toFiles(item.images || [], `${item.id || "case"}-gallery`) },
+        isFeaturedCase: item.isFeaturedCase ?? Boolean(item.featured),
+        featuredCaseOrder: item.featuredCaseOrder ?? (item.featured ? index + 1 : null),
+        casePageOrder: item.casePageOrder ?? index + 1,
+        isOnline: item.isOnline !== false,
+        notes: item.notes || ""
+      };
+    });
+    const brands = Array.from(brandMap.values()).sort((a, b) => (Number(a.brandOrder) || 9999) - (Number(b.brandOrder) || 9999));
+    window.UltraContent = window.UltraContent || {
+      version: "2026-06-13-local-mock",
+      source: "local-mock",
+      sync: {
+        notion: { enabled: false, brandsDatabaseId: "", casesDatabaseId: "" },
+        aliyunOss: { enabled: false, bucket: "", region: "", publicBaseUrl: "" }
+      },
+      schemas: {
+        brands: ["chineseName", "englishName", "originalLogo", "grayLogo", "industry", "isFeaturedBrand", "featuredBrandOrder", "brandOrder", "isOnline", "notes"],
+        cases: ["title", "brandId", "exhibitionName", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
+      },
+      brands,
+      cases
+    };
+    return { brands, cases };
+  }
+
   function loadCases() {
     if (Array.isArray(window.UltraCases)) return window.UltraCases;
     try {
@@ -482,7 +686,7 @@
       xhr.open("GET", url, false);
       xhr.send(null);
       if (xhr.status < 200 || xhr.status >= 300) return [];
-      const match = xhr.responseText.match(/window\.UltraCases\s*=\s*(\[[\s\S]*\]);?\s*$/);
+      const match = xhr.responseText.match(/window\.UltraCases\s*=\s*(\[[\s\S]*?\]);\s*(?:\(|$)/);
       if (!match) return [];
       const parsed = JSON.parse(match[1]);
       window.UltraCases = parsed;
@@ -849,7 +1053,8 @@
   function homeSelectedHTML(lang) {
     const zh = lang === "zh";
     const cases = activeCases()
-      .filter(item => item.image)
+      .filter(item => item.isFeaturedCase && caseImage(item))
+      .sort((a, b) => (Number(a.featuredCaseOrder) || 9999) - (Number(b.featuredCaseOrder) || 9999))
       .slice(0, 12);
     const fallback = [
       "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
@@ -858,18 +1063,21 @@
     const items = cases.length ? cases : fallback.map((image, index) => ({
       id: "selected-fallback-" + index,
       client: "ULTRA",
+      brandEnglishName: "ULTRA",
       event: "Selected Work",
+      exhibitionName: "Selected Work",
       year: "",
+      coverImage: { files: [{ url: image, source: "local-mock" }] },
       image
     }));
     const rowA = [...items.slice(3, 11), ...items.slice(0, 3)];
     const rowB = [...items.slice(7), ...items.slice(0, 7)];
     const imageCard = item => `
       <a class="ultra-selected-card" href="${routeLink(`/cases/${item.id}`)}" data-route="/cases/${esc(item.id)}" aria-label="${esc(`${item.client} ${item.event || ""}`)}">
-        <img src="${esc(item.image)}" alt="${esc(`${item.client} ${item.event || ""}`)}">
+        <img src="${esc(caseImage(item))}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item) || ""}`)}">
         <span>
-          <strong>${esc(item.client)}</strong>
-          <em>${esc([item.event, item.year].filter(Boolean).join(" / "))}</em>
+          <strong>${esc(caseBrandName(item))}</strong>
+          <em>${esc([caseEventName(item), item.year].filter(Boolean).join(" / "))}</em>
         </span>
       </a>
     `;
@@ -1218,6 +1426,261 @@
 
   function aboutPage(lang) {
     const zh = lang === "zh";
+    const aboutConfig = getAdminConfig().about || {};
+    const configuredServiceMedia = Array.isArray(aboutConfig.serviceMedia) ? aboutConfig.serviceMedia : [];
+    const aboutStats = zh ? [
+      ["15+", "\u8986\u76d6\u56fd\u5bb6\u4e0e\u5730\u533a"],
+      ["200+", "\u5168\u7403\u4ea4\u4ed8\u9879\u76ee"],
+      ["50K+ SQM", "\u7d2f\u8ba1\u4ea4\u4ed8\u9762\u79ef"],
+      ["20+", "\u6d77\u5916\u642d\u5efa\u4f19\u4f34"]
+    ] : [
+      ["15+", "Countries"],
+      ["200+", "Projects"],
+      ["50K+ SQM", "Delivered area"],
+      ["20+", "Overseas partners"]
+    ];
+    const serviceCards = zh ? [
+      ["STRATEGY", "\u7b56\u7565\u89c4\u5212", "\u51fa\u6d77\u7b56\u7565 / \u5185\u5bb9\u521b\u610f / \u5c55\u4f1a\u89c4\u5212"],
+      ["DESIGN", "\u7a7a\u95f4\u8bbe\u8ba1", "\u6982\u5ff5\u8bbe\u8ba1 / 3D \u6e32\u67d3 / \u65bd\u5de5\u56fe\u6df1\u5316"],
+      ["ABROAD", "\u6d77\u5916\u843d\u5730", "\u672c\u5730\u4f9b\u5e94 / \u6e05\u5173\u7269\u6d41 / \u8de8\u65f6\u533a\u9879\u76ee\u7ba1\u7406"],
+      ["BUILD", "\u5de5\u7a0b\u642d\u5efa", "\u5de5\u5382\u9884\u5236 / \u73b0\u573a\u65bd\u5de5 / \u62c6\u64a4\u56de\u8fd0"]
+    ] : [
+      ["STRATEGY", "Strategy", "Go-to-market strategy / Content planning / Exhibition planning"],
+      ["DESIGN", "Design", "Concept design / 3D visualization / Technical drawings"],
+      ["ABROAD", "Abroad", "Local supply / Customs and logistics / Cross-time-zone project management"],
+      ["BUILD", "Build", "Factory prefabrication / On-site construction / Dismantling and return logistics"]
+    ];
+    const deliveryNodes = zh ? [
+      ["\u82cf\u5dde", "\u603b\u90e8 / \u8bbe\u8ba1\u4e2d\u5fc3"],
+      ["\u5357\u901a", "6,000 SQM \u4e3b\u5de5\u5382"],
+      ["\u6ce2\u5170", "4,000 SQM \u6b27\u6d32\u5de5\u5382"],
+      ["\u9999\u6e2f", "\u56fd\u9645\u7ed3\u7b97\u4e2d\u5fc3"],
+      ["\u6d1b\u6749\u77f6", "5,000 SQM \u5317\u7f8e\u4ed3\u50a8"]
+    ] : [
+      ["SUZHOU", "HQ and Design Center"],
+      ["NANTONG", "6,000 SQM Main Factory"],
+      ["POLAND", "4,000 SQM Europe Factory"],
+      ["HONG KONG", "Finance Hub"],
+      ["LOS ANGELES", "5,000 SQM US Operations"]
+    ];
+    const exhibitionLogos = (Array.isArray(aboutConfig.exhibitionLogos) ? aboutConfig.exhibitionLogos : defaultExhibitionLogos())
+      .filter(item => item?.visible !== false)
+      .sort((a, b) => (Number(a.order) || 9999) - (Number(b.order) || 9999));
+    const reasons = zh ? [
+      ["01", "\u672c\u5730\u5316\u4f9b\u5e94\u94fe", "\u81ea\u6709\u5de5\u5382\u4e0e\u6d77\u5916\u8d44\u6e90\u534f\u540c\uff0c\u51cf\u5c11\u4e0d\u5fc5\u8981\u7684\u957f\u8ddd\u79bb\u8fd0\u8f93\uff0c\u63d0\u9ad8\u9879\u76ee\u63a7\u5236\u529b\u3002"],
+      ["02", "\u8de8\u65f6\u533a\u54cd\u5e94", "\u4e2d\u56fd\u603b\u90e8\u3001\u9999\u6e2f\u7ed3\u7b97\u4e2d\u5fc3\u4e0e\u6d77\u5916\u8fd0\u8425\u8d44\u6e90\u534f\u540c\uff0c\u652f\u6301\u8de8\u65f6\u533a\u9879\u76ee\u6c9f\u901a\u3002"],
+      ["03", "\u5e73\u5747 8 \u5468\u4ea4\u4ed8", "\u4ece\u6982\u5ff5\u8bbe\u8ba1\u5230\u73b0\u573a\u5f00\u5c55\uff0c\u9879\u76ee\u5468\u671f\u53ef\u63a7\uff0c\u5173\u952e\u8282\u70b9\u6e05\u6670\u900f\u660e\u3002"],
+      ["04", "\u9879\u76ee\u7ecf\u7406\u9a7b\u573a", "\u6d77\u5916\u9879\u76ee\u53ef\u6d3e\u9063\u4e2d\u56fd\u9879\u76ee\u7ecf\u7406\u73b0\u573a\u7763\u5bfc\uff0c\u51cf\u5c11\u6c9f\u901a\u5931\u771f\u548c\u73b0\u573a\u504f\u5dee\u3002"]
+    ] : [
+      ["01", "LOCAL SUPPLY CHAIN", "Owned factories and overseas resources reduce unnecessary long-distance shipping and improve project control."],
+      ["02", "24H RESPONSE", "China headquarters, Hong Kong finance hub, and overseas operations support cross-time-zone coordination."],
+      ["03", "8-WEEK DELIVERY", "From concept to opening day, we keep timelines visible, practical, and manageable."],
+      ["04", "ON-SITE PM", "Chinese project managers can be assigned on site to reduce communication loss and execution deviation."]
+    ];
+    const certs = zh ? [
+      ["ISO 9001", "\u8d28\u91cf\u7ba1\u7406\u4f53\u7cfb\u8ba4\u8bc1"],
+      ["AAA Rating", "AAA \u7ea7\u4fe1\u7528\u4f01\u4e1a"],
+      ["CACE Member", "\u4e2d\u56fd\u5c55\u89c8\u9986\u534f\u4f1a\u4f1a\u5458"],
+      ["ISO 14001", "\u73af\u5883\u7ba1\u7406\u4f53\u7cfb\u8ba4\u8bc1"],
+      ["ISO 45001", "\u804c\u4e1a\u5065\u5eb7\u5b89\u5168\u8ba4\u8bc1"],
+      ["HK Entity", "\u9999\u6e2f\u6ce8\u518c\u4e3b\u4f53 / \u56fd\u9645\u7ed3\u7b97"]
+    ] : [
+      ["ISO 9001", "Quality Management System"],
+      ["AAA Rating", "AAA Credit Enterprise"],
+      ["CACE Member", "China Association for Exhibition Centers Member"],
+      ["ISO 14001", "Environmental Management System"],
+      ["ISO 45001", "Occupational Health and Safety"],
+      ["HK Entity", "Hong Kong Registered Entity / International Settlement"]
+    ];
+    const brandSource = activeBrands();
+    const featuredBrands = brandSource.filter(item => item?.isFeaturedBrand);
+    const brandWallBrands = (featuredBrands.length ? featuredBrands : brandSource)
+      .slice()
+      .sort((a, b) => {
+        const aOrder = Number(a?.featuredBrandOrder ?? a?.brandOrder ?? a?.order ?? 9999);
+        const bOrder = Number(b?.featuredBrandOrder ?? b?.brandOrder ?? b?.order ?? 9999);
+        return (Number.isFinite(aOrder) ? aOrder : 9999) - (Number.isFinite(bOrder) ? bOrder : 9999);
+      });
+    const sectionIntro = (kicker, title, body) => `
+      <div class="ultra-about-head" data-about-reveal>
+        ${kicker ? `<div class="ultra-about-kicker">${esc(kicker)}</div>` : ""}
+        <h2>${esc(title)}</h2>
+        ${body ? `<p>${esc(body)}</p>` : ""}
+      </div>
+    `;
+    const reasonIconKeys = ["supply", "response", "timeline", "onsite"];
+    const renderServiceMedia = (media, title) => {
+      const item = media && typeof media === "object" ? media : {};
+      const type = String(item.type || "image").toLowerCase();
+      const url = String(item.url || "").trim();
+      const poster = String(item.poster || "").trim();
+      const alt = item.alt || `${title} media`;
+      if (url && type === "video") {
+        return `<video src="${esc(url)}" ${poster ? `poster="${esc(poster)}"` : ""} muted playsinline loop preload="metadata" aria-label="${esc(alt)}"></video>`;
+      }
+      if (url) {
+        return `<img src="${esc(url)}" alt="${esc(alt)}" loading="lazy">`;
+      }
+      return `<div class="ultra-about-media-placeholder" aria-hidden="true"></div>`;
+    };
+    const renderExhibitionLogo = item => {
+      const name = item?.name || "Exhibition";
+      const logo = String(item?.logo || "").trim();
+      return `<span class="ultra-exhibition-logo-card">${logo ? `<img src="${esc(logo)}" alt="${esc(name)}">` : `<b>${esc(name)}</b>`}</span>`;
+    };
+    const renderBrandLogoCard = (brand, index) => {
+      const englishName = brand?.englishName || brand?.name || brand?.id || "Brand";
+      const chineseName = brand?.chineseName || englishName;
+      const label = zh ? chineseName : englishName;
+      const logo = adminFileUrl(brand?.grayLogo) || adminFileUrl(brand?.originalLogo);
+      return `<article class="ultra-about-brand-card" data-brand-scroll-card style="--about-card-index:${index}; --brand-progress:0">${logo ? `<img src="${esc(logo)}" alt="${esc(label)}" loading="lazy">` : `<span>${esc(label)}</span>`}</article>`;
+    };
+    const exhibitionRows = [
+      exhibitionLogos.filter((_, index) => index % 2 === 0),
+      exhibitionLogos.filter((_, index) => index % 2 === 1)
+    ].filter(row => row.length);
+
+    return `
+      <div class="ultra-about">
+        <section class="ultra-hero ultra-about-hero">
+          <div class="ultra-about-hero-bg" aria-hidden="true"></div>
+          <div class="ultra-about-wrap ultra-about-hero-grid">
+            <div class="ultra-about-hero-copy">
+              <div class="ultra-about-kicker">${zh ? "\u5173\u4e8e\u7693\u521b / \u5c55\u4f1a\u4e0e\u51fa\u6d77" : "ABOUT ULTRA / EXHIBITION & ABROAD"}</div>
+              <h1>${zh ? "\u8ba9<span>\u4e2d\u56fd\u54c1\u724c</span><br>\u5728<span>\u6d77\u5916</span>\u5448\u73b0\u672c\u5730\u54c1\u724c\u59ff\u6001" : "We make <span>Chinese brands</span><br>look at home <span>overseas.</span>"}</h1>
+              <p>${zh ? "\u7693\u521b\u5c55\u89c8 Ultra Expo \u6210\u7acb\u4e8e\u4e2d\u56fd\u82cf\u5dde\uff0c\u4e13\u6ce8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u7684\u6d77\u5916\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u96f6\u552e\u7a7a\u95f4\u9879\u76ee\u3002\u6211\u4eec\u63d0\u4f9b\u4ece\u7b56\u7565\u3001\u7a7a\u95f4\u8bbe\u8ba1\u5230\u6d77\u5916\u672c\u5730\u5316\u751f\u4ea7\u3001\u7269\u6d41\u3001\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u7684\u4e00\u4f53\u5316\u670d\u52a1\u3002" : "Ultra Expo is a global exhibition delivery team based in Suzhou, China. We help Chinese brands show up professionally in overseas exhibitions, product launches, and retail spaces, from strategy and spatial design to localized production, logistics, construction, and on-site delivery."}</p>
+              <div class="ultra-about-stats">
+                ${aboutStats.map((stat, index) => `<div><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong>${esc(stat[0])}</strong><span>${esc(stat[1])}</span></div>`).join("")}
+              </div>
+            </div>
+            <div class="ultra-about-system" aria-hidden="true">
+              <div class="ultra-about-system-frame">
+                <span class="node suzhou"></span><span class="node poland"></span><span class="node la"></span><span class="node hk"></span>
+                <i class="rail one"></i><i class="rail two"></i><i class="rail three"></i>
+                <div class="system-label">STRATEGY / DESIGN / ABROAD / BUILD</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-statement">
+          <div class="ultra-about-wrap">
+            ${sectionIntro(zh ? "\u6211\u4eec\u662f\u8c01" : "WHO WE ARE", zh ? "\u4e00\u652f\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u800c\u751f\u7684\u5168\u7403\u5c55\u4f1a\u843d\u5730\u56e2\u961f" : "A global exhibition team built for Chinese brands going abroad.", zh ? "\u6211\u4eec\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916\u5e02\u573a\u7684\u9996\u6b21\u4eae\u76f8\u3001\u6301\u7eed\u53c2\u5c55\u4e0e\u7a7a\u95f4\u843d\u5730\u3002\u76f8\u6bd4\u5355\u4e00\u8bbe\u8ba1\u516c\u53f8\u6216\u672c\u5730\u642d\u5efa\u5546\uff0c\u7693\u521b\u66f4\u5173\u6ce8\u4ece\u54c1\u724c\u7b56\u7565\u3001\u7a7a\u95f4\u4f53\u9a8c\u3001\u4f9b\u5e94\u94fe\u3001\u5de5\u7a0b\u6267\u884c\u5230\u73b0\u573a\u7ba1\u7406\u7684\u5b8c\u6574\u94fe\u8def\u3002" : "We support Chinese brands as they enter, present, and grow in overseas markets. Unlike a single design studio or a local booth contractor, Ultra Expo focuses on the full delivery chain: brand strategy, spatial experience, supply chain coordination, engineering execution, and on-site management.")}
+            <div class="ultra-about-statement-points" data-about-reveal>
+              ${(zh ? [
+                ["\u4ee5\u54c1\u724c\u7b56\u7565\u5f00\u59cb", "\u5728\u7a7a\u95f4\u8bbe\u8ba1\u4e4b\u524d\u5148\u660e\u786e\u5c55\u4f1a\u76ee\u6807\u3001\u4ea7\u54c1\u4e3b\u7ebf\u3001\u89c2\u4f17\u8def\u5f84\u4e0e\u5e02\u573a\u8bed\u5883\u3002"],
+                ["\u628a\u8bbe\u8ba1\u8f6c\u6210\u53ef\u843d\u5730\u7684\u5de5\u7a0b", "\u6982\u5ff5\u3001\u6750\u6599\u3001\u7ed3\u6784\u3001\u9884\u5236\u548c\u73b0\u573a\u8282\u70b9\u88ab\u7eb3\u5165\u540c\u4e00\u5957\u4ea4\u4ed8\u8282\u594f\u3002"],
+                ["\u5728\u6d77\u5916\u4fdd\u6301\u672c\u5730\u54cd\u5e94", "\u8fde\u63a5\u672c\u5730\u4f9b\u5e94\u3001\u6e05\u5173\u7269\u6d41\u3001\u642d\u5efa\u4f19\u4f34\u548c\u9a7b\u573a\u9879\u76ee\u7ba1\u7406\u3002"],
+                ["\u8ba9\u54c1\u724c\u8868\u8fbe\u7a33\u5b9a\u5230\u5f00\u5c55\u65e5", "\u51cf\u5c11\u8de8\u56fd\u534f\u4f5c\u4e2d\u7684\u4fe1\u606f\u635f\u8017\uff0c\u8ba9\u5ba2\u6237\u59cb\u7ec8\u9762\u5bf9\u4e00\u4e2a\u8d1f\u8d23\u5230\u5e95\u7684\u56e2\u961f\u3002"]
+              ] : [
+                ["Start with brand strategy", "Clarify exhibition goals, product narrative, audience flow, and market context before spatial design begins."],
+                ["Translate design into buildable engineering", "Concept, material, structure, prefabrication, and site milestones are managed in one delivery rhythm."],
+                ["Stay locally responsive overseas", "Connect local supply, customs, logistics, build partners, and on-site project management."],
+                ["Keep the brand stable through opening day", "Reduce information loss across borders so clients work with one accountable team from plan to site."]
+              ]).map(point => `<article><h3>${esc(point[0])}</h3><p>${esc(point[1])}</p></article>`).join("")}
+            </div>
+            <div class="ultra-about-metric-row" data-about-reveal>${aboutStats.slice(0, 3).map(stat => `<article><strong>${esc(stat[0])}</strong><span>${esc(stat[1])}</span></article>`).join("")}</div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-services">
+          <div class="ultra-about-wrap">
+            ${sectionIntro("", zh ? "\u4e00\u4f53\u5316\u5c55\u4f1a\u51fa\u6d77\u670d\u52a1" : "End-to-End Exhibition Services", zh ? "\u5176\u4e2d\u300c\u6d77\u5916\u843d\u5730\u300d\u662f\u6211\u4eec\u7684\u6838\u5fc3\u5dee\u5f02\u5316\u80fd\u529b\u3002" : "ABROAD is where our global delivery capability becomes the key difference.")}
+            <div class="ultra-about-service-grid">${serviceCards.map((card, index) => {
+              const media = configuredServiceMedia[index] || {};
+              return `<article class="${card[0] === "ABROAD" ? "is-featured" : ""}" data-about-reveal style="--service-card-index:${index}">
+                <div class="ultra-about-service-card-top">
+                  <h3>${esc(card[1])}</h3>
+                  <span class="ultra-about-card-icon icon-${esc(card[0].toLowerCase())}" aria-hidden="true"></span>
+                </div>
+                <div class="ultra-about-service-card-copy">
+                  <p>${esc(card[2])}</p>
+                </div>
+                <div class="ultra-about-service-media">${renderServiceMedia(media, card[0])}</div>
+              </article>`;
+            }).join("")}</div>
+            <div class="ultra-about-flow" data-about-reveal>${["STRATEGY", "DESIGN", "ABROAD", "BUILD"].map(x => `<span>${x}</span>`).join("<i></i>")}</div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-delivery">
+          <div class="ultra-about-wrap ultra-about-delivery-grid">
+            <div>
+              ${sectionIntro("", zh ? "\u5168\u7403\u4ea4\u4ed8\uff0c\u672c\u5730\u6267\u884c" : "Global delivery, local execution.", zh ? "5 \u4e2a\u81ea\u6709\u5de5\u5382 / 3 \u5927\u533a\u57df\u529e\u516c\u5ba4 / 20+ \u6d77\u5916\u642d\u5efa\u4f19\u4f34\u3002\u5168\u7403\u672c\u5730\u5316\u751f\u4ea7\uff0c\u610f\u5473\u7740\u66f4\u77ed\u7684\u7269\u6d41\u8ddd\u79bb\u3001\u66f4\u4f4e\u7684\u5173\u7a0e\u98ce\u9669\u3001\u66f4\u5feb\u7684\u73b0\u573a\u54cd\u5e94\u3002" : "5 owned factories / 3 regional offices / 20+ overseas build partners. Localized production means shorter logistics routes, lower tariff risks, and faster on-site response.")}
+              <div class="ultra-about-node-list">${deliveryNodes.map((node, index) => `<article data-about-reveal data-about-node="${index}"><strong>${esc(node[0])}</strong><span>${esc(node[1])}</span></article>`).join("")}</div>
+            </div>
+            <div class="ultra-about-map" data-about-reveal aria-label="${zh ? "\u5168\u7403\u4ea4\u4ed8\u8282\u70b9" : "Global delivery nodes"}">
+              ${deliveryNodes.map((node, index) => `<button type="button" class="map-dot dot-${index}" aria-label="${esc(node[0])}"><span>${esc(node[0])}</span></button>`).join("")}
+              <img class="ultra-about-world-map-image" src="./assets/world-dotted-map.svg" alt="" loading="lazy" aria-hidden="true">
+              <svg class="ultra-about-world-map" viewBox="0 0 900 520" aria-hidden="true">
+                <defs>
+                  <pattern id="ultraWorldDots" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <circle cx="5" cy="5" r="1.75"></circle>
+                  </pattern>
+                  <filter id="ultraWorldGlow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+                    <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+                  </filter>
+                </defs>
+                <g class="world-grid">
+                  <path d="M42 260H858M450 42V478M112 122C286 82 616 82 788 122M112 398C286 438 616 438 788 398M225 52V468M675 52V468M90 190H810M90 330H810"></path>
+                </g>
+                <g class="world-land" aria-hidden="true"></g>
+                <g class="world-routes">
+                  <path d="M751.5 182C751 180.4 751.6 180 752.2 180.3"></path>
+                  <path d="M751.5 182C676 88 575 103 502.5 133.1"></path>
+                  <path d="M751.5 182C661 98 291 104 154.4 175.5"></path>
+                  <path d="M751.5 182C744 188 739.8 194 735.4 202.9"></path>
+                </g>
+                <g class="world-route-flow">
+                  <path d="M751.5 182C751 180.4 751.6 180 752.2 180.3"></path>
+                  <path d="M751.5 182C676 88 575 103 502.5 133.1"></path>
+                  <path d="M751.5 182C661 98 291 104 154.4 175.5"></path>
+                  <path d="M751.5 182C744 188 739.8 194 735.4 202.9"></path>
+                </g>
+                <g class="world-hubs" filter="url(#ultraWorldGlow)">
+                  <circle cx="751.5" cy="182" r="4.8"></circle>
+                  <circle cx="752.2" cy="180.3" r="3.8"></circle>
+                  <circle cx="502.5" cy="133.1" r="3.8"></circle>
+                  <circle cx="735.4" cy="202.9" r="3.8"></circle>
+                  <circle cx="154.4" cy="175.5" r="3.8"></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-shows">
+          <div class="ultra-about-wrap">
+            ${sectionIntro(zh ? "\u5168\u7403\u5c55\u4f1a\u7248\u56fe" : "GLOBAL EXHIBITIONS", zh ? "\u8986\u76d6\u5173\u952e\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\u7684\u9879\u76ee\u7ecf\u9a8c" : "Experience across key global exhibition platforms", zh ? "Ultra Expo \u670d\u52a1\u8fc7\u591a\u4e2a\u91cd\u8981\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\uff0c\u5e2e\u52a9\u4e2d\u56fd\u54c1\u724c\u5728\u4e0d\u540c\u5730\u533a\u3001\u884c\u4e1a\u4e0e\u5c55\u4f1a\u573a\u666f\u4e2d\u4fdd\u6301\u7a33\u5b9a\u3001\u4e13\u4e1a\u548c\u4e00\u81f4\u7684\u54c1\u724c\u5448\u73b0\u3002" : "Ultra Expo has supported projects across major international exhibition platforms, helping Chinese brands show up consistently across regions, industries, and event formats.")}
+            <p class="ultra-exhibition-supporting" data-about-reveal>${zh ? "\u4ece\u65b0\u80fd\u6e90\u4e0e\u50a8\u80fd\u5c55\u4f1a\uff0c\u5230\u79d1\u6280\u3001\u6c7d\u8f66\u3001\u5de5\u4e1a\u5236\u9020\u4e0e\u7efc\u5408\u8d38\u6613\u6d3b\u52a8\uff0c\u6211\u4eec\u7684\u9879\u76ee\u7ecf\u9a8c\u8986\u76d6\u6b27\u6d32\u3001\u5317\u7f8e\u3001\u5357\u7f8e\u3001\u4e9a\u6d32\u3001\u4e2d\u4e1c\u4e0e\u4e2d\u56fd\u5e02\u573a\u3002" : "From energy and battery shows to technology, mobility, industrial, and global trade events, our project experience spans Europe, North America, South America, Asia, the Middle East, and China."}</p>
+            <div class="ultra-exhibition-logo-wall" data-about-reveal aria-label="${zh ? "\u5168\u7403\u5c55\u4f1a\u5e73\u53f0 Logo Wall" : "Global exhibition platform logo wall"}">
+              ${exhibitionRows.map((row, rowIndex) => `<div class="ultra-exhibition-logo-row ${rowIndex % 2 ? "is-reverse" : ""}"><div>${row.concat(row).map(renderExhibitionLogo).join("")}</div></div>`).join("")}
+            </div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-reasons">
+          <div class="ultra-about-wrap">
+            ${sectionIntro("", zh ? "\u5ba2\u6237\u9009\u62e9\u7693\u521b\u7684\u56db\u4e2a\u7406\u7531" : "Four reasons brands choose Ultra.", "")}
+            <div class="ultra-about-reason-grid">${reasons.map((reason, index) => `<article data-about-reveal style="--about-card-index:${index}"><div class="ultra-about-reason-top"><span class="ultra-about-reason-icon icon-${reasonIconKeys[index] || "supply"}" aria-hidden="true"></span><h3>${esc(reason[1])}</h3></div><p>${esc(reason[2])}</p></article>`).join("")}</div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-trust">
+          <div class="ultra-about-wrap">
+            ${sectionIntro(zh ? "\u8ba4\u8bc1\u4e0e\u4f53\u7cfb" : "CERTIFICATIONS", zh ? "\u4ee5\u6807\u51c6\u4ea4\u4ed8" : "Built with standards.", zh ? "\u6211\u4eec\u7684\u4ea4\u4ed8\u6d41\u7a0b\u7531\u8ba4\u53ef\u7684\u7ba1\u7406\u4f53\u7cfb\u3001\u884c\u4e1a\u4f1a\u5458\u8d44\u8d28\u548c\u56fd\u9645\u8fd0\u8425\u4e3b\u4f53\u652f\u6491\uff0c\u5e2e\u52a9\u6d77\u5916\u9879\u76ee\u4fdd\u6301\u53ef\u9760\u3001\u53ef\u8ffd\u6eaf\u548c\u53ef\u7ba1\u7406\u3002" : "Our delivery process is supported by recognized management systems, industry memberships, and international operating entities, helping overseas projects stay reliable, traceable, and manageable.")}
+            <div class="ultra-about-cert-grid">${certs.map((cert, index) => `<article data-about-reveal style="--about-card-index:${index}"><strong>${esc(cert[0])}</strong><span>${esc(cert[1])}</span></article>`).join("")}</div>
+          </div>
+        </section>
+        <section class="ultra-section ultra-about-section ultra-about-brand-wall">
+          <div class="ultra-about-wrap">
+            ${sectionIntro(zh ? "\u5ba2\u6237\u4e0e\u54c1\u724c" : "TRUSTED BY BRANDS", zh ? "\u6211\u4eec\u670d\u52a1\u8fc7\u7684\u54c1\u724c" : "Brands we've helped show up overseas.", zh ? "\u4ece\u65b0\u80fd\u6e90\u3001\u51fa\u884c\u3001\u6d88\u8d39\u54c1\u724c\u5230\u5de5\u4e1a\u79d1\u6280\uff0c\u7693\u521b\u5c55\u89c8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u51fa\u73b0\u5728\u5168\u7403\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u54c1\u724c\u7a7a\u95f4\u73b0\u573a\u3002" : "From energy and mobility to consumer brands and industrial technology, Ultra Expo supports companies across global exhibitions, launches, and branded spaces.")}
+            <div class="ultra-about-brand-grid">
+              ${brandWallBrands.map(renderBrandLogoCard).join("")}
+            </div>
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
+  function legacyAboutPage(lang) {
+    const zh = lang === "zh";
     return `
       ${pageHero(zh ? "关于皓创" : "ABOUT ULTRA EXPO", zh ? "一支为中国品牌出海而生的全球展会落地团队" : "A global exhibition delivery team built for Chinese brands going abroad.", zh ? "皓创展览 Ultra Expo 成立于中国苏州，业务覆盖全球 15+ 国家与地区。我们专注于为中国品牌在海外展会、新品发布与零售空间，提供从策划、设计到本地化交付的全流程服务。" : "Ultra Expo was founded in Suzhou, China, with business coverage across 15+ countries and regions. We focus on overseas exhibitions, product launches, and retail spaces, providing full-process services from strategy and design to localized delivery.", lang)}
       <section class="ultra-section"><div class="ultra-wrap">
@@ -1249,20 +1712,255 @@
 
   function servicesPage(lang) {
     const zh = lang === "zh";
+    const text = (en, cn) => zh ? cn : en;
+    const serviceIntro = (kicker, title, cnTitle, copy, cnCopy) => `
+      <div class="ultra-services-head" data-services-reveal>
+        <div class="ultra-services-kicker">${esc(kicker)}</div>
+        <h2>${esc(text(title, cnTitle))}</h2>
+        ${copy ? `<p>${esc(text(copy, cnCopy))}</p>` : ""}
+      </div>
+    `;
+    const challengeItems = [
+      ["01", "Fragmented Vendors", "供应商分散", "When design, production, logistics, customs, and on-site build are handled by separate teams, information breaks and accountability becomes unclear.", "设计、制作、物流、清关和现场搭建由不同团队负责时，信息容易断层，责任边界模糊，最终影响方案还原度。"],
+      ["02", "Cross-time-zone Communication", "跨时区沟通成本", "Overseas projects often cross multiple time zones. Slow feedback loops can reduce decision speed before and during the show.", "海外展会项目通常跨越多个时区，问题反馈慢、沟通链路长，容易影响现场决策效率。"],
+      ["03", "Local Execution Risk", "本地执行不确定", "Venue rules, material standards, labor practices, customs procedures, and site management vary from country to country.", "不同国家的展馆规则、材料标准、人工方式、清关流程和现场管理习惯不同，风险往往发生在落地阶段。"],
+      ["04", "Brand Consistency", "品牌呈现不稳定", "The same brand can look different across countries when visual standards, spatial experience, and build quality are not managed together.", "同一品牌在不同国家、不同展会中容易出现视觉标准、空间体验和施工品质不一致的问题。"]
+    ];
+    const servicePillars = [
+      {
+        key: "strategy",
+        index: "01",
+        title: "STRATEGY",
+        zhTitle: "品牌策划",
+        subtitle: "Market strategy / Content creative / Exhibition planning",
+        zhSubtitle: "出海策略 / 内容创意 / 展会规划",
+        description: "Before space design begins, Ultra clarifies exhibition goals, market context, product focus, audience paths, and the message hierarchy that should be remembered.",
+        zhDescription: "从展会目标、品牌定位、产品重点、观众路径和内容表达出发，先明确为什么参展、如何表达、用什么空间语言建立记忆点。",
+        steps: ["01", "02"],
+        tag: "PLANNING"
+      },
+      {
+        key: "design",
+        index: "02",
+        title: "DESIGN",
+        zhTitle: "空间设计",
+        subtitle: "Concept design / 3D visualization / Construction drawing",
+        zhSubtitle: "概念设计 / 3D 可视化 / 施工图深化",
+        description: "Brand strategy becomes spatial structure, product display, visual focus, and a visitor journey that can be built, reviewed, and controlled.",
+        zhDescription: "将品牌策略转化为空间结构、视觉焦点、产品展示和观众动线，确保方案既有展示效果，也能被真实建造。",
+        steps: ["03", "04", "05", "06"],
+        tag: "BUILDABLE"
+      },
+      {
+        key: "abroad",
+        index: "03",
+        title: "ABROAD",
+        zhTitle: "海外落地",
+        subtitle: "Local supply / Logistics & customs / Cross-time-zone PM",
+        zhSubtitle: "本地供应 / 物流清关 / 跨时区项目管理",
+        description: "This is Ultra's core difference: making a design cross borders, supply chains, languages, time zones, and local site rules without losing stability.",
+        zhDescription: "海外落地是 Ultra 的核心差异化能力。我们关注的不只是方案设计，而是方案如何跨越国家、供应链、语言、时区和现场规则，最终稳定呈现。",
+        steps: ["07", "08", "09", "10", "11"],
+        tag: "CORE DIFFERENCE",
+        isCore: true
+      },
+      {
+        key: "build",
+        index: "04",
+        title: "BUILD",
+        zhTitle: "工程搭建",
+        subtitle: "Factory prefabrication / On-site build / Dismantling & storage",
+        zhSubtitle: "工厂预制 / 现场施工 / 拆撤回运",
+        description: "From engineering development and material production to site build, maintenance, dismantling, and return logistics, every build detail stays under control.",
+        zhDescription: "从工程深化、材料制作到现场搭建、开展维护和拆撤回运，控制制作质量、现场效率和最终呈现效果。",
+        steps: ["06", "07", "09", "11"],
+        tag: "ENGINEERING"
+      }
+    ];
+    const processItems = [
+      ["01", "Brief & Requirement", "需求沟通", "STRATEGY", "Confirm date, venue, booth size, budget, brand goals, product focus, venue restrictions, and project boundaries.", "确认展会时间、地点、面积、预算、品牌目标、产品重点、展馆限制和项目交付边界，为后续策略和设计建立清晰基础。"],
+      ["02", "Strategy & Direction", "策略方向", "STRATEGY", "Clarify the business problem, target audience, key message, product story, and exhibition priorities.", "梳理参展目标、受众路径、品牌信息、展示重点和核心表达方向，明确展台需要解决的商业和展示问题。"],
+      ["03", "Concept Design", "概念设计", "DESIGN", "Translate strategy into spatial language, structure, visitor flow, brand moments, and product display logic.", "将策略转化为空间语言、结构关系、参观动线、品牌记忆点和产品展示逻辑，形成可推进的概念方案。"],
+      ["04", "3D Visualization", "3D 可视化", "DESIGN", "Build a visual model for layout, scale, material, lighting, color, and visitor experience review.", "通过 3D 效果图呈现空间比例、材料、灯光、色彩和观众体验，便于客户评审与内部确认。"],
+      ["05", "Quotation & Material Review", "报价与材料确认", "DESIGN", "Review cost, material, structure, feasibility, transport, and local build conditions before committing to production.", "同步确认预算、材料、结构、制作方式、运输条件和本地施工可行性，避免设计与落地脱节。"],
+      ["06", "Construction Drawing", "施工图深化", "DESIGN / BUILD", "Turn the approved concept into technical drawings, build details, dimensions, materials, and installation instructions.", "将确认后的方案转化为施工图、结构节点、尺寸标注、材料清单和安装说明，为制作与现场搭建提供依据。"],
+      ["07", "Production / Local Fabrication", "生产 / 本地制作", "ABROAD", "Coordinate factory prefabrication or local fabrication based on schedule, materials, shipping routes, and site conditions.", "根据项目周期、材料要求、交付时间和运输条件，协调工厂预制或海外本地制作，提高执行效率并降低跨国运输风险。"],
+      ["08", "Logistics & Customs", "物流与清关", "ABROAD", "Manage packing, international shipping, customs documents, arrival timing, and local transfer to reduce uncertainty.", "统筹物料打包、国际运输、清关文件、到馆时间和本地转运，降低海外展会物流和清关的不确定性。"],
+      ["09", "On-site Build", "现场搭建", "ABROAD / BUILD", "Coordinate the local build team for construction, equipment installation, lighting, detail correction, and pre-opening checks.", "项目经理协调本地搭建团队完成现场施工、设备安装、灯光调试、细节修正和开展前验收。"],
+      ["10", "Exhibition Support", "展期支持", "ABROAD", "Support maintenance, urgent fixes, and material needs during the show so the booth stays stable through the exhibition.", "展会期间提供现场维护、突发问题处理和必要的物料支持，确保品牌展示在整个展期中稳定运行。"],
+      ["11", "Dismantling / Return / Storage", "拆撤 / 回运 / 仓储", "ABROAD / BUILD", "Handle dismantling, material return, reusable asset sorting, and storage planning for future exhibition cycles.", "展会结束后完成拆撤、物料回运、复用件整理和仓储安排，为后续多展期项目保留资产价值。"]
+    ];
+    const deliverables = [
+      ["01", "A clear exhibition strategy", "清晰的参展策略", "Goals, audience path, content focus, and spatial priority are aligned before design begins."],
+      ["02", "A buildable spatial concept", "可落地的空间方案", "The concept considers structure, material, budget, transport, and on-site conditions."],
+      ["03", "A localized overseas execution plan", "本地化海外执行方案", "Supply chain, venue rules, customs, logistics, and local build conditions are planned early."],
+      ["04", "A controlled project timeline", "可追踪的项目周期", "Milestones, responsibilities, and handovers stay visible across time zones."],
+      ["05", "A consistent global brand experience", "稳定统一的全球品牌体验", "Visual standards, spatial experience, and engineering quality remain consistent across markets."]
+    ];
+    const whyItems = [
+      ["01", "Local Supply Chain", "本地化供应链", "Owned factories, overseas storage, and local build partners reduce dependency on one shipping route and improve response speed."],
+      ["02", "Cross-time-zone Response", "跨时区响应", "China HQ and overseas teams coordinate across project time zones to speed up communication and issue handling."],
+      ["03", "Controlled Delivery", "周期可控", "Every phase from concept to opening day is managed with clear milestones, ownership, and delivery checkpoints."],
+      ["04", "On-site PM", "项目经理现场督导", "Key overseas projects can be coordinated on site to reduce information loss between design, production, and build."]
+    ];
+    const activeForSystem = ["strategy", "design", "abroad", "build"];
+
     return `
-      ${pageHero(zh ? "业务能力" : "CORE SERVICES", zh ? "从策略到现场的全球展会交付服务" : "End-to-end exhibition services, from strategy to site.", zh ? "海外展会的难点不只是设计，而是策略、空间设计、生产、物流、清关、现场施工和跨时区沟通之间的衔接。Ultra Expo 将这些环节整合进同一套交付体系。" : "Overseas exhibitions are not only about design. Ultra Expo integrates strategy, spatial design, production, logistics, customs clearance, on-site construction, and cross-time-zone communication into one delivery system.", lang)}
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "四大服务模块" : "SERVICE MODULES", zh ? "Strategy / Design / Abroad / Build 一体化协同。" : "Strategy / Design / Abroad / Build as one integrated system.", zh ? "客户面对一个负责到底的团队，而不是彼此割裂的供应商。" : "Clients work with one accountable team instead of fragmented vendors.")}
-        ${serviceGrid(lang)}
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "项目流程" : "PROJECT FLOW", zh ? "从需求沟通到现场开展的清晰流程。" : "A clear process from brief to opening day.", zh ? "每个关键节点都被拆解、确认和管理，降低海外展会交付风险。" : "Every milestone is defined, reviewed, and managed to reduce overseas exhibition delivery risk.")}
-        <div class="ultra-grid cols-3">${projectFlow[lang].map((step, i) => `<article class="ultra-card"><div class="ultra-section-kicker">${String(i + 1).padStart(2, "0")}</div><h3>${esc(step)}</h3><p>${esc(zh ? "确认目标、范围、材料、时间与现场执行状态，保证项目进入下一阶段前清晰可控。" : "Confirm goals, scope, materials, timing, and execution status before the project moves to the next stage.")}</p></article>`).join("")}</div>
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "交付系统" : "DELIVERY SYSTEM", zh ? "为海外展会的真实风险而设计。" : "Designed for the real risks of overseas exhibitions.", "")}
-        ${tokenList(zh ? ["本地化供应链", "跨时区项目协同", "工程化细节控制", "一个负责到底的项目团队", "透明的关键节点", "现场项目管理"] : ["Localized supply chain", "Cross-time-zone coordination", "Engineering-driven detail control", "One accountable team", "Transparent milestones", "On-site project management"])}
-      </div></section>
+      <div class="ultra-services">
+        <section class="ultra-services-hero" data-services-reveal>
+          <div class="ultra-services-hero-bg" aria-hidden="true"></div>
+          <div class="ultra-services-wrap ultra-services-hero-grid">
+            <div class="ultra-services-hero-copy">
+              <div class="ultra-services-kicker">SERVICES / GLOBAL EXHIBITION DELIVERY</div>
+              <h1>${esc(text("From strategy to build. One system for overseas exhibitions.", "从策略到搭建，一套完整的海外展会交付系统。"))}</h1>
+              <p>${esc(text("Ultra Expo helps Chinese brands turn overseas exhibition ideas into buildable, localized, and on-site-ready brand experiences.", "Ultra Expo 为中国品牌提供从出海策略、空间设计、海外本地化落地到工程搭建的一体化展会服务，让品牌在海外展会中呈现出更专业、更本土、更稳定的形象。"))}</p>
+              <strong>${esc(text("We don't just build booths. We make Chinese brands look at home overseas.", "我们不只是展台搭建商，我们让中国品牌在海外呈现出本土品牌的姿态。"))}</strong>
+              <div class="ultra-services-hero-actions">
+                <a class="ultra-services-primary" href="${routeLink("/contact")}" data-route="/contact">${esc(text("Start a Project", "咨询项目"))}<span aria-hidden="true">&#8594;</span></a>
+                <a class="ultra-services-secondary" href="#service-process">${esc(text("View Service Process", "查看服务流程"))}</a>
+              </div>
+            </div>
+            <div class="ultra-services-system" data-services-system aria-label="${esc(text("Ultra delivery system", "Ultra 交付系统"))}">
+              <div class="ultra-services-system-center">
+                <span>ULTRA</span>
+                <strong>DELIVERY SYSTEM</strong>
+              </div>
+              ${servicePillars.map((pillar, index) => `
+                <button type="button" class="ultra-services-system-node node-${pillar.key} ${pillar.isCore ? "is-active" : ""}" data-system-node="${esc(pillar.key)}">
+                  <span>${esc(pillar.title)}</span>
+                  <small>${esc(pillar.isCore ? "CORE DIFFERENCE" : pillar.tag)}</small>
+                </button>
+              `).join("")}
+              ${activeForSystem.map((key, index) => `<i class="ultra-services-system-line line-${key}" aria-hidden="true"></i>`).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-section ultra-services-challenge" id="the-challenge">
+          <div class="ultra-services-wrap ultra-services-split">
+            <div class="ultra-services-sticky">
+              ${serviceIntro("THE CHALLENGE", "Overseas exhibitions are not just design problems.", "海外展会的难点，从来不只是设计。", "The real challenge is continuity. Strategy, design, production, logistics, customs, on-site build, and exhibition support all need to work as one connected system.", "真正影响海外展会结果的，不只是效果图好不好看，而是策略、设计、制作、物流、清关、现场搭建和展期支持之间能否连续协同。任何一个环节脱节，最终都会反映在现场效果里。")}
+            </div>
+            <div class="ultra-services-challenge-grid">
+              ${challengeItems.map(item => `
+                <article class="ultra-services-problem-card" data-services-reveal>
+                  <span>${esc(item[0])}</span>
+                  <h3>${esc(item[1])}</h3>
+                  ${zh ? `<h4>${esc(item[2])}</h4>` : ""}
+                  <p>${esc(zh ? item[4] : item[3])}</p>
+                </article>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-section ultra-services-solution">
+          <div class="ultra-services-wrap">
+            <div class="ultra-services-solution-panel" data-services-reveal>
+              <div>
+                <div class="ultra-services-kicker">THE ULTRA SOLUTION</div>
+                <h2>${esc(text("One team. One timeline. One accountable delivery system.", "一个团队，一条项目线，一个负责到底的交付系统。"))}</h2>
+                <p>${esc(text("Ultra connects strategy, spatial design, overseas localization, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将品牌策划、空间设计、海外落地和工程搭建整合在同一条项目链路中。客户面对的不是多个割裂供应商，而是一套可控、可追踪、可落地的服务系统。"))}</p>
+              </div>
+              <div class="ultra-services-flow-line" aria-hidden="true">
+                ${servicePillars.map((pillar, index) => `<span class="${pillar.isCore ? "is-core" : ""}" style="--solution-index:${index}">${esc(pillar.title)}</span>`).join("<i></i>")}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-light-transition" aria-hidden="true"></section>
+
+        <section class="ultra-services-section ultra-services-pillars">
+          <div class="ultra-services-wrap">
+            ${serviceIntro("SERVICE PILLARS", "Turning cross-border uncertainty into", "把跨境不确定性转化为可控交付。", "Ultra's service is not a set of isolated capabilities. Strategy, design, abroad execution, and build work together as one managed project system.", "Ultra 的服务不是孤立的单点能力，而是由策略、设计、海外落地和工程搭建共同构成的项目交付体系。")}
+            <div class="ultra-services-pillar-grid">
+              ${servicePillars.map(pillar => `
+                <article class="ultra-services-pillar ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
+                  <span class="ultra-services-pillar-icon" aria-hidden="true"></span>
+                  <div class="ultra-services-pillar-top">
+                    <span>${esc(pillar.index)}</span>
+                    <b>${esc(pillar.tag)}</b>
+                  </div>
+                  <h3>${esc(pillar.title)}</h3>
+                  ${zh ? `<h4>${esc(pillar.zhTitle)}</h4>` : ""}
+                  <strong>${esc(text(pillar.subtitle, pillar.zhSubtitle))}</strong>
+                  <p>${esc(text(pillar.description, pillar.zhDescription))}</p>
+                  <div class="ultra-services-step-tags">${pillar.steps.map(step => `<span>${esc(step)}</span>`).join("")}</div>
+                </article>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-section ultra-services-process" id="service-process">
+          <div class="ultra-services-wrap">
+            ${serviceIntro("DETAILED SERVICE PROCESS", "Every step is part of one delivery system.", "每一个服务步骤，都是完整交付系统的一部分。", "From the first brief to dismantling and storage, Ultra keeps every step connected, trackable, and accountable.", "从前期需求、策略方向、概念设计、3D 可视化，到海外制作、物流清关、现场搭建、展期支持和拆撤仓储，Ultra 将每一个服务环节整合进同一条项目交付链路中。")}
+            <div class="ultra-services-process-grid">
+              ${processItems.map(item => {
+                const isAbroad = item[3].includes("ABROAD");
+                return `<article class="ultra-services-process-card ${isAbroad ? "is-abroad" : ""}" data-services-reveal data-process-card data-step="${esc(item[0])}">
+                  <div class="ultra-services-process-top"><span>${esc(item[0])}</span><b>${esc(item[3])}</b></div>
+                  <h3>${esc(item[1])}</h3>
+                  ${zh ? `<h4>${esc(item[2])}</h4>` : ""}
+                  <p>${esc(zh ? item[5] : item[4])}</p>
+                  <i aria-hidden="true">&#8594;</i>
+                </article>`;
+              }).join("")}
+              <article class="ultra-services-process-card ultra-services-system-card" data-services-reveal data-process-card>
+                <div class="ultra-services-process-top"><span>12</span><b>SYSTEM</b></div>
+                <h3>${esc(text("One connected workflow", "一条连续的项目链路"))}</h3>
+                <h4>${esc(text("Strategy, design, abroad, build", "策略、设计、海外落地与工程搭建"))}</h4>
+                <p>${esc(text("Strategy, design, abroad execution, and build are connected in one managed delivery system.", "策略、设计、海外落地与工程搭建在同一条项目链路中协同推进。"))}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-section ultra-services-deliver">
+          <div class="ultra-services-wrap">
+            ${serviceIntro("WHAT WE DELIVER", "Not just a booth. A controlled overseas brand presence.", "不只是一个展台，而是一套可控的海外品牌呈现。", "Ultra helps brands reduce uncertainty in cross-border projects and keep strategy, design, production, and delivery aligned.", "Ultra 的价值不只是搭建一个空间，而是帮助品牌降低跨国项目的不确定性，让策略、设计、制作和落地结果保持一致。")}
+            <div class="ultra-services-deliver-grid">
+              ${deliverables.map(item => `
+                <article class="ultra-services-deliver-card" data-services-reveal data-deliver-card data-deliver-icon="${esc(item[0])}">
+                  <i class="ultra-services-deliver-icon" aria-hidden="true"></i>
+                  <span>${esc(item[0])}</span>
+                  <h3>${esc(text(item[1], item[2]))}</h3>
+                  <p>${esc(zh ? {
+                    "01": "在设计开始前明确项目目标、受众路径、内容重点和空间优先级。",
+                    "02": "设计同步考虑材料、结构、预算、运输和现场条件，而不只停留在效果图。",
+                    "03": "针对不同国家的供应链、展馆规则、物流清关和现场执行条件提前规划。",
+                    "04": "关键节点清晰，责任边界明确，减少跨时区项目中的沟通消耗和交付风险。",
+                    "05": "让品牌在不同国家和展会中保持一致的视觉标准、空间体验和工程品质。"
+                  }[item[0]] : item[3])}</p>
+                </article>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-services-section ultra-services-why">
+          <div class="ultra-services-wrap ultra-services-split">
+            <div class="ultra-services-sticky">
+              ${serviceIntro("WHY ULTRA", "Built for Chinese brands going global.", "为中国品牌出海而建立的交付能力。", "Ultra's service system is built around the real overseas exhibition project chain: design fidelity, cross-border coordination, local execution, and on-site response.", "Ultra 的服务体系围绕海外展会真实项目链路建立，重点解决中国品牌在海外展示中遇到的设计还原、跨国协同、本地执行和现场响应问题。")}
+            </div>
+            <div class="ultra-services-why-grid">
+              ${whyItems.map((item, index) => `
+                <article class="ultra-services-why-card" data-services-reveal data-why-card style="--why-index:${index}">
+                  <span>${esc(item[0])}</span>
+                  <div><h3>${esc(text(item[1], item[2]))}</h3><p>${esc(zh ? {
+                    "01": "通过自有工厂、海外仓储和本地搭建伙伴，减少对单一路径的依赖，提高项目响应速度。",
+                    "02": "中国总部与海外团队协同，覆盖不同项目时区，提升沟通效率和现场问题处理速度。",
+                    "03": "从概念设计到现场开展建立完整节点管理，让项目进度、责任边界和交付结果更清晰。",
+                    "04": "关键海外项目由项目经理现场协调，减少设计、制作和现场执行之间的信息失真。"
+                  }[item[0]] : item[3])}</p></div>
+                </article>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+
+      </div>
     `;
   }
 
@@ -1270,18 +1968,21 @@
     const params = new URLSearchParams(window.location.search);
     return {
       year: params.get("year") || "All",
+      brand: params.get("brand") || "All",
       industry: params.get("industry") || "All",
-      region: params.get("region") || "All",
-      type: params.get("type") || "All"
+      country: params.get("country") || "All",
+      area: params.get("area") || "All",
+      more: params.get("more") === "1"
     };
   }
 
   function filteredCases(state) {
     return activeCases().filter(item => {
       if (state.year !== "All" && String(item.year) !== state.year) return false;
+      if (state.brand !== "All" && item.brandId !== state.brand) return false;
       if (state.industry !== "All" && item.industry !== state.industry) return false;
-      if (state.region !== "All" && item.region !== state.region) return false;
-      if (state.type !== "All" && item.type !== state.type) return false;
+      if (state.country !== "All" && item.country !== state.country) return false;
+      if (state.area !== "All" && areaBucket(item.areaSqm) !== state.area) return false;
       return true;
     });
   }
@@ -1289,55 +1990,118 @@
   function filterOptions(field) {
     const fixed = {
       year: ["All", "2026", "2025", "2024"],
+      brand: ["All", ...activeBrands().map(brand => brand.id)],
       industry: ["All", "Energy", "Battery", "Industrial", "Automotive", "Consumer Tech", "Telecom", "Water Treatment", "Retail", "Launch Event", "Smart Manufacturing", "Exhibition"],
-      region: ["All", "Europe", "North America", "South America", "Asia", "Middle East", "China", "Global"],
-      type: ["All", "Design", "Delivered", "Event"]
+      country: ["All"],
+      area: ["All", "lt50", "50-100", "100-200", "200plus"]
     };
     const values = activeCases()
-      .map(item => item[field])
+      .map(item => field === "brand" ? item.brandId : field === "area" ? areaBucket(item.areaSqm) : item[field])
       .filter(Boolean)
       .map(value => String(value));
     const merged = [...new Set([...(fixed[field] || ["All"]), ...values])];
     if (field === "year") {
       return ["All", ...merged.filter(value => value !== "All").sort((a, b) => Number(b) - Number(a))];
     }
+    if (field === "brand") {
+      return ["All", ...activeBrands().map(brand => brand.id).filter(id => merged.includes(id))];
+    }
+    if (field === "area") return fixed.area;
+    if (field === "country") return ["All", ...merged.filter(value => value !== "All").sort((a, b) => a.localeCompare(b))];
     return merged;
   }
 
   function optionLabel(field, value, lang) {
     if (value === "All") return labels[lang].all;
+    if (field === "brand") return brandName(value);
     if (field === "industry") return filterLabels[lang].industries[value] || value;
+    if (field === "area") return areaLabel(value);
+    if (field === "country") return value;
     if (field === "region") return filterLabels[lang].regions[value] || value;
     if (field === "type") return filterLabels[lang].types[value] || value;
     return value;
   }
 
   function filtersHTML(lang, state) {
-    return `<div class="ultra-filter">${["year", "industry", "region", "type"].map(field => `
+    const filterButton = (field, value, pending = false) => `<button data-${pending ? "pending-" : ""}filter="${field}" data-value="${esc(value)}" class="${state[field] === value ? "is-active" : ""}">${esc(optionLabel(field, value, lang))}</button>`;
+    const group = (field, pending = false) => `
       <div class="ultra-filter-group">
         <div class="ultra-filter-label">${esc(filterLabels[lang][field])}</div>
         <div class="ultra-filter-options">
-          ${filterOptions(field).map(value => `<button data-filter="${field}" data-value="${esc(value)}" class="${state[field] === value ? "is-active" : ""}">${esc(optionLabel(field, value, lang))}</button>`).join("")}
+          ${filterOptions(field).map(value => filterButton(field, value, pending)).join("")}
         </div>
-      </div>
-    `).join("")}
-    <div><button data-clear-filters>${labels[lang].clear}</button></div>
-    </div>`;
+      </div>`;
+    return `
+      <div class="ultra-filter ${state.more ? "is-open" : ""}" data-case-filters>
+        <div class="ultra-filter-primary">
+          ${group("year")}
+          <button class="ultra-filter-more-toggle" type="button" data-more-filters aria-expanded="${state.more ? "true" : "false"}">${lang === "zh" ? "更多筛选" : "More Filters"}</button>
+        </div>
+        <div class="ultra-filter-more" data-filter-more-panel>
+          ${["brand", "industry", "country", "area"].map(field => group(field, true)).join("")}
+          <div class="ultra-filter-actions">
+            <button class="ultra-secondary" type="button" data-clear-filters>${lang === "zh" ? "重置" : "Reset"}</button>
+            <button class="ultra-primary" type="button" data-apply-filters>${lang === "zh" ? "应用筛选" : "Apply Filters"}</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function areaBucket(value) {
+    const area = Number(value);
+    if (!Number.isFinite(area)) return "";
+    if (area < 50) return "lt50";
+    if (area < 100) return "50-100";
+    if (area < 200) return "100-200";
+    return "200plus";
+  }
+
+  function areaLabel(value) {
+    return ({ lt50: "<50㎡", "50-100": "50-100㎡", "100-200": "100-200㎡", "200plus": "200㎡+" })[value] || value;
+  }
+
+  function brandName(id) {
+    const brand = activeBrands().find(item => item.id === id);
+    return brand?.englishName || id;
+  }
+
+  function caseBrandName(item) {
+    return item.brandEnglishName || item.client || brandName(item.brandId) || "";
+  }
+
+  function caseEventName(item) {
+    return item.exhibitionName || item.event || "";
+  }
+
+  function caseCountry(item) {
+    return item.country || item.location || item.region || "";
+  }
+
+  function caseImage(item) {
+    return item.coverImage?.files?.[0]?.url || item.image || "";
   }
 
   function caseMeta(item) {
-    return [item.location, item.year, item.area, item.industry, item.region].filter(Boolean);
+    return [
+      [caseCountry(item), item.year].filter(Boolean).join(" · "),
+      [item.areaSqm ? `${item.areaSqm}㎡` : item.area, item.industry].filter(Boolean).join(" · ")
+    ].filter(Boolean);
   }
 
   function caseCard(item, lang) {
+    const image = caseImage(item);
     return `
       <a class="ultra-case-card" href="${routeLink(`/cases/${item.id}`)}" data-route="/cases/${esc(item.id)}">
-        ${item.image ? `<img src="${esc(item.image)}" alt="${esc(item.client)} ${esc(item.event)}">` : `<div class="ultra-placeholder"></div>`}
+        ${image ? `<img src="${esc(image)}" alt="${esc(caseBrandName(item))} ${esc(caseEventName(item))}">` : `<div class="ultra-placeholder"></div>`}
+        <div class="ultra-case-teaser">
+          <strong>${esc(caseBrandName(item))}</strong>
+          <span>${esc([item.year, caseCountry(item)].filter(Boolean).join(" / "))}</span>
+        </div>
         <div class="ultra-case-info">
-          <h3>${esc(item.client)}</h3>
-          <p>${esc(item.event)}</p>
+          <h3>${esc(caseBrandName(item))}</h3>
+          <p>${esc(caseEventName(item))}</p>
           <div class="ultra-meta">${caseMeta(item).map(x => `<span>${esc(x)}</span>`).join("")}</div>
-          <div class="ultra-meta">${(item.tags || []).slice(0, 3).map(x => `<span>${esc(optionLabel("industry", x, lang))}</span>`).join("")}</div>
+          <div class="ultra-case-link">${lang === "zh" ? "查看案例" : "View Case"} <span aria-hidden="true">→</span></div>
         </div>
       </a>
     `;
@@ -1347,17 +2111,13 @@
     const zh = lang === "zh";
     const state = filterState();
     const items = filteredCases(state);
-    const featured = activeCases().filter(c => c.featured).slice(0, 8);
+    const initialCount = 24;
     return `
-      ${pageHero(zh ? "案例中心" : "SELECTED WORKS", zh ? "以真实项目，展示从设计到交付的能力。" : "Real projects that prove design, delivery, and execution.", zh ? "从欧洲、北美、南美、亚洲到中东市场，Ultra Expo 为新能源、储能、工业制造、汽车、消费电子、科技、水处理、零售空间与活动发布等行业客户提供展会设计与海外交付服务。" : "From Europe, North America, South America, and Asia to the Middle East, Ultra Expo delivers exhibition and event projects for brands across energy, battery, industrial manufacturing, automotive, consumer electronics, technology, water treatment, retail, and launch event sectors.", lang)}
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "精选案例" : "FEATURED CASES", labels[lang].featured, "")}
-        <div class="ultra-case-grid">${featured.map(c => caseCard(c, lang)).join("")}</div>
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "案例数据库" : "CASE DATABASE", `${labels[lang].allCases} / ${items.length}`, zh ? "按年份、行业、地区和案例类型组合筛选。" : "Filter by year, industry, region, and case type.")}
+      <section class="ultra-section ultra-cases-index"><div class="ultra-wrap">
+        ${sectionHead(zh ? "案例信息流" : "CASE FEED", `${labels[lang].allCases} / ${items.length}`, "")}
         ${filtersHTML(lang, state)}
-        <div class="ultra-case-grid">${items.map(c => caseCard(c, lang)).join("")}</div>
+        <div class="ultra-case-grid" data-case-grid>${items.map((c, index) => `<div class="${index >= initialCount ? "is-hidden" : ""}" data-case-item>${caseCard(c, lang)}</div>`).join("")}</div>
+        ${items.length > initialCount ? `<div class="ultra-load-more-wrap"><button class="ultra-secondary" type="button" data-load-more>${zh ? "加载更多" : "Load More"}</button></div>` : ""}
       </div></section>
     `;
   }
@@ -1367,19 +2127,19 @@
     const allCases = activeCases();
     const item = allCases.find(c => c.id === id) || allCases[0];
     const overview = [
-      ["Client", "客户", item.client],
-      ["Event", "展会", item.event],
-      ["Location", "地点", item.location],
-      ["Area", "面积", item.area],
+      ["Client", "客户", caseBrandName(item)],
+      ["Event", "展会", caseEventName(item)],
+      ["Location", "地点", caseCountry(item)],
+      ["Area", "面积", item.areaSqm ? `${item.areaSqm}㎡` : item.area],
       ["Year", "年份", item.year],
       ["Industry", "行业", item.industry],
       ["Services", "服务内容", (item.services || []).join(" / ")]
     ].filter(x => x[2]);
     const related = allCases.filter(c => c.id !== item.id && (c.industry === item.industry || c.region === item.region)).slice(0, 3);
     return `
-      ${pageHero(item.type || "CASE", item.client, `${item.event}${item.location ? " · " + item.location : ""}${item.year ? " · " + item.year : ""}`, lang)}
+      ${pageHero(item.type || "CASE", caseBrandName(item), `${caseEventName(item)}${caseCountry(item) ? " · " + caseCountry(item) : ""}${item.year ? " · " + item.year : ""}`, lang)}
       <section class="ultra-section"><div class="ultra-wrap">
-        <div class="ultra-case-grid"><a class="ultra-case-card"><img src="${esc(item.image)}" alt="${esc(item.client)}"></a></div>
+        <div class="ultra-case-grid"><a class="ultra-case-card"><img src="${esc(caseImage(item))}" alt="${esc(caseBrandName(item))}"></a></div>
       </div></section>
       <section class="ultra-section"><div class="ultra-wrap">
         ${sectionHead(zh ? "项目概览" : "PROJECT OVERVIEW", labels[lang].overview, item.description ? item.description[lang] : "")}
@@ -1402,33 +2162,143 @@
 
   function contactPage(lang) {
     const zh = lang === "zh";
-    const fields = zh ? ["姓名", "公司", "邮箱", "电话 / WhatsApp / WeChat", "展会名称", "国家 / 城市", "展位面积", "展会时间", "留言"] : ["Name", "Company", "Email", "Phone / WhatsApp / WeChat", "Exhibition Name", "Country / City", "Booth Size", "Exhibition Date", "Message"];
-    const projectTypes = zh ? ["品牌策划", "空间设计", "海外落地", "工程搭建", "新品发布", "零售空间", "全流程项目", "活动 / 路演"] : ["Strategy", "Space Design", "Overseas Delivery", "Engineering & Build", "Product Launch", "Retail Space", "Full-Service Project", "Event / Roadshow"];
-    const budgets = zh ? ["待沟通", "50,000 美元以下", "50,000–100,000 美元", "100,000–300,000 美元", "300,000 美元以上"] : ["To be discussed", "Under 50K USD", "50K–100K USD", "100K–300K USD", "300K+ USD"];
+    const contact = getAdminConfig().contact || defaultAdminConfig().contact;
+    const emailHref = contact.email ? `mailto:${contact.email}` : "mailto:jack@ultraexpo.com";
+    const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, "")}` : "tel:+8618506144181";
+    const inquiryTypes = [
+      { value: "Exhibition Booth", zh: "海外展台设计与搭建", en: "Exhibition Booth", copyZh: "展台设计、制作、物流与现场搭建。", copyEn: "Booth design, fabrication, logistics, and on-site build." },
+      { value: "Product Launch", zh: "新品发布与品牌活动", en: "Product Launch", copyZh: "发布会、路演、快闪与线下体验。", copyEn: "Launch events, roadshows, pop-ups, and offline experiences." },
+      { value: "Retail Space", zh: "零售空间与快闪空间", en: "Retail Space", copyZh: "门店、展厅、临展与品牌空间。", copyEn: "Retail, showroom, temporary display, and brand spaces." },
+      { value: "General Inquiry", zh: "其他合作咨询", en: "General Inquiry", copyZh: "任何出海展示与空间落地问题。", copyEn: "Any global display or spatial delivery question." }
+    ];
+    const budgets = zh ? ["50,000 美元以下", "50,000-100,000 美元", "100,000-300,000 美元", "300,000 美元以上"] : ["Under 50K USD", "50K-100K USD", "100K-300K USD", "300K+ USD"];
+    const contactRows = [
+      { title: "Business Inquiry", body: [contact.email, contact.phone, contact.wechat ? `${zh ? "微信" : "WeChat"}: ${contact.wechat}` : "", contact.whatsapp ? `WhatsApp: ${contact.whatsapp}` : ""].filter(Boolean).join("<br>") },
+      { title: "Office", body: zh ? contact.addressZh || contact.addressEn : contact.addressEn || contact.addressZh },
+      { title: "Response", body: zh ? "我们会根据项目所在地、时间与需求类型安排对应团队跟进。" : "We route each inquiry by region, schedule, and project type before replying." }
+    ].filter(item => item.body);
     return `
-      ${pageHero(zh ? "联系我们" : "START A PROJECT", zh ? "让我们一起为你的品牌，在全球搭建舞台。" : "Let’s build your global stage.", zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间，Ultra Expo 将为你评估设计与海外落地方案。" : "Tell us your exhibition name, country, city, booth size, and project timeline. Ultra Expo will help evaluate your design and overseas delivery needs.", lang)}
-      <section class="ultra-section"><div class="ultra-wrap">
-        <div class="ultra-form">
-          <form class="ultra-form-panel" data-contact-form>
-            <div class="ultra-section-kicker">${zh ? "提交你的项目需求" : "SUBMIT YOUR PROJECT BRIEF"}</div>
-            <div class="ultra-form-grid">
-              ${fields.map((field, i) => `<div class="ultra-field ${i === fields.length - 1 ? "full" : ""}"><label>${esc(field)}</label>${i === fields.length - 1 ? `<textarea name="${esc(field)}"></textarea>` : `<input name="${esc(field)}" ${field.includes("Email") || field.includes("邮箱") ? "type=\"email\"" : ""}>`}</div>`).join("")}
-              <div class="ultra-field"><label>${zh ? "需求类型" : "Project Type"}</label><select>${projectTypes.map(x => `<option>${esc(x)}</option>`).join("")}</select></div>
-              <div class="ultra-field"><label>${zh ? "预算区间" : "Budget Range"}</label><select>${budgets.map(x => `<option>${esc(x)}</option>`).join("")}</select></div>
-              <div class="ultra-field full"><label>${zh ? "上传附件" : "Upload File"}</label><input type="file"><p class="ultra-copy">${zh ? "如有展位图、品牌手册、产品图片或展商手册，可上传附件，方便我们更快评估。" : "Upload booth plan, brand guideline, product images, or exhibition manual if available."}</p></div>
+      <section class="ultra-contact-page">
+        <section class="ultra-contact-hero">
+          <div class="ultra-contact-shell ultra-contact-hero-grid">
+            <div class="ultra-contact-hero-copy">
+              <div class="ultra-contact-kicker">${zh ? "联系我们" : "CONTACT"}</div>
+              <h1><span>Contact</span><span>Ultra Expo</span></h1>
+              <h2>${zh ? "告诉我们你的项目计划" : "Tell us what you are planning"}</h2>
+              <p>${zh ? "无论是海外展会、新品发布、零售空间，还是品牌出海展示需求，都可以从这里开始。留下你的信息，我们会尽快与你联系。" : "Whether it is an overseas exhibition, product launch, retail space, or brand presence abroad, start here. Share your brief and we will help map the next step."}</p>
+              <p class="ultra-contact-english">Tell us what you are planning. We will help map the next step.</p>
+              <div class="ultra-contact-actions">
+                <a class="ultra-primary" href="#contact-form" data-contact-scroll>${zh ? "提交咨询" : "Send Inquiry"}</a>
+                <a class="ultra-secondary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "查看案例" : "View Cases"}</a>
+              </div>
             </div>
-            <button class="ultra-submit" type="submit">${zh ? "提交项目需求" : "Submit Project Brief"}</button>
-            <p class="ultra-copy" data-form-success hidden>${zh ? "感谢提交。我们的项目团队会查看你的需求，并尽快与你联系。" : "Thank you. Our project team will review your brief and contact you shortly."}</p>
-          </form>
-          <aside class="ultra-form-panel">
-            <div class="ultra-section-kicker">${zh ? "联系方式" : "CONTACT INFO"}</div>
-            <h3>${zh ? "什么信息可以帮助我们更快回复？" : "What helps us respond faster?"}</h3>
-            <p class="ultra-copy"><a href="mailto:jack@ultraexpo.com">jack@ultraexpo.com</a><br>+86 185 0614 4181<br>${zh ? "中国苏州" : "Suzhou, China"}<br>${zh ? "苏州 / 香港 / 洛杉矶 / 柏林" : "Suzhou / Hong Kong / Los Angeles / Berlin"}</p>
-            <ul>${(zh ? ["展会名称和地点", "展位面积和展位图", "展会时间", "品牌手册或 Logo 文件", "产品图片和重点产品清单", "预期服务范围", "预算区间", "目标时间节点"] : ["Exhibition name and location", "Booth size and floor plan", "Exhibition dates", "Brand guideline or logo files", "Product images and key product list", "Expected service scope", "Budget range", "Target timeline"]).map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-            <div class="ultra-hero-actions"><a class="ultra-primary" href="mailto:jack@ultraexpo.com">${zh ? "发送邮件" : "Send Email"}</a><a class="ultra-secondary" href="${routeLink("/services")}" data-route="/services">${labels[lang].viewServices}</a></div>
-          </aside>
-        </div>
-      </div></section>
+            <aside class="ultra-contact-promise" aria-label="${zh ? "响应承诺" : "Response promise"}">
+              ${[
+                ["Quick Response", zh ? "快速响应，尽快确认需求" : "Fast response and requirement confirmation"],
+                ["Global Coordination", zh ? "支持海外展会与跨时区项目沟通" : "Cross-time-zone project coordination for global shows"],
+                ["End-to-End Delivery", zh ? "从策划、设计到本地化落地一体化交付" : "Strategy, design, localization, and on-site delivery"]
+              ].map((item, index) => `<article><span>0${index + 1}</span><strong>${esc(item[0])}</strong><p>${esc(item[1])}</p></article>`).join("")}
+            </aside>
+          </div>
+        </section>
+
+        <section class="ultra-contact-types" aria-label="${zh ? "咨询类型" : "Inquiry types"}">
+          <div class="ultra-contact-shell">
+            <div class="ultra-contact-section-head">
+              <span>${zh ? "咨询类型" : "INQUIRY TYPE"}</span>
+              <h2>${zh ? "你可以先选择一个方向。" : "Choose the closest starting point."}</h2>
+            </div>
+            <div class="ultra-contact-type-grid">
+              ${inquiryTypes.map(item => `
+                <button type="button" class="ultra-contact-type-card" data-inquiry-type="${esc(item.value)}">
+                  <strong>${esc(item.en)}</strong>
+                  <span>${esc(zh ? item.zh : item.copyEn)}</span>
+                  <p>${esc(zh ? item.copyZh : item.zh)}</p>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="ultra-contact-form-section" id="contact-form">
+          <div class="ultra-contact-shell ultra-contact-form-layout">
+            <form class="ultra-contact-form-card" data-contact-form novalidate>
+              <input type="text" name="website" tabindex="-1" autocomplete="off" class="ultra-honeypot" aria-hidden="true">
+              <div class="ultra-contact-form-head">
+                <span>${zh ? "留言表单" : "CONTACT FORM"}</span>
+                <h2>${zh ? "留下必要信息，我们来推进下一步。" : "Leave the essentials. We will take it from there."}</h2>
+              </div>
+              <div class="ultra-contact-form-grid">
+                ${contactField("name", zh ? "姓名 / Name" : "Name", "text", true)}
+                ${contactField("company", zh ? "公司 / Company" : "Company", "text", true)}
+                ${contactField("contact", zh ? "联系方式 / Email or Phone" : "Email or Phone", "text", true)}
+                <label class="ultra-contact-field">
+                  <span>${zh ? "咨询类型 / Inquiry Type" : "Inquiry Type"} *</span>
+                  <select name="inquiryType" required>
+                    <option value="">${zh ? "请选择" : "Select one"}</option>
+                    ${inquiryTypes.map(item => `<option value="${esc(item.value)}">${esc(item.en)} · ${esc(item.zh)}</option>`).join("")}
+                  </select>
+                  <em data-field-error="inquiryType"></em>
+                </label>
+                ${contactField("eventName", zh ? "展会名称 / Event Name" : "Event Name")}
+                ${contactField("countryRegion", zh ? "展会国家或地区 / Country / Region" : "Country / Region")}
+                ${contactField("expectedDate", zh ? "预计时间 / Expected Date" : "Expected Date")}
+                ${contactField("boothArea", zh ? "展位面积 / Booth Area" : "Booth Area")}
+                <label class="ultra-contact-field">
+                  <span>${zh ? "预算范围 / Budget Range" : "Budget Range"}</span>
+                  <select name="budgetRange">
+                    <option value="">${zh ? "待沟通" : "To be discussed"}</option>
+                    ${budgets.map(item => `<option>${esc(item)}</option>`).join("")}
+                  </select>
+                </label>
+                <label class="ultra-contact-field is-wide">
+                  <span>${zh ? "留言内容 / Message" : "Message"} *</span>
+                  <textarea name="message" required placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
+                  <em data-field-error="message"></em>
+                </label>
+              </div>
+              <div class="ultra-contact-form-footer">
+                <button class="ultra-submit" type="submit" data-contact-submit>${zh ? "Send Inquiry / 提交咨询" : "Send Inquiry"}</button>
+                <p>${zh ? "提交后，我们会根据项目地区、时间和需求类型安排对应团队跟进。" : "After submission, we assign the right team by region, timeline, and requirement type."}</p>
+              </div>
+              <div class="ultra-contact-feedback" data-form-feedback hidden></div>
+            </form>
+
+            <aside class="ultra-contact-side">
+              <section class="ultra-contact-info-card">
+                <span>${zh ? "联系方式" : "CONTACT INFO"}</span>
+                <h3>${zh ? "也可以直接联系 Ultra Expo。" : "You can also reach Ultra Expo directly."}</h3>
+                ${contactRows.map(row => `<article><strong>${esc(row.title)}</strong><p>${row.body}</p></article>`).join("")}
+                <div class="ultra-contact-direct">
+                  <a href="${esc(emailHref)}">${esc(contact.email || "jack@ultraexpo.com")}</a>
+                  <a href="${esc(phoneHref)}">${esc(contact.phone || "+86 185 0614 4181")}</a>
+                </div>
+              </section>
+              <section class="ultra-contact-info-card">
+                <span>${zh ? "响应流程" : "RESPONSE PROCESS"}</span>
+                <h3>What happens next?</h3>
+                <ol class="ultra-contact-steps">
+                  ${[
+                    ["Submit", zh ? "你提交项目需求" : "You submit the project brief"],
+                    ["Review", zh ? "我们确认展会时间、国家、面积与目标" : "We review schedule, country, area, and goals"],
+                    ["Reply", zh ? "对应团队尽快联系并给出下一步建议" : "The right team replies with next-step guidance"]
+                  ].map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
+                </ol>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </section>
+    `;
+  }
+
+  function contactField(name, label, type = "text", required = false) {
+    return `
+      <label class="ultra-contact-field">
+        <span>${esc(label)}${required ? " *" : ""}</span>
+        <input name="${esc(name)}" type="${esc(type)}" ${required ? "required" : ""}>
+        ${required ? `<em data-field-error="${esc(name)}"></em>` : ""}
+      </label>
     `;
   }
 
@@ -1471,6 +2341,7 @@
     if (!isAdminUnlocked()) return adminLoginPage(lang);
     const config = getAdminConfig();
     const home = config.modules.home || {};
+    const brandItems = config.brands?.items || activeBrands();
     const caseItems = config.cases.items || activeCases();
     const moduleRow = (key, title, desc) => `
       <label class="ultra-admin-check">
@@ -1479,13 +2350,13 @@
       </label>
     `;
     return `
-      ${pageHero("ADMIN", zh ? "后台配置中心" : "Site Control Center", zh ? "按模块维护首页、底栏社媒、第三方配置与案例信息。配置保存在当前浏览器，可导出 JSON 备份。" : "Maintain homepage modules, footer social links, third-party settings, and cases. Config is stored in this browser and can be exported as JSON.", lang)}
+      ${pageHero("CONTENT OPS", zh ? "Notion 内容库规划" : "Notion Content Plan", zh ? "第一阶段不创建复杂独立后台。这里用于查看本地 mock 数据结构、维护浏览器内 JSON 覆盖，并预留 Notion 与 OSS 同步配置。" : "Phase one keeps content in local mock data and prepares for Notion plus OSS sync. This page stores browser-local JSON overrides only.", lang)}
       <section class="ultra-section ultra-admin-section"><div class="ultra-wrap">
         <form class="ultra-admin" data-admin-config>
           <div class="ultra-admin-toolbar">
             <div>
-              <div class="ultra-section-kicker">${zh ? "本地配置" : "LOCAL CONFIG"}</div>
-              <h2>${zh ? "网站配置面板" : "Website configuration"}</h2>
+              <div class="ultra-section-kicker">${zh ? "本地 mock / JSON" : "LOCAL MOCK / JSON"}</div>
+              <h2>${zh ? "内容配置面板" : "Content configuration"}</h2>
               <p>${zh ? "更新时间：" : "Updated: "}${esc(config.updatedAt || (zh ? "尚未保存" : "Not saved yet"))}</p>
             </div>
             <div class="ultra-admin-actions">
@@ -1523,19 +2394,495 @@
             </section>
 
             <section class="ultra-admin-panel">
-              <h3>${zh ? "阿里云 / Notion 等配置" : "Aliyun / Notion Integrations"}</h3>
-              <p>${zh ? "静态站不适合保存生产密钥。这里用于记录配置，正式接入请走后端代理。" : "Do not store production secrets in a static site. Use this for planning; route real integrations through a backend proxy."}</p>
+              <h3>${zh ? "Notion / 阿里云 OSS 同步入口" : "Notion / Aliyun OSS Sync Entry"}</h3>
+              <p>${zh ? "这里只记录字段和同步目标，不代表 Notion、OSS 已经打通。正式接入时请通过后端代理或构建脚本处理 token、图片下载和 OSS 上传。" : "This records the planned field and sync targets only. Real Notion tokens, image downloads, and OSS uploads should run through a backend proxy or build script."}</p>
               <textarea name="integrations" spellcheck="false">${adminJSON(config.integrations || {})}</textarea>
             </section>
 
             <section class="ultra-admin-panel is-wide">
-              <h3>${zh ? "案例数据" : "Case Data"}</h3>
-              <p>${zh ? "填 JSON 数组会覆盖前台案例；留空或填 null 则使用 assets/ultra-cases.js。当前编辑数量：" : "A JSON array overrides the public cases; blank or null falls back to assets/ultra-cases.js. Current editable count: "}${Array.isArray(caseItems) ? caseItems.length : 0}</p>
+              <h3>${zh ? "品牌库 Brands" : "Brands Database"}</h3>
+              <p>${zh ? "字段与未来 Notion Brands 数据库保持一致。留空或填 null 则使用 assets/ultra-cases.js 自动生成的品牌 mock。当前数量：" : "Fields match the future Notion Brands database. Blank or null falls back to brands generated from assets/ultra-cases.js. Current count: "}${Array.isArray(brandItems) ? brandItems.length : 0}</p>
+              <textarea name="brands.items" spellcheck="false">${adminJSON(brandItems)}</textarea>
+            </section>
+
+            <section class="ultra-admin-panel is-wide">
+              <h3>${zh ? "案例库 Cases" : "Cases Database"}</h3>
+              <p>${zh ? "字段与未来 Notion Cases 数据库保持一致。图片保留在 Files 对象内，后续由同步脚本处理 Notion 文件、OSS 上传和站点数据生成。当前数量：" : "Fields match the future Notion Cases database. Image references stay inside Files objects; later sync scripts can handle Notion files, OSS upload, and site data generation. Current count: "}${Array.isArray(caseItems) ? caseItems.length : 0}</p>
               <textarea name="cases.items" spellcheck="false">${adminJSON(caseItems)}</textarea>
             </section>
           </div>
         </form>
       </div></section>
+    `;
+  }
+
+  function adminActiveView() {
+    try {
+      return sessionStorage.getItem(ADMIN_VIEW_KEY) || "dashboard";
+    } catch {
+      return "dashboard";
+    }
+  }
+
+  function setAdminActiveView(view) {
+    try {
+      sessionStorage.setItem(ADMIN_VIEW_KEY, view);
+    } catch {}
+  }
+
+  function adminSlug(value, fallback = "item") {
+    const clean = String(value || "").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return clean || `${fallback}-${Date.now()}`;
+  }
+
+  function adminPreviewSrc(url) {
+    const value = String(url || "");
+    if (!value || value.startsWith("data:") || value.startsWith("http") || value.startsWith("blob:")) return value;
+    if (value.startsWith("./")) return routeLink(value.slice(1));
+    if (value.startsWith("/")) return routeLink(value);
+    return value;
+  }
+
+  function adminFileUrl(value) {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    if (Array.isArray(value)) return adminFileUrl(value[0]);
+    return value.files?.[0]?.url || value.url || "";
+  }
+
+  function adminFileUrls(value) {
+    if (!value) return [];
+    if (Array.isArray(value)) return value.map(adminFileUrl).filter(Boolean);
+    if (Array.isArray(value.files)) return value.files.map(file => file?.url).filter(Boolean);
+    const url = adminFileUrl(value);
+    return url ? [url] : [];
+  }
+
+  function adminFileObject(url, name = "admin-local-file") {
+    return url ? { name, url, source: url.startsWith("data:") ? "browser-preview" : "local-mock" } : null;
+  }
+
+  function adminImageValue(url, name) {
+    const file = adminFileObject(url, name);
+    return { files: file ? [file] : [] };
+  }
+
+  function adminBrands() {
+    const items = getAdminConfig().brands?.items;
+    return Array.isArray(items) ? items : activeBrands();
+  }
+
+  function adminCases() {
+    const items = getAdminConfig().cases?.items;
+    return Array.isArray(items) ? items : activeCases();
+  }
+
+  function adminBrandById(id) {
+    return adminBrands().find(item => item.id === id);
+  }
+
+  function adminBrandDisplay(brand) {
+    if (!brand) return "Unassigned";
+    return [brand.chineseName, brand.englishName].filter(Boolean).join(" / ") || brand.id || "Brand";
+  }
+
+  function adminMetric(label, value, view) {
+    return `<button type="button" class="ultra-admin-metric" data-admin-section="${esc(view)}"><span>${esc(label)}</span><strong>${esc(value)}</strong><em>Open ${esc(view)}</em></button>`;
+  }
+
+  function adminField(name, label, value = "", type = "text", attrs = "") {
+    return `<label class="ultra-admin-field"><span>${esc(label)}</span><input type="${esc(type)}" name="${esc(name)}" value="${esc(value)}" ${attrs}></label>`;
+  }
+
+  function adminTextArea(name, label, value = "", attrs = "") {
+    return `<label class="ultra-admin-field is-wide"><span>${esc(label)}</span><textarea name="${esc(name)}" ${attrs}>${esc(value)}</textarea></label>`;
+  }
+
+  function adminSelect(name, label, value, options, attrs = "") {
+    return `
+      <label class="ultra-admin-field">
+        <span>${esc(label)}</span>
+        <select name="${esc(name)}" ${attrs}>
+          ${options.map(option => {
+            const opt = typeof option === "string" ? { value: option, label: option } : option;
+            return `<option value="${esc(opt.value)}" ${String(value || "") === String(opt.value) ? "selected" : ""}>${esc(opt.label)}</option>`;
+          }).join("")}
+        </select>
+      </label>
+    `;
+  }
+
+  function adminImageField(name, label, value = "", accept = "image/*") {
+    const url = adminFileUrl(value);
+    return `
+      <div class="ultra-admin-field ultra-admin-image-field" data-admin-image-field>
+        <span>${esc(label)}</span>
+        <input type="hidden" name="${esc(name)}" value="${esc(url)}">
+        <div class="ultra-admin-image-preview ${url ? "has-image" : ""}" data-admin-image-preview>
+          ${url ? `<img src="${esc(adminPreviewSrc(url))}" alt="">` : `<span>No image</span>`}
+        </div>
+        <div class="ultra-admin-inline-actions">
+          <label class="ultra-admin-small-button">Upload<input type="file" accept="${esc(accept)}" data-admin-image-upload></label>
+          <button type="button" class="ultra-admin-small-button" data-admin-image-clear>Delete</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function adminGalleryItem(url, index, total) {
+    return `
+      <figure class="ultra-admin-gallery-item" draggable="true" data-admin-gallery-item="${index}">
+        <img src="${esc(adminPreviewSrc(url))}" alt="">
+        <figcaption>
+          <button type="button" data-admin-gallery-move="up" ${index === 0 ? "disabled" : ""}>Up</button>
+          <button type="button" data-admin-gallery-move="down" ${index >= total - 1 ? "disabled" : ""}>Down</button>
+          <button type="button" data-admin-gallery-delete>Delete</button>
+        </figcaption>
+      </figure>
+    `;
+  }
+
+  function adminGalleryField(value = []) {
+    const urls = adminFileUrls(value);
+    return `
+      <div class="ultra-admin-field is-wide ultra-admin-gallery-field" data-admin-gallery-field>
+        <span>Gallery Images</span>
+        <input type="hidden" name="galleryUrls" value="${esc(JSON.stringify(urls))}">
+        <div class="ultra-admin-gallery" data-admin-gallery-list>
+          ${urls.map((url, index) => adminGalleryItem(url, index, urls.length)).join("")}
+        </div>
+        <label class="ultra-admin-small-button">Upload Images<input type="file" accept="image/*" multiple data-admin-gallery-upload></label>
+      </div>
+    `;
+  }
+
+  function adminDashboardSection(brands, cases) {
+    const messages = adminContactMessages();
+    const newMessages = messages.filter(item => item.status === "new").length;
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "dashboard" ? "is-active" : ""}" data-admin-view="dashboard">
+        <div class="ultra-admin-view-head"><span>Dashboard</span><h1>Content Overview</h1></div>
+        <div class="ultra-admin-metrics">
+          ${adminMetric("Brands", brands.length, "brands")}
+          ${adminMetric("Cases", cases.length, "cases")}
+          ${adminMetric("New Messages", newMessages, "messages")}
+          ${adminMetric("Contact Messages", messages.length, "messages")}
+        </div>
+        <div class="ultra-admin-two-col">
+          <section class="ultra-admin-panel"><h2>Recently Updated Brands</h2><ul class="ultra-admin-list">${brands.slice(0, 5).map(item => `<li><button type="button" data-admin-section="brands"><strong>${esc(adminBrandDisplay(item))}</strong><span>${item.isFeaturedBrand ? "Featured" : "Normal"}</span></button></li>`).join("") || "<li>No brands yet.</li>"}</ul></section>
+          <section class="ultra-admin-panel"><h2>Recent Messages</h2><ul class="ultra-admin-list">${messages.slice(0, 5).map(item => `<li><button type="button" data-admin-section="messages"><strong>${esc(item.company || item.name || "-")}</strong><span>${esc(item.status || "new")}</span></button></li>`).join("") || "<li>No messages yet.</li>"}</ul></section>
+        </div>
+      </section>
+    `;
+  }
+
+  function adminBrandForm() {
+    return `
+      <form class="ultra-admin-edit-form" data-admin-brand-form>
+        <input type="hidden" name="id" value="">
+        <div class="ultra-admin-modal-body">
+          <div class="ultra-admin-form-head"><h2 data-admin-brand-form-title>New Brand</h2><p>Use the star to prioritize this brand on public featured areas.</p></div>
+          <div class="ultra-admin-form-grid">
+            ${adminField("chineseName", "Chinese Name", "", "text", "required")}
+            ${adminField("englishName", "English Name", "", "text", "required")}
+            ${adminImageField("originalLogoUrl", "Color Logo")}
+            ${adminImageField("grayLogoUrl", "Gray Logo")}
+            <label class="ultra-admin-checkline"><input type="checkbox" name="isFeaturedBrand"> Featured brand</label>
+          </div>
+        </div>
+        <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save Brand</button><button type="button" data-admin-brand-cancel>Cancel</button></div>
+      </form>
+    `;
+  }
+
+  function adminBrandsSection(brands) {
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "brands" ? "is-active" : ""}" data-admin-view="brands">
+        <div class="ultra-admin-view-head"><span>Brands</span><h1>Brand Management</h1><button type="button" class="ultra-admin-primary" data-admin-brand-new>New Brand</button></div>
+        <div class="ultra-admin-table-tools"><input type="search" placeholder="Search brand name" data-admin-brand-search></div>
+        <div class="ultra-admin-table-wrap">
+          <table class="ultra-admin-table" data-admin-brand-table>
+            <thead><tr><th>Logo</th><th>Chinese Name</th><th>English Name</th><th>Featured</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${brands.map(item => {
+                const logo = adminFileUrl(item.originalLogo);
+                return `
+                  <tr data-admin-brand-row data-search="${esc(`${item.chineseName || ""} ${item.englishName || ""}`.toLowerCase())}">
+                    <td>${logo ? `<img class="ultra-admin-logo-thumb" src="${esc(adminPreviewSrc(logo))}" alt="">` : "<span class=\"ultra-admin-empty-thumb\">Logo</span>"}</td>
+                    <td>${esc(item.chineseName || "-")}</td>
+                    <td>${esc(item.englishName || item.id || "-")}</td>
+                    <td><button type="button" class="ultra-admin-star ${item.isFeaturedBrand ? "is-on" : ""}" data-admin-toggle-brand="${esc(item.id)}">${item.isFeaturedBrand ? "★" : "☆"}</button></td>
+                    <td><button type="button" data-admin-edit-brand="${esc(item.id)}">Edit</button><button type="button" data-admin-delete-brand="${esc(item.id)}">Delete</button></td>
+                  </tr>
+                `;
+              }).join("") || `<tr><td colspan="5" class="ultra-admin-empty">No brands yet.</td></tr>`}
+            </tbody>
+          </table>
+        </div>
+        ${adminBrandForm()}
+      </section>
+    `;
+  }
+
+  function adminCaseForm(brands) {
+    const brandOptions = brands.map(brand => ({ value: brand.id, label: adminBrandDisplay(brand) }));
+    return `
+      <form class="ultra-admin-edit-form" data-admin-case-form>
+        <input type="hidden" name="id" value="">
+        <div class="ultra-admin-modal-body">
+          <div class="ultra-admin-form-head"><h2 data-admin-case-form-title>New Case</h2><p>Use featured cases to prioritize homepage and case page highlights.</p></div>
+          <div class="ultra-admin-form-grid">
+            ${adminSelect("brandId", "Related Brand", brands[0]?.id || "", brandOptions, "required")}
+            ${adminField("exhibitionName", "Exhibition Name", "", "text", "required")}
+            ${adminField("year", "Year", new Date().getFullYear(), "number", "required min=\"1900\" max=\"2100\"")}
+            ${adminField("area", "Area", "", "text")}
+            ${adminField("industry", "Industry", "", "text", "required")}
+            ${adminField("country", "Country", "", "text", "required")}
+            ${adminTextArea("chineseIntro", "Chinese Intro")}
+            ${adminTextArea("englishIntro", "English Intro")}
+            ${adminImageField("coverImageUrl", "Cover Image")}
+            ${adminGalleryField()}
+            <label class="ultra-admin-checkline"><input type="checkbox" name="isFeaturedCase"> Featured case</label>
+          </div>
+        </div>
+        <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save Case</button><button type="button" data-admin-case-cancel>Cancel</button></div>
+      </form>
+    `;
+  }
+
+  function adminCasesSection(cases, brands) {
+    const years = [...new Set(cases.map(item => item.year).filter(Boolean))].sort((a, b) => b - a);
+    const industries = [...new Set(cases.map(item => item.industry).filter(Boolean))].sort();
+    const countries = [...new Set(cases.map(item => item.country).filter(Boolean))].sort();
+    const brandOptions = brands.map(brand => ({ value: brand.id, label: adminBrandDisplay(brand) }));
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "cases" ? "is-active" : ""}" data-admin-view="cases">
+        <div class="ultra-admin-view-head"><span>Cases</span><h1>Case Management</h1><button type="button" class="ultra-admin-primary" data-admin-case-new>New Case</button></div>
+        <div class="ultra-admin-table-tools">
+          <input type="search" placeholder="Search exhibition name" data-admin-case-search>
+          ${adminSelect("caseYearFilter", "Year", "", [{ value: "", label: "All Years" }, ...years.map(String)], "data-admin-case-filter=\"year\"")}
+          ${adminSelect("caseBrandFilter", "Brand", "", [{ value: "", label: "All Brands" }, ...brandOptions], "data-admin-case-filter=\"brand\"")}
+          ${adminSelect("caseIndustryFilter", "Industry", "", [{ value: "", label: "All Industries" }, ...industries], "data-admin-case-filter=\"industry\"")}
+          ${adminSelect("caseCountryFilter", "Country", "", [{ value: "", label: "All Countries" }, ...countries], "data-admin-case-filter=\"country\"")}
+          ${adminSelect("caseFeaturedFilter", "Featured", "", [{ value: "", label: "All" }, { value: "1", label: "Featured" }, { value: "0", label: "Normal" }], "data-admin-case-filter=\"featured\"")}
+        </div>
+        <div class="ultra-admin-table-wrap">
+          <table class="ultra-admin-table" data-admin-case-table>
+            <thead><tr><th>Cover</th><th>Brand</th><th>Exhibition</th><th>Year</th><th>Area</th><th>Industry</th><th>Country</th><th>Featured</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${cases.map(item => {
+                const cover = adminFileUrl(item.coverImage);
+                const brand = adminBrandById(item.brandId);
+                return `
+                  <tr data-admin-case-row data-search="${esc(`${item.exhibitionName || ""} ${item.title || ""}`.toLowerCase())}" data-year="${esc(item.year || "")}" data-brand="${esc(item.brandId || "")}" data-industry="${esc(item.industry || "")}" data-country="${esc(item.country || "")}" data-featured="${item.isFeaturedCase ? "1" : "0"}">
+                    <td>${cover ? `<img class="ultra-admin-cover-thumb" src="${esc(adminPreviewSrc(cover))}" alt="">` : "<span class=\"ultra-admin-empty-thumb\">Cover</span>"}</td>
+                    <td>${esc(adminBrandDisplay(brand))}</td>
+                    <td>${esc(item.exhibitionName || item.title || "-")}</td>
+                    <td>${esc(item.year || "-")}</td>
+                    <td>${esc(item.area || (item.areaSqm ? `${item.areaSqm} sqm` : "-"))}</td>
+                    <td>${esc(item.industry || "-")}</td>
+                    <td>${esc(item.country || "-")}</td>
+                    <td><button type="button" class="ultra-admin-star ${item.isFeaturedCase ? "is-on" : ""}" data-admin-toggle-case="${esc(item.id)}">${item.isFeaturedCase ? "★" : "☆"}</button></td>
+                    <td><button type="button" data-admin-edit-case="${esc(item.id)}">Edit</button><button type="button" data-admin-delete-case="${esc(item.id)}">Delete</button></td>
+                  </tr>
+                `;
+              }).join("") || `<tr><td colspan="9" class="ultra-admin-empty">No cases yet.</td></tr>`}
+            </tbody>
+          </table>
+        </div>
+        ${adminCaseForm(brands)}
+      </section>
+    `;
+  }
+
+  function adminContactSection(contact) {
+    const entries = Array.isArray(contact.footerEntries) ? contact.footerEntries : [];
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "contact" ? "is-active" : ""}" data-admin-view="contact">
+        <div class="ultra-admin-view-head"><span>Contact</span><h1>Contact Management</h1></div>
+        <form class="ultra-admin-edit-form" data-admin-contact-form>
+          <div class="ultra-admin-form-grid">
+            ${adminField("email", "Email", contact.email || "", "email", "required")}
+            ${adminField("phone", "Phone", contact.phone || "", "text", "required")}
+            ${adminField("whatsapp", "WhatsApp", contact.whatsapp || "")}
+            ${adminField("wechat", "WeChat", contact.wechat || "")}
+            ${adminTextArea("addressZh", "Chinese Address", contact.addressZh || "")}
+            ${adminTextArea("addressEn", "English Address", contact.addressEn || "")}
+          </div>
+          <h2>Footer Contact Entries</h2>
+          <div class="ultra-admin-repeater" data-admin-footer-entries>
+            ${[...entries, { labelZh: "", labelEn: "", value: "" }].map((entry, index) => `
+              <div class="ultra-admin-repeater-row">
+                ${adminField(`footerLabelZh${index}`, "Label ZH", entry.labelZh || "")}
+                ${adminField(`footerLabelEn${index}`, "Label EN", entry.labelEn || "")}
+                ${adminField(`footerValue${index}`, "Value", entry.value || "")}
+              </div>
+            `).join("")}
+          </div>
+          <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save Contact</button></div>
+        </form>
+      </section>
+    `;
+  }
+
+  function adminContactMessagesSection(messages) {
+    const sorted = [...messages].sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
+    const statusOptions = [
+      { value: "", label: "All Statuses" },
+      { value: "new", label: "New" },
+      { value: "contacted", label: "Contacted" },
+      { value: "quoted", label: "Quoted" },
+      { value: "closed", label: "Closed" },
+      { value: "spam", label: "Spam" }
+    ];
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "messages" ? "is-active" : ""}" data-admin-view="messages">
+        <div class="ultra-admin-view-head"><span>Contact Messages</span><h1>留言管理</h1></div>
+        <div class="ultra-admin-message-layout">
+          <div>
+            <div class="ultra-admin-table-tools">
+              <input type="search" placeholder="Search name, company, contact, message" data-admin-message-search>
+              ${adminSelect("messageStatusFilter", "Status", "", statusOptions, "data-admin-message-filter=\"status\"")}
+            </div>
+            <div class="ultra-admin-table-wrap">
+              <table class="ultra-admin-table ultra-admin-message-table" data-admin-message-table>
+                <thead><tr><th>Submitted</th><th>Name</th><th>Company</th><th>Contact</th><th>Inquiry</th><th>Country / Region</th><th>Status</th></tr></thead>
+                <tbody>
+                  ${sorted.map(item => `
+                    <tr data-admin-message-row data-message-id="${esc(item.id)}" data-status="${esc(item.status || "new")}" data-search="${esc(`${item.name || ""} ${item.company || ""} ${item.contact || ""} ${item.message || ""}`.toLowerCase())}">
+                      <td>${esc(formatAdminDate(item.createdAt))}</td>
+                      <td>${esc(item.name || "-")}</td>
+                      <td>${esc(item.company || "-")}</td>
+                      <td>${esc(item.contact || "-")}</td>
+                      <td>${esc(item.inquiryType || "-")}</td>
+                      <td>${esc(item.countryRegion || "-")}</td>
+                      <td><span class="ultra-admin-status-pill is-${esc(item.status || "new")}">${esc(item.status || "new")}</span></td>
+                    </tr>
+                  `).join("") || `<tr><td colspan="7" class="ultra-admin-empty">No contact messages yet.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <aside class="ultra-admin-message-detail" data-admin-message-detail>
+            <h2>Message Detail</h2>
+            <p class="ultra-admin-note">Click a message on the left to view the full content, update status, or add an internal note.</p>
+          </aside>
+        </div>
+      </section>
+    `;
+  }
+
+  function adminAboutSection(about) {
+    const fallback = defaultAdminConfig().about;
+    const serviceMedia = Array.isArray(about.serviceMedia) ? about.serviceMedia : fallback.serviceMedia;
+    const exhibitionLogos = Array.isArray(about.exhibitionLogos) ? about.exhibitionLogos : fallback.exhibitionLogos;
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "about" ? "is-active" : ""}" data-admin-view="about">
+        <div class="ultra-admin-view-head"><span>About</span><h1>About Page Media</h1></div>
+        <form class="ultra-admin-edit-form" data-admin-about-form>
+          <h2>Service Card Media</h2>
+          <div class="ultra-admin-form-grid ultra-admin-service-media-grid">
+            ${serviceMedia.slice(0, 4).map((item, index) => {
+              const title = item?.title || ["STRATEGY", "DESIGN", "ABROAD", "BUILD"][index] || `CARD ${index + 1}`;
+              return adminImageField(`serviceMedia${index}`, `${title} image`, item?.url || "", "image/svg+xml,image/png,image/webp,image/*");
+            }).join("")}
+          </div>
+          <p class="ultra-admin-note">Upload one image for each service card. SVG, PNG, and WebP are supported. Leave a field blank to show the designed placeholder.</p>
+          <h2>Global Exhibition Logos</h2>
+          <div class="ultra-admin-form-grid">
+            ${adminTextArea("exhibitionLogos", "Exhibition logo wall items", JSON.stringify(exhibitionLogos, null, 2), "spellcheck=\"false\"")}
+          </div>
+          <p class="ultra-admin-note">Only exhibition platforms belong here. Supported fields: id, name, logo, order, visible. Logo accepts SVG, PNG, or WebP URL/data URL. Do not add client logos or links.</p>
+          <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save About</button></div>
+        </form>
+      </section>
+    `;
+  }
+
+  function adminSettingsSection(settings) {
+    return `
+      <section class="ultra-admin-view ${adminActiveView() === "settings" ? "is-active" : ""}" data-admin-view="settings">
+        <div class="ultra-admin-view-head"><span>Site Settings</span><h1>Website Configuration</h1></div>
+        <form class="ultra-admin-edit-form" data-admin-settings-form>
+          <h2>Basic Site Settings</h2>
+          <div class="ultra-admin-form-grid">
+            ${adminField("siteNameZh", "Site Name ZH", settings.siteNameZh || "", "text", "required")}
+            ${adminField("siteNameEn", "Site Name EN", settings.siteNameEn || "", "text", "required")}
+            ${adminImageField("logo", "Site Logo", settings.logo || "")}
+            ${adminImageField("favicon", "Favicon", settings.favicon || "")}
+            ${adminSelect("defaultLanguage", "Default Language", settings.defaultLanguage || "en", [{ value: "zh", label: "Chinese" }, { value: "en", label: "English" }])}
+          </div>
+          <h2>Notion Configuration</h2>
+          <div class="ultra-admin-form-grid">
+            ${adminField("notionToken", "Notion Token", settings.notionToken || "", "password")}
+            ${adminField("notionBrandsDatabaseId", "Brands Database ID", settings.notionBrandsDatabaseId || "")}
+            ${adminField("notionCasesDatabaseId", "Cases Database ID", settings.notionCasesDatabaseId || "")}
+          </div>
+          <h2>Aliyun OSS Configuration</h2>
+          <div class="ultra-admin-form-grid">
+            ${adminField("ossRegion", "OSS Region", settings.ossRegion || "")}
+            ${adminField("ossBucket", "Bucket Name", settings.ossBucket || "")}
+            ${adminField("ossAccessKeyId", "AccessKey ID", settings.ossAccessKeyId || "", "password")}
+            ${adminField("ossAccessKeySecret", "AccessKey Secret", settings.ossAccessKeySecret || "", "password")}
+            ${adminField("ossCdnDomain", "CDN Domain", settings.ossCdnDomain || "")}
+          </div>
+          <p class="ultra-admin-note">This static admin stores local mock configuration only. Do not put production secrets here.</p>
+          <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save Settings</button></div>
+        </form>
+      </section>
+    `;
+  }
+
+  function adminLoginPage() {
+    return `
+      <section class="ultra-admin-login-screen">
+        <form class="ultra-admin-login" data-admin-login>
+          <img src="${routeLink("/assets/ultra-logo.svg")}" alt="Ultra Expo">
+          <input type="password" name="password" autocomplete="current-password" placeholder="Admin password" aria-label="Admin password" required>
+          <button type="submit">Enter</button>
+          <p class="ultra-admin-status" data-admin-status></p>
+        </form>
+      </section>
+    `;
+  }
+
+  function adminPage() {
+    if (!isAdminUnlocked()) return adminLoginPage();
+    const config = getAdminConfig();
+    const brands = adminBrands();
+    const cases = adminCases();
+    const active = adminActiveView();
+    const menu = [
+      ["dashboard", "Dashboard"],
+      ["brands", "Brands"],
+      ["cases", "Cases"],
+      ["about", "About"],
+      ["contact", "Contact"],
+      ["messages", "Contact Messages"],
+      ["settings", "Site Settings"]
+    ];
+    return `
+      <section class="ultra-admin-shell">
+        <aside class="ultra-admin-sidebar">
+          <img src="${routeLink("/assets/ultra-logo.svg")}" alt="Ultra Expo">
+          <nav>${menu.map(([view, label]) => `<button type="button" class="${active === view ? "is-active" : ""}" data-admin-section="${esc(view)}">${esc(label)}</button>`).join("")}</nav>
+          <button type="button" class="ultra-admin-sidebar-action" data-admin-logout>Logout</button>
+        </aside>
+        <main class="ultra-admin-workspace">
+          <header class="ultra-admin-topbar">
+            <div><strong>Ultra Expo Admin</strong><span>Last saved: ${esc(config.updatedAt || "Not saved yet")}</span></div>
+            <button type="button" data-admin-reset>Reset Local Mock</button>
+          </header>
+          <p class="ultra-admin-status" data-admin-status></p>
+          ${adminDashboardSection(brands, cases)}
+          ${adminBrandsSection(brands)}
+          ${adminCasesSection(cases, brands)}
+          ${adminAboutSection(config.about || {})}
+          ${adminContactSection(config.contact || {})}
+          ${adminContactMessagesSection(adminContactMessages())}
+          ${adminSettingsSection(config.siteSettings || {})}
+        </main>
+      </section>
     `;
   }
 
@@ -1549,6 +2896,295 @@
     return "";
   }
 
+  function initAboutPage(root) {
+    const about = root.querySelector(".ultra-about");
+    if (!about) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const revealNodes = [...about.querySelectorAll("[data-about-reveal]")];
+    if (reduced || !("IntersectionObserver" in window)) {
+      revealNodes.forEach(node => node.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+      revealNodes.forEach((node, index) => {
+        node.style.setProperty("--about-delay", `${Math.min(index * 45, 260)}ms`);
+        observer.observe(node);
+      });
+    }
+
+    const hero = about.querySelector(".ultra-about-hero");
+    if (hero && !reduced) {
+      hero.addEventListener("pointermove", event => {
+        const rect = hero.getBoundingClientRect();
+        const px = rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0;
+        const py = rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0;
+        hero.style.setProperty("--about-mx", `${(px * 26).toFixed(2)}px`);
+        hero.style.setProperty("--about-my", `${(py * 18).toFixed(2)}px`);
+      }, { passive: true });
+      hero.addEventListener("pointerleave", () => {
+        hero.style.setProperty("--about-mx", "0px");
+        hero.style.setProperty("--about-my", "0px");
+      }, { passive: true });
+    }
+
+    const map = about.querySelector(".ultra-about-map");
+    const nodeCards = [...about.querySelectorAll("[data-about-node]")];
+    const setActiveNode = index => {
+      map?.querySelectorAll(".map-dot").forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === index));
+      nodeCards.forEach(card => card.classList.toggle("is-active", Number(card.dataset.aboutNode) === index));
+    };
+    const clearActiveNode = () => setActiveNode(-1);
+    nodeCards.forEach(card => {
+      card.addEventListener("mouseenter", () => setActiveNode(Number(card.dataset.aboutNode)), { passive: true });
+      card.addEventListener("mouseleave", clearActiveNode, { passive: true });
+      card.addEventListener("focusin", () => setActiveNode(Number(card.dataset.aboutNode)));
+      card.addEventListener("focusout", clearActiveNode);
+    });
+    map?.querySelectorAll(".map-dot").forEach((dot, index) => {
+      dot.addEventListener("mouseenter", () => setActiveNode(index), { passive: true });
+      dot.addEventListener("mouseleave", clearActiveNode, { passive: true });
+      dot.addEventListener("focus", () => setActiveNode(index));
+      dot.addEventListener("blur", clearActiveNode);
+    });
+    clearActiveNode();
+
+    const brandCards = [...about.querySelectorAll("[data-brand-scroll-card]")];
+    if (brandCards.length) {
+      const setBrandProgress = () => {
+        const viewport = window.innerHeight || document.documentElement.clientHeight || 900;
+        brandCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const styleIndex = Number(card.style.getPropertyValue("--about-card-index")) || 0;
+          const column = styleIndex % 5;
+          const raw = (viewport - rect.top - column * 42) / (viewport * 0.34);
+          const progress = Math.max(0, Math.min(1, raw));
+          card.style.setProperty("--brand-progress", progress.toFixed(3));
+          card.style.setProperty("--brand-y", `${((1 - progress) * 42).toFixed(1)}px`);
+          card.style.setProperty("--brand-clip", `${((1 - progress) * 22).toFixed(2)}%`);
+          card.classList.toggle("is-brand-active", progress > 0.02);
+        });
+      };
+      if (reduced) {
+        brandCards.forEach(card => {
+          card.style.setProperty("--brand-progress", "1");
+          card.style.setProperty("--brand-y", "0px");
+          card.style.setProperty("--brand-clip", "0%");
+        });
+      } else {
+        let ticking = false;
+        const requestBrandProgress = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            ticking = false;
+            setBrandProgress();
+          });
+        };
+        window.addEventListener("scroll", requestBrandProgress, { passive: true });
+        window.addEventListener("resize", requestBrandProgress, { passive: true });
+        setBrandProgress();
+      }
+    }
+  }
+
+  function initServicesPage(root) {
+    const servicesRoot = root.querySelector(".ultra-services");
+    if (!servicesRoot) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const revealNodes = [...servicesRoot.querySelectorAll("[data-services-reveal]")];
+    if (reduced || !("IntersectionObserver" in window)) {
+      revealNodes.forEach(node => node.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+      revealNodes.forEach((node, index) => {
+        node.style.setProperty("--services-delay", `${Math.min(index * 55, 420)}ms`);
+        observer.observe(node);
+      });
+    }
+
+    const setActiveSteps = steps => {
+      const active = new Set(String(steps || "").split(",").filter(Boolean));
+      servicesRoot.querySelectorAll("[data-step]").forEach(card => {
+        card.classList.toggle("is-linked", active.has(card.dataset.step));
+      });
+    };
+    servicesRoot.querySelectorAll("[data-pillar]").forEach(card => {
+      card.addEventListener("mouseenter", () => setActiveSteps(card.dataset.steps), { passive: true });
+      card.addEventListener("focusin", () => setActiveSteps(card.dataset.steps));
+      card.addEventListener("mouseleave", () => setActiveSteps("07,08,09,10,11"), { passive: true });
+      card.addEventListener("focusout", () => setActiveSteps("07,08,09,10,11"));
+    });
+    setActiveSteps("07,08,09,10,11");
+
+    const system = servicesRoot.querySelector("[data-services-system]");
+    const setSystemActive = key => {
+      system?.querySelectorAll("[data-system-node]").forEach(node => {
+        node.classList.toggle("is-active", node.dataset.systemNode === key);
+        node.classList.toggle("is-dimmed", node.dataset.systemNode !== key);
+      });
+      system?.setAttribute("data-active", key);
+    };
+    system?.querySelectorAll("[data-system-node]").forEach(node => {
+      node.addEventListener("mouseenter", () => setSystemActive(node.dataset.systemNode), { passive: true });
+      node.addEventListener("focus", () => setSystemActive(node.dataset.systemNode));
+      node.addEventListener("mouseleave", () => setSystemActive("abroad"), { passive: true });
+      node.addEventListener("blur", () => setSystemActive("abroad"));
+    });
+    setSystemActive("abroad");
+
+    const pillarSection = servicesRoot.querySelector(".ultra-services-pillars");
+    const pillarCardsForProgress = [...servicesRoot.querySelectorAll(".ultra-services-pillar")];
+    if (pillarSection && pillarCardsForProgress.length && !reduced) {
+      let pillarTicking = false;
+      const clamp01 = value => Math.min(Math.max(value, 0), 1);
+      const updatePillarCards = () => {
+        pillarTicking = false;
+        const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+        pillarCardsForProgress.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const local = clamp01((viewport * 0.82 - rect.top - index * 18) / (viewport * 0.42));
+          card.style.setProperty("--pillar-progress", local.toFixed(4));
+        });
+      };
+      const requestPillarUpdate = () => {
+        if (pillarTicking) return;
+        pillarTicking = true;
+        window.requestAnimationFrame(updatePillarCards);
+      };
+      updatePillarCards();
+      window.addEventListener("scroll", requestPillarUpdate, { passive: true });
+      window.addEventListener("resize", requestPillarUpdate, { passive: true });
+    } else {
+      pillarCardsForProgress.forEach(card => card.style.setProperty("--pillar-progress", "1"));
+    }
+
+    const solutionPanel = servicesRoot.querySelector(".ultra-services-solution");
+    const solutionCards = [...servicesRoot.querySelectorAll(".ultra-services-flow-line span")];
+    if (solutionPanel && solutionCards.length) {
+      if (reduced) {
+        solutionCards.forEach(card => card.classList.add("is-active"));
+      } else {
+        let solutionTicking = false;
+        const clamp01 = value => Math.min(Math.max(value, 0), 1);
+        const updateSolutionCards = () => {
+          solutionTicking = false;
+          const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+          solutionCards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const local = clamp01((viewport * 0.78 - rect.top - index * 18) / (viewport * 0.28));
+            card.classList.toggle("is-active", local > 0.34);
+            card.style.setProperty("--solution-progress", local.toFixed(4));
+          });
+        };
+        const requestSolutionUpdate = () => {
+          if (solutionTicking) return;
+          solutionTicking = true;
+          window.requestAnimationFrame(updateSolutionCards);
+        };
+        updateSolutionCards();
+        window.addEventListener("scroll", requestSolutionUpdate, { passive: true });
+        window.addEventListener("resize", requestSolutionUpdate, { passive: true });
+      }
+    }
+
+    const processSection = servicesRoot.querySelector(".ultra-services-process");
+    const processCards = [...servicesRoot.querySelectorAll("[data-process-card]")];
+    if (processSection && processCards.length) {
+      if (reduced) {
+        processCards.forEach(card => card.style.setProperty("--process-y", "0px"));
+      } else {
+        let processTicking = false;
+        const clamp01 = value => Math.min(Math.max(value, 0), 1);
+        const updateProcessCards = () => {
+          processTicking = false;
+          const rect = processSection.getBoundingClientRect();
+          const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+          const raw = (viewport * 0.9 - rect.top) / (rect.height + viewport * 0.18);
+          processCards.forEach((card, index) => {
+            const local = clamp01((raw - index * 0.055) / 0.32);
+            const eased = 1 - Math.pow(1 - local, 3);
+            card.style.setProperty("--process-y", `${Math.round((1 - eased) * 76)}px`);
+            card.style.setProperty("--process-scale", (0.955 + eased * 0.045).toFixed(4));
+            card.style.setProperty("--process-opacity", (0.38 + eased * 0.62).toFixed(4));
+            card.classList.toggle("is-entered", eased > 0.68);
+          });
+        };
+        const requestProcessUpdate = () => {
+          if (processTicking) return;
+          processTicking = true;
+          window.requestAnimationFrame(updateProcessCards);
+        };
+        updateProcessCards();
+        window.addEventListener("scroll", requestProcessUpdate, { passive: true });
+        window.addEventListener("resize", requestProcessUpdate, { passive: true });
+      }
+    }
+
+    const deliverSection = servicesRoot.querySelector(".ultra-services-deliver");
+    if (deliverSection) {
+      if (reduced) {
+        deliverSection.style.setProperty("--deliver-progress", "1");
+      } else {
+        let deliverTicking = false;
+        const updateDeliverProgress = () => {
+          deliverTicking = false;
+          const rect = deliverSection.getBoundingClientRect();
+          const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+          const raw = (viewport * 0.68 - rect.top) / (rect.height * 1.05);
+          const progress = Math.min(Math.max(raw, 0), 1);
+          deliverSection.style.setProperty("--deliver-progress", progress.toFixed(4));
+        };
+        const requestDeliverUpdate = () => {
+          if (deliverTicking) return;
+          deliverTicking = true;
+          window.requestAnimationFrame(updateDeliverProgress);
+        };
+        updateDeliverProgress();
+        window.addEventListener("scroll", requestDeliverUpdate, { passive: true });
+        window.addEventListener("resize", requestDeliverUpdate, { passive: true });
+      }
+    }
+
+    const whySection = servicesRoot.querySelector(".ultra-services-why");
+    const whyCards = [...servicesRoot.querySelectorAll("[data-why-card]")];
+    if (whySection && whyCards.length) {
+      let whyTicking = false;
+      const clamp01 = value => Math.min(Math.max(value, 0), 1);
+      const updateWhyCards = () => {
+        whyTicking = false;
+        const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+        whyCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const local = clamp01((viewport * 0.84 - rect.top) / (viewport * 0.34));
+                const eased = 1 - Math.pow(1 - local, 3);
+                card.style.setProperty("--why-show", eased.toFixed(4));
+                card.style.setProperty("--why-y", `${Math.round((1 - eased) * 92)}px`);
+                card.style.setProperty("--why-scale", (0.97 + eased * 0.03).toFixed(4));
+                card.classList.toggle("is-active", eased > 0.55);
+              });
+      };
+      const requestWhyUpdate = () => {
+        if (whyTicking) return;
+        whyTicking = true;
+        window.requestAnimationFrame(updateWhyCards);
+      };
+      updateWhyCards();
+      window.addEventListener("scroll", requestWhyUpdate, { passive: true });
+      window.addEventListener("resize", requestWhyUpdate, { passive: true });
+    }
+  }
+
   function renderAppPage(path, lang) {
     applyLocaleAttributes(lang);
     applyDocumentMeta(path, lang);
@@ -1560,11 +3196,18 @@
     }
     document.documentElement.classList.remove("ultra-home-active");
     document.documentElement.classList.add("ultra-app-active");
-    root.innerHTML = `<div class="ultra-site">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
+    if (path === "/admin") {
+      root.innerHTML = `<div class="ultra-site ultra-admin-site"><main class="ultra-main ultra-admin-main">${routeContent(path, lang)}</main></div>`;
+    } else {
+      const siteClass = path === "/services" ? "ultra-site ultra-services-site" : "ultra-site";
+      root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
+    }
     root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
       node.setAttribute("data-animate", "");
       node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
     });
+    initAboutPage(root);
+    initServicesPage(root);
   }
 
   function replaceText(root, map) {
@@ -1908,10 +3551,17 @@
   function updateFilters(field, value) {
     const state = filterState();
     state[field] = value;
+    if (["brand", "industry", "country", "area"].includes(field)) state.more = true;
+    setCaseFilterQuery(state);
+  }
+
+  function setCaseFilterQuery(state) {
     const params = new URLSearchParams();
-    Object.entries(state).forEach(([key, val]) => {
+    ["year", "brand", "industry", "country", "area"].forEach(key => {
+      const val = state[key];
       if (val && val !== "All") params.set(key, val);
     });
+    if (state.more) params.set("more", "1");
     const query = params.toString();
     history.replaceState({}, "", `${routeLink("/cases")}${query ? "?" + query : ""}`);
     render();
@@ -1933,6 +3583,8 @@
 
   function collectAdminConfig(form) {
     const current = getAdminConfig();
+    const brandsItems = parseAdminTextarea(form, "brands.items", null);
+    if (brandsItems !== null && !Array.isArray(brandsItems)) throw new Error("brands.items must be a JSON array or null.");
     const casesItems = parseAdminTextarea(form, "cases.items", null);
     if (casesItems !== null && !Array.isArray(casesItems)) throw new Error("cases.items must be a JSON array or null.");
     const socialLinks = parseAdminTextarea(form, "footer.socialLinks", []);
@@ -1956,13 +3608,677 @@
         contactLinks
       },
       integrations: parseAdminTextarea(form, "integrations", {}),
+      brands: {
+        items: brandsItems
+      },
       cases: {
         items: casesItems
       }
     };
   }
 
+  function saveAdminSection(config, view, message = "Saved.") {
+    setAdminActiveView(view);
+    saveAdminConfig(config);
+    render();
+    setAdminStatus(document, message);
+  }
+
+  function setAdminImageFieldValue(form, name, url) {
+    const input = form?.elements[name];
+    if (!input) return;
+    input.value = url || "";
+    const field = input.closest("[data-admin-image-field]");
+    const preview = field?.querySelector("[data-admin-image-preview]");
+    if (!preview) return;
+    preview.classList.toggle("has-image", Boolean(url));
+    preview.innerHTML = url ? `<img src="${esc(adminPreviewSrc(url))}" alt="">` : "<span>No image</span>";
+  }
+
+  function adminGalleryUrls(field) {
+    try {
+      const hidden = field?.querySelector('input[name="galleryUrls"]');
+      const parsed = JSON.parse(hidden?.value || "[]");
+      return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function setAdminGalleryUrls(field, urls) {
+    const clean = urls.filter(Boolean);
+    const hidden = field?.querySelector('input[name="galleryUrls"]');
+    const list = field?.querySelector("[data-admin-gallery-list]");
+    if (hidden) hidden.value = JSON.stringify(clean);
+    if (list) list.innerHTML = clean.map((url, index) => adminGalleryItem(url, index, clean.length)).join("");
+  }
+
+  function openAdminConfirm(title, message, onConfirm) {
+    adminPendingConfirm = onConfirm;
+    document.querySelector("[data-admin-confirm-modal]")?.remove();
+    const modal = document.createElement("div");
+    modal.className = "ultra-admin-confirm";
+    modal.setAttribute("data-admin-confirm-modal", "");
+    modal.innerHTML = `
+      <div class="ultra-admin-confirm-card" role="dialog" aria-modal="true" aria-label="${esc(title)}">
+        <span>Confirm Action</span>
+        <h2>${esc(title)}</h2>
+        <p>${esc(message)}</p>
+        <div class="ultra-admin-confirm-actions">
+          <button type="button" data-admin-confirm-cancel>Cancel</button>
+          <button type="button" class="is-danger" data-admin-confirm-accept>Delete</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    document.documentElement.classList.add("ultra-admin-modal-open");
+  }
+
+  function closeAdminConfirm() {
+    document.querySelector("[data-admin-confirm-modal]")?.remove();
+    adminPendingConfirm = null;
+    if (!document.querySelector("[data-admin-brand-form].is-open, [data-admin-case-form].is-open")) {
+      document.documentElement.classList.remove("ultra-admin-modal-open");
+    }
+  }
+
+  function resetAdminBrandForm() {
+    const form = document.querySelector("[data-admin-brand-form]");
+    if (!form) return;
+    form.reset();
+    form.elements.id.value = "";
+    form.querySelector("[data-admin-brand-form-title]").textContent = "New Brand";
+    setAdminImageFieldValue(form, "originalLogoUrl", "");
+    setAdminImageFieldValue(form, "grayLogoUrl", "");
+    openAdminBrandModal();
+  }
+
+  function fillAdminBrandForm(id) {
+    const item = adminBrands().find(brand => brand.id === id);
+    const form = document.querySelector("[data-admin-brand-form]");
+    if (!item || !form) return;
+    form.elements.id.value = item.id || "";
+    form.elements.chineseName.value = item.chineseName || "";
+    form.elements.englishName.value = item.englishName || "";
+    form.elements.isFeaturedBrand.checked = Boolean(item.isFeaturedBrand);
+    setAdminImageFieldValue(form, "originalLogoUrl", adminFileUrl(item.originalLogo));
+    setAdminImageFieldValue(form, "grayLogoUrl", adminFileUrl(item.grayLogo));
+    form.querySelector("[data-admin-brand-form-title]").textContent = "Edit Brand";
+    openAdminBrandModal();
+  }
+
+  function openAdminBrandModal() {
+    const form = document.querySelector("[data-admin-brand-form]");
+    if (!form) return;
+    form.classList.add("is-open");
+    document.documentElement.classList.add("ultra-admin-modal-open");
+  }
+
+  function closeAdminBrandModal() {
+    const form = document.querySelector("[data-admin-brand-form]");
+    form?.classList.remove("is-open");
+    if (!document.querySelector("[data-admin-confirm-modal], [data-admin-case-form].is-open")) {
+      document.documentElement.classList.remove("ultra-admin-modal-open");
+    }
+  }
+
+  function collectAdminBrand(form) {
+    const id = form.elements.id.value || adminSlug(form.elements.englishName.value || form.elements.chineseName.value, "brand");
+    const current = adminBrands().find(item => item.id === id) || {};
+    return {
+      ...current,
+      id,
+      chineseName: form.elements.chineseName.value.trim(),
+      englishName: form.elements.englishName.value.trim(),
+      originalLogo: adminImageValue(form.elements.originalLogoUrl.value, `${id}-color-logo`),
+      grayLogo: adminImageValue(form.elements.grayLogoUrl.value, `${id}-gray-logo`),
+      isFeaturedBrand: Boolean(form.elements.isFeaturedBrand.checked),
+      isOnline: current.isOnline !== false,
+      brandOrder: current.brandOrder ?? adminBrands().length + 1
+    };
+  }
+
+  function resetAdminCaseForm() {
+    const form = document.querySelector("[data-admin-case-form]");
+    if (!form) return;
+    form.reset();
+    form.elements.id.value = "";
+    form.elements.year.value = new Date().getFullYear();
+    form.querySelector("[data-admin-case-form-title]").textContent = "New Case";
+    setAdminImageFieldValue(form, "coverImageUrl", "");
+    setAdminGalleryUrls(form.querySelector("[data-admin-gallery-field]"), []);
+    openAdminCaseModal();
+  }
+
+  function fillAdminCaseForm(id) {
+    const item = adminCases().find(entry => entry.id === id);
+    const form = document.querySelector("[data-admin-case-form]");
+    if (!item || !form) return;
+    form.elements.id.value = item.id || "";
+    form.elements.brandId.value = item.brandId || "";
+    form.elements.exhibitionName.value = item.exhibitionName || "";
+    form.elements.year.value = item.year || "";
+    form.elements.area.value = item.area || (item.areaSqm ? `${item.areaSqm} sqm` : "");
+    form.elements.industry.value = item.industry || "";
+    form.elements.country.value = item.country || "";
+    form.elements.chineseIntro.value = item.chineseIntro || "";
+    form.elements.englishIntro.value = item.englishIntro || "";
+    form.elements.isFeaturedCase.checked = Boolean(item.isFeaturedCase);
+    setAdminImageFieldValue(form, "coverImageUrl", adminFileUrl(item.coverImage));
+    setAdminGalleryUrls(form.querySelector("[data-admin-gallery-field]"), adminFileUrls(item.galleryImages));
+    form.querySelector("[data-admin-case-form-title]").textContent = "Edit Case";
+    openAdminCaseModal();
+  }
+
+  function openAdminCaseModal() {
+    const form = document.querySelector("[data-admin-case-form]");
+    if (!form) return;
+    form.classList.add("is-open");
+    document.documentElement.classList.add("ultra-admin-modal-open");
+  }
+
+  function closeAdminCaseModal() {
+    const form = document.querySelector("[data-admin-case-form]");
+    form?.classList.remove("is-open");
+    document.documentElement.classList.remove("ultra-admin-modal-open");
+  }
+
+  function collectAdminCase(form) {
+    const exhibitionName = form.elements.exhibitionName.value.trim();
+    const brand = adminBrandById(form.elements.brandId.value);
+    const id = form.elements.id.value || adminSlug([brand?.englishName, exhibitionName, form.elements.year.value].filter(Boolean).join("-"), "case");
+    const current = adminCases().find(item => item.id === id) || {};
+    const areaText = form.elements.area.value.trim();
+    const areaNumber = Number((areaText.match(/\d+(?:\.\d+)?/) || [])[0]);
+    const galleryUrls = JSON.parse(form.elements.galleryUrls.value || "[]");
+    return {
+      ...current,
+      id,
+      title: [brand?.englishName, exhibitionName, form.elements.year.value].filter(Boolean).join(" · "),
+      brandId: form.elements.brandId.value,
+      brandEnglishName: brand?.englishName || current.brandEnglishName || "",
+      exhibitionName,
+      year: Number(form.elements.year.value),
+      area: areaText,
+      areaSqm: Number.isFinite(areaNumber) ? areaNumber : current.areaSqm ?? null,
+      industry: form.elements.industry.value.trim(),
+      country: form.elements.country.value.trim(),
+      chineseIntro: form.elements.chineseIntro.value.trim(),
+      englishIntro: form.elements.englishIntro.value.trim(),
+      coverImage: adminImageValue(form.elements.coverImageUrl.value, `${id}-cover`),
+      galleryImages: { files: galleryUrls.map((url, index) => adminFileObject(url, `${id}-gallery-${index + 1}`)).filter(Boolean) },
+      isFeaturedCase: Boolean(form.elements.isFeaturedCase.checked),
+      isOnline: current.isOnline !== false,
+      casePageOrder: current.casePageOrder ?? adminCases().length + 1
+    };
+  }
+
+  function applyAdminBrandSearch() {
+    const query = (document.querySelector("[data-admin-brand-search]")?.value || "").trim().toLowerCase();
+    document.querySelectorAll("[data-admin-brand-row]").forEach(row => {
+      row.hidden = query && !row.dataset.search.includes(query);
+    });
+  }
+
+  function applyAdminCaseFilters() {
+    const query = (document.querySelector("[data-admin-case-search]")?.value || "").trim().toLowerCase();
+    const filters = {};
+    document.querySelectorAll("[data-admin-case-filter]").forEach(input => {
+      filters[input.dataset.adminCaseFilter] = input.value;
+    });
+    document.querySelectorAll("[data-admin-case-row]").forEach(row => {
+      const visible = (!query || row.dataset.search.includes(query)) &&
+        (!filters.year || row.dataset.year === filters.year) &&
+        (!filters.brand || row.dataset.brand === filters.brand) &&
+        (!filters.industry || row.dataset.industry === filters.industry) &&
+        (!filters.country || row.dataset.country === filters.country) &&
+        (!filters.featured || row.dataset.featured === filters.featured);
+      row.hidden = !visible;
+    });
+  }
+
+  function adminContactMessages() {
+    const config = getAdminConfig();
+    return Array.isArray(config.contactMessages?.items) ? config.contactMessages.items : [];
+  }
+
+  function contactMessageStatuses(selected = "new") {
+    return [
+      { value: "new", label: "New" },
+      { value: "contacted", label: "Contacted" },
+      { value: "quoted", label: "Quoted" },
+      { value: "closed", label: "Closed" },
+      { value: "spam", label: "Spam" }
+    ].map(item => `<option value="${esc(item.value)}" ${item.value === selected ? "selected" : ""}>${esc(item.label)}</option>`).join("");
+  }
+
+  function formatAdminDate(value) {
+    if (!value) return "-";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleString(undefined, { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  }
+
+  function applyAdminMessageFilters() {
+    const query = (document.querySelector("[data-admin-message-search]")?.value || "").trim().toLowerCase();
+    const status = document.querySelector("[data-admin-message-filter='status']")?.value || "";
+    document.querySelectorAll("[data-admin-message-row]").forEach(row => {
+      row.hidden = Boolean((query && !row.dataset.search.includes(query)) || (status && row.dataset.status !== status));
+    });
+  }
+
+  function adminMessageById(id) {
+    return adminContactMessages().find(item => item.id === id);
+  }
+
+  function fillAdminMessageDetail(id) {
+    const target = document.querySelector("[data-admin-message-detail]");
+    const item = adminMessageById(id);
+    if (!target || !item) return;
+    document.querySelectorAll("[data-admin-message-row]").forEach(row => row.classList.toggle("is-active", row.dataset.messageId === id));
+    const detailRows = [
+      ["Submitted", formatAdminDate(item.createdAt)],
+      ["Name", item.name],
+      ["Company", item.company],
+      ["Contact", item.contact],
+      ["Inquiry Type", item.inquiryType],
+      ["Event Name", item.eventName],
+      ["Country / Region", item.countryRegion],
+      ["Expected Date", item.expectedDate],
+      ["Booth Area", item.boothArea],
+      ["Budget Range", item.budgetRange],
+      ["Language", item.language],
+      ["Source Page", item.sourcePage]
+    ].filter(row => row[1]);
+    target.innerHTML = `
+      <form data-admin-message-detail-form>
+        <input type="hidden" name="id" value="${esc(item.id)}">
+        <div class="ultra-admin-form-head">
+          <h2>${esc(item.company || item.name || "Contact message")}</h2>
+          <p>${esc(formatAdminDate(item.createdAt))}</p>
+        </div>
+        <div class="ultra-admin-message-meta">
+          ${detailRows.map(row => `<div><span>${esc(row[0])}</span><strong>${esc(row[1])}</strong></div>`).join("")}
+        </div>
+        <div class="ultra-admin-message-body">
+          <span>Message</span>
+          <p>${esc(item.message || "-")}</p>
+        </div>
+        <div class="ultra-admin-form-grid">
+          <label class="ultra-admin-field"><span>Status</span><select name="status">${contactMessageStatuses(item.status || "new")}</select></label>
+          ${adminTextArea("internalNote", "Internal Note", item.internalNote || "")}
+        </div>
+        <div class="ultra-admin-form-actions"><button type="submit" class="ultra-admin-primary">Save Message</button></div>
+      </form>
+    `;
+  }
+
+  function saveAdminMessageDetail(form) {
+    const id = form.elements.id.value;
+    const config = getAdminConfig();
+    const items = adminContactMessages().map(item => item.id === id ? {
+      ...item,
+      status: form.elements.status.value,
+      internalNote: form.elements.internalNote.value.trim(),
+      updatedAt: new Date().toISOString()
+    } : item);
+    saveAdminSection({ ...config, contactMessages: { items } }, "messages", "Message saved.");
+  }
+
+  function contactSubmitTooFast() {
+    const key = "ultra-contact-submit-times-v1";
+    const now = Date.now();
+    let times = [];
+    try {
+      times = JSON.parse(localStorage.getItem(key) || "[]").filter(value => now - Number(value) < 60000);
+    } catch {
+      times = [];
+    }
+    if (times.length >= 3) return true;
+    times.push(now);
+    localStorage.setItem(key, JSON.stringify(times));
+    return false;
+  }
+
+  function setContactFieldError(form, name, message) {
+    const error = form.querySelector(`[data-field-error="${CSS.escape(name)}"]`);
+    const field = form.elements[name]?.closest(".ultra-contact-field");
+    if (error) error.textContent = message || "";
+    field?.classList.toggle("has-error", Boolean(message));
+  }
+
+  function setContactFeedback(form, type, message) {
+    const feedback = form.querySelector("[data-form-feedback]");
+    if (!feedback) return;
+    feedback.hidden = false;
+    feedback.className = `ultra-contact-feedback is-${type}`;
+    feedback.innerHTML = message;
+  }
+
+  function collectContactMessage(form) {
+    const value = name => String(form.elements[name]?.value || "").trim();
+    const now = new Date().toISOString();
+    return {
+      id: `msg-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+      createdAt: now,
+      updatedAt: now,
+      name: value("name"),
+      company: value("company"),
+      contact: value("contact"),
+      inquiryType: value("inquiryType"),
+      message: value("message"),
+      eventName: value("eventName"),
+      countryRegion: value("countryRegion"),
+      expectedDate: value("expectedDate"),
+      boothArea: value("boothArea"),
+      budgetRange: value("budgetRange"),
+      sourcePage: "contact",
+      language: locale(),
+      status: "new",
+      internalNote: "",
+      userAgent: navigator.userAgent
+    };
+  }
+
+  function validateContactForm(form) {
+    const lang = locale();
+    const zh = lang === "zh";
+    const required = ["name", "company", "contact", "inquiryType", "message"];
+    let valid = true;
+    required.forEach(name => {
+      const value = String(form.elements[name]?.value || "").trim();
+      const message = value ? "" : (zh ? "请填写此项。" : "Please complete this field.");
+      setContactFieldError(form, name, message);
+      if (message) valid = false;
+    });
+    return valid;
+  }
+
+  async function handleContactSubmit(form) {
+    const zh = locale() === "zh";
+    const button = form.querySelector("[data-contact-submit]");
+    const originalText = button?.textContent || "Send Inquiry";
+    form.querySelector("[data-form-feedback]")?.setAttribute("hidden", "");
+    if (String(form.elements.website?.value || "").trim()) {
+      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong>`);
+      return;
+    }
+    if (!validateContactForm(form)) return;
+    if (contactSubmitTooFast()) {
+      setContactFeedback(form, "error", `<strong>${zh ? "提交过于频繁，请稍后再试，或通过页面中的邮箱 / 电话直接联系我们。" : "Too many attempts. Please try again later or contact us by email / phone."}</strong>`);
+      return;
+    }
+    try {
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Sending...";
+      }
+      await new Promise(resolve => setTimeout(resolve, 420));
+      const config = getAdminConfig();
+      const items = [collectContactMessage(form), ...adminContactMessages()];
+      saveAdminConfig({ ...config, contactMessages: { items } });
+      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong><span>${zh ? "留言已进入后台存档，方便后续跟进管理。" : "Your message has been saved for follow-up."}</span>`);
+      form.reset();
+      form.querySelectorAll(".ultra-contact-type-card.is-active").forEach(card => card.classList.remove("is-active"));
+    } catch (error) {
+      console.warn("Contact submit failed", error);
+      setContactFeedback(form, "error", `<strong>${zh ? "提交失败，请稍后再试，或通过页面中的邮箱 / 电话直接联系我们。" : "Submission failed. Please try again later or contact us by email / phone."}</strong>`);
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+  }
+
+  function collectAdminContact(form) {
+    const entries = [];
+    form.querySelectorAll(".ultra-admin-repeater-row").forEach((row, index) => {
+      const labelZh = form.elements[`footerLabelZh${index}`]?.value.trim() || "";
+      const labelEn = form.elements[`footerLabelEn${index}`]?.value.trim() || "";
+      const value = form.elements[`footerValue${index}`]?.value.trim() || "";
+      if (labelZh || labelEn || value) entries.push({ labelZh, labelEn, value });
+    });
+    return {
+      email: form.elements.email.value.trim(),
+      phone: form.elements.phone.value.trim(),
+      whatsapp: form.elements.whatsapp.value.trim(),
+      wechat: form.elements.wechat.value.trim(),
+      addressZh: form.elements.addressZh.value.trim(),
+      addressEn: form.elements.addressEn.value.trim(),
+      footerEntries: entries
+    };
+  }
+
+  function collectAdminAbout(form) {
+    const current = getAdminConfig().about || {};
+    const baseMedia = Array.isArray(current.serviceMedia) ? current.serviceMedia : defaultAdminConfig().about.serviceMedia;
+    let parsed;
+    if (form.elements.serviceMedia0) {
+      parsed = ["STRATEGY", "DESIGN", "ABROAD", "BUILD"].map((title, index) => ({
+        title,
+        type: "image",
+        url: String(form.elements[`serviceMedia${index}`]?.value || "").trim(),
+        poster: "",
+        alt: `${title} service media`
+      }));
+    } else {
+      const raw = String(form.elements.serviceMedia?.value || "").trim();
+      parsed = raw ? JSON.parse(raw) : baseMedia;
+      if (!Array.isArray(parsed)) throw new Error("serviceMedia must be a JSON array.");
+    }
+    const rawLogos = String(form.elements.exhibitionLogos?.value || "").trim();
+    const parsedLogos = rawLogos ? JSON.parse(rawLogos) : defaultExhibitionLogos();
+    if (!Array.isArray(parsedLogos)) throw new Error("exhibitionLogos must be a JSON array.");
+    return {
+      serviceMedia: parsed.slice(0, 4).map((item, index) => ({
+        title: String(item?.title || ["STRATEGY", "DESIGN", "ABROAD", "BUILD"][index] || `CARD ${index + 1}`),
+        type: String(item?.type || "image").toLowerCase() === "video" ? "video" : "image",
+        url: String(item?.url || "").trim(),
+        poster: String(item?.poster || "").trim(),
+        alt: String(item?.alt || item?.title || "").trim()
+      })),
+      exhibitionLogos: parsedLogos.map((item, index) => {
+        const name = String(item?.name || "").trim();
+        if (!name) throw new Error(`exhibitionLogos[${index}].name is required.`);
+        return {
+          id: String(item?.id || name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")),
+          name,
+          logo: String(item?.logo || "").trim(),
+          order: Number.isFinite(Number(item?.order)) ? Number(item.order) : index + 1,
+          visible: item?.visible !== false
+        };
+      })
+    };
+  }
+
+  function collectAdminSettings(form) {
+    return {
+      siteNameZh: form.elements.siteNameZh.value.trim(),
+      siteNameEn: form.elements.siteNameEn.value.trim(),
+      logo: form.elements.logo.value,
+      favicon: form.elements.favicon.value,
+      defaultLanguage: form.elements.defaultLanguage.value,
+      notionToken: form.elements.notionToken.value,
+      notionBrandsDatabaseId: form.elements.notionBrandsDatabaseId.value.trim(),
+      notionCasesDatabaseId: form.elements.notionCasesDatabaseId.value.trim(),
+      ossRegion: form.elements.ossRegion.value.trim(),
+      ossBucket: form.elements.ossBucket.value.trim(),
+      ossAccessKeyId: form.elements.ossAccessKeyId.value,
+      ossAccessKeySecret: form.elements.ossAccessKeySecret.value,
+      ossCdnDomain: form.elements.ossCdnDomain.value.trim()
+    };
+  }
+
   document.addEventListener("click", event => {
+    const contactScroll = event.target.closest("[data-contact-scroll]");
+    if (contactScroll) {
+      event.preventDefault();
+      document.querySelector("#contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    const inquiryCard = event.target.closest("[data-inquiry-type]");
+    if (inquiryCard) {
+      event.preventDefault();
+      document.querySelectorAll("[data-inquiry-type]").forEach(card => card.classList.toggle("is-active", card === inquiryCard));
+      const form = document.querySelector("[data-contact-form]");
+      if (form?.elements.inquiryType) {
+        form.elements.inquiryType.value = inquiryCard.dataset.inquiryType || "";
+        setContactFieldError(form, "inquiryType", "");
+        document.querySelector("#contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+
+    const messageRow = event.target.closest("[data-admin-message-row]");
+    if (messageRow) {
+      event.preventDefault();
+      fillAdminMessageDetail(messageRow.dataset.messageId);
+      return;
+    }
+
+    if (event.target.closest("[data-admin-confirm-cancel]")) {
+      event.preventDefault();
+      closeAdminConfirm();
+      return;
+    }
+
+    if (event.target.closest("[data-admin-confirm-accept]")) {
+      event.preventDefault();
+      const action = adminPendingConfirm;
+      closeAdminConfirm();
+      if (typeof action === "function") action();
+      return;
+    }
+
+    const sectionButton = event.target.closest("[data-admin-section]");
+    if (sectionButton) {
+      event.preventDefault();
+      const view = sectionButton.dataset.adminSection;
+      setAdminActiveView(view);
+      document.querySelectorAll("[data-admin-section]").forEach(button => button.classList.toggle("is-active", button === sectionButton));
+      document.querySelectorAll("[data-admin-view]").forEach(panel => panel.classList.toggle("is-active", panel.dataset.adminView === view));
+      return;
+    }
+
+    if (event.target.closest("[data-admin-brand-new]")) {
+      event.preventDefault();
+      resetAdminBrandForm();
+      return;
+    }
+
+    if (event.target.closest("[data-admin-brand-cancel]")) {
+      event.preventDefault();
+      closeAdminBrandModal();
+      return;
+    }
+
+    const editBrand = event.target.closest("[data-admin-edit-brand]");
+    if (editBrand) {
+      event.preventDefault();
+      fillAdminBrandForm(editBrand.dataset.adminEditBrand);
+      return;
+    }
+
+    const toggleBrand = event.target.closest("[data-admin-toggle-brand]");
+    if (toggleBrand) {
+      event.preventDefault();
+      const id = toggleBrand.dataset.adminToggleBrand;
+      const config = getAdminConfig();
+      const brands = adminBrands().map(item => item.id === id ? { ...item, isFeaturedBrand: !item.isFeaturedBrand } : item);
+      saveAdminSection({ ...config, brands: { items: brands } }, "brands", "Brand star updated.");
+      return;
+    }
+
+    const deleteBrand = event.target.closest("[data-admin-delete-brand]");
+    if (deleteBrand) {
+      event.preventDefault();
+      const id = deleteBrand.dataset.adminDeleteBrand;
+      openAdminConfirm("Delete brand?", "This brand will be removed from the local mock data.", () => {
+        const config = getAdminConfig();
+        saveAdminSection({ ...config, brands: { items: adminBrands().filter(item => item.id !== id) } }, "brands", "Brand deleted.");
+      });
+      return;
+    }
+
+    if (event.target.closest("[data-admin-case-new]")) {
+      event.preventDefault();
+      resetAdminCaseForm();
+      return;
+    }
+
+    if (event.target.closest("[data-admin-case-cancel]")) {
+      event.preventDefault();
+      closeAdminCaseModal();
+      return;
+    }
+
+    const editCase = event.target.closest("[data-admin-edit-case]");
+    if (editCase) {
+      event.preventDefault();
+      fillAdminCaseForm(editCase.dataset.adminEditCase);
+      return;
+    }
+
+    const toggleCase = event.target.closest("[data-admin-toggle-case]");
+    if (toggleCase) {
+      event.preventDefault();
+      const id = toggleCase.dataset.adminToggleCase;
+      const config = getAdminConfig();
+      const cases = adminCases().map(item => item.id === id ? { ...item, isFeaturedCase: !item.isFeaturedCase } : item);
+      saveAdminSection({ ...config, cases: { items: cases } }, "cases", "Case star updated.");
+      return;
+    }
+
+    const deleteCase = event.target.closest("[data-admin-delete-case]");
+    if (deleteCase) {
+      event.preventDefault();
+      const id = deleteCase.dataset.adminDeleteCase;
+      openAdminConfirm("Delete case?", "This case will be removed from the local mock data.", () => {
+        const config = getAdminConfig();
+        saveAdminSection({ ...config, cases: { items: adminCases().filter(item => item.id !== id) } }, "cases", "Case deleted.");
+      });
+      return;
+    }
+
+    const clearImage = event.target.closest("[data-admin-image-clear]");
+    if (clearImage) {
+      event.preventDefault();
+      const field = clearImage.closest("[data-admin-image-field]");
+      const input = field?.querySelector("input[type='hidden']");
+      if (input) openAdminConfirm("Delete image?", "This image preview will be removed from the form.", () => setAdminImageFieldValue(input.form, input.name, ""));
+      return;
+    }
+
+    const galleryDelete = event.target.closest("[data-admin-gallery-delete]");
+    if (galleryDelete) {
+      event.preventDefault();
+      const field = galleryDelete.closest("[data-admin-gallery-field]");
+      const item = galleryDelete.closest("[data-admin-gallery-item]");
+      const index = Number(item?.dataset.adminGalleryItem);
+      openAdminConfirm("Delete gallery image?", "This image will be removed from the gallery list.", () => {
+        const urls = adminGalleryUrls(field);
+        urls.splice(index, 1);
+        setAdminGalleryUrls(field, urls);
+      });
+      return;
+    }
+
+    const galleryMove = event.target.closest("[data-admin-gallery-move]");
+    if (galleryMove) {
+      event.preventDefault();
+      const field = galleryMove.closest("[data-admin-gallery-field]");
+      const item = galleryMove.closest("[data-admin-gallery-item]");
+      const index = Number(item?.dataset.adminGalleryItem);
+      const urls = adminGalleryUrls(field);
+      const next = galleryMove.dataset.adminGalleryMove === "up" ? index - 1 : index + 1;
+      if (next < 0 || next >= urls.length) return;
+      [urls[index], urls[next]] = [urls[next], urls[index]];
+      setAdminGalleryUrls(field, urls);
+      return;
+    }
+
     const localeToggle = event.target.closest("[data-locale-toggle]");
     if (localeToggle) {
       event.preventDefault();
@@ -1979,6 +4295,43 @@
     if (filterBtn) {
       event.preventDefault();
       updateFilters(filterBtn.dataset.filter, filterBtn.dataset.value);
+      return;
+    }
+    const pendingFilterBtn = event.target.closest("[data-pending-filter]");
+    if (pendingFilterBtn) {
+      event.preventDefault();
+      const group = pendingFilterBtn.closest(".ultra-filter-group");
+      group?.querySelectorAll("[data-pending-filter]").forEach(button => button.classList.remove("is-active"));
+      pendingFilterBtn.classList.add("is-active");
+      return;
+    }
+    const moreFiltersBtn = event.target.closest("[data-more-filters]");
+    if (moreFiltersBtn) {
+      event.preventDefault();
+      const root = moreFiltersBtn.closest("[data-case-filters]");
+      const open = !root?.classList.contains("is-open");
+      root?.classList.toggle("is-open", open);
+      moreFiltersBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      return;
+    }
+    const applyFiltersBtn = event.target.closest("[data-apply-filters]");
+    if (applyFiltersBtn) {
+      event.preventDefault();
+      const root = applyFiltersBtn.closest("[data-case-filters]");
+      const next = { ...filterState(), more: true };
+      root?.querySelectorAll("[data-pending-filter].is-active").forEach(button => {
+        next[button.dataset.pendingFilter] = button.dataset.value || "All";
+      });
+      setCaseFilterQuery(next);
+      return;
+    }
+    const loadMoreBtn = event.target.closest("[data-load-more]");
+    if (loadMoreBtn) {
+      event.preventDefault();
+      const grid = loadMoreBtn.closest(".ultra-wrap")?.querySelector("[data-case-grid]");
+      const hidden = [...(grid?.querySelectorAll("[data-case-item].is-hidden") || [])].slice(0, 24);
+      hidden.forEach(node => node.classList.remove("is-hidden"));
+      if (!grid?.querySelector("[data-case-item].is-hidden")) loadMoreBtn.remove();
       return;
     }
     const adminLogout = event.target.closest("[data-admin-logout]");
@@ -2028,7 +4381,81 @@
     }
   });
 
+  document.addEventListener("input", event => {
+    if (event.target.closest("[data-admin-brand-search]")) applyAdminBrandSearch();
+    if (event.target.closest("[data-admin-case-search]")) applyAdminCaseFilters();
+    if (event.target.closest("[data-admin-message-search]")) applyAdminMessageFilters();
+    const contactInput = event.target.closest("[data-contact-form] input, [data-contact-form] textarea, [data-contact-form] select");
+    if (contactInput?.name) {
+      setContactFieldError(contactInput.form, contactInput.name, "");
+    }
+  });
+
+  document.addEventListener("dragstart", event => {
+    const item = event.target.closest("[data-admin-gallery-item]");
+    if (!item) return;
+    event.dataTransfer?.setData("text/plain", item.dataset.adminGalleryItem || "");
+    event.dataTransfer?.setData("application/x-ultra-gallery", "1");
+  });
+
+  document.addEventListener("dragover", event => {
+    if (event.target.closest("[data-admin-gallery-item]")) event.preventDefault();
+  });
+
+  document.addEventListener("drop", event => {
+    const target = event.target.closest("[data-admin-gallery-item]");
+    if (!target || event.dataTransfer?.getData("application/x-ultra-gallery") !== "1") return;
+    event.preventDefault();
+    const field = target.closest("[data-admin-gallery-field]");
+    const from = Number(event.dataTransfer.getData("text/plain"));
+    const to = Number(target.dataset.adminGalleryItem);
+    const urls = adminGalleryUrls(field);
+    if (!Number.isFinite(from) || !Number.isFinite(to) || from === to) return;
+    const [moved] = urls.splice(from, 1);
+    urls.splice(to, 0, moved);
+    setAdminGalleryUrls(field, urls);
+  });
+
   document.addEventListener("change", event => {
+    if (event.target.closest("[data-admin-message-filter]")) {
+      applyAdminMessageFilters();
+      return;
+    }
+
+    if (event.target.closest("[data-admin-case-filter]")) {
+      applyAdminCaseFilters();
+      return;
+    }
+
+    const imageUpload = event.target.closest("[data-admin-image-upload]");
+    if (imageUpload?.files?.length) {
+      const file = imageUpload.files[0];
+      const input = imageUpload.closest("[data-admin-image-field]")?.querySelector("input[type='hidden']");
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (input) setAdminImageFieldValue(input.form, input.name, String(reader.result || ""));
+      };
+      reader.readAsDataURL(file);
+      imageUpload.value = "";
+      return;
+    }
+
+    const galleryUpload = event.target.closest("[data-admin-gallery-upload]");
+    if (galleryUpload?.files?.length) {
+      const field = galleryUpload.closest("[data-admin-gallery-field]");
+      const urls = adminGalleryUrls(field);
+      [...galleryUpload.files].forEach(file => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          urls.push(String(reader.result || ""));
+          setAdminGalleryUrls(field, urls);
+        };
+        reader.readAsDataURL(file);
+      });
+      galleryUpload.value = "";
+      return;
+    }
+
     const input = event.target.closest("[data-admin-import]");
     if (!input || !input.files?.length) return;
     const file = input.files[0];
@@ -2064,6 +4491,93 @@
       return;
     }
 
+    const adminBrandForm = event.target.closest("[data-admin-brand-form]");
+    if (adminBrandForm) {
+      event.preventDefault();
+      const config = getAdminConfig();
+      const item = collectAdminBrand(adminBrandForm);
+      const others = adminBrands().filter(brand => brand.id !== item.id);
+      closeAdminBrandModal();
+      saveAdminSection({ ...config, brands: { items: [...others, item] } }, "brands", "Brand saved.");
+      return;
+    }
+
+    const adminCaseForm = event.target.closest("[data-admin-case-form]");
+    if (adminCaseForm) {
+      event.preventDefault();
+      const config = getAdminConfig();
+      const item = collectAdminCase(adminCaseForm);
+      const others = adminCases().filter(entry => entry.id !== item.id);
+      closeAdminCaseModal();
+      saveAdminSection({ ...config, cases: { items: [...others, item] } }, "cases", "Case saved.");
+      return;
+    }
+
+    const adminContactForm = event.target.closest("[data-admin-contact-form]");
+    if (adminContactForm) {
+      event.preventDefault();
+      const config = getAdminConfig();
+      const contact = collectAdminContact(adminContactForm);
+      const contactLinks = contact.footerEntries.map((entry, index) => ({
+        key: `contact-${index + 1}`,
+        labelZh: entry.labelZh,
+        labelEn: entry.labelEn,
+        href: entry.value,
+        route: entry.value?.startsWith("/") ? entry.value : "",
+        enabled: true
+      }));
+      saveAdminSection({ ...config, contact, footer: { ...config.footer, contactLinks } }, "contact", "Contact saved.");
+      return;
+    }
+
+    const adminMessageDetailForm = event.target.closest("[data-admin-message-detail-form]");
+    if (adminMessageDetailForm) {
+      event.preventDefault();
+      saveAdminMessageDetail(adminMessageDetailForm);
+      return;
+    }
+
+    const adminAboutForm = event.target.closest("[data-admin-about-form]");
+    if (adminAboutForm) {
+      event.preventDefault();
+      try {
+        const config = getAdminConfig();
+        saveAdminSection({ ...config, about: collectAdminAbout(adminAboutForm) }, "about", "About saved.");
+      } catch (error) {
+        setAdminStatus(document, "Save failed: " + error.message, true);
+      }
+      return;
+    }
+
+    const adminSettingsForm = event.target.closest("[data-admin-settings-form]");
+    if (adminSettingsForm) {
+      event.preventDefault();
+      const config = getAdminConfig();
+      const siteSettings = collectAdminSettings(adminSettingsForm);
+      saveAdminSection({
+        ...config,
+        siteSettings,
+        integrations: {
+          ...config.integrations,
+          notion: {
+            ...config.integrations.notion,
+            integrationToken: siteSettings.notionToken,
+            brandsDatabaseId: siteSettings.notionBrandsDatabaseId,
+            casesDatabaseId: siteSettings.notionCasesDatabaseId
+          },
+          aliyun: {
+            ...config.integrations.aliyun,
+            ossRegion: siteSettings.ossRegion,
+            ossBucket: siteSettings.ossBucket,
+            accessKeyId: siteSettings.ossAccessKeyId,
+            accessKeySecret: siteSettings.ossAccessKeySecret,
+            cdnDomain: siteSettings.ossCdnDomain
+          }
+        }
+      }, "settings", "Settings saved.");
+      return;
+    }
+
     const adminConfigForm = event.target.closest("[data-admin-config]");
     if (adminConfigForm) {
       event.preventDefault();
@@ -2079,8 +4593,7 @@
     const form = event.target.closest("[data-contact-form]");
     if (!form) return;
     event.preventDefault();
-    const success = form.querySelector("[data-form-success]");
-    if (success) success.hidden = false;
+    handleContactSubmit(form);
   });
 
   window.addEventListener("popstate", render);
