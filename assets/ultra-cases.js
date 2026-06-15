@@ -7,6 +7,8 @@ window.UltraCases = [
     "country": "Germany",
     "region": "Europe",
     "year": 2026,
+    "dateStart": "2026-06-15",
+    "dateEnd": "2026-06-16",
     "industry": "Energy",
     "type": "Design",
     "services": [
@@ -18,7 +20,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Intersolar Europe demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Intersolar Europe ?????? Ultra Expo ?????????????????????????"
@@ -43,7 +45,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR at Intersolar Europe demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR ? Intersolar Europe ?????? Ultra Expo ?????????????????????????"
@@ -68,7 +70,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "HOENERGY at Intersolar Europe demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "HOENERGY ? Intersolar Europe ?????? Ultra Expo ?????????????????????????"
@@ -93,7 +95,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "GEO at The Battery Show demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GEO ? The Battery Show ?????? Ultra Expo ?????????????????????????"
@@ -118,7 +120,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "SSAM at The Battery Show demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SSAM ? The Battery Show ?????? Ultra Expo ?????????????????????????"
@@ -143,7 +145,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at ENEX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? ENEX ?????? Ultra Expo ?????????????????????????"
@@ -168,7 +170,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR at Green Energy Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR ? Green Energy Expo ?????? Ultra Expo ?????????????????????????"
@@ -193,7 +195,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at ENERGAIA demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? ENERGAIA ?????? Ultra Expo ?????????????????????????"
@@ -218,7 +220,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Smart Energy demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Smart Energy ?????? Ultra Expo ?????????????????????????"
@@ -243,7 +245,7 @@ window.UltraCases = [
       "South America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "MUST at Intersolar South America demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "MUST ? Intersolar South America ?????? Ultra Expo ?????????????????????????"
@@ -268,7 +270,7 @@ window.UltraCases = [
       "Middle East"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "CRRC at Solar Storage Live demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "CRRC ? Solar Storage Live ?????? Ultra Expo ?????????????????????????"
@@ -293,7 +295,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "SCUD at EICMA demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SCUD ? EICMA ?????? Ultra Expo ?????????????????????????"
@@ -318,7 +320,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at The Green Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? The Green Expo ?????? Ultra Expo ?????????????????????????"
@@ -343,7 +345,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "SUNGROW at Smart Energy demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNGROW ? Smart Energy ?????? Ultra Expo ?????????????????????????"
@@ -368,7 +370,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "AOTAI at Intersolar demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "AOTAI ? Intersolar ?????? Ultra Expo ?????????????????????????"
@@ -393,7 +395,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "MUST at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "MUST ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -418,7 +420,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "SUNTECH at RE+ demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNTECH ? RE+ ?????? Ultra Expo ?????????????????????????"
@@ -443,7 +445,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "MUST at RE+ demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "MUST ? RE+ ?????? Ultra Expo ?????????????????????????"
@@ -468,7 +470,7 @@ window.UltraCases = [
       "China"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "TSUN at SNEC PV Power Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "TSUN ? SNEC PV Power Expo ?????? Ultra Expo ?????????????????????????"
@@ -497,7 +499,7 @@ window.UltraCases = [
       "150㎡"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Intersalor demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Intersalor ?????? Ultra Expo ?????????????????????????"
@@ -526,7 +528,7 @@ window.UltraCases = [
       "72㎡"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "GEO at The Battery Show demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GEO ? The Battery Show ?????? Ultra Expo ?????????????????????????"
@@ -555,7 +557,7 @@ window.UltraCases = [
       "72㎡"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "SSAM at The Battery Show demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SSAM ? The Battery Show ?????? Ultra Expo ?????????????????????????"
@@ -584,7 +586,7 @@ window.UltraCases = [
       "87㎡"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR at ENEX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR ? ENEX ?????? Ultra Expo ?????????????????????????"
@@ -611,7 +613,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR at Smart Energy demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR ? Smart Energy ?????? Ultra Expo ?????????????????????????"
@@ -638,7 +640,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -664,7 +666,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Inter Solution demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Inter Solution ?????? Ultra Expo ?????????????????????????"
@@ -691,7 +693,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Build Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Build Expo ?????? Ultra Expo ?????????????????????????"
@@ -718,7 +720,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Solartech demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Solartech ?????? Ultra Expo ?????????????????????????"
@@ -745,7 +747,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Solar & Storage demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Solar & Storage ?????? Ultra Expo ?????????????????????????"
@@ -772,7 +774,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Solar-Storage Live demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Solar-Storage Live ?????? Ultra Expo ?????????????????????????"
@@ -798,7 +800,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "ELECNOVA at Genera Madrid Spain demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "ELECNOVA ? Genera Madrid Spain ?????? Ultra Expo ?????????????????????????"
@@ -825,7 +827,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "ELECNOVA at Key Energy demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "ELECNOVA ? Key Energy ?????? Ultra Expo ?????????????????????????"
@@ -852,7 +854,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "ELECNOVA at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "ELECNOVA ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -879,7 +881,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "ELECNOVA at Green Energy demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "ELECNOVA ? Green Energy ?????? Ultra Expo ?????????????????????????"
@@ -906,7 +908,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "ELECNOVA at Battery Forum demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "ELECNOVA ? Battery Forum ?????? Ultra Expo ?????????????????????????"
@@ -932,7 +934,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "SAJ at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SAJ ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -959,7 +961,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "SAJ at Elmia Solar demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SAJ ? Elmia Solar ?????? Ultra Expo ?????????????????????????"
@@ -986,7 +988,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "SAJ at ENEX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SAJ ? ENEX ?????? Ultra Expo ?????????????????????????"
@@ -1013,7 +1015,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "LEADSHINE at SPS demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "LEADSHINE ? SPS ?????? Ultra Expo ?????????????????????????"
@@ -1040,7 +1042,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "LEADSHINE at CES demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "LEADSHINE ? CES ?????? Ultra Expo ?????????????????????????"
@@ -1066,7 +1068,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "SUNHOME at Installershow demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNHOME ? Installershow ?????? Ultra Expo ?????????????????????????"
@@ -1093,7 +1095,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "SUNHOME at ASEW demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNHOME ? ASEW ?????? Ultra Expo ?????????????????????????"
@@ -1120,7 +1122,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "SUNHOME at Solar-Storage Live demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNHOME ? Solar-Storage Live ?????? Ultra Expo ?????????????????????????"
@@ -1147,7 +1149,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "CLAYMINTON at OTC demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "CLAYMINTON ? OTC ?????? Ultra Expo ?????????????????????????"
@@ -1174,7 +1176,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "PASSIONIOT at APEX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "PASSIONIOT ? APEX ?????? Ultra Expo ?????????????????????????"
@@ -1201,7 +1203,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "GN at EcwaTech demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GN ? EcwaTech ?????? Ultra Expo ?????????????????????????"
@@ -1228,7 +1230,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "YATONG at Mining World demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "YATONG ? Mining World ?????? Ultra Expo ?????????????????????????"
@@ -1255,7 +1257,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "FAIRINO at IREX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "FAIRINO ? IREX ?????? Ultra Expo ?????????????????????????"
@@ -1282,7 +1284,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "QW SOLAR at PV EXPO TOKYO demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "QW SOLAR ? PV EXPO TOKYO ?????? Ultra Expo ?????????????????????????"
@@ -1309,7 +1311,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "KUNSHAN GINTUNE WELDING at Schweissen Schneiden demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KUNSHAN GINTUNE WELDING ? Schweissen Schneiden ?????? Ultra Expo ?????????????????????????"
@@ -1336,7 +1338,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "TSUN at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "TSUN ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -1363,7 +1365,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "PROSE at MWC demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "PROSE ? MWC ?????? Ultra Expo ?????????????????????????"
@@ -1390,7 +1392,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "LITHELI at EISENWARENMESSE Fair demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "LITHELI ? EISENWARENMESSE Fair ?????? Ultra Expo ?????????????????????????"
@@ -1417,7 +1419,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "SAJ at Solar Solutions demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SAJ ? Solar Solutions ?????? Ultra Expo ?????????????????????????"
@@ -1444,7 +1446,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "SUNTECH at Solar-Storage Live demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNTECH ? Solar-Storage Live ?????? Ultra Expo ?????????????????????????"
@@ -1471,7 +1473,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "LEAPERS at PCIM demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "LEAPERS ? PCIM ?????? Ultra Expo ?????????????????????????"
@@ -1498,7 +1500,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "TINMAN at PCIM demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "TINMAN ? PCIM ?????? Ultra Expo ?????????????????????????"
@@ -1525,7 +1527,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "VONTRON at Aquatech demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "VONTRON ? Aquatech ?????? Ultra Expo ?????????????????????????"
@@ -1552,7 +1554,7 @@ window.UltraCases = [
       "North America"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "CNP at Aquatech demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "CNP ? Aquatech ?????? Ultra Expo ?????????????????????????"
@@ -1579,7 +1581,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "WATTSONIC at ENEX demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "WATTSONIC ? ENEX ?????? Ultra Expo ?????????????????????????"
@@ -1606,7 +1608,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": true,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "WATTSONIC at Elmia Solar demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "WATTSONIC ? Elmia Solar ?????? Ultra Expo ?????????????????????????"
@@ -1632,7 +1634,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Frankfurt Product Launch demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Frankfurt Product Launch ?????? Ultra Expo ?????????????????????????"
@@ -1658,7 +1660,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at London Launch Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? London Launch Event ?????? Ultra Expo ?????????????????????????"
@@ -1684,7 +1686,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "GOODWE at Indonesia Hotel Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "GOODWE ? Indonesia Hotel Event ?????? Ultra Expo ?????????????????????????"
@@ -1705,7 +1707,7 @@ window.UltraCases = [
       "Seminar"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "KSTAR & OSW at Seminar demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "KSTAR & OSW ? Seminar ?????? Ultra Expo ?????????????????????????"
@@ -1726,7 +1728,7 @@ window.UltraCases = [
       "Consumer Tech"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "BOE at Interactive Whiteboard Launch demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "BOE ? Interactive Whiteboard Launch ?????? Ultra Expo ?????????????????????????"
@@ -1752,7 +1754,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "SUNHOME at Romania Product Launch demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNHOME ? Romania Product Launch ?????? Ultra Expo ?????????????????????????"
@@ -1778,7 +1780,7 @@ window.UltraCases = [
       "Asia"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "SUNHOME at Vietnam Product Launch demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "SUNHOME ? Vietnam Product Launch ?????? Ultra Expo ?????????????????????????"
@@ -1799,7 +1801,7 @@ window.UltraCases = [
       "Launch"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "Internet Brand at Brand Launch Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Internet Brand ? Brand Launch Event ?????? Ultra Expo ?????????????????????????"
@@ -1822,7 +1824,7 @@ window.UltraCases = [
       "Europe"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "Hydrogen Technology Europe Expo at Hydrogen Technology Europe Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Hydrogen Technology Europe Expo ? Hydrogen Technology Europe Expo ?????? Ultra Expo ?????????????????????????"
@@ -1843,7 +1845,7 @@ window.UltraCases = [
       "Industrial"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "LESSO at Brand Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "LESSO ? Brand Event ?????? Ultra Expo ?????????????????????????"
@@ -1863,7 +1865,7 @@ window.UltraCases = [
       "Automotive"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "NETA Auto at Brand Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "NETA Auto ? Brand Event ?????? Ultra Expo ?????????????????????????"
@@ -1884,7 +1886,7 @@ window.UltraCases = [
       "Experience"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "Bumble Hive at Offline Experience demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Bumble Hive ? Offline Experience ?????? Ultra Expo ?????????????????????????"
@@ -1904,7 +1906,7 @@ window.UltraCases = [
       "Launch"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "Emirates at Route Launch demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Emirates ? Route Launch ?????? Ultra Expo ?????????????????????????"
@@ -1925,7 +1927,7 @@ window.UltraCases = [
       "Conference"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/57a62b9c089967f5209f622fad9d49ddc0595c46.57a62b9c.png?v=20260615-ratio",
     "description": {
       "en": "AI World at World Artificial Intelligence Conference demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "AI World ? World Artificial Intelligence Conference ?????? Ultra Expo ?????????????????????????"
@@ -1946,7 +1948,7 @@ window.UltraCases = [
       "Industrial"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/890f9388250c6bdb5182c209e6d081311a9ffa3d.890f9388.png?v=20260615-ratio",
     "description": {
       "en": "Schneider Electric at Truck Roadshow demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Schneider Electric ? Truck Roadshow ?????? Ultra Expo ?????????????????????????"
@@ -1968,7 +1970,7 @@ window.UltraCases = [
       "China"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/5952956b65558da33e0d4729a399bef200605f97.5952956b.png?v=20260615-ratio",
     "description": {
       "en": "China International Import Expo at China International Import Expo demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "China International Import Expo ? China International Import Expo ?????? Ultra Expo ?????????????????????????"
@@ -1989,7 +1991,7 @@ window.UltraCases = [
       "Brand Event"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/6cfcebc876b50a1289d5d3d9993e09686d39fc42.6cfcebc8.png?v=20260615-ratio",
     "description": {
       "en": "Coca-Cola at Union Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Coca-Cola ? Union Event ?????? Ultra Expo ?????????????????????????"
@@ -2013,7 +2015,7 @@ window.UltraCases = [
       "China"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/72510adc79e7d53e1c9941348177050f2f116c7a.72510adc.png?v=20260615-ratio",
     "description": {
       "en": "Coca-Cola at Suzhou / Kunshan / Wuxi Roadshow demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Coca-Cola ? Suzhou / Kunshan / Wuxi Roadshow ?????? Ultra Expo ?????????????????????????"
@@ -2035,7 +2037,7 @@ window.UltraCases = [
       "Consumer Tech"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/c2189f880aac07b923b11b8ca319a1f8093cf460.c2189f88.png?v=20260615-ratio",
     "description": {
       "en": "iFLYTEK at Annual Launch Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "iFLYTEK ? Annual Launch Event ?????? Ultra Expo ?????????????????????????"
@@ -2055,7 +2057,7 @@ window.UltraCases = [
       "Exhibition"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png?v=20260615-ratio",
     "description": {
       "en": "Digital Dealer at Digital Dealer demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Digital Dealer ? Digital Dealer ?????? Ultra Expo ?????????????????????????"
@@ -2079,7 +2081,7 @@ window.UltraCases = [
       "China"
     ],
     "featured": false,
-    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png",
+    "image": "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png?v=20260615-ratio",
     "description": {
       "en": "Dongtai at Shanghai Promotion Event demonstrates Ultra Expo's integrated capability across strategy, spatial design, overseas delivery, and on-site execution.",
       "zh": "Dongtai ? Shanghai Promotion Event ?????? Ultra Expo ?????????????????????????"
@@ -2100,12 +2102,40 @@ window.UltraCases = [
     if (Array.isArray(value)) return value.filter(Boolean);
     return [{ name: fallbackName || "local-mock-file", url: value, source: "local-mock" }];
   };
+  const dateValue = value => {
+    if (!value) return "";
+    if (typeof value === "object") return value.start || value.date || value.name || "";
+    return String(value).trim();
+  };
+  const dateInputValue = value => {
+    const text = dateValue(value);
+    if (!text) return "";
+    const iso = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    const ymd = iso || text.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+    if (ymd) return `${ymd[1]}-${String(ymd[2]).padStart(2, "0")}-${String(ymd[3]).padStart(2, "0")}`;
+    const parsed = new Date(text);
+    if (Number.isNaN(parsed.getTime())) return "";
+    return `${parsed.getFullYear()}-${String(parsed.getMonth() + 1).padStart(2, "0")}-${String(parsed.getDate()).padStart(2, "0")}`;
+  };
+  const dateYear = value => {
+    const text = dateInputValue(value);
+    const match = text.match(/^(\d{4})/);
+    return match ? Number(match[1]) : null;
+  };
+  const caseDateRange = item => {
+    const dateRange = item.exhibitionDate || item.dateRange || item.notionDate || item.Date || (typeof item.date === "object" ? item.date : null);
+    const rangeParts = typeof dateRange === "string" ? dateRange.split(/\s*(?:\u2192|->| to )\s*/i) : [];
+    const dateStart = dateInputValue(item.dateStart || item.startDate || item.exhibitionStartDate || dateRange?.start || rangeParts[0] || "");
+    const dateEnd = dateInputValue(item.dateEnd || item.endDate || item.exhibitionEndDate || dateRange?.end || rangeParts[1] || "") || dateStart;
+    return { dateStart, dateEnd };
+  };
   const brandMap = new Map();
   const normalizedCases = sourceCases.map((item, index) => {
     const brandEnglishName = item.brandEnglishName || item.client || "";
     const brandId = item.brandId || slug(brandEnglishName);
     const areaSqm = item.areaSqm ?? parseArea(item.area);
-    const year = item.year ? Number(item.year) : null;
+    const range = caseDateRange(item);
+    const year = dateYear(range.dateStart) || Number(item.year) || null;
     const title = item.title || [brandEnglishName, item.event, year].filter(Boolean).join(" · ");
 
     if (brandEnglishName && !brandMap.has(brandId)) {
@@ -2132,6 +2162,8 @@ window.UltraCases = [
       brandEnglishName,
       exhibitionName: item.exhibitionName || item.event || "",
       country: item.country || item.location || item.region || "",
+      dateStart: range.dateStart,
+      dateEnd: range.dateEnd,
       year,
       areaSqm,
       industry: item.industry || "",
@@ -2158,7 +2190,7 @@ window.UltraCases = [
     },
     schemas: {
       brands: ["chineseName", "englishName", "originalLogo", "grayLogo", "industry", "isFeaturedBrand", "featuredBrandOrder", "brandOrder", "isOnline", "notes"],
-      cases: ["title", "brandId", "exhibitionName", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
+      cases: ["title", "brandId", "exhibitionName", "dateStart", "dateEnd", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
     },
     brands: window.UltraBrands,
     cases: window.UltraCases

@@ -221,7 +221,7 @@
       types: { Design: "设计案例", Delivered: "落地案例", Event: "活动案例" }
     }
   };
-  filterLabels.en.regions = { Europe: "Europe", "North America": "North America", "South America": "South America", Asia: "Asia", "Middle East": "Middle East", China: "China", Global: "Global" };
+  filterLabels.en.regions = { Asia: "Asia", Europe: "Europe", "North America": "North America", "South America": "South America", Africa: "Africa", Oceania: "Oceania" };
 
   const homeText = {
     enToZh: {
@@ -323,7 +323,8 @@
   function caseTitle(item, lang) {
     const suffix = lang === "zh" ? "｜Ultra Expo 皓创展览" : " | Ultra Expo";
     if (!item) return pageTitles[lang].cases;
-    const eventWithYear = `${item.event || ""}${item.year ? ` ${item.year}` : ""}`.trim();
+    const eventYear = caseYear(item);
+    const eventWithYear = `${item.event || ""}${eventYear ? ` ${eventYear}` : ""}`.trim();
     return `${[item.client, eventWithYear].filter(Boolean).join(" / ")}${suffix}`;
   }
 
@@ -555,7 +556,7 @@
   function caseSortValue(item, index) {
     const explicit = Number(item.casePageOrder);
     if (Number.isFinite(explicit)) return [0, explicit, index];
-    const year = Number(item.year);
+    const year = Number(caseYear(item));
     return [1, Number.isFinite(year) ? -year : 9999, index];
   }
 
@@ -622,7 +623,8 @@
       const brandEnglishName = item.brandEnglishName || item.client || "";
       const brandId = item.brandId || slug(brandEnglishName);
       const areaSqm = item.areaSqm ?? parseArea(item.area);
-      const year = item.year ? Number(item.year) : null;
+      const range = caseDateRange(item);
+      const year = Number(caseYear({ ...item, ...range })) || null;
       if (brandEnglishName && !brandMap.has(brandId)) {
         brandMap.set(brandId, {
           id: brandId,
@@ -646,6 +648,8 @@
         brandEnglishName,
         exhibitionName: item.exhibitionName || item.event || "",
         country: item.country || item.location || item.region || "",
+        dateStart: range.dateStart,
+        dateEnd: range.dateEnd,
         year,
         areaSqm,
         chineseIntro: item.chineseIntro || item.description?.zh || "",
@@ -669,7 +673,7 @@
       },
       schemas: {
         brands: ["chineseName", "englishName", "originalLogo", "grayLogo", "industry", "isFeaturedBrand", "featuredBrandOrder", "brandOrder", "isOnline", "notes"],
-        cases: ["title", "brandId", "exhibitionName", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
+        cases: ["title", "brandId", "exhibitionName", "dateStart", "dateEnd", "year", "areaSqm", "industry", "country", "chineseIntro", "englishIntro", "coverImage", "galleryImages", "isFeaturedCase", "featuredCaseOrder", "casePageOrder", "isOnline", "notes"]
       },
       brands,
       cases
@@ -699,6 +703,16 @@
 
   function routeLink(path) {
     return `${withBase(path)}`;
+  }
+
+  function scrollToHashTarget(hash, behavior = "smooth") {
+    const targetId = decodeURIComponent(String(hash || "").replace(/^#/, ""));
+    if (!targetId) return false;
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior, block: "start" });
+    });
+    return true;
   }
 
   function navHTML(lang, activePath) {
@@ -1077,7 +1091,7 @@
         <img src="${esc(caseImage(item))}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item) || ""}`)}">
         <span>
           <strong>${esc(caseBrandName(item))}</strong>
-          <em>${esc([caseEventName(item), item.year].filter(Boolean).join(" / "))}</em>
+          <em>${esc([caseEventName(item), caseYear(item)].filter(Boolean).join(" / "))}</em>
         </span>
       </a>
     `;
@@ -1362,17 +1376,36 @@
     const zh = lang === "zh";
     const adminConfig = getAdminConfig();
     const footerLinks = navItems.map(item => ({ href: routeLink(item.path), route: item.path, label: L.nav[item.key] }));
-    const footerServices = services.map(s => ({ href: routeLink("/services"), route: "/services", label: zh ? s.zhTitle : s.enTitle }));
+    const serviceAnchors = ["brand-strategy", "space-design", "overseas-delivery", "engineering-build"];
+    const footerServices = services.map((s, index) => {
+      const anchor = serviceAnchors[index] || "";
+      return {
+        href: routeLink(anchor ? `/services#${anchor}` : "/services"),
+        route: "/services",
+        targetId: anchor,
+        label: zh ? s.zhTitle : s.enTitle
+      };
+    });
     const footerContact = (adminConfig.footer.contactLinks || [])
       .filter(item => item.enabled !== false)
-      .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }));
+      .map(item => {
+        const isBusiness = item.key === "business";
+        return {
+          ...item,
+          label: adminLabel(item, lang),
+          href: isBusiness ? routeLink("/contact#contact-form") : adminHref(item),
+          route: isBusiness ? "/contact" : item.route,
+          targetId: isBusiness ? "contact-form" : ""
+        };
+      });
+    const footerContactText = footerContact.filter(item => !["phone", "phone-consultation", "email", "wechat", "wechat-official", "rednote", "linkedin"].includes(item.key));
     const socialItems = (adminConfig.footer.socialLinks || [])
       .filter(item => item.enabled !== false)
       .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }));
     const footerColumn = (heading, items) => `
       <nav class="ultra-footer-column" aria-label="${esc(heading.replace("/", ""))}">
         <h4>${esc(heading)}</h4>
-        ${items.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
+        ${items.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
       </nav>
     `;
     const iconSVG = {
@@ -1409,7 +1442,13 @@
             <div class="ultra-footer-menu">
               ${footerColumn("LINKS/", footerLinks)}
               ${footerColumn("SERVICES/", footerServices)}
-              ${footerColumn("CONTACT/", footerContact)}
+              <nav class="ultra-footer-column ultra-footer-contact-column" aria-label="Contact">
+                <h4>CONTACT/</h4>
+                ${footerContactText.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
+                <div class="ultra-footer-contact-buttons" aria-label="Contact buttons">
+                  ${socialItems.map(item => `<a class="ultra-social-card" href="${esc(item.href)}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`).join("")}
+                </div>
+              </nav>
             </div>
           </div>
           <div class="ultra-footer-social" aria-label="${zh ? "社媒与联系方式" : "Social and contact links"}">
@@ -1863,7 +1902,12 @@
                 <p>${esc(text("Ultra connects strategy, spatial design, overseas localization, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将品牌策划、空间设计、海外落地和工程搭建整合在同一条项目链路中。客户面对的不是多个割裂供应商，而是一套可控、可追踪、可落地的服务系统。"))}</p>
               </div>
               <div class="ultra-services-flow-line" aria-hidden="true">
-                ${servicePillars.map((pillar, index) => `<span class="${pillar.isCore ? "is-core" : ""}" style="--solution-index:${index}">${esc(pillar.title)}</span>`).join("<i></i>")}
+                ${servicePillars.map((pillar, index) => `<span class="${pillar.isCore ? "is-core" : ""}" data-solution-card="${esc(pillar.key)}" style="--solution-index:${index}">
+                  <b>${esc(pillar.index)}</b>
+                  <em>${esc(pillar.tag)}</em>
+                  <strong>${esc(pillar.title)}</strong>
+                  <small>${esc(pillar.subtitle.split("/").slice(0, 2).join(" / ").trim())}</small>
+                </span>`).join("<i></i>")}
               </div>
             </div>
           </div>
@@ -1876,7 +1920,7 @@
             ${serviceIntro("SERVICE PILLARS", "Turning cross-border uncertainty into", "把跨境不确定性转化为可控交付。", "Ultra's service is not a set of isolated capabilities. Strategy, design, abroad execution, and build work together as one managed project system.", "Ultra 的服务不是孤立的单点能力，而是由策略、设计、海外落地和工程搭建共同构成的项目交付体系。")}
             <div class="ultra-services-pillar-grid">
               ${servicePillars.map(pillar => `
-                <article class="ultra-services-pillar ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
+                <article id="${esc({ strategy: "brand-strategy", design: "space-design", abroad: "overseas-delivery", build: "engineering-build" }[pillar.key] || pillar.key)}" class="ultra-services-pillar ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
                   <span class="ultra-services-pillar-icon" aria-hidden="true"></span>
                   <div class="ultra-services-pillar-top">
                     <span>${esc(pillar.index)}</span>
@@ -1968,9 +2012,9 @@
     const params = new URLSearchParams(window.location.search);
     return {
       year: params.get("year") || "All",
-      brand: params.get("brand") || "All",
+      brand: "All",
       industry: params.get("industry") || "All",
-      country: params.get("country") || "All",
+      region: params.get("region") || params.get("country") || "All",
       area: params.get("area") || "All",
       more: params.get("more") === "1"
     };
@@ -1978,10 +2022,10 @@
 
   function filteredCases(state) {
     return activeCases().filter(item => {
-      if (state.year !== "All" && String(item.year) !== state.year) return false;
+      if (state.year !== "All" && String(caseYear(item)) !== state.year) return false;
       if (state.brand !== "All" && item.brandId !== state.brand) return false;
       if (state.industry !== "All" && item.industry !== state.industry) return false;
-      if (state.country !== "All" && item.country !== state.country) return false;
+      if (state.region !== "All" && caseRegion(item) !== state.region) return false;
       if (state.area !== "All" && areaBucket(item.areaSqm) !== state.area) return false;
       return true;
     });
@@ -1992,11 +2036,11 @@
       year: ["All", "2026", "2025", "2024"],
       brand: ["All", ...activeBrands().map(brand => brand.id)],
       industry: ["All", "Energy", "Battery", "Industrial", "Automotive", "Consumer Tech", "Telecom", "Water Treatment", "Retail", "Launch Event", "Smart Manufacturing", "Exhibition"],
-      country: ["All"],
+      region: ["All", "Asia", "Europe", "North America", "South America", "Africa", "Oceania"],
       area: ["All", "lt50", "50-100", "100-200", "200plus"]
     };
     const values = activeCases()
-      .map(item => field === "brand" ? item.brandId : field === "area" ? areaBucket(item.areaSqm) : item[field])
+      .map(item => field === "brand" ? item.brandId : field === "area" ? areaBucket(item.areaSqm) : field === "year" ? caseYear(item) : field === "region" ? caseRegion(item) : item[field])
       .filter(Boolean)
       .map(value => String(value));
     const merged = [...new Set([...(fixed[field] || ["All"]), ...values])];
@@ -2007,7 +2051,7 @@
       return ["All", ...activeBrands().map(brand => brand.id).filter(id => merged.includes(id))];
     }
     if (field === "area") return fixed.area;
-    if (field === "country") return ["All", ...merged.filter(value => value !== "All").sort((a, b) => a.localeCompare(b))];
+    if (field === "region") return fixed.region;
     return merged;
   }
 
@@ -2038,7 +2082,7 @@
           <button class="ultra-filter-more-toggle" type="button" data-more-filters aria-expanded="${state.more ? "true" : "false"}">${lang === "zh" ? "更多筛选" : "More Filters"}</button>
         </div>
         <div class="ultra-filter-more" data-filter-more-panel>
-          ${["brand", "industry", "country", "area"].map(field => group(field, true)).join("")}
+          ${["industry", "region", "area"].map(field => group(field, true)).join("")}
           <div class="ultra-filter-actions">
             <button class="ultra-secondary" type="button" data-clear-filters>${lang === "zh" ? "重置" : "Reset"}</button>
             <button class="ultra-primary" type="button" data-apply-filters>${lang === "zh" ? "应用筛选" : "Apply Filters"}</button>
@@ -2060,6 +2104,41 @@
     return ({ lt50: "<50㎡", "50-100": "50-100㎡", "100-200": "100-200㎡", "200plus": "200㎡+" })[value] || value;
   }
 
+  function caseRegion(item) {
+    const raw = String(caseCountry(item) || item.region || "").trim().toLowerCase();
+    const normalized = raw.replace(/\./g, "").replace(/\s+/g, " ");
+    const map = {
+      australia: "Oceania",
+      belgium: "Europe",
+      brazil: "South America",
+      china: "Asia",
+      europe: "Europe",
+      france: "Europe",
+      germany: "Europe",
+      global: "Asia",
+      indonesia: "Asia",
+      italy: "Europe",
+      japan: "Asia",
+      korea: "Asia",
+      mexico: "North America",
+      netherlands: "Europe",
+      philippines: "Asia",
+      poland: "Europe",
+      romania: "Europe",
+      russia: "Europe",
+      "saudi arabia": "Asia",
+      spain: "Europe",
+      sweden: "Europe",
+      thailand: "Asia",
+      "united kingdom": "Europe",
+      uk: "Europe",
+      "united states": "North America",
+      usa: "North America",
+      us: "North America",
+      vietnam: "Asia"
+    };
+    return map[normalized] || item.region || "";
+  }
   function brandName(id) {
     const brand = activeBrands().find(item => item.id === id);
     return brand?.englishName || id;
@@ -2067,6 +2146,14 @@
 
   function caseBrandName(item) {
     return item.brandEnglishName || item.client || brandName(item.brandId) || "";
+  }
+
+  function caseBrandDisplayName(item, lang) {
+    const brand = brandForCase(item);
+    if (lang === "zh") {
+      return brand?.chineseName || item.brandChineseName || caseBrandName(item);
+    }
+    return brand?.englishName || caseBrandName(item);
   }
 
   function caseEventName(item) {
@@ -2081,9 +2168,126 @@
     return item.coverImage?.files?.[0]?.url || item.image || "";
   }
 
+  function fileUrl(file) {
+    if (!file) return "";
+    if (typeof file === "string") return file;
+    return file.url || file.href || "";
+  }
+
+  function brandForCase(item) {
+    return activeBrands().find(brand => brand.id === item.brandId) || null;
+  }
+
+  function brandLogo(item) {
+    const brand = brandForCase(item);
+    return fileUrl(brand?.grayLogo?.files?.[0]) || fileUrl(brand?.originalLogo?.files?.[0]) || item.brandLogoGray || item.brandLogoOriginal || "";
+  }
+
+  function caseGalleryImages(item) {
+    const gallery = (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean);
+    const cover = caseImage(item);
+    const unique = [];
+    [cover, ...gallery].filter(Boolean).forEach(url => {
+      if (!unique.includes(url)) unique.push(url);
+    });
+    if (unique.length < 8) {
+      activeCases().map(caseImage).filter(Boolean).forEach(url => {
+        if (unique.length < 8 && !unique.includes(url)) unique.push(url);
+      });
+    }
+    return unique;
+  }
+
+  function caseIntro(item, lang) {
+    return lang === "zh" ? (item.chineseIntro || item.description?.zh || item.englishIntro || item.description?.en || "") : (item.englishIntro || item.description?.en || item.chineseIntro || item.description?.zh || "");
+  }
+
+  function caseAreaText(item) {
+    return item.areaSqm ? `${item.areaSqm}㎡` : (item.area || "");
+  }
+
+  function caseDateValue(value) {
+    if (!value) return "";
+    if (typeof value === "object") return value.start || value.date || value.name || "";
+    return String(value).trim();
+  }
+
+  function caseDateInputValue(value) {
+    const text = caseDateValue(value);
+    if (!text) return "";
+    const iso = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    const ymd = iso || text.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+    if (ymd) {
+      return `${ymd[1]}-${String(ymd[2]).padStart(2, "0")}-${String(ymd[3]).padStart(2, "0")}`;
+    }
+    const parsed = new Date(text);
+    if (Number.isNaN(parsed.getTime())) return "";
+    return `${parsed.getFullYear()}-${String(parsed.getMonth() + 1).padStart(2, "0")}-${String(parsed.getDate()).padStart(2, "0")}`;
+  }
+
+  function caseDateRange(item) {
+    const dateRange = item.exhibitionDate || item.dateRange || item.notionDate || item.Date || (typeof item.date === "object" ? item.date : null);
+    const rangeParts = typeof dateRange === "string" ? dateRange.split(/\s*(?:\u2192|->| to )\s*/i) : [];
+    const start = item.dateStart || item.startDate || item.exhibitionStartDate || dateRange?.start || rangeParts[0] || "";
+    const end = item.dateEnd || item.endDate || item.exhibitionEndDate || dateRange?.end || rangeParts[1] || "";
+    const dateStart = caseDateInputValue(start);
+    const dateEnd = caseDateInputValue(end) || dateStart;
+    return { dateStart, dateEnd };
+  }
+
+  function caseDateParts(value) {
+    const text = caseDateValue(value);
+    if (!text) return null;
+    const iso = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    const ymd = iso || text.match(/^(\\d{4})\\D+(\\d{1,2})\\D+(\\d{1,2})/);
+    if (ymd) {
+      return { year: Number(ymd[1]), month: Number(ymd[2]), day: Number(ymd[3]) };
+    }
+    const parsed = new Date(text);
+    if (Number.isNaN(parsed.getTime())) return null;
+    return { year: parsed.getFullYear(), month: parsed.getMonth() + 1, day: parsed.getDate() };
+  }
+
+  function sameCaseDate(a, b) {
+    return a && b && a.year === b.year && a.month === b.month && a.day === b.day;
+  }
+
+  function formatCaseDate(value) {
+    const parts = caseDateParts(value);
+    if (!parts) return caseDateValue(value);
+    const mm = String(parts.month).padStart(2, "0");
+    const dd = String(parts.day).padStart(2, "0");
+    return `${parts.year}.${mm}.${dd}`;
+  }
+
+  function formatCaseDateEnd(startParts, endParts) {
+    const mm = String(endParts.month).padStart(2, "0");
+    const dd = String(endParts.day).padStart(2, "0");
+    if (startParts.year === endParts.year && startParts.month === endParts.month) return dd;
+    if (startParts.year === endParts.year) return `${mm}.${dd}`;
+    return `${endParts.year}.${mm}.${dd}`;
+  }
+
+  function caseDateText(item) {
+    const { dateStart: start, dateEnd: end } = caseDateRange(item);
+    const startParts = caseDateParts(start);
+    const endParts = caseDateParts(end);
+    if (start && end) {
+      if (sameCaseDate(startParts, endParts) || caseDateValue(start) === caseDateValue(end)) return formatCaseDate(start);
+      if (startParts && endParts) return `${formatCaseDate(start)}-${formatCaseDateEnd(startParts, endParts)}`;
+      return `${formatCaseDate(start)} - ${formatCaseDate(end)}`;
+    }
+    if (start || end) return formatCaseDate(start || end);
+    return caseDateValue(item.date) || item.year || "";
+  }
+
+  function caseYear(item) {
+    const { dateStart, dateEnd } = caseDateRange(item);
+    return caseDateParts(dateStart)?.year || caseDateParts(dateEnd)?.year || item.year || "";
+  }
   function caseMeta(item) {
     return [
-      [caseCountry(item), item.year].filter(Boolean).join(" · "),
+      [caseCountry(item), caseYear(item)].filter(Boolean).join(" · "),
       [item.areaSqm ? `${item.areaSqm}㎡` : item.area, item.industry].filter(Boolean).join(" · ")
     ].filter(Boolean);
   }
@@ -2095,7 +2299,7 @@
         ${image ? `<img src="${esc(image)}" alt="${esc(caseBrandName(item))} ${esc(caseEventName(item))}">` : `<div class="ultra-placeholder"></div>`}
         <div class="ultra-case-teaser">
           <strong>${esc(caseBrandName(item))}</strong>
-          <span>${esc([item.year, caseCountry(item)].filter(Boolean).join(" / "))}</span>
+          <span>${esc([caseYear(item), caseCountry(item)].filter(Boolean).join(" / "))}</span>
         </div>
         <div class="ultra-case-info">
           <h3>${esc(caseBrandName(item))}</h3>
@@ -2114,7 +2318,7 @@
     const initialCount = 24;
     return `
       <section class="ultra-section ultra-cases-index"><div class="ultra-wrap">
-        ${sectionHead(zh ? "案例信息流" : "CASE FEED", `${labels[lang].allCases} / ${items.length}`, "")}
+        ${sectionHead(zh ? "案例信息流" : "CASE FEED", labels[lang].allCases, "")}
         ${filtersHTML(lang, state)}
         <div class="ultra-case-grid" data-case-grid>${items.map((c, index) => `<div class="${index >= initialCount ? "is-hidden" : ""}" data-case-item>${caseCard(c, lang)}</div>`).join("")}</div>
         ${items.length > initialCount ? `<div class="ultra-load-more-wrap"><button class="ultra-secondary" type="button" data-load-more>${zh ? "加载更多" : "Load More"}</button></div>` : ""}
@@ -2122,49 +2326,63 @@
     `;
   }
 
-  function caseDetailPage(id, lang) {
+  function caseDetailPage(id, lang, options = {}) {
     const zh = lang === "zh";
     const allCases = activeCases();
     const item = allCases.find(c => c.id === id) || allCases[0];
-    const overview = [
-      ["Client", "客户", caseBrandName(item)],
-      ["Event", "展会", caseEventName(item)],
-      ["Location", "地点", caseCountry(item)],
-      ["Area", "面积", item.areaSqm ? `${item.areaSqm}㎡` : item.area],
-      ["Year", "年份", item.year],
-      ["Industry", "行业", item.industry],
-      ["Services", "服务内容", (item.services || []).join(" / ")]
-    ].filter(x => x[2]);
-    const related = allCases.filter(c => c.id !== item.id && (c.industry === item.industry || c.region === item.region)).slice(0, 3);
+    const logo = brandLogo(item);
+    const area = caseAreaText(item);
+    const images = caseGalleryImages(item);
+    const stats = [
+      ["client", zh ? "客户" : "Client", caseBrandDisplayName(item, lang)],
+      ["industry", zh ? "行业" : "Industry", item.industry],
+      ["country", zh ? "国家" : "Country", caseCountry(item)],
+      ["date", zh ? "日期" : "Date", caseDateText(item)]
+    ].filter(row => row[2]);
+    const shellClass = `ultra-case-detail ${options.modal ? "is-modal" : "is-page"} ${images.length <= 4 ? "is-short-gallery" : ""}`;
     return `
-      ${pageHero(item.type || "CASE", caseBrandName(item), `${caseEventName(item)}${caseCountry(item) ? " · " + caseCountry(item) : ""}${item.year ? " · " + item.year : ""}`, lang)}
-      <section class="ultra-section"><div class="ultra-wrap">
-        <div class="ultra-case-grid"><a class="ultra-case-card"><img src="${esc(caseImage(item))}" alt="${esc(caseBrandName(item))}"></a></div>
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "项目概览" : "PROJECT OVERVIEW", labels[lang].overview, item.description ? item.description[lang] : "")}
-        <div class="ultra-grid cols-4">${overview.map(row => `<div class="ultra-stat"><strong>${esc(row[2])}</strong><span>${esc(zh ? row[1] : row[0])}</span></div>`).join("")}</div>
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        <div class="ultra-grid cols-2">
-          <article class="ultra-card"><div class="ultra-section-kicker">${labels[lang].background}</div><h3>${zh ? "高流量国际展会中的品牌表达" : "Brand presence in a high-traffic international exhibition"}</h3><p>${zh ? "客户需要在海外展会中建立专业的品牌形象，同时支持品牌识别、产品展示与渠道沟通。" : "The client needed a professional overseas exhibition presence that could support brand visibility, product communication, and channel conversations."}</p></article>
-          <article class="ultra-card"><div class="ultra-section-kicker">${labels[lang].strategy}</div><h3>${zh ? "清晰的产品分区与开放动线" : "Clear product zones and open circulation"}</h3><p>${zh ? "展台通过高识别度品牌结构、清晰产品分区、开放式动线与洽谈空间，帮助观众快速识别品牌并进入沟通场景。" : "The booth uses high-visibility brand structure, clear product zones, open circulation, and meeting areas to help visitors quickly identify the brand."}</p></article>
-          <article class="ultra-card"><div class="ultra-section-kicker">${labels[lang].scope}</div><h3>${zh ? "从方案到现场的一体化交付" : "Integrated delivery from concept to site"}</h3><ul>${(zh ? ["概念设计", "3D 渲染", "施工图深化", "材料确认", "本地制作 / 工厂预制", "物流协调", "现场搭建", "展期支持", "拆撤 / 回运"] : ["Concept design", "3D visualization", "Construction drawing", "Material confirmation", "Local production / prefabrication", "Logistics coordination", "On-site build", "Exhibition support", "Dismantling / return logistics"]).map(x => `<li>${x}</li>`).join("")}</ul></article>
-          <article class="ultra-card"><div class="ultra-section-kicker">${labels[lang].value}</div><h3>${zh ? "把设计转化为可控的海外交付流程" : "Turning design into a controllable overseas delivery process"}</h3><p>${zh ? "Ultra Expo 将已确认的设计方案转化为可控的海外交付流程，保障品牌呈现、现场质量与执行周期。" : "Ultra Expo helped translate the approved design into a controllable overseas delivery process, protecting brand presentation, site quality, and execution timing."}</p></article>
+      <section class="${shellClass}" data-case-detail="${esc(item.id)}">
+        ${options.modal ? `<button class="ultra-case-esc" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}"><span>ESC</span><i aria-hidden="true">&times;</i></button>` : ""}
+        <div class="ultra-case-detail-copy">
+          <div class="ultra-case-detail-logo">
+            ${logo ? `<img src="${esc(logo)}" alt="${esc(caseBrandDisplayName(item, lang))} logo">` : `<strong>${esc(caseBrandDisplayName(item, lang))}</strong>`}
+          </div>
+          <div class="ultra-case-detail-title">${esc([caseEventName(item), area].filter(Boolean).join("  ·  "))}</div>
+          <div class="ultra-case-detail-line" aria-hidden="true"></div>
+          <div class="ultra-case-detail-meta">
+            ${stats.map(row => `
+              <article data-case-detail-meta="${esc(row[0])}">
+                <span aria-hidden="true">${caseDetailIcon(row[0])}</span>
+                <div><strong>${esc(row[1])}</strong><p>${esc(row[2])}</p></div>
+              </article>
+            `).join("")}
+          </div>
+          <p class="ultra-case-detail-intro">${esc(caseIntro(item, lang))}</p>
         </div>
-      </div></section>
-      <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "相关案例" : "RELATED CASES", labels[lang].related, "")}
-        <div class="ultra-case-grid">${related.map(c => caseCard(c, lang)).join("")}</div>
-      </div></section>
+        <div class="ultra-case-detail-gallery" data-case-detail-gallery>
+          ${images.map((src, index) => `<figure><img src="${esc(src)}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item)} ${index + 1}`)}"></figure>`).join("")}
+        </div>
+      </section>
     `;
   }
 
+  function caseDetailIcon(type) {
+    const icons = {
+      client: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M5.6 19.1c.9-3.2 3.1-4.8 6.4-4.8s5.5 1.6 6.4 4.8"/></svg>`,
+      industry: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5h15"/><path d="M6 19.5V8.2l5.2 2.8V8.2l6.8 3.7v7.6"/><path d="M8.4 14.2h1.4M12 14.2h1.4M15.6 14.2H17M8.4 17h1.4M12 17h1.4M15.6 17H17"/></svg>`,
+      country: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.2-5.6 6.2-11.2a6.2 6.2 0 0 0-12.4 0C5.8 15.4 12 21 12 21Z"/><path d="M12 12.1a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z"/></svg>`,
+      date: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 5.5h11.6a1.7 1.7 0 0 1 1.7 1.7v10.6a1.7 1.7 0 0 1-1.7 1.7H6.2a1.7 1.7 0 0 1-1.7-1.7V7.2a1.7 1.7 0 0 1 1.7-1.7Z"/><path d="M8 3.8v3.4M16 3.8v3.4M4.5 9.5h15"/><path d="M8 13h2M12 13h2M16 13h1M8 16h2M12 16h2"/></svg>`
+    };
+    return icons[type] || icons.client;
+  }
   function contactPage(lang) {
     const zh = lang === "zh";
     const contact = getAdminConfig().contact || defaultAdminConfig().contact;
     const emailHref = contact.email ? `mailto:${contact.email}` : "mailto:jack@ultraexpo.com";
     const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, "")}` : "tel:+8618506144181";
+    const contactEmail = contact.email || "jack@ultraexpo.com";
+    const contactPhone = contact.phone || "+86 185 0614 4181";
+    const officeText = "Suzhou, China  ·  Hong Kong  ·  Los Angeles  ·  Berlin";
     const inquiryTypes = [
       { value: "Exhibition Booth", zh: "海外展台设计与搭建", en: "Exhibition Booth", copyZh: "展台设计、制作、物流与现场搭建。", copyEn: "Booth design, fabrication, logistics, and on-site build." },
       { value: "Product Launch", zh: "新品发布与品牌活动", en: "Product Launch", copyZh: "发布会、路演、快闪与线下体验。", copyEn: "Launch events, roadshows, pop-ups, and offline experiences." },
@@ -2250,6 +2468,7 @@
                     <option value="">${zh ? "待沟通" : "To be discussed"}</option>
                     ${budgets.map(item => `<option>${esc(item)}</option>`).join("")}
                   </select>
+                  <em data-field-error="budgetRange"></em>
                 </label>
                 <label class="ultra-contact-field is-wide">
                   <span>${zh ? "留言内容 / Message" : "Message"} *</span>
@@ -2259,7 +2478,6 @@
               </div>
               <div class="ultra-contact-form-footer">
                 <button class="ultra-submit" type="submit" data-contact-submit>${zh ? "Send Inquiry / 提交咨询" : "Send Inquiry"}</button>
-                <p>${zh ? "提交后，我们会根据项目地区、时间和需求类型安排对应团队跟进。" : "After submission, we assign the right team by region, timeline, and requirement type."}</p>
               </div>
               <div class="ultra-contact-feedback" data-form-feedback hidden></div>
             </form>
@@ -2268,10 +2486,10 @@
               <section class="ultra-contact-info-card">
                 <span>${zh ? "联系方式" : "CONTACT INFO"}</span>
                 <h3>${zh ? "也可以直接联系 Ultra Expo。" : "You can also reach Ultra Expo directly."}</h3>
-                ${contactRows.map(row => `<article><strong>${esc(row.title)}</strong><p>${row.body}</p></article>`).join("")}
-                <div class="ultra-contact-direct">
-                  <a href="${esc(emailHref)}">${esc(contact.email || "jack@ultraexpo.com")}</a>
-                  <a href="${esc(phoneHref)}">${esc(contact.phone || "+86 185 0614 4181")}</a>
+                <div class="ultra-contact-info-list">
+                  <article><strong>Email</strong><p><a href="${esc(emailHref)}">${esc(contactEmail)}</a></p></article>
+                  <article><strong>Phone</strong><p><a href="${esc(phoneHref)}">${esc(contactPhone)}</a></p></article>
+                  <article><strong>Office</strong><p>${esc(officeText)}</p></article>
                 </div>
               </section>
               <section class="ultra-contact-info-card">
@@ -2288,6 +2506,24 @@
             </aside>
           </div>
         </section>
+
+        <section class="ultra-contact-process" aria-label="${zh ? "Response process" : "Response process"}">
+          <div class="ultra-contact-shell">
+            <section class="ultra-contact-process-card">
+              <div class="ultra-contact-section-head">
+                <span>${zh ? "RESPONSE PROCESS" : "RESPONSE PROCESS"}</span>
+                <h2>What happens next?</h2>
+              </div>
+              <ol class="ultra-contact-steps">
+                ${[
+                  ["Submit", zh ? "You submit the project brief" : "You submit the project brief"],
+                  ["Review", zh ? "We review schedule, country, area, and goals" : "We review schedule, country, area, and goals"],
+                  ["Reply", zh ? "The right team replies with next-step guidance" : "The right team replies with next-step guidance"]
+                ].map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
+              </ol>
+            </section>
+          </div>
+        </section>
       </section>
     `;
   }
@@ -2297,7 +2533,7 @@
       <label class="ultra-contact-field">
         <span>${esc(label)}${required ? " *" : ""}</span>
         <input name="${esc(name)}" type="${esc(type)}" ${required ? "required" : ""}>
-        ${required ? `<em data-field-error="${esc(name)}"></em>` : ""}
+        <em data-field-error="${esc(name)}"></em>
       </label>
     `;
   }
@@ -2634,7 +2870,8 @@
           <div class="ultra-admin-form-grid">
             ${adminSelect("brandId", "Related Brand", brands[0]?.id || "", brandOptions, "required")}
             ${adminField("exhibitionName", "Exhibition Name", "", "text", "required")}
-            ${adminField("year", "Year", new Date().getFullYear(), "number", "required min=\"1900\" max=\"2100\"")}
+            ${adminField("dateStart", "Start Date", "", "date", "required")}
+            ${adminField("dateEnd", "End Date", "", "date", "required")}
             ${adminField("area", "Area", "", "text")}
             ${adminField("industry", "Industry", "", "text", "required")}
             ${adminField("country", "Country", "", "text", "required")}
@@ -2651,7 +2888,7 @@
   }
 
   function adminCasesSection(cases, brands) {
-    const years = [...new Set(cases.map(item => item.year).filter(Boolean))].sort((a, b) => b - a);
+    const years = [...new Set(cases.map(item => caseYear(item)).filter(Boolean))].sort((a, b) => b - a);
     const industries = [...new Set(cases.map(item => item.industry).filter(Boolean))].sort();
     const countries = [...new Set(cases.map(item => item.country).filter(Boolean))].sort();
     const brandOptions = brands.map(brand => ({ value: brand.id, label: adminBrandDisplay(brand) }));
@@ -2668,17 +2905,17 @@
         </div>
         <div class="ultra-admin-table-wrap">
           <table class="ultra-admin-table" data-admin-case-table>
-            <thead><tr><th>Cover</th><th>Brand</th><th>Exhibition</th><th>Year</th><th>Area</th><th>Industry</th><th>Country</th><th>Featured</th><th>Actions</th></tr></thead>
+            <thead><tr><th>Cover</th><th>Brand</th><th>Exhibition</th><th>Date</th><th>Area</th><th>Industry</th><th>Country</th><th>Featured</th><th>Actions</th></tr></thead>
             <tbody>
               ${cases.map(item => {
                 const cover = adminFileUrl(item.coverImage);
                 const brand = adminBrandById(item.brandId);
                 return `
-                  <tr data-admin-case-row data-search="${esc(`${item.exhibitionName || ""} ${item.title || ""}`.toLowerCase())}" data-year="${esc(item.year || "")}" data-brand="${esc(item.brandId || "")}" data-industry="${esc(item.industry || "")}" data-country="${esc(item.country || "")}" data-featured="${item.isFeaturedCase ? "1" : "0"}">
+                  <tr data-admin-case-row data-search="${esc(`${item.exhibitionName || ""} ${item.title || ""}`.toLowerCase())}" data-year="${esc(caseYear(item) || "")}" data-brand="${esc(item.brandId || "")}" data-industry="${esc(item.industry || "")}" data-country="${esc(item.country || "")}" data-featured="${item.isFeaturedCase ? "1" : "0"}">
                     <td>${cover ? `<img class="ultra-admin-cover-thumb" src="${esc(adminPreviewSrc(cover))}" alt="">` : "<span class=\"ultra-admin-empty-thumb\">Cover</span>"}</td>
                     <td>${esc(adminBrandDisplay(brand))}</td>
                     <td>${esc(item.exhibitionName || item.title || "-")}</td>
-                    <td>${esc(item.year || "-")}</td>
+                    <td>${esc(caseDateText(item) || "-")}</td>
                     <td>${esc(item.area || (item.areaSqm ? `${item.areaSqm} sqm` : "-"))}</td>
                     <td>${esc(item.industry || "-")}</td>
                     <td>${esc(item.country || "-")}</td>
@@ -2894,6 +3131,12 @@
     if (path === "/contact") return contactPage(lang);
     if (path === "/admin") return adminPage(lang);
     return "";
+  }
+
+  function caseModalHTML(lang, forcedId = "") {
+    const id = forcedId;
+    if (!id || !activeCases().some(item => item.id === id)) return "";
+    return `<div class="ultra-case-modal" data-case-modal>${caseDetailPage(id, lang, { modal: true })}</div>`;
   }
 
   function initAboutPage(root) {
@@ -3159,11 +3402,31 @@
     const whySection = servicesRoot.querySelector(".ultra-services-why");
     const whyCards = [...servicesRoot.querySelectorAll("[data-why-card]")];
     if (whySection && whyCards.length) {
+      const whySticky = whySection.querySelector(".ultra-services-sticky");
+      const whySplit = whySection.querySelector(".ultra-services-split");
+      const whyGrid = whySection.querySelector(".ultra-services-why-grid");
       let whyTicking = false;
       const clamp01 = value => Math.min(Math.max(value, 0), 1);
       const updateWhyCards = () => {
         whyTicking = false;
         const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+        if (whySticky && whySplit && whyGrid && window.innerWidth > 1180) {
+          const sectionRect = whySection.getBoundingClientRect();
+          const splitRect = whySplit.getBoundingClientRect();
+          const gridRect = whyGrid.getBoundingClientRect();
+          const releaseTop = Math.max(0, whyGrid.offsetTop + whyGrid.offsetHeight - whySticky.offsetHeight);
+          whySection.style.setProperty("--why-pin-left", `${Math.round(splitRect.left)}px`);
+          whySection.style.setProperty("--why-pin-width", `${Math.round(whySticky.offsetWidth)}px`);
+          whySection.style.setProperty("--why-sticky-height", `${Math.round(whySticky.offsetHeight)}px`);
+          whySection.style.setProperty("--why-release-left", `${Math.round(whySticky.offsetLeft)}px`);
+          whySection.style.setProperty("--why-release-top", `${Math.round(releaseTop)}px`);
+          const hasEntered = sectionRect.top <= 0;
+          const cardsFinished = gridRect.bottom <= viewport * 0.92 || sectionRect.bottom <= viewport;
+          whySection.classList.toggle("is-why-pinned", hasEntered && !cardsFinished);
+          whySection.classList.toggle("is-why-released", hasEntered && cardsFinished);
+        } else {
+          whySection.classList.remove("is-why-pinned", "is-why-released");
+        }
         whyCards.forEach(card => {
           const rect = card.getBoundingClientRect();
           const local = clamp01((viewport * 0.84 - rect.top) / (viewport * 0.34));
@@ -3185,6 +3448,33 @@
     }
   }
 
+  let contactRailScrollBound = false;
+
+  function setContactRailProgress(card) {
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
+    const raw = (viewport * 0.95 - rect.top) / (viewport * 0.45);
+    const progress = Math.min(Math.max(raw, 0), 1);
+    card.style.setProperty("--contact-rail-progress", progress.toFixed(4));
+  }
+
+  function updateContactRails(root = document) {
+    root.querySelectorAll?.(".ultra-contact-process-card").forEach(setContactRailProgress);
+  }
+
+  function initContactPage(root) {
+    if (!root.querySelector(".ultra-contact-process-card")) return;
+    updateContactRails(root);
+    if (!contactRailScrollBound) {
+      contactRailScrollBound = true;
+      window.addEventListener("scroll", () => updateContactRails(document), { passive: true });
+      window.addEventListener("resize", () => updateContactRails(document), { passive: true });
+    }
+  }
+
+  let activeCaseModalId = "";
+
   function renderAppPage(path, lang) {
     applyLocaleAttributes(lang);
     applyDocumentMeta(path, lang);
@@ -3196,10 +3486,16 @@
     }
     document.documentElement.classList.remove("ultra-home-active");
     document.documentElement.classList.add("ultra-app-active");
+    const pathCaseId = path.startsWith("/cases/") ? path.split("/").pop() : "";
+    const modalCaseId = history.state?.ultraCaseModal && activeCaseModalId && activeCaseModalId === pathCaseId ? pathCaseId : "";
     if (path === "/admin") {
       root.innerHTML = `<div class="ultra-site ultra-admin-site"><main class="ultra-main ultra-admin-main">${routeContent(path, lang)}</main></div>`;
+    } else if (modalCaseId) {
+      root.innerHTML = `<div class="ultra-site">${navHTML(lang, "/cases")}<main class="ultra-main">${routeContent("/cases", lang)}</main>${footerHTML(lang)}${caseModalHTML(lang, modalCaseId)}</div>`;
+    } else if (path.startsWith("/cases/")) {
+      root.innerHTML = `<div class="ultra-site ultra-case-detail-site">${navHTML(lang, path)}<main class="ultra-main ultra-case-detail-main">${routeContent(path, lang)}</main></div>`;
     } else {
-      const siteClass = path === "/services" ? "ultra-site ultra-services-site" : "ultra-site";
+      const siteClass = path === "/services" ? "ultra-site ultra-services-site" : path === "/contact" ? "ultra-site ultra-contact-site" : "ultra-site";
       root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     }
     root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
@@ -3208,6 +3504,84 @@
     });
     initAboutPage(root);
     initServicesPage(root);
+    initContactPage(root);
+    initCasesMasonry(root);
+    initCaseDetail(root);
+    if (window.location.hash) scrollToHashTarget(window.location.hash, "auto");
+  }
+
+  let casesMasonryResizeBound = false;
+  let casesMasonryFrame = 0;
+  let caseDetailResizeBound = false;
+  let caseDetailAlignFrame = 0;
+
+  function alignCaseDetailEsc(root = document) {
+    const esc = root.querySelector?.(".ultra-case-esc") || document.querySelector(".ultra-case-esc");
+    const anchor = root.querySelector?.(".ultra-case-detail.is-modal .ultra-case-detail-copy") || document.querySelector(".ultra-case-detail.is-modal .ultra-case-detail-copy");
+    if (!esc || !anchor) return;
+    const left = Math.max(18, Math.floor(anchor.getBoundingClientRect().left));
+    esc.style.left = `${left}px`;
+  }
+
+  function initCaseDetail(root) {
+    alignCaseDetailEsc(root);
+    window.requestAnimationFrame(() => alignCaseDetailEsc(root));
+    if (!caseDetailResizeBound) {
+      caseDetailResizeBound = true;
+      window.addEventListener("resize", () => {
+        window.cancelAnimationFrame(caseDetailAlignFrame);
+        caseDetailAlignFrame = window.requestAnimationFrame(() => alignCaseDetailEsc(document));
+      }, { passive: true });
+    }
+  }
+
+  function scheduleCasesMasonry(root = document) {
+    cancelAnimationFrame(casesMasonryFrame);
+    casesMasonryFrame = requestAnimationFrame(() => resizeCasesMasonry(root));
+  }
+
+  function resizeCasesMasonry(root = document) {
+    const grids = root.matches?.("[data-case-grid]") ? [root] : [...root.querySelectorAll("[data-case-grid]")];
+    grids.forEach(grid => {
+      if (!grid.closest(".ultra-cases-index")) return;
+      const style = getComputedStyle(grid);
+      const gap = parseFloat(style.getPropertyValue("--case-feed-gap")) || 5;
+      const columns = window.matchMedia("(max-width: 640px)").matches ? 1 : window.matchMedia("(max-width: 900px)").matches ? 2 : 3;
+      const width = grid.clientWidth;
+      const columnWidth = (width - gap * (columns - 1)) / columns;
+      const columnHeights = Array(columns).fill(0);
+      grid.querySelectorAll("[data-case-item]").forEach(item => {
+        if (item.classList.contains("is-hidden")) {
+          item.style.width = "";
+          item.style.transform = "";
+          return;
+        }
+        const columnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+        const x = columnIndex * (columnWidth + gap);
+        const y = columnHeights[columnIndex];
+        item.style.width = `${columnWidth}px`;
+        item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        const card = item.querySelector(".ultra-case-card");
+        const height = card?.getBoundingClientRect().height || item.scrollHeight || item.getBoundingClientRect().height;
+        columnHeights[columnIndex] = y + height + gap;
+      });
+      grid.style.height = `${Math.max(0, ...columnHeights) ? Math.max(0, ...columnHeights) - gap : 0}px`;
+    });
+  }
+
+  function initCasesMasonry(root) {
+    if (!root.querySelector(".ultra-cases-index [data-case-grid]")) return;
+    root.querySelectorAll(".ultra-cases-index img").forEach(img => {
+      if (img.complete) return;
+      img.addEventListener("load", () => scheduleCasesMasonry(root), { once: true });
+      img.addEventListener("error", () => scheduleCasesMasonry(root), { once: true });
+    });
+    scheduleCasesMasonry(root);
+    setTimeout(() => scheduleCasesMasonry(root), 350);
+    if (!casesMasonryResizeBound) {
+      casesMasonryResizeBound = true;
+      window.addEventListener("resize", () => scheduleCasesMasonry(document), { passive: true });
+    }
   }
 
   function replaceText(root, map) {
@@ -3551,18 +3925,37 @@
   function updateFilters(field, value) {
     const state = filterState();
     state[field] = value;
-    if (["brand", "industry", "country", "area"].includes(field)) state.more = true;
+    if (["brand", "industry", "region", "area"].includes(field)) state.more = true;
     setCaseFilterQuery(state);
   }
 
   function setCaseFilterQuery(state) {
     const params = new URLSearchParams();
-    ["year", "brand", "industry", "country", "area"].forEach(key => {
+    ["year", "brand", "industry", "region", "area"].forEach(key => {
       const val = state[key];
       if (val && val !== "All") params.set(key, val);
     });
     if (state.more) params.set("more", "1");
     const query = params.toString();
+    history.replaceState({}, "", `${routeLink("/cases")}${query ? "?" + query : ""}`);
+    render();
+  }
+
+  function setCaseModal(id) {
+    const params = new URLSearchParams(window.location.search);
+    if (id) {
+      activeCaseModalId = id;
+      history.pushState({ ultraCaseModal: true }, "", routeLink(`/cases/${id}`));
+      render();
+      return;
+    }
+    activeCaseModalId = "";
+    params.delete("case");
+    const query = params.toString();
+    if (history.state?.ultraCaseModal) {
+      history.back();
+      return;
+    }
     history.replaceState({}, "", `${routeLink("/cases")}${query ? "?" + query : ""}`);
     render();
   }
@@ -3743,7 +4136,9 @@
     if (!form) return;
     form.reset();
     form.elements.id.value = "";
-    form.elements.year.value = new Date().getFullYear();
+    const today = new Date().toISOString().slice(0, 10);
+    form.elements.dateStart.value = today;
+    form.elements.dateEnd.value = today;
     form.querySelector("[data-admin-case-form-title]").textContent = "New Case";
     setAdminImageFieldValue(form, "coverImageUrl", "");
     setAdminGalleryUrls(form.querySelector("[data-admin-gallery-field]"), []);
@@ -3757,7 +4152,9 @@
     form.elements.id.value = item.id || "";
     form.elements.brandId.value = item.brandId || "";
     form.elements.exhibitionName.value = item.exhibitionName || "";
-    form.elements.year.value = item.year || "";
+    const range = caseDateRange(item);
+    form.elements.dateStart.value = range.dateStart || (item.year ? `${item.year}-01-01` : "");
+    form.elements.dateEnd.value = range.dateEnd || range.dateStart || (item.year ? `${item.year}-01-01` : "");
     form.elements.area.value = item.area || (item.areaSqm ? `${item.areaSqm} sqm` : "");
     form.elements.industry.value = item.industry || "";
     form.elements.country.value = item.country || "";
@@ -3786,7 +4183,10 @@
   function collectAdminCase(form) {
     const exhibitionName = form.elements.exhibitionName.value.trim();
     const brand = adminBrandById(form.elements.brandId.value);
-    const id = form.elements.id.value || adminSlug([brand?.englishName, exhibitionName, form.elements.year.value].filter(Boolean).join("-"), "case");
+    const dateStart = form.elements.dateStart.value;
+    const dateEnd = form.elements.dateEnd.value || dateStart;
+    const year = caseDateParts(dateStart)?.year || "";
+    const id = form.elements.id.value || adminSlug([brand?.englishName, exhibitionName, year].filter(Boolean).join("-"), "case");
     const current = adminCases().find(item => item.id === id) || {};
     const areaText = form.elements.area.value.trim();
     const areaNumber = Number((areaText.match(/\d+(?:\.\d+)?/) || [])[0]);
@@ -3794,11 +4194,13 @@
     return {
       ...current,
       id,
-      title: [brand?.englishName, exhibitionName, form.elements.year.value].filter(Boolean).join(" · "),
+      title: [brand?.englishName, exhibitionName, year].filter(Boolean).join(" · "),
       brandId: form.elements.brandId.value,
       brandEnglishName: brand?.englishName || current.brandEnglishName || "",
       exhibitionName,
-      year: Number(form.elements.year.value),
+      dateStart,
+      dateEnd,
+      year: Number(year) || null,
       area: areaText,
       areaSqm: Number.isFinite(areaNumber) ? areaNumber : current.areaSqm ?? null,
       industry: form.elements.industry.value.trim(),
@@ -4331,6 +4733,7 @@
       const grid = loadMoreBtn.closest(".ultra-wrap")?.querySelector("[data-case-grid]");
       const hidden = [...(grid?.querySelectorAll("[data-case-item].is-hidden") || [])].slice(0, 24);
       hidden.forEach(node => node.classList.remove("is-hidden"));
+      if (grid) scheduleCasesMasonry(grid);
       if (!grid?.querySelector("[data-case-item].is-hidden")) loadMoreBtn.remove();
       return;
     }
@@ -4369,14 +4772,28 @@
       render();
       return;
     }
+    if (event.target.closest("[data-case-modal-close]")) {
+      event.preventDefault();
+      setCaseModal("");
+      return;
+    }
     const link = event.target.closest("a[data-route]");
     if (link) {
       const path = link.dataset.route;
       if (path) {
         event.preventDefault();
-        history.pushState({}, "", routeLink(path));
+        if (currentPath() === "/cases" && path.startsWith("/cases/") && link.closest(".ultra-cases-index")) {
+          setCaseModal(path.split("/").pop());
+          return;
+        }
+        const targetHash = link.dataset.scrollTarget || (new URL(link.href, window.location.href)).hash.replace(/^#/, "");
+        history.pushState({}, "", `${routeLink(path)}${targetHash ? `#${targetHash}` : ""}`);
         render();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (targetHash) {
+          scrollToHashTarget(targetHash);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
     }
   });
@@ -4597,6 +5014,12 @@
   });
 
   window.addEventListener("popstate", render);
+  window.addEventListener("keydown", event => {
+    if (event.key === "Escape" && document.querySelector("[data-case-modal]")) {
+      event.preventDefault();
+      setCaseModal("");
+    }
+  });
   window.addEventListener("DOMContentLoaded", render);
   setTimeout(render, 900);
 })();
