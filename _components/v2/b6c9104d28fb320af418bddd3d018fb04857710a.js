@@ -128,7 +128,7 @@ function Jo() {
               "a",
               {
                 href: "#contact",
-                style: { fontFamily: In, fontSize: 17, fontWeight: 400, color: "#030712", background: "#4DA2FF", padding: "11px 26px", textDecoration: "none", flexShrink: 0, letterSpacing: "-0.01em", transition: "opacity 0.15s" },
+                style: { fontFamily: In, fontSize: 17, fontWeight: 400, color: "var(--theme-white)", background: "var(--theme-blue)", padding: "11px 26px", textDecoration: "none", flexShrink: 0, letterSpacing: "-0.01em", transition: "opacity 0.15s" },
                 onMouseEnter: (n) => n.currentTarget.style.opacity = "0.85",
                 onMouseLeave: (n) => n.currentTarget.style.opacity = "1",
                 children: "Start a Project"
@@ -4868,9 +4868,9 @@ function Ru() {
               transition: { duration: 0.5, delay: 0.1 },
               style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 14, marginBottom: 40 },
               children: [
-                /* @__PURE__ */ f("div", { style: { height: 1, width: 32, background: "#4DA2FF", opacity: 0.7 } }),
+                /* @__PURE__ */ f("div", { style: { height: 1, width: 32, background: "var(--theme-blue)", opacity: 0.7 } }),
                 /* @__PURE__ */ f("span", { style: { fontFamily: Mt, fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.7)", letterSpacing: "0.22em", textTransform: "uppercase" }, children: "Exhibition & Abroad" }),
-                /* @__PURE__ */ f("div", { style: { height: 1, width: 32, background: "#4DA2FF", opacity: 0.7 } })
+                /* @__PURE__ */ f("div", { style: { height: 1, width: 32, background: "var(--theme-blue)", opacity: 0.7 } })
               ]
             }
           ),
@@ -4884,7 +4884,7 @@ function Ru() {
               children: [
                 "We make Chinese brands",
                 /* @__PURE__ */ f("br", {}),
-                /* @__PURE__ */ f("span", { style: { color: "#4DA2FF" }, children: "look at home —" }),
+                /* @__PURE__ */ f("span", { style: { color: "var(--theme-blue)" }, children: "look at home —" }),
                 /* @__PURE__ */ f("br", {}),
                 "overseas."
               ]
@@ -4999,7 +4999,7 @@ function Ou() {
       ` })
   ] });
 }
-const Xi = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Zi = "#4DA2FF";
+const Xi = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Zi = "var(--theme-blue)";
 function ju() {
   return /* @__PURE__ */ f(
     "section",
@@ -5074,7 +5074,7 @@ function ju() {
     }
   );
 }
-const qt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Wu = "#4DA2FF", _u = [
+const qt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Wu = "var(--theme-blue)", _u = [
   { value: 15, suffix: "+", label: "Countries & Regions" },
   { value: 200, suffix: "+", label: "Projects Delivered" },
   { value: 50, suffix: "K+㎡", label: "Exhibition Area Built" },
@@ -5195,7 +5195,7 @@ function Uu() {
     )
   ] }) });
 }
-const Jt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Yi = "#4DA2FF", qi = [
+const Jt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Yi = "var(--theme-blue)", qi = [
   {
     title: "Strategy",
     sub: "Brand Planning",
@@ -5533,7 +5533,7 @@ function Qu() {
     }
   );
 }
-const Lt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Qt = "#4DA2FF", th = [
+const Lt = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Qt = "var(--theme-blue)", th = [
   { num: "01", title: "Localized Supply Chain", desc: "Local supplier networks across Europe, North America, and Southeast Asia — reducing logistics risk and compressing delivery timelines." },
   { num: "02", title: "Cross-Timezone Response", desc: "Real-time project coordination across time zones. Clients stay informed at every stage; issues get resolved fast." },
   { num: "03", title: "Controlled Timeline", desc: "From kickoff to strike, every milestone is clearly defined. Gantt-tracked. Overseas construction never becomes a black box." },
@@ -5571,7 +5571,7 @@ function eh() {
     )) })
   ] }) });
 }
-const X = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Ft = "#4DA2FF";
+const X = "'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", Ft = "var(--theme-blue)";
 function nh() {
   return /* @__PURE__ */ f("section", { id: "contact", style: { background: "#ffffff", borderTop: "1px solid rgba(0,0,0,0.07)", padding: "256px 0 176px" }, children: /* @__PURE__ */ S("div", { style: { maxWidth: 1760, margin: "0 auto", padding: "0 40px" }, children: [
     /* @__PURE__ */ f("div", { style: { maxWidth: 760, margin: "0 auto 96px", textAlign: "center" }, children: /* @__PURE__ */ S(j.div, { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: !0 }, transition: { duration: 0.65 }, children: [

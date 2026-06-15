@@ -213,6 +213,8 @@
         Europe: "欧洲",
         "North America": "北美",
         "South America": "南美",
+        Africa: "非洲",
+        Oceania: "大洋洲",
         Asia: "亚洲",
         "Middle East": "中东",
         China: "中国",
@@ -381,6 +383,19 @@
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
+  }
+
+  function navScrambleSlots(label, widths = []) {
+    return [...String(label ?? "")].map((char, index) => {
+      const width = Number(widths[index] || 0);
+      const widthStyle = width ? ` style="--scramble-char-width:${width}px"` : "";
+      return `<span class="ultra-scramble-char is-stable"${widthStyle}>${esc(char)}</span>`;
+    }).join("");
+  }
+
+  function navScrambleText(label) {
+    const safeLabel = esc(label);
+    return `<span class="ultra-scramble-static" aria-hidden="true">${safeLabel}</span><span class="ultra-scramble-live" aria-hidden="true">${navScrambleSlots(label)}</span>`;
   }
 
   function defaultExhibitionLogos() {
@@ -725,22 +740,141 @@
           <img class="ultra-brand-logo" src="${routeLink("/assets/ultra-logo.svg")}" alt="Ultra Expo 皓创展览">
         </a>
         <div class="ultra-links">
-          ${navItems.map(item => `<a href="${routeLink(item.path)}" data-route="${item.path}" class="${activePath === item.path || (item.path === "/cases" && activePath.startsWith("/cases")) ? "is-active" : ""}">${L.nav[item.key]}</a>`).join("")}
+          ${navItems.map(item => {
+            const label = L.nav[item.key];
+            const active = activePath === item.path || (item.path === "/cases" && activePath.startsWith("/cases"));
+            return `<a href="${routeLink(item.path)}" data-route="${item.path}" data-scramble="${esc(label)}" aria-label="${esc(label)}" class="${active ? "is-active" : ""}">${navScrambleText(label)}</a>`;
+          }).join("")}
         </div>
         <div class="ultra-actions">
-          <button class="ultra-lang" type="button" data-locale-toggle="${nextLang}" aria-label="${lang === "zh" ? "Switch to English" : "切换到中文"}">
+          <button class="ultra-lang ultra-split-rolling" type="button" data-locale-toggle="${nextLang}" aria-label="${lang === "zh" ? "Switch to English" : "切换到中文"}">
             <span class="ultra-lang-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img" focusable="false">
                 <circle cx="12" cy="12" r="9"></circle>
                 <path d="M3 12h18M12 3c3 3.25 3 14.75 0 18M12 3c-3 3.25-3 14.75 0 18"></path>
               </svg>
             </span>
-            <span class="ultra-lang-label">${langLabel}</span>
+            <span class="ultra-lang-label">${rollingButtonText(langLabel)}</span>
           </button>
-          <a class="ultra-primary" href="${routeLink("/contact")}" data-route="/contact">${L.cta}</a>
+          <a class="ultra-primary ultra-split-rolling" href="${routeLink("/contact")}" data-route="/contact" aria-label="${esc(L.cta)}">${rollingButtonText(L.cta)}</a>
         </div>
       </nav>
     `;
+  }
+
+  const navScrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/_+-";
+
+  function measureNavScrambleWidths(link, original) {
+    const chars = [...original];
+    const computed = window.getComputedStyle(link);
+    const measurer = document.createElement("span");
+    measurer.className = "ultra-scramble-measurer";
+    measurer.style.font = computed.font;
+    measurer.style.fontKerning = computed.fontKerning;
+    measurer.style.fontFeatureSettings = computed.fontFeatureSettings;
+    measurer.style.fontVariantNumeric = computed.fontVariantNumeric;
+    document.body.appendChild(measurer);
+    const widths = chars.map(char => {
+      measurer.textContent = char === " " ? "\u00a0" : char;
+      return Math.max(1, Math.ceil(measurer.getBoundingClientRect().width * 100) / 100);
+    });
+    measurer.remove();
+    return widths;
+  }
+
+  function navScrambleWidths(link, original) {
+    const saved = String(link.dataset.scrambleSlots || "").split(",").map(Number).filter(width => width > 0);
+    if (saved.length === [...original].length) return saved;
+    const staticText = link.querySelector(".ultra-scramble-static");
+    const textWidth = staticText?.getBoundingClientRect?.().width || link.getBoundingClientRect().width;
+    const slotWidth = Math.max(1, textWidth / Math.max([...original].length, 1));
+    return [...original].map(() => slotWidth);
+  }
+
+  function scrambleFrameText(original, frame, totalFrames, widths = []) {
+    const doneCount = Math.floor((frame / totalFrames) * original.length);
+    return [...original].map((char, index) => {
+      const width = Number(widths[index] || 0);
+      const widthStyle = width ? ` style="--scramble-char-width:${width}px"` : "";
+      if (index < doneCount || /\s/.test(char)) return `<span class="ultra-scramble-char is-stable"${widthStyle}>${esc(char)}</span>`;
+      const shouldScramble = Math.random() < 0.28;
+      const output = shouldScramble ? navScrambleChars[Math.floor(Math.random() * navScrambleChars.length)] : char;
+      const tone = shouldScramble ? (Math.random() < 0.67 ? " is-blue" : " is-dark") : "";
+      return `<span class="ultra-scramble-char${tone}"${widthStyle}>${esc(output)}</span>`;
+    }).join("");
+  }
+
+  function stopNavScramble(link, restore = true) {
+    const frameId = Number(link.dataset.scrambleFrame || 0);
+    if (frameId) window.cancelAnimationFrame(frameId);
+    delete link.dataset.scrambleFrame;
+    delete link.dataset.scrambleStarted;
+    link.classList.remove("is-scrambling");
+    if (restore) {
+      const original = link.dataset.original || link.dataset.scramble || link.getAttribute("aria-label") || link.textContent || "";
+      const live = link.querySelector(".ultra-scramble-live");
+      if (live) live.innerHTML = navScrambleSlots(original, navScrambleWidths(link, original));
+    }
+  }
+
+  function playNavScramble(link) {
+    const live = link.querySelector(".ultra-scramble-live");
+    if (!live) return;
+    const original = link.dataset.original || link.dataset.scramble || live.textContent.trim();
+    if (!original) return;
+    link.dataset.original = original;
+    stopNavScramble(link, false);
+    link.classList.add("is-scrambling");
+    const widths = navScrambleWidths(link, original);
+    const totalFrames = 10;
+    const frameMs = 24;
+    let frame = 0;
+    let lastTick = 0;
+    const tick = time => {
+      if (!lastTick || time - lastTick >= frameMs) {
+        live.innerHTML = scrambleFrameText(original, frame, totalFrames, widths);
+        frame += 1;
+        lastTick = time;
+      }
+      if (frame <= totalFrames) {
+        link.dataset.scrambleFrame = String(window.requestAnimationFrame(tick));
+        return;
+      }
+      live.innerHTML = navScrambleSlots(original, widths);
+      stopNavScramble(link, false);
+    };
+    link.dataset.scrambleFrame = String(window.requestAnimationFrame(tick));
+  }
+
+  function initNavScramble(root = document) {
+    const canHover = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches;
+    root.querySelectorAll?.(".ultra-links a[data-scramble]").forEach(link => {
+      const original = link.dataset.original || link.dataset.scramble || link.getAttribute("aria-label") || "";
+      const live = link.querySelector(".ultra-scramble-live");
+      const staticText = link.querySelector(".ultra-scramble-static");
+      if (!original || !live || !staticText) return;
+      link.dataset.original = original;
+      const widths = navScrambleWidths(link, original);
+      live.innerHTML = navScrambleSlots(original, widths);
+      window.requestAnimationFrame(() => {
+        const width = Math.ceil(staticText.getBoundingClientRect().width);
+        if (width) {
+          const slots = measureNavScrambleWidths(link, original);
+          link.dataset.scrambleSlots = slots.join(",");
+          link.style.setProperty("--scramble-width", `${width + 10}px`);
+          live.innerHTML = navScrambleSlots(original, slots);
+        }
+      });
+      if (link.dataset.scrambleReady === "true") return;
+      link.dataset.scrambleReady = "true";
+      if (canHover) {
+        link.addEventListener("mouseenter", () => playNavScramble(link), { passive: true });
+      }
+      link.addEventListener("focus", () => {
+        if (link.matches(":focus-visible")) playNavScramble(link);
+      }, { passive: true });
+      link.addEventListener("blur", () => stopNavScramble(link), { passive: true });
+    });
   }
 
   function homeWhyHTML(lang) {
@@ -950,40 +1084,44 @@
         icon: "strategy",
         code: "01",
         enTitle: "Strategy",
-        zhTitle: "Strategy",
+        zhTitle: "策略",
         enSub: "Brand Planning",
-        zhSub: "出海策略 · 内容创意 · 展会规划",
+        zhSub: "品牌策划",
         enDesc: "Overseas strategy · Content & creative direction · Exhibition planning & timeline management",
+        zhLead: "出海策略 · 内容创意 · 展会规划",
         zhDesc: "我们帮助客户在空间设计开始之前明确参展目标、品牌信息层级、产品表达与观众动线，让展台真正服务品牌出海目标。"
       },
       {
         icon: "design",
         code: "02",
         enTitle: "Design",
-        zhTitle: "Design",
+        zhTitle: "设计",
         enSub: "Spatial Design",
-        zhSub: "概念设计 · 3D 渲染 · 施工图深化",
+        zhSub: "空间设计",
         enDesc: "Concept design · 3D visualization & rendering · Construction drawing package",
+        zhLead: "概念设计 · 3D 渲染 · 施工图深化",
         zhDesc: "我们将品牌语言转化为空间结构，结合视觉识别、产品陈列、灯光材料与观众动线进行系统设计。"
       },
       {
         icon: "abroad",
         code: "03",
         enTitle: "Abroad",
-        zhTitle: "Abroad",
+        zhTitle: "海外落地",
         enSub: "Overseas Execution",
-        zhSub: "本地供应 · 清关物流 · 跨时区项目管理",
+        zhSub: "海外执行",
         enDesc: "Local sourcing & supplier management · Customs clearance & logistics · Cross-timezone project coordination",
+        zhLead: "本地供应 · 清关物流 · 跨时区项目管理",
         zhDesc: "通过本地化供应链、海外伙伴与项目管理，我们降低跨国展会交付中的不确定性。"
       },
       {
         icon: "build",
         code: "04",
         enTitle: "Build",
-        zhTitle: "Build",
+        zhTitle: "搭建",
         enSub: "Engineering & Build",
-        zhSub: "工厂预制 · 现场施工 · 拆撤回运",
+        zhSub: "工程搭建",
         enDesc: "Factory prefabrication · On-site construction & QC · Strike, pack & return logistics",
+        zhLead: "工厂预制 · 现场施工 · 拆撤回运",
         zhDesc: "从工厂预制到现场搭建，我们关注设计还原、工期控制、材料质量和展期稳定运行。"
       }
     ];
@@ -991,20 +1129,20 @@
       <section class="ultra-home-services" data-ultra-home-services data-ultra-static-en>
         <div class="ultra-home-services-inner">
           <div class="ultra-home-services-head">
-            <div class="ultra-home-services-kicker">END-TO-END EXHIBITION SERVICES</div>
+            <div class="ultra-home-services-kicker">${zh ? "一体化展会服务" : "END-TO-END EXHIBITION SERVICES"}</div>
             <h2>${zh ? "从策略到现场的全球展会交付服务" : "End-to-end Exhibition Services"}</h2>
             <p>${zh ? "海外展会的难点不只是设计，而是策略、空间设计、生产、物流、清关、现场施工和跨时区沟通之间的衔接。Ultra Expo 将这些环节整合进同一套交付体系。" : "Overseas exhibitions are not only about design. Ultra Expo integrates strategy, spatial design, production, logistics, customs clearance, on-site construction, and cross-time-zone communication into one delivery system."}</p>
           </div>
           <div class="ultra-home-services-list">
-            ${serviceItems.map(item => `
-              <article class="ultra-home-service-row">
+            ${serviceItems.map((item, index) => `
+              <article class="ultra-home-service-row ultra-character-block-reveal" data-ultra-character-block-reveal style="--reveal-group-delay:${index * 135}ms;--char-reveal-step:28ms;--block-reveal-duration:0.42s;">
                 <div class="ultra-home-service-code">${item.code}</div>
                 <div class="ultra-home-service-title">
-                  <h3>${zh ? item.zhTitle : item.enTitle}</h3>
-                  <span>${item.enSub}</span>
+                  <h3 data-reveal-text>${zh ? item.zhTitle : item.enTitle}</h3>
+                  <span>${esc(zh ? item.zhSub : item.enSub)}</span>
                 </div>
                 <div class="ultra-home-service-copy">
-                  <strong>${item.enDesc}</strong>
+                  <strong>${esc(zh ? item.zhLead : item.enDesc)}</strong>
                   <p>${zh ? item.zhDesc : item.enDesc}</p>
                 </div>
                 <a class="ultra-home-service-icon" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(zh ? `${item.zhTitle}服务详情` : `${item.enTitle} service details`)}">
@@ -1061,6 +1199,7 @@
       injected.style.display = "";
       delete injected.dataset.ultraOriginalServices;
       injected.setAttribute("data-animate", "");
+      initUltraTypeReveal(injected);
     }
   }
 
@@ -1182,11 +1321,25 @@
       : "Ultra Expo delivers the full stack for Chinese brands going global \u2014 strategy, spatial design, and end-to-end local build.";
   }
 
+  function rollingButtonText(label) {
+    const chars = Array.from(label || "");
+    const splitText = chars.map((char, index) => {
+      if (/\s/.test(char)) return `<span class="ultra-rolling-btn-space" aria-hidden="true">&nbsp;</span>`;
+      const safeChar = esc(char);
+      return `<span class="ultra-rolling-btn-char" style="--i:${index}" aria-hidden="true"><span class="ultra-rolling-btn-char-current">${safeChar}</span><span class="ultra-rolling-btn-char-duplicate">${safeChar}</span></span>`;
+    }).join("");
+    return `
+      <span class="ultra-rolling-btn-text" aria-hidden="true">${splitText}</span>
+    `;
+  }
+
   function homeHeroHTML(lang) {
     const zh = lang === "zh";
     const heroTitle = homeHeroTitle(lang);
     const titleText = heroTitle.join(" ");
     const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
+    const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
+    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
     return `
       <section class="ultra-home-hero-section ultra-home-hero-rebuilt-section" data-ultra-home-hero data-animate>
         <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
@@ -1199,8 +1352,8 @@
           <div class="ultra-home-hero-rebuilt-bottom">
             <p>${esc(homeHeroCopy(lang))}</p>
             <div class="ultra-home-hero-rebuilt-actions">
-              <a class="ultra-home-hero-rebuilt-primary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases"}</a>
-              <a class="ultra-home-hero-rebuilt-secondary" href="${routeLink("/services")}" data-route="/services">${zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services"}</a>
+              <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
+              <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
             </div>
           </div>
         </div>
@@ -1312,6 +1465,7 @@
       section.setAttribute("data-animate", "");
     });
     bindHomeHeroSection(container.querySelector(".ultra-home-hero-rebuilt-section"));
+    initUltraTypeReveal(container);
   }
 
   function pageHero(label, title, description, lang) {
@@ -1415,6 +1569,8 @@
       wechat: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.7 5.2c-4 0-7.2 2.6-7.2 5.8 0 1.8 1 3.4 2.6 4.4l-.7 2.2 2.6-1.3c.8.2 1.7.4 2.7.4.3 0 .6 0 .9-.1-.3-.7-.5-1.4-.5-2.1 0-2.9 2.9-5.2 6.4-5.2.1 0 .3 0 .4.1-.9-2.5-3.7-4.2-7.2-4.2Zm-2.5 4.7c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm5 0c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm4.5.8c-3 0-5.3 1.8-5.3 4.1s2.4 4.1 5.3 4.1c.7 0 1.4-.1 2-.3l2.1 1-.5-1.8c1.2-.8 1.9-1.9 1.9-3.1 0-2.2-2.5-4-5.5-4Zm-1.8 3.5c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Zm3.8 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Z"/></svg>`,
       linkedin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15v-15Zm3.1 6v6.5h2v-6.5h-2Zm1-3.2c-.7 0-1.1.4-1.1 1s.4 1 1.1 1 1.1-.4 1.1-1-.4-1-1.1-1Zm2.7 3.2v6.5h2v-3.5c0-.9.5-1.5 1.3-1.5.7 0 1.1.5 1.1 1.5v3.5h2v-3.8c0-2-1.1-2.9-2.6-2.9-.9 0-1.5.4-1.8 1v-.8h-2Z"/></svg>`
     };
+    const bottomPrimaryLabel = zh ? "\u63d0\u4ea4\u9879\u76ee\u9700\u6c42" : "Submit Project Brief";
+    const bottomSecondaryLabel = zh ? "\u53d1\u9001\u90ae\u4ef6" : "Send an Email";
     return `
       <section class="ultra-bottom-cta" data-ultra-bottom>
         <div class="ultra-bottom-ambient" aria-hidden="true"></div>
@@ -1422,8 +1578,8 @@
           <div class="ultra-bottom-cta-copy">
             <h2>${zh ? "让我们一起为你的品牌，在全球搭建舞台。" : "Let’s build your global stage."}</h2>
             <div class="ultra-bottom-actions">
-              <a class="ultra-bottom-primary" href="${routeLink("/contact")}" data-route="/contact">${zh ? "提交项目需求" : "Submit Project Brief"}<span aria-hidden="true">→</span></a>
-              <a class="ultra-bottom-secondary" href="mailto:jack@ultraexpo.com">${zh ? "发送邮件" : "Send an Email"}</a>
+              <a class="ultra-bottom-primary ultra-split-rolling" href="${routeLink("/contact")}" data-route="/contact" aria-label="${esc(bottomPrimaryLabel)}">${rollingButtonText(bottomPrimaryLabel)}</a>
+              <a class="ultra-bottom-secondary ultra-split-rolling" href="mailto:jack@ultraexpo.com" aria-label="${esc(bottomSecondaryLabel)}">${rollingButtonText(bottomSecondaryLabel)}</a>
             </div>
           </div>
           <p class="ultra-bottom-summary">${zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间，Ultra Expo 将为你评估设计与海外落地方案。" : "Tell us your exhibition, country, city, booth size, and project timeline. Ultra Expo will scope your design and overseas delivery plan."}</p>
@@ -1540,10 +1696,10 @@
         const bOrder = Number(b?.featuredBrandOrder ?? b?.brandOrder ?? b?.order ?? 9999);
         return (Number.isFinite(aOrder) ? aOrder : 9999) - (Number.isFinite(bOrder) ? bOrder : 9999);
       });
-    const sectionIntro = (kicker, title, body) => `
-      <div class="ultra-about-head" data-about-reveal>
+    const sectionIntro = (kicker, title, body, options = {}) => `
+      <div class="ultra-about-head${options.revealTitle ? " ultra-character-block-reveal" : ""}" data-about-reveal${options.revealTitle ? " data-ultra-character-block-reveal" : ""}>
         ${kicker ? `<div class="ultra-about-kicker">${esc(kicker)}</div>` : ""}
-        <h2>${esc(title)}</h2>
+        <h2${options.revealTitle ? " data-reveal-text" : ""}>${esc(title)}</h2>
         ${body ? `<p>${esc(body)}</p>` : ""}
       </div>
     `;
@@ -1589,7 +1745,7 @@
               <h1>${zh ? "\u8ba9<span>\u4e2d\u56fd\u54c1\u724c</span><br>\u5728<span>\u6d77\u5916</span>\u5448\u73b0\u672c\u5730\u54c1\u724c\u59ff\u6001" : "We make <span>Chinese brands</span><br>look at home <span>overseas.</span>"}</h1>
               <p>${zh ? "\u7693\u521b\u5c55\u89c8 Ultra Expo \u6210\u7acb\u4e8e\u4e2d\u56fd\u82cf\u5dde\uff0c\u4e13\u6ce8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u7684\u6d77\u5916\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u96f6\u552e\u7a7a\u95f4\u9879\u76ee\u3002\u6211\u4eec\u63d0\u4f9b\u4ece\u7b56\u7565\u3001\u7a7a\u95f4\u8bbe\u8ba1\u5230\u6d77\u5916\u672c\u5730\u5316\u751f\u4ea7\u3001\u7269\u6d41\u3001\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u7684\u4e00\u4f53\u5316\u670d\u52a1\u3002" : "Ultra Expo is a global exhibition delivery team based in Suzhou, China. We help Chinese brands show up professionally in overseas exhibitions, product launches, and retail spaces, from strategy and spatial design to localized production, logistics, construction, and on-site delivery."}</p>
               <div class="ultra-about-stats">
-                ${aboutStats.map((stat, index) => `<div><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong>${esc(stat[0])}</strong><span>${esc(stat[1])}</span></div>`).join("")}
+                ${aboutStats.map((stat, index) => `<div class="ultra-split-rolling"><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong class="ultra-about-stat-number" aria-label="${esc(stat[0])}">${rollingButtonText(stat[0])}</strong><span>${esc(stat[1])}</span></div>`).join("")}
               </div>
             </div>
             <div class="ultra-about-system" aria-hidden="true">
@@ -1604,7 +1760,7 @@
         <section class="ultra-section ultra-about-section ultra-about-statement">
           <div class="ultra-about-wrap">
             ${sectionIntro(zh ? "\u6211\u4eec\u662f\u8c01" : "WHO WE ARE", zh ? "\u4e00\u652f\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u800c\u751f\u7684\u5168\u7403\u5c55\u4f1a\u843d\u5730\u56e2\u961f" : "A global exhibition team built for Chinese brands going abroad.", zh ? "\u6211\u4eec\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916\u5e02\u573a\u7684\u9996\u6b21\u4eae\u76f8\u3001\u6301\u7eed\u53c2\u5c55\u4e0e\u7a7a\u95f4\u843d\u5730\u3002\u76f8\u6bd4\u5355\u4e00\u8bbe\u8ba1\u516c\u53f8\u6216\u672c\u5730\u642d\u5efa\u5546\uff0c\u7693\u521b\u66f4\u5173\u6ce8\u4ece\u54c1\u724c\u7b56\u7565\u3001\u7a7a\u95f4\u4f53\u9a8c\u3001\u4f9b\u5e94\u94fe\u3001\u5de5\u7a0b\u6267\u884c\u5230\u73b0\u573a\u7ba1\u7406\u7684\u5b8c\u6574\u94fe\u8def\u3002" : "We support Chinese brands as they enter, present, and grow in overseas markets. Unlike a single design studio or a local booth contractor, Ultra Expo focuses on the full delivery chain: brand strategy, spatial experience, supply chain coordination, engineering execution, and on-site management.")}
-            <div class="ultra-about-statement-points" data-about-reveal>
+            <div class="ultra-about-statement-points ultra-character-block-reveal" data-ultra-character-block-reveal>
               ${(zh ? [
                 ["\u4ee5\u54c1\u724c\u7b56\u7565\u5f00\u59cb", "\u5728\u7a7a\u95f4\u8bbe\u8ba1\u4e4b\u524d\u5148\u660e\u786e\u5c55\u4f1a\u76ee\u6807\u3001\u4ea7\u54c1\u4e3b\u7ebf\u3001\u89c2\u4f17\u8def\u5f84\u4e0e\u5e02\u573a\u8bed\u5883\u3002"],
                 ["\u628a\u8bbe\u8ba1\u8f6c\u6210\u53ef\u843d\u5730\u7684\u5de5\u7a0b", "\u6982\u5ff5\u3001\u6750\u6599\u3001\u7ed3\u6784\u3001\u9884\u5236\u548c\u73b0\u573a\u8282\u70b9\u88ab\u7eb3\u5165\u540c\u4e00\u5957\u4ea4\u4ed8\u8282\u594f\u3002"],
@@ -1615,7 +1771,7 @@
                 ["Translate design into buildable engineering", "Concept, material, structure, prefabrication, and site milestones are managed in one delivery rhythm."],
                 ["Stay locally responsive overseas", "Connect local supply, customs, logistics, build partners, and on-site project management."],
                 ["Keep the brand stable through opening day", "Reduce information loss across borders so clients work with one accountable team from plan to site."]
-              ]).map(point => `<article><h3>${esc(point[0])}</h3><p>${esc(point[1])}</p></article>`).join("")}
+              ]).map((point, index) => `<article><h3 data-reveal-text style="--line-index:${index}">${esc(point[0])}</h3><p>${esc(point[1])}</p></article>`).join("")}
             </div>
             <div class="ultra-about-metric-row" data-about-reveal>${aboutStats.slice(0, 3).map(stat => `<article><strong>${esc(stat[0])}</strong><span>${esc(stat[1])}</span></article>`).join("")}</div>
           </div>
@@ -1625,9 +1781,9 @@
             ${sectionIntro("", zh ? "\u4e00\u4f53\u5316\u5c55\u4f1a\u51fa\u6d77\u670d\u52a1" : "End-to-End Exhibition Services", zh ? "\u5176\u4e2d\u300c\u6d77\u5916\u843d\u5730\u300d\u662f\u6211\u4eec\u7684\u6838\u5fc3\u5dee\u5f02\u5316\u80fd\u529b\u3002" : "ABROAD is where our global delivery capability becomes the key difference.")}
             <div class="ultra-about-service-grid">${serviceCards.map((card, index) => {
               const media = configuredServiceMedia[index] || {};
-              return `<article class="${card[0] === "ABROAD" ? "is-featured" : ""}" data-about-reveal style="--service-card-index:${index}">
+              return `<article class="${card[0] === "ABROAD" ? "is-featured " : ""}ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal style="--service-card-index:${index}">
                 <div class="ultra-about-service-card-top">
-                  <h3>${esc(card[1])}</h3>
+                  <h3 data-reveal-text>${esc(card[1])}</h3>
                   <span class="ultra-about-card-icon icon-${esc(card[0].toLowerCase())}" aria-hidden="true"></span>
                 </div>
                 <div class="ultra-about-service-card-copy">
@@ -1702,7 +1858,7 @@
         </section>
         <section class="ultra-section ultra-about-section ultra-about-trust">
           <div class="ultra-about-wrap">
-            ${sectionIntro(zh ? "\u8ba4\u8bc1\u4e0e\u4f53\u7cfb" : "CERTIFICATIONS", zh ? "\u4ee5\u6807\u51c6\u4ea4\u4ed8" : "Built with standards.", zh ? "\u6211\u4eec\u7684\u4ea4\u4ed8\u6d41\u7a0b\u7531\u8ba4\u53ef\u7684\u7ba1\u7406\u4f53\u7cfb\u3001\u884c\u4e1a\u4f1a\u5458\u8d44\u8d28\u548c\u56fd\u9645\u8fd0\u8425\u4e3b\u4f53\u652f\u6491\uff0c\u5e2e\u52a9\u6d77\u5916\u9879\u76ee\u4fdd\u6301\u53ef\u9760\u3001\u53ef\u8ffd\u6eaf\u548c\u53ef\u7ba1\u7406\u3002" : "Our delivery process is supported by recognized management systems, industry memberships, and international operating entities, helping overseas projects stay reliable, traceable, and manageable.")}
+            ${sectionIntro(zh ? "\u8ba4\u8bc1\u4e0e\u4f53\u7cfb" : "CERTIFICATIONS", zh ? "\u4ee5\u6807\u51c6\u4ea4\u4ed8" : "Built with standards.", zh ? "\u6211\u4eec\u7684\u4ea4\u4ed8\u6d41\u7a0b\u7531\u8ba4\u53ef\u7684\u7ba1\u7406\u4f53\u7cfb\u3001\u884c\u4e1a\u4f1a\u5458\u8d44\u8d28\u548c\u56fd\u9645\u8fd0\u8425\u4e3b\u4f53\u652f\u6491\uff0c\u5e2e\u52a9\u6d77\u5916\u9879\u76ee\u4fdd\u6301\u53ef\u9760\u3001\u53ef\u8ffd\u6eaf\u548c\u53ef\u7ba1\u7406\u3002" : "Our delivery process is supported by recognized management systems, industry memberships, and international operating entities, helping overseas projects stay reliable, traceable, and manageable.", { revealTitle: true })}
             <div class="ultra-about-cert-grid">${certs.map((cert, index) => `<article data-about-reveal style="--about-card-index:${index}"><strong>${esc(cert[0])}</strong><span>${esc(cert[1])}</span></article>`).join("")}</div>
           </div>
         </section>
@@ -1752,9 +1908,23 @@
   function servicesPage(lang) {
     const zh = lang === "zh";
     const text = (en, cn) => zh ? cn : en;
+    const serviceKicker = value => zh ? ({
+      "THE CHALLENGE": "项目难点",
+      "THE ULTRA SOLUTION": "Ultra 解决方案",
+      "SERVICE PILLARS": "服务板块",
+      "DETAILED SERVICE PROCESS": "服务流程",
+      "WHAT WE DELIVER": "交付成果",
+      "WHY ULTRA": "为什么选择 Ultra"
+    }[value] || value) : value;
+    const stageLabel = value => zh ? String(value || "")
+      .replace(/STRATEGY/g, "策略")
+      .replace(/DESIGN/g, "设计")
+      .replace(/ABROAD/g, "海外")
+      .replace(/BUILD/g, "搭建")
+      .replace(/SYSTEM/g, "系统") : value;
     const serviceIntro = (kicker, title, cnTitle, copy, cnCopy) => `
       <div class="ultra-services-head" data-services-reveal>
-        <div class="ultra-services-kicker">${esc(kicker)}</div>
+        <div class="ultra-services-kicker">${esc(serviceKicker(kicker))}</div>
         <h2>${esc(text(title, cnTitle))}</h2>
         ${copy ? `<p>${esc(text(copy, cnCopy))}</p>` : ""}
       </div>
@@ -1776,7 +1946,8 @@
         description: "Before space design begins, Ultra clarifies exhibition goals, market context, product focus, audience paths, and the message hierarchy that should be remembered.",
         zhDescription: "从展会目标、品牌定位、产品重点、观众路径和内容表达出发，先明确为什么参展、如何表达、用什么空间语言建立记忆点。",
         steps: ["01", "02"],
-        tag: "PLANNING"
+        tag: "PLANNING",
+        zhTag: "前期规划"
       },
       {
         key: "design",
@@ -1788,7 +1959,8 @@
         description: "Brand strategy becomes spatial structure, product display, visual focus, and a visitor journey that can be built, reviewed, and controlled.",
         zhDescription: "将品牌策略转化为空间结构、视觉焦点、产品展示和观众动线，确保方案既有展示效果，也能被真实建造。",
         steps: ["03", "04", "05", "06"],
-        tag: "BUILDABLE"
+        tag: "BUILDABLE",
+        zhTag: "可落地方案"
       },
       {
         key: "abroad",
@@ -1801,6 +1973,7 @@
         zhDescription: "海外落地是 Ultra 的核心差异化能力。我们关注的不只是方案设计，而是方案如何跨越国家、供应链、语言、时区和现场规则，最终稳定呈现。",
         steps: ["07", "08", "09", "10", "11"],
         tag: "CORE DIFFERENCE",
+        zhTag: "核心差异",
         isCore: true
       },
       {
@@ -1813,7 +1986,8 @@
         description: "From engineering development and material production to site build, maintenance, dismantling, and return logistics, every build detail stays under control.",
         zhDescription: "从工程深化、材料制作到现场搭建、开展维护和拆撤回运，控制制作质量、现场效率和最终呈现效果。",
         steps: ["06", "07", "09", "11"],
-        tag: "ENGINEERING"
+        tag: "ENGINEERING",
+        zhTag: "工程执行"
       }
     ];
     const processItems = [
@@ -1850,7 +2024,7 @@
           <div class="ultra-services-hero-bg" aria-hidden="true"></div>
           <div class="ultra-services-wrap ultra-services-hero-grid">
             <div class="ultra-services-hero-copy">
-              <div class="ultra-services-kicker">SERVICES / GLOBAL EXHIBITION DELIVERY</div>
+              <div class="ultra-services-kicker">${esc(text("SERVICES / GLOBAL EXHIBITION DELIVERY", "业务能力 / 全球展会交付"))}</div>
               <h1>${esc(text("From strategy to build. One system for overseas exhibitions.", "从策略到搭建，一套完整的海外展会交付系统。"))}</h1>
               <p>${esc(text("Ultra Expo helps Chinese brands turn overseas exhibition ideas into buildable, localized, and on-site-ready brand experiences.", "Ultra Expo 为中国品牌提供从出海策略、空间设计、海外本地化落地到工程搭建的一体化展会服务，让品牌在海外展会中呈现出更专业、更本土、更稳定的形象。"))}</p>
               <strong>${esc(text("We don't just build booths. We make Chinese brands look at home overseas.", "我们不只是展台搭建商，我们让中国品牌在海外呈现出本土品牌的姿态。"))}</strong>
@@ -1862,12 +2036,12 @@
             <div class="ultra-services-system" data-services-system aria-label="${esc(text("Ultra delivery system", "Ultra 交付系统"))}">
               <div class="ultra-services-system-center">
                 <span>ULTRA</span>
-                <strong>DELIVERY SYSTEM</strong>
+                <strong>${esc(text("DELIVERY SYSTEM", "交付系统"))}</strong>
               </div>
               ${servicePillars.map((pillar, index) => `
                 <button type="button" class="ultra-services-system-node node-${pillar.key} ${pillar.isCore ? "is-active" : ""}" data-system-node="${esc(pillar.key)}">
-                  <span>${esc(pillar.title)}</span>
-                  <small>${esc(pillar.isCore ? "CORE DIFFERENCE" : pillar.tag)}</small>
+                  <span>${esc(zh ? pillar.zhTitle : pillar.title)}</span>
+                  <small>${esc(zh ? pillar.zhTag : (pillar.isCore ? "CORE DIFFERENCE" : pillar.tag))}</small>
                 </button>
               `).join("")}
               ${activeForSystem.map((key, index) => `<i class="ultra-services-system-line line-${key}" aria-hidden="true"></i>`).join("")}
@@ -1884,8 +2058,7 @@
               ${challengeItems.map(item => `
                 <article class="ultra-services-problem-card" data-services-reveal>
                   <span>${esc(item[0])}</span>
-                  <h3>${esc(item[1])}</h3>
-                  ${zh ? `<h4>${esc(item[2])}</h4>` : ""}
+                  <h3>${esc(zh ? item[2] : item[1])}</h3>
                   <p>${esc(zh ? item[4] : item[3])}</p>
                 </article>
               `).join("")}
@@ -1897,16 +2070,16 @@
           <div class="ultra-services-wrap">
             <div class="ultra-services-solution-panel" data-services-reveal>
               <div>
-                <div class="ultra-services-kicker">THE ULTRA SOLUTION</div>
+                <div class="ultra-services-kicker">${esc(serviceKicker("THE ULTRA SOLUTION"))}</div>
                 <h2>${esc(text("One team. One timeline. One accountable delivery system.", "一个团队，一条项目线，一个负责到底的交付系统。"))}</h2>
                 <p>${esc(text("Ultra connects strategy, spatial design, overseas localization, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将品牌策划、空间设计、海外落地和工程搭建整合在同一条项目链路中。客户面对的不是多个割裂供应商，而是一套可控、可追踪、可落地的服务系统。"))}</p>
               </div>
               <div class="ultra-services-flow-line" aria-hidden="true">
                 ${servicePillars.map((pillar, index) => `<span class="${pillar.isCore ? "is-core" : ""}" data-solution-card="${esc(pillar.key)}" style="--solution-index:${index}">
                   <b>${esc(pillar.index)}</b>
-                  <em>${esc(pillar.tag)}</em>
-                  <strong>${esc(pillar.title)}</strong>
-                  <small>${esc(pillar.subtitle.split("/").slice(0, 2).join(" / ").trim())}</small>
+                  <em>${esc(zh ? pillar.zhTag : pillar.tag)}</em>
+                  <strong>${esc(zh ? pillar.zhTitle : pillar.title)}</strong>
+                  <small>${esc(zh ? pillar.zhSubtitle.split("/").slice(0, 2).join(" / ").trim() : pillar.subtitle.split("/").slice(0, 2).join(" / ").trim())}</small>
                 </span>`).join("<i></i>")}
               </div>
             </div>
@@ -1920,14 +2093,13 @@
             ${serviceIntro("SERVICE PILLARS", "Turning cross-border uncertainty into", "把跨境不确定性转化为可控交付。", "Ultra's service is not a set of isolated capabilities. Strategy, design, abroad execution, and build work together as one managed project system.", "Ultra 的服务不是孤立的单点能力，而是由策略、设计、海外落地和工程搭建共同构成的项目交付体系。")}
             <div class="ultra-services-pillar-grid">
               ${servicePillars.map(pillar => `
-                <article id="${esc({ strategy: "brand-strategy", design: "space-design", abroad: "overseas-delivery", build: "engineering-build" }[pillar.key] || pillar.key)}" class="ultra-services-pillar ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
+                <article id="${esc({ strategy: "brand-strategy", design: "space-design", abroad: "overseas-delivery", build: "engineering-build" }[pillar.key] || pillar.key)}" class="ultra-services-pillar ultra-character-block-reveal ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-ultra-character-block-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
                   <span class="ultra-services-pillar-icon" aria-hidden="true"></span>
                   <div class="ultra-services-pillar-top">
                     <span>${esc(pillar.index)}</span>
-                    <b>${esc(pillar.tag)}</b>
+                    <b>${esc(zh ? pillar.zhTag : pillar.tag)}</b>
                   </div>
-                  <h3>${esc(pillar.title)}</h3>
-                  ${zh ? `<h4>${esc(pillar.zhTitle)}</h4>` : ""}
+                  <h3 data-reveal-text>${esc(zh ? pillar.zhTitle : pillar.title)}</h3>
                   <strong>${esc(text(pillar.subtitle, pillar.zhSubtitle))}</strong>
                   <p>${esc(text(pillar.description, pillar.zhDescription))}</p>
                   <div class="ultra-services-step-tags">${pillar.steps.map(step => `<span>${esc(step)}</span>`).join("")}</div>
@@ -1944,15 +2116,14 @@
               ${processItems.map(item => {
                 const isAbroad = item[3].includes("ABROAD");
                 return `<article class="ultra-services-process-card ${isAbroad ? "is-abroad" : ""}" data-services-reveal data-process-card data-step="${esc(item[0])}">
-                  <div class="ultra-services-process-top"><span>${esc(item[0])}</span><b>${esc(item[3])}</b></div>
-                  <h3>${esc(item[1])}</h3>
-                  ${zh ? `<h4>${esc(item[2])}</h4>` : ""}
+                  <div class="ultra-services-process-top"><span>${esc(item[0])}</span><b>${esc(stageLabel(item[3]))}</b></div>
+                  <h3>${esc(zh ? item[2] : item[1])}</h3>
                   <p>${esc(zh ? item[5] : item[4])}</p>
                   <i aria-hidden="true">&#8594;</i>
                 </article>`;
               }).join("")}
               <article class="ultra-services-process-card ultra-services-system-card" data-services-reveal data-process-card>
-                <div class="ultra-services-process-top"><span>12</span><b>SYSTEM</b></div>
+                <div class="ultra-services-process-top"><span>12</span><b>${esc(stageLabel("SYSTEM"))}</b></div>
                 <h3>${esc(text("One connected workflow", "一条连续的项目链路"))}</h3>
                 <h4>${esc(text("Strategy, design, abroad, build", "策略、设计、海外落地与工程搭建"))}</h4>
                 <p>${esc(text("Strategy, design, abroad execution, and build are connected in one managed delivery system.", "策略、设计、海外落地与工程搭建在同一条项目链路中协同推进。"))}</p>
@@ -2058,16 +2229,19 @@
   function optionLabel(field, value, lang) {
     if (value === "All") return labels[lang].all;
     if (field === "brand") return brandName(value);
-    if (field === "industry") return filterLabels[lang].industries[value] || value;
+    if (field === "industry") return translateCaseValue("industry", value, lang);
     if (field === "area") return areaLabel(value);
-    if (field === "country") return value;
+    if (field === "country") return translateCaseValue("country", value, lang);
     if (field === "region") return filterLabels[lang].regions[value] || value;
     if (field === "type") return filterLabels[lang].types[value] || value;
     return value;
   }
 
   function filtersHTML(lang, state) {
-    const filterButton = (field, value, pending = false) => `<button data-${pending ? "pending-" : ""}filter="${field}" data-value="${esc(value)}" class="${state[field] === value ? "is-active" : ""}">${esc(optionLabel(field, value, lang))}</button>`;
+    const filterButton = (field, value, pending = false) => {
+      const label = optionLabel(field, value, lang);
+      return `<button data-${pending ? "pending-" : ""}filter="${field}" data-value="${esc(value)}" class="ultra-split-rolling ${state[field] === value ? "is-active" : ""}" aria-label="${esc(label)}">${rollingButtonText(label)}</button>`;
+    };
     const group = (field, pending = false) => `
       <div class="ultra-filter-group">
         <div class="ultra-filter-label">${esc(filterLabels[lang][field])}</div>
@@ -2079,13 +2253,13 @@
       <div class="ultra-filter ${state.more ? "is-open" : ""}" data-case-filters>
         <div class="ultra-filter-primary">
           ${group("year")}
-          <button class="ultra-filter-more-toggle" type="button" data-more-filters aria-expanded="${state.more ? "true" : "false"}">${lang === "zh" ? "更多筛选" : "More Filters"}</button>
+          <button class="ultra-filter-more-toggle ultra-split-rolling" type="button" data-more-filters aria-expanded="${state.more ? "true" : "false"}" aria-label="${esc(lang === "zh" ? "更多筛选" : "More Filters")}">${rollingButtonText(lang === "zh" ? "更多筛选" : "More Filters")}</button>
         </div>
         <div class="ultra-filter-more" data-filter-more-panel>
           ${["industry", "region", "area"].map(field => group(field, true)).join("")}
           <div class="ultra-filter-actions">
-            <button class="ultra-secondary" type="button" data-clear-filters>${lang === "zh" ? "重置" : "Reset"}</button>
-            <button class="ultra-primary" type="button" data-apply-filters>${lang === "zh" ? "应用筛选" : "Apply Filters"}</button>
+            <button class="ultra-secondary ultra-split-rolling" type="button" data-clear-filters aria-label="${esc(lang === "zh" ? "重置" : "Reset")}">${rollingButtonText(lang === "zh" ? "重置" : "Reset")}</button>
+            <button class="ultra-primary ultra-split-rolling" type="button" data-apply-filters aria-label="${esc(lang === "zh" ? "应用筛选" : "Apply Filters")}">${rollingButtonText(lang === "zh" ? "应用筛选" : "Apply Filters")}</button>
           </div>
         </div>
       </div>`;
@@ -2138,6 +2312,57 @@
       vietnam: "Asia"
     };
     return map[normalized] || item.region || "";
+  }
+
+  function translateCaseValue(type, value, lang) {
+    if (lang !== "zh" || !value) return value || "";
+    const key = String(value).trim().toLowerCase();
+    const dictionaries = {
+      industry: {
+        energy: "能源",
+        battery: "电池 / 储能",
+        industrial: "工业制造",
+        automotive: "汽车",
+        "consumer tech": "消费科技",
+        telecom: "通信科技",
+        "water treatment": "水处理",
+        retail: "零售空间",
+        "launch event": "发布会 / 活动",
+        "smart manufacturing": "智能制造",
+        exhibition: "展会综合"
+      },
+      country: {
+        australia: "澳大利亚",
+        belgium: "比利时",
+        brazil: "巴西",
+        china: "中国",
+        europe: "欧洲",
+        france: "法国",
+        germany: "德国",
+        global: "全球",
+        indonesia: "印度尼西亚",
+        italy: "意大利",
+        japan: "日本",
+        korea: "韩国",
+        mexico: "墨西哥",
+        netherlands: "荷兰",
+        philippines: "菲律宾",
+        poland: "波兰",
+        romania: "罗马尼亚",
+        russia: "俄罗斯",
+        "saudi arabia": "沙特阿拉伯",
+        spain: "西班牙",
+        sweden: "瑞典",
+        thailand: "泰国",
+        "united kingdom": "英国",
+        uk: "英国",
+        "united states": "美国",
+        usa: "美国",
+        us: "美国",
+        vietnam: "越南"
+      }
+    };
+    return dictionaries[type]?.[key] || value;
   }
   function brandName(id) {
     const brand = activeBrands().find(item => item.id === id);
@@ -2285,10 +2510,10 @@
     const { dateStart, dateEnd } = caseDateRange(item);
     return caseDateParts(dateStart)?.year || caseDateParts(dateEnd)?.year || item.year || "";
   }
-  function caseMeta(item) {
+  function caseMeta(item, lang = "en") {
     return [
-      [caseCountry(item), caseYear(item)].filter(Boolean).join(" · "),
-      [item.areaSqm ? `${item.areaSqm}㎡` : item.area, item.industry].filter(Boolean).join(" · ")
+      [translateCaseValue("country", caseCountry(item), lang), caseYear(item)].filter(Boolean).join(" · "),
+      [item.areaSqm ? `${item.areaSqm}㎡` : item.area, translateCaseValue("industry", item.industry, lang)].filter(Boolean).join(" · ")
     ].filter(Boolean);
   }
 
@@ -2299,12 +2524,12 @@
         ${image ? `<img src="${esc(image)}" alt="${esc(caseBrandName(item))} ${esc(caseEventName(item))}">` : `<div class="ultra-placeholder"></div>`}
         <div class="ultra-case-teaser">
           <strong>${esc(caseBrandName(item))}</strong>
-          <span>${esc([caseYear(item), caseCountry(item)].filter(Boolean).join(" / "))}</span>
+          <span>${esc([caseYear(item), translateCaseValue("country", caseCountry(item), lang)].filter(Boolean).join(" / "))}</span>
         </div>
         <div class="ultra-case-info">
           <h3>${esc(caseBrandName(item))}</h3>
           <p>${esc(caseEventName(item))}</p>
-          <div class="ultra-meta">${caseMeta(item).map(x => `<span>${esc(x)}</span>`).join("")}</div>
+          <div class="ultra-meta">${caseMeta(item, lang).map(x => `<span>${esc(x)}</span>`).join("")}</div>
           <div class="ultra-case-link">${lang === "zh" ? "查看案例" : "View Case"} <span aria-hidden="true">→</span></div>
         </div>
       </a>
@@ -2335,14 +2560,14 @@
     const images = caseGalleryImages(item);
     const stats = [
       ["client", zh ? "客户" : "Client", caseBrandDisplayName(item, lang)],
-      ["industry", zh ? "行业" : "Industry", item.industry],
-      ["country", zh ? "国家" : "Country", caseCountry(item)],
+      ["industry", zh ? "行业" : "Industry", translateCaseValue("industry", item.industry, lang)],
+      ["country", zh ? "国家" : "Country", translateCaseValue("country", caseCountry(item), lang)],
       ["date", zh ? "日期" : "Date", caseDateText(item)]
     ].filter(row => row[2]);
     const shellClass = `ultra-case-detail ${options.modal ? "is-modal" : "is-page"} ${images.length <= 4 ? "is-short-gallery" : ""}`;
     return `
       <section class="${shellClass}" data-case-detail="${esc(item.id)}">
-        ${options.modal ? `<button class="ultra-case-esc" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}"><span>ESC</span><i aria-hidden="true">&times;</i></button>` : ""}
+        ${options.modal ? `<button class="ultra-case-esc ultra-split-rolling" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}">${rollingButtonText("ESC")}<i aria-hidden="true">&times;</i></button>` : ""}
         <div class="ultra-case-detail-copy">
           <div class="ultra-case-detail-logo">
             ${logo ? `<img src="${esc(logo)}" alt="${esc(caseBrandDisplayName(item, lang))} logo">` : `<strong>${esc(caseBrandDisplayName(item, lang))}</strong>`}
@@ -2382,7 +2607,7 @@
     const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, "")}` : "tel:+8618506144181";
     const contactEmail = contact.email || "jack@ultraexpo.com";
     const contactPhone = contact.phone || "+86 185 0614 4181";
-    const officeText = "Suzhou, China  ·  Hong Kong  ·  Los Angeles  ·  Berlin";
+    const officeText = zh ? "中国苏州  ·  香港  ·  洛杉矶  ·  柏林" : "Suzhou, China  ·  Hong Kong  ·  Los Angeles  ·  Berlin";
     const inquiryTypes = [
       { value: "Exhibition Booth", zh: "海外展台设计与搭建", en: "Exhibition Booth", copyZh: "展台设计、制作、物流与现场搭建。", copyEn: "Booth design, fabrication, logistics, and on-site build." },
       { value: "Product Launch", zh: "新品发布与品牌活动", en: "Product Launch", copyZh: "发布会、路演、快闪与线下体验。", copyEn: "Launch events, roadshows, pop-ups, and offline experiences." },
@@ -2390,6 +2615,15 @@
       { value: "General Inquiry", zh: "其他合作咨询", en: "General Inquiry", copyZh: "任何出海展示与空间落地问题。", copyEn: "Any global display or spatial delivery question." }
     ];
     const budgets = zh ? ["50,000 美元以下", "50,000-100,000 美元", "100,000-300,000 美元", "300,000 美元以上"] : ["Under 50K USD", "50K-100K USD", "100K-300K USD", "300K+ USD"];
+    const responseSteps = zh ? [
+      ["提交", "你提交项目需求"],
+      ["评估", "我们确认展会时间、国家、面积与目标"],
+      ["回复", "对应团队尽快联系并给出下一步建议"]
+    ] : [
+      ["Submit", "You submit the project brief"],
+      ["Review", "We review schedule, country, area, and goals"],
+      ["Reply", "The right team replies with next-step guidance"]
+    ];
     const contactRows = [
       { title: "Business Inquiry", body: [contact.email, contact.phone, contact.wechat ? `${zh ? "微信" : "WeChat"}: ${contact.wechat}` : "", contact.whatsapp ? `WhatsApp: ${contact.whatsapp}` : ""].filter(Boolean).join("<br>") },
       { title: "Office", body: zh ? contact.addressZh || contact.addressEn : contact.addressEn || contact.addressZh },
@@ -2401,10 +2635,12 @@
           <div class="ultra-contact-shell ultra-contact-hero-grid">
             <div class="ultra-contact-hero-copy">
               <div class="ultra-contact-kicker">${zh ? "联系我们" : "CONTACT"}</div>
-              <h1><span>Contact</span><span>Ultra Expo</span></h1>
-              <h2>${zh ? "告诉我们你的项目计划" : "Tell us what you are planning"}</h2>
+              <h1>${zh ? `<span>联系</span><span>Ultra Expo</span>` : `<span>Contact</span><span>Ultra Expo</span>`}</h1>
+              <div class="ultra-contact-hero-reveal-title ultra-character-block-reveal" data-ultra-character-block-reveal>
+                <h2 data-reveal-text>${zh ? "告诉我们你的项目计划" : "Tell us what you are planning"}</h2>
+              </div>
               <p>${zh ? "无论是海外展会、新品发布、零售空间，还是品牌出海展示需求，都可以从这里开始。留下你的信息，我们会尽快与你联系。" : "Whether it is an overseas exhibition, product launch, retail space, or brand presence abroad, start here. Share your brief and we will help map the next step."}</p>
-              <p class="ultra-contact-english">Tell us what you are planning. We will help map the next step.</p>
+              ${zh ? "" : `<p class="ultra-contact-english">Tell us what you are planning. We will help map the next step.</p>`}
               <div class="ultra-contact-actions">
                 <a class="ultra-primary" href="#contact-form" data-contact-scroll>${zh ? "提交咨询" : "Send Inquiry"}</a>
                 <a class="ultra-secondary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "查看案例" : "View Cases"}</a>
@@ -2412,9 +2648,9 @@
             </div>
             <aside class="ultra-contact-promise" aria-label="${zh ? "响应承诺" : "Response promise"}">
               ${[
-                ["Quick Response", zh ? "快速响应，尽快确认需求" : "Fast response and requirement confirmation"],
-                ["Global Coordination", zh ? "支持海外展会与跨时区项目沟通" : "Cross-time-zone project coordination for global shows"],
-                ["End-to-End Delivery", zh ? "从策划、设计到本地化落地一体化交付" : "Strategy, design, localization, and on-site delivery"]
+                [zh ? "快速响应" : "Quick Response", zh ? "快速响应，尽快确认需求" : "Fast response and requirement confirmation"],
+                [zh ? "全球协同" : "Global Coordination", zh ? "支持海外展会与跨时区项目沟通" : "Cross-time-zone project coordination for global shows"],
+                [zh ? "全流程交付" : "End-to-End Delivery", zh ? "从策划、设计到本地化落地一体化交付" : "Strategy, design, localization, and on-site delivery"]
               ].map((item, index) => `<article><span>0${index + 1}</span><strong>${esc(item[0])}</strong><p>${esc(item[1])}</p></article>`).join("")}
             </aside>
           </div>
@@ -2429,9 +2665,9 @@
             <div class="ultra-contact-type-grid">
               ${inquiryTypes.map(item => `
                 <button type="button" class="ultra-contact-type-card" data-inquiry-type="${esc(item.value)}">
-                  <strong>${esc(item.en)}</strong>
-                  <span>${esc(zh ? item.zh : item.copyEn)}</span>
-                  <p>${esc(zh ? item.copyZh : item.zh)}</p>
+                  <strong>${esc(zh ? item.zh : item.en)}</strong>
+                  <span>${esc(zh ? item.copyZh : item.copyEn)}</span>
+                  <p>${esc(zh ? "点击后将同步到留言表单。" : "Select to prefill the inquiry type.")}</p>
                 </button>
               `).join("")}
             </div>
@@ -2447,23 +2683,23 @@
                 <h2>${zh ? "留下必要信息，我们来推进下一步。" : "Leave the essentials. We will take it from there."}</h2>
               </div>
               <div class="ultra-contact-form-grid">
-                ${contactField("name", zh ? "姓名 / Name" : "Name", "text", true)}
-                ${contactField("company", zh ? "公司 / Company" : "Company", "text", true)}
-                ${contactField("contact", zh ? "联系方式 / Email or Phone" : "Email or Phone", "text", true)}
+                ${contactField("name", zh ? "姓名" : "Name", "text", true)}
+                ${contactField("company", zh ? "公司" : "Company", "text", true)}
+                ${contactField("contact", zh ? "联系方式" : "Email or Phone", "text", true)}
                 <label class="ultra-contact-field">
-                  <span>${zh ? "咨询类型 / Inquiry Type" : "Inquiry Type"} *</span>
+                  <span>${zh ? "咨询类型" : "Inquiry Type"} *</span>
                   <select name="inquiryType" required>
                     <option value="">${zh ? "请选择" : "Select one"}</option>
-                    ${inquiryTypes.map(item => `<option value="${esc(item.value)}">${esc(item.en)} · ${esc(item.zh)}</option>`).join("")}
+                    ${inquiryTypes.map(item => `<option value="${esc(item.value)}">${esc(zh ? item.zh : item.en)}</option>`).join("")}
                   </select>
                   <em data-field-error="inquiryType"></em>
                 </label>
-                ${contactField("eventName", zh ? "展会名称 / Event Name" : "Event Name")}
-                ${contactField("countryRegion", zh ? "展会国家或地区 / Country / Region" : "Country / Region")}
-                ${contactField("expectedDate", zh ? "预计时间 / Expected Date" : "Expected Date")}
-                ${contactField("boothArea", zh ? "展位面积 / Booth Area" : "Booth Area")}
+                ${contactField("eventName", zh ? "展会名称" : "Event Name")}
+                ${contactField("countryRegion", zh ? "展会国家或地区" : "Country / Region")}
+                ${contactField("expectedDate", zh ? "预计时间" : "Expected Date")}
+                ${contactField("boothArea", zh ? "展位面积" : "Booth Area")}
                 <label class="ultra-contact-field">
-                  <span>${zh ? "预算范围 / Budget Range" : "Budget Range"}</span>
+                  <span>${zh ? "预算范围" : "Budget Range"}</span>
                   <select name="budgetRange">
                     <option value="">${zh ? "待沟通" : "To be discussed"}</option>
                     ${budgets.map(item => `<option>${esc(item)}</option>`).join("")}
@@ -2471,13 +2707,13 @@
                   <em data-field-error="budgetRange"></em>
                 </label>
                 <label class="ultra-contact-field is-wide">
-                  <span>${zh ? "留言内容 / Message" : "Message"} *</span>
+                  <span>${zh ? "留言内容" : "Message"} *</span>
                   <textarea name="message" required placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
                   <em data-field-error="message"></em>
                 </label>
               </div>
               <div class="ultra-contact-form-footer">
-                <button class="ultra-submit" type="submit" data-contact-submit>${zh ? "Send Inquiry / 提交咨询" : "Send Inquiry"}</button>
+                <button class="ultra-submit ultra-split-rolling" type="submit" data-contact-submit aria-label="${esc(zh ? "提交咨询" : "Send Inquiry")}">${rollingButtonText(zh ? "提交咨询" : "Send Inquiry")}</button>
               </div>
               <div class="ultra-contact-feedback" data-form-feedback hidden></div>
             </form>
@@ -2487,39 +2723,31 @@
                 <span>${zh ? "联系方式" : "CONTACT INFO"}</span>
                 <h3>${zh ? "也可以直接联系 Ultra Expo。" : "You can also reach Ultra Expo directly."}</h3>
                 <div class="ultra-contact-info-list">
-                  <article><strong>Email</strong><p><a href="${esc(emailHref)}">${esc(contactEmail)}</a></p></article>
-                  <article><strong>Phone</strong><p><a href="${esc(phoneHref)}">${esc(contactPhone)}</a></p></article>
-                  <article><strong>Office</strong><p>${esc(officeText)}</p></article>
+                  <article><strong>${zh ? "邮箱" : "Email"}</strong><p><a href="${esc(emailHref)}">${esc(contactEmail)}</a></p></article>
+                  <article><strong>${zh ? "电话" : "Phone"}</strong><p><a href="${esc(phoneHref)}">${esc(contactPhone)}</a></p></article>
+                  <article><strong>${zh ? "办公室" : "Office"}</strong><p>${esc(officeText)}</p></article>
                 </div>
               </section>
               <section class="ultra-contact-info-card">
                 <span>${zh ? "响应流程" : "RESPONSE PROCESS"}</span>
-                <h3>What happens next?</h3>
+                <h3>${zh ? "提交后会发生什么？" : "What happens next?"}</h3>
                 <ol class="ultra-contact-steps">
-                  ${[
-                    ["Submit", zh ? "你提交项目需求" : "You submit the project brief"],
-                    ["Review", zh ? "我们确认展会时间、国家、面积与目标" : "We review schedule, country, area, and goals"],
-                    ["Reply", zh ? "对应团队尽快联系并给出下一步建议" : "The right team replies with next-step guidance"]
-                  ].map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
+                  ${responseSteps.map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
                 </ol>
               </section>
             </aside>
           </div>
         </section>
 
-        <section class="ultra-contact-process" aria-label="${zh ? "Response process" : "Response process"}">
+        <section class="ultra-contact-process" aria-label="${zh ? "响应流程" : "Response process"}">
           <div class="ultra-contact-shell">
             <section class="ultra-contact-process-card">
               <div class="ultra-contact-section-head">
-                <span>${zh ? "RESPONSE PROCESS" : "RESPONSE PROCESS"}</span>
-                <h2>What happens next?</h2>
+                <span>${zh ? "响应流程" : "RESPONSE PROCESS"}</span>
+                <h2>${zh ? "提交后会发生什么？" : "What happens next?"}</h2>
               </div>
               <ol class="ultra-contact-steps">
-                ${[
-                  ["Submit", zh ? "You submit the project brief" : "You submit the project brief"],
-                  ["Review", zh ? "We review schedule, country, area, and goals" : "We review schedule, country, area, and goals"],
-                  ["Reply", zh ? "The right team replies with next-step guidance" : "The right team replies with next-step guidance"]
-                ].map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
+                ${responseSteps.map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
               </ol>
             </section>
           </div>
@@ -3139,6 +3367,95 @@
     return `<div class="ultra-case-modal" data-case-modal>${caseDetailPage(id, lang, { modal: true })}</div>`;
   }
 
+  function splitUltraTypeRevealText(node, lineIndex = 0) {
+    if (!node || node.dataset.revealReady === "true") return;
+    const original = node.textContent || "";
+    const tokens = original.match(/\S+|\s+/g) || [];
+    const blockStyles = [
+      { color: "var(--block-blue)", opacity: "0.62", scale: "0.78" },
+      { color: "var(--block-gray)", opacity: "0", scale: "0.44" },
+      { color: "var(--block-gray)", opacity: "0.44", scale: "0.62" },
+      { color: "var(--block-blue-soft)", opacity: "0", scale: "0.42" },
+      { color: "var(--block-gray)", opacity: "0.38", scale: "0.54" },
+      { color: "var(--block-dark)", opacity: "0.34", scale: "0.48" },
+      { color: "var(--block-blue-soft)", opacity: "0.52", scale: "0.68" },
+      { color: "var(--block-gray)", opacity: "0", scale: "0.40" },
+      { color: "var(--block-gray)", opacity: "0.34", scale: "0.50" },
+      { color: "var(--block-blue)", opacity: "0.46", scale: "0.58" }
+    ];
+    let charIndex = 0;
+    const line = tokens.map(token => {
+      if (/^\s+$/.test(token)) return `<span class="char-reveal-space" aria-hidden="true"> </span>`;
+      const chars = Array.from(token).map(char => {
+        const safeChar = esc(char);
+        const blockStyle = blockStyles[(charIndex + lineIndex) % blockStyles.length];
+        const output = `<span class="char-reveal-char" style="--char-index:${charIndex};--block-color:${blockStyle.color};--block-opacity:${blockStyle.opacity};--block-scale-x:${blockStyle.scale}" data-char-index="${charIndex}" aria-hidden="true"><span class="char-reveal-glyph">${safeChar}</span><span class="char-reveal-block" aria-hidden="true"></span></span>`;
+        charIndex += 1;
+        return output;
+      }).join("");
+      return `<span class="char-reveal-word">${chars}</span>`;
+    }).join("");
+    node.dataset.revealReady = "true";
+    node.setAttribute("aria-label", original.trim());
+    node.style.setProperty("--line-index", String(lineIndex));
+    node.style.setProperty("--char-count", String(Math.max(charIndex, 1)));
+    node.innerHTML = `<span class="char-reveal-line" aria-hidden="true">${line}</span>`;
+  }
+
+  function runUltraTypeRevealGroup(group) {
+    if (!group || group.dataset.revealPlayed === "true") return;
+    group.dataset.revealPlayed = "true";
+  }
+
+  function isUltraTypeRevealReady(group) {
+    if (!group) return false;
+    const rect = group.getBoundingClientRect();
+    return rect.top <= window.innerHeight * 0.76 && rect.bottom >= 0;
+  }
+
+  function initUltraTypeReveal(root = document) {
+    const groups = [...root.querySelectorAll("[data-ultra-character-block-reveal], [data-ultra-type-reveal], [data-char-reveal-group]")];
+    if (!groups.length) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (reduced) {
+      groups.forEach(group => group.classList.add("is-visible"));
+      return;
+    }
+    groups.forEach(group => {
+      [...group.querySelectorAll("[data-reveal-text]")].forEach((node, index) => splitUltraTypeRevealText(node, index));
+    });
+    if (!("IntersectionObserver" in window)) {
+      groups.forEach(group => {
+        group.classList.add("is-visible");
+        runUltraTypeRevealGroup(group);
+      });
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        runUltraTypeRevealGroup(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -24% 0px" });
+    groups.forEach(group => {
+      if (isUltraTypeRevealReady(group)) {
+        group.classList.add("is-visible");
+        runUltraTypeRevealGroup(group);
+        return;
+      }
+      observer.observe(group);
+    });
+  }
+
+  window.UltraTypeReveal = {
+    init: initUltraTypeReveal
+  };
+  window.UltraCharacterBlockReveal = {
+    init: initUltraTypeReveal
+  };
+
   function initAboutPage(root) {
     const about = root.querySelector(".ultra-about");
     if (!about) return;
@@ -3498,11 +3815,13 @@
       const siteClass = path === "/services" ? "ultra-site ultra-services-site" : path === "/contact" ? "ultra-site ultra-contact-site" : "ultra-site";
       root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     }
+    initNavScramble(root);
     root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
       node.setAttribute("data-animate", "");
       node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
     });
     initAboutPage(root);
+    initUltraTypeReveal(root);
     initServicesPage(root);
     initContactPage(root);
     initCasesMasonry(root);
@@ -3809,6 +4128,8 @@
       : "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.";
     const titleText = heroTitle.join(" ");
     const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
+    const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
+    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
 
     section.insertAdjacentHTML("beforeend", `
       <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
@@ -3821,8 +4142,8 @@
         <div class="ultra-home-hero-rebuilt-bottom">
           <p>${heroCopy}</p>
           <div class="ultra-home-hero-rebuilt-actions">
-            <a class="ultra-home-hero-rebuilt-primary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases"}</a>
-            <a class="ultra-home-hero-rebuilt-secondary" href="${routeLink("/services")}" data-route="/services">${zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services"}</a>
+            <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
+            <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
           </div>
         </div>
       </div>
@@ -3903,6 +4224,7 @@
     document.documentElement.classList.add("ultra-home-active");
     const root = document.getElementById("ultra-app");
     if (root) root.innerHTML = `<div class="ultra-site ultra-home-shell">${navHTML(lang, "/")}</div>`;
+    if (root) initNavScramble(root);
     const container = document.getElementById("container");
     if (container) renderHomeContent(container, lang);
     const switcher = document.querySelector(".ultra-home-lang");
@@ -4399,7 +4721,7 @@
   async function handleContactSubmit(form) {
     const zh = locale() === "zh";
     const button = form.querySelector("[data-contact-submit]");
-    const originalText = button?.textContent || "Send Inquiry";
+    const originalText = button?.getAttribute("aria-label") || button?.textContent || "Send Inquiry";
     form.querySelector("[data-form-feedback]")?.setAttribute("hidden", "");
     if (String(form.elements.website?.value || "").trim()) {
       setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong>`);
@@ -4413,7 +4735,7 @@
     try {
       if (button) {
         button.disabled = true;
-        button.textContent = "Sending...";
+        button.textContent = zh ? "提交中..." : "Sending...";
       }
       await new Promise(resolve => setTimeout(resolve, 420));
       const config = getAdminConfig();
@@ -4428,7 +4750,8 @@
     } finally {
       if (button) {
         button.disabled = false;
-        button.textContent = originalText;
+        button.setAttribute("aria-label", originalText);
+        button.innerHTML = rollingButtonText(originalText);
       }
     }
   }
