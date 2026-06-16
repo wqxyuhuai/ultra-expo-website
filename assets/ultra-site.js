@@ -9,6 +9,10 @@
   const CASES = CONTENT.cases;
   const BRANDS = CONTENT.brands;
   const STORAGE_KEY = "ultra-locale";
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  const navIntroEnabled = !window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  let navIntroPlayed = false;
+  if (navIntroEnabled) document.body.classList.add("is-nav-intro");
 
   const labels = {
     en: {
@@ -385,19 +389,6 @@
     return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
   }
 
-  function navScrambleSlots(label, widths = []) {
-    return [...String(label ?? "")].map((char, index) => {
-      const width = Number(widths[index] || 0);
-      const widthStyle = width ? ` style="--scramble-char-width:${width}px"` : "";
-      return `<span class="ultra-scramble-char is-stable"${widthStyle}>${esc(char)}</span>`;
-    }).join("");
-  }
-
-  function navScrambleText(label) {
-    const safeLabel = esc(label);
-    return `<span class="ultra-scramble-static" aria-hidden="true">${safeLabel}</span><span class="ultra-scramble-live" aria-hidden="true">${navScrambleSlots(label)}</span>`;
-  }
-
   function defaultExhibitionLogos() {
     return [
       "IFA Berlin",
@@ -730,6 +721,22 @@
     return true;
   }
 
+  function resetIntroForRoute() {
+    document.body.classList.add("is-intro-reset");
+    document.body.classList.remove("is-ready");
+  }
+
+  function triggerNavIntroOnce() {
+    if (!navIntroEnabled || navIntroPlayed || !document.body.classList.contains("is-nav-intro")) return;
+    navIntroPlayed = true;
+    window.requestAnimationFrame(() => {
+      document.body.classList.add("is-nav-enter");
+      window.setTimeout(() => {
+        document.body.classList.remove("is-nav-intro", "is-nav-enter");
+      }, 620);
+    });
+  }
+
   function navHTML(lang, activePath) {
     const L = labels[lang];
     const nextLang = lang === "zh" ? "en" : "zh";
@@ -743,7 +750,7 @@
           ${navItems.map(item => {
             const label = L.nav[item.key];
             const active = activePath === item.path || (item.path === "/cases" && activePath.startsWith("/cases"));
-            return `<a href="${routeLink(item.path)}" data-route="${item.path}" data-scramble="${esc(label)}" aria-label="${esc(label)}" class="${active ? "is-active" : ""}">${navScrambleText(label)}</a>`;
+            return `<a href="${routeLink(item.path)}" data-route="${item.path}" aria-label="${esc(label)}" class="ultra-split-rolling${active ? " is-active" : ""}">${rollingButtonText(label)}</a>`;
           }).join("")}
         </div>
         <div class="ultra-actions">
@@ -760,121 +767,6 @@
         </div>
       </nav>
     `;
-  }
-
-  const navScrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/_+-";
-
-  function measureNavScrambleWidths(link, original) {
-    const chars = [...original];
-    const computed = window.getComputedStyle(link);
-    const measurer = document.createElement("span");
-    measurer.className = "ultra-scramble-measurer";
-    measurer.style.font = computed.font;
-    measurer.style.fontKerning = computed.fontKerning;
-    measurer.style.fontFeatureSettings = computed.fontFeatureSettings;
-    measurer.style.fontVariantNumeric = computed.fontVariantNumeric;
-    document.body.appendChild(measurer);
-    const widths = chars.map(char => {
-      measurer.textContent = char === " " ? "\u00a0" : char;
-      return Math.max(1, Math.ceil(measurer.getBoundingClientRect().width * 100) / 100);
-    });
-    measurer.remove();
-    return widths;
-  }
-
-  function navScrambleWidths(link, original) {
-    const saved = String(link.dataset.scrambleSlots || "").split(",").map(Number).filter(width => width > 0);
-    if (saved.length === [...original].length) return saved;
-    const staticText = link.querySelector(".ultra-scramble-static");
-    const textWidth = staticText?.getBoundingClientRect?.().width || link.getBoundingClientRect().width;
-    const slotWidth = Math.max(1, textWidth / Math.max([...original].length, 1));
-    return [...original].map(() => slotWidth);
-  }
-
-  function scrambleFrameText(original, frame, totalFrames, widths = []) {
-    const doneCount = Math.floor((frame / totalFrames) * original.length);
-    return [...original].map((char, index) => {
-      const width = Number(widths[index] || 0);
-      const widthStyle = width ? ` style="--scramble-char-width:${width}px"` : "";
-      if (index < doneCount || /\s/.test(char)) return `<span class="ultra-scramble-char is-stable"${widthStyle}>${esc(char)}</span>`;
-      const shouldScramble = Math.random() < 0.28;
-      const output = shouldScramble ? navScrambleChars[Math.floor(Math.random() * navScrambleChars.length)] : char;
-      const tone = shouldScramble ? (Math.random() < 0.67 ? " is-blue" : " is-dark") : "";
-      return `<span class="ultra-scramble-char${tone}"${widthStyle}>${esc(output)}</span>`;
-    }).join("");
-  }
-
-  function stopNavScramble(link, restore = true) {
-    const frameId = Number(link.dataset.scrambleFrame || 0);
-    if (frameId) window.cancelAnimationFrame(frameId);
-    delete link.dataset.scrambleFrame;
-    delete link.dataset.scrambleStarted;
-    link.classList.remove("is-scrambling");
-    if (restore) {
-      const original = link.dataset.original || link.dataset.scramble || link.getAttribute("aria-label") || link.textContent || "";
-      const live = link.querySelector(".ultra-scramble-live");
-      if (live) live.innerHTML = navScrambleSlots(original, navScrambleWidths(link, original));
-    }
-  }
-
-  function playNavScramble(link) {
-    const live = link.querySelector(".ultra-scramble-live");
-    if (!live) return;
-    const original = link.dataset.original || link.dataset.scramble || live.textContent.trim();
-    if (!original) return;
-    link.dataset.original = original;
-    stopNavScramble(link, false);
-    link.classList.add("is-scrambling");
-    const widths = navScrambleWidths(link, original);
-    const totalFrames = 10;
-    const frameMs = 24;
-    let frame = 0;
-    let lastTick = 0;
-    const tick = time => {
-      if (!lastTick || time - lastTick >= frameMs) {
-        live.innerHTML = scrambleFrameText(original, frame, totalFrames, widths);
-        frame += 1;
-        lastTick = time;
-      }
-      if (frame <= totalFrames) {
-        link.dataset.scrambleFrame = String(window.requestAnimationFrame(tick));
-        return;
-      }
-      live.innerHTML = navScrambleSlots(original, widths);
-      stopNavScramble(link, false);
-    };
-    link.dataset.scrambleFrame = String(window.requestAnimationFrame(tick));
-  }
-
-  function initNavScramble(root = document) {
-    const canHover = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches;
-    root.querySelectorAll?.(".ultra-links a[data-scramble]").forEach(link => {
-      const original = link.dataset.original || link.dataset.scramble || link.getAttribute("aria-label") || "";
-      const live = link.querySelector(".ultra-scramble-live");
-      const staticText = link.querySelector(".ultra-scramble-static");
-      if (!original || !live || !staticText) return;
-      link.dataset.original = original;
-      const widths = navScrambleWidths(link, original);
-      live.innerHTML = navScrambleSlots(original, widths);
-      window.requestAnimationFrame(() => {
-        const width = Math.ceil(staticText.getBoundingClientRect().width);
-        if (width) {
-          const slots = measureNavScrambleWidths(link, original);
-          link.dataset.scrambleSlots = slots.join(",");
-          link.style.setProperty("--scramble-width", `${width + 10}px`);
-          live.innerHTML = navScrambleSlots(original, slots);
-        }
-      });
-      if (link.dataset.scrambleReady === "true") return;
-      link.dataset.scrambleReady = "true";
-      if (canHover) {
-        link.addEventListener("mouseenter", () => playNavScramble(link), { passive: true });
-      }
-      link.addEventListener("focus", () => {
-        if (link.matches(":focus-visible")) playNavScramble(link);
-      }, { passive: true });
-      link.addEventListener("blur", () => stopNavScramble(link), { passive: true });
-    });
   }
 
   function homeWhyHTML(lang) {
@@ -1337,7 +1229,7 @@
     const zh = lang === "zh";
     const heroTitle = homeHeroTitle(lang);
     const titleText = heroTitle.join(" ");
-    const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
+    const titleLines = heroTitle.map((line, index) => `<span class="hero-focus-line" style="--intro-index:${index}">${esc(line)}</span>`).join("");
     const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
     const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
     return `
@@ -1350,8 +1242,8 @@
             </h1>
           </div>
           <div class="ultra-home-hero-rebuilt-bottom">
-            <p>${esc(homeHeroCopy(lang))}</p>
-            <div class="ultra-home-hero-rebuilt-actions">
+            <p class="ultra-home-intro-copy">${esc(homeHeroCopy(lang))}</p>
+            <div class="ultra-home-hero-rebuilt-actions ultra-home-intro-actions">
               <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
               <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
             </div>
@@ -1559,13 +1451,13 @@
     const footerColumn = (heading, items) => `
       <nav class="ultra-footer-column" aria-label="${esc(heading.replace("/", ""))}">
         <h4>${esc(heading)}</h4>
-        ${items.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
+        ${items.map(item => `<a class="ultra-footer-link ultra-footer-rolling ultra-split-rolling" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}" aria-label="${esc(item.label)}">${rollingButtonText(item.label)}</a>`).join("")}
       </nav>
     `;
     const iconSVG = {
       phone: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 3.5 9.5 3l2.1 5.1-1.8 1.2c.9 1.9 2.4 3.4 4.2 4.2l1.3-1.8 5 2.2-.5 2.8c-.2 1-1 1.7-2 1.7C10.9 18.4 5.6 13.1 5.6 6.2c0-.9.5-1.6 1.1-2.7Z"/></svg>`,
-      email: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17v-11Zm1.4 1.2 7.1 5 7.1-5H4.9Zm14.1 8.5v-6.7l-7 4.8-7-4.8v6.7h14Z"/></svg>`,
-      rednote: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm3.2 3.2v7.6h1.9v-2.6h1.2l1.5 2.6h2.1l-1.8-3c1-.4 1.5-1.1 1.5-2.2 0-1.6-1.1-2.4-3.1-2.4H7.2Zm1.9 1.5h1.1c1 0 1.5.3 1.5 1s-.5 1-1.5 1H9.1v-2Zm6.1-1.5v7.6H17v-2.7h2.2v-1.5H17V9.8h2.5V8.2h-4.3Z"/></svg>`,
+      email: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.7 6h14.6c1 0 1.7.7 1.7 1.7v8.6c0 1-.7 1.7-1.7 1.7H4.7c-1 0-1.7-.7-1.7-1.7V7.7C3 6.7 3.7 6 4.7 6Zm.7 1.8 6.6 4.8 6.6-4.8H5.4Zm13.8 8.4V9.4l-6.8 4.9a.7.7 0 0 1-.8 0L4.8 9.4v6.8h14.4Z"/></svg>`,
+      rednote: `<svg viewBox="0 0 200 200" aria-hidden="true"><path d="M114.825 132.607H93.2201C92.0198 132.607 91.6198 132.607 92.42 131.407C94.0204 128.206 95.6206 124.205 98.0211 121.004C98.4211 120.204 98.8213 119.804 100.022 119.804H110.424C111.624 119.804 111.624 119.404 111.624 118.204V81.396C111.624 80.1957 111.224 79.7956 110.024 80.1957H104.022C102.822 80.1957 102.422 79.7957 102.422 78.9954V68.9933C102.422 67.7931 102.822 67.3929 104.023 67.3929H131.629C132.429 67.3929 132.829 67.3929 132.829 68.5932V78.9954C132.829 79.7956 132.429 80.1957 131.629 80.1957H125.627C124.427 80.1957 124.027 80.5957 124.027 81.796V118.604C124.027 119.404 124.427 119.804 125.227 119.804H135.629C136.829 119.804 137.23 120.204 137.23 121.405V131.407C137.23 132.607 136.829 133.007 135.629 133.007C129.228 132.607 122.026 132.607 114.825 132.607ZM40.0087 92.9985V121.004C40.0087 123.005 39.6087 125.405 38.4083 127.406C36.0078 131.407 32.407 132.607 27.606 132.207C22.805 131.807 20.0043 129.406 18.8042 125.005C17.6039 120.604 17.6039 121.405 21.6047 120.604C23.2051 120.604 25.2055 121.405 26.8058 120.204C27.606 119.404 27.2059 117.404 27.2059 115.403V62.992C27.2059 61.7917 27.6059 61.3916 28.8063 61.3916H38.4083C39.6086 61.3916 40.0087 61.7917 40.0087 62.992V92.9985Z" fill="currentColor"/><path d="M97.621 104.201C96.0208 107.001 94.8205 110.202 93.2201 113.003C92.42 115.003 91.2197 115.403 89.6193 115.403H80.0173C79.2171 115.403 78.4169 115.403 77.6168 115.003C74.8161 114.203 74.016 112.203 74.8161 109.002C76.4165 104.201 79.2171 100.2 81.2175 95.3989C81.6176 94.5987 82.0177 94.1987 82.4179 92.9984H74.016C70.8153 92.1982 69.2149 90.1978 70.8153 86.5971C72.0156 82.9962 74.016 78.9954 76.0164 75.7947C78.0169 72.1939 79.6172 67.793 82.0177 63.7921C82.4177 62.9919 82.8179 62.5918 84.0181 62.5918H94.0204C95.2205 62.5918 95.2205 62.9919 94.8204 63.7921C92.42 68.9933 89.6193 73.7942 87.2188 78.9954C86.8188 79.3954 86.8188 79.7955 86.4188 80.5958C86.0188 81.396 86.4188 81.7959 87.2188 82.196C88.019 82.596 88.019 81.796 88.419 81.3959C88.8192 80.5958 89.2193 80.1956 90.4196 80.1956H100.422C101.622 80.1956 101.622 80.5956 101.222 81.3959C98.0212 87.7972 94.8205 94.5987 91.6198 101C90.4196 103.401 90.8196 104.201 93.6202 104.201H97.621ZM8.00183 126.606C5.6013 121.805 3.20077 117.404 0.800244 112.603C0.400244 112.203 0.400244 111.803 0.800244 111.402C2.40064 107.802 2.40064 103.801 2.40064 99.3997C2.80064 92.9984 3.20077 86.9971 3.60091 80.9958C3.60091 80.1956 4.00091 79.7955 4.80117 79.7955H15.6034C16.4037 79.7955 16.8037 79.7955 16.8037 80.9958C16.0036 90.1978 15.6034 99.3997 14.4032 109.002C13.6032 115.003 11.6026 121.005 7.60183 125.805C8.40183 125.805 8.00183 126.205 8.00183 126.606ZM55.612 79.7955H60.8132C62.0135 79.7955 62.0135 80.1955 62.4135 81.3959C62.8135 89.7976 63.6138 98.1995 64.4139 106.601C64.4139 107.401 64.4139 108.602 64.814 109.402C65.6141 111.002 65.214 112.603 64.414 114.603C62.8136 117.804 61.2132 121.805 59.2128 125.005C58.8128 126.206 58.4127 126.206 57.6124 125.005C54.8119 120.204 52.8115 115.803 51.6111 110.202C50.411 105.001 50.411 99.7999 50.0108 94.5987C49.6108 89.7976 49.2107 85.7968 48.8106 80.9958C48.8106 79.7955 48.8106 79.3955 50.411 79.3955C52.0112 80.1955 53.6116 79.7955 55.612 79.7955ZM76.0164 132.607C73.6159 132.607 69.6151 133.007 66.8144 132.207C65.6141 131.807 65.2141 131.407 66.0144 130.606C68.0147 127.006 69.6151 123.405 71.6155 119.804C72.0155 119.404 72.0155 118.604 72.8157 119.004C75.6164 120.204 79.2171 119.804 82.4179 119.804H90.8196C91.6198 119.804 92.0198 120.204 91.6198 121.004C89.6193 124.605 88.0191 128.206 86.0185 132.207C85.6185 133.007 85.2185 133.007 84.4183 133.007C82.0177 132.607 79.6172 132.607 76.0164 132.607ZM190.041 79.7955C185.64 79.7955 185.64 79.7955 185.64 75.3946C185.64 74.1943 185.64 72.594 186.04 70.9936C186.84 67.793 189.641 65.7926 193.642 66.1926C196.442 66.5926 199.243 69.3933 199.243 72.994C199.243 76.5948 196.842 78.9954 193.242 79.3954C192.041 79.7955 191.241 79.7955 190.041 79.7955ZM164.435 118.604V131.407C164.435 132.607 164.035 133.007 162.835 133.007H152.833C151.633 133.007 151.233 132.607 151.233 131.407V106.201C151.233 105.001 150.833 104.601 149.632 104.601H140.03C138.83 104.601 138.43 104.601 138.43 103.401V92.9984C138.43 91.7982 138.83 91.7982 140.03 91.7982H150.032C151.233 91.7982 151.633 91.398 151.233 90.1978V82.196C151.233 80.9958 150.833 80.9958 149.632 80.9958H143.631C142.831 80.9958 142.431 80.9958 142.431 79.7955V69.3933C142.431 68.5933 142.831 68.193 143.631 68.193H149.632C150.432 68.193 150.833 67.793 150.833 66.9927C150.833 64.1922 150.833 64.1922 154.033 64.1922H162.435C163.235 64.1922 163.635 64.5922 163.635 65.3925C163.635 68.193 163.635 68.193 166.436 68.193C170.037 68.193 173.637 68.9933 176.438 70.5935C180.839 72.994 182.439 77.395 182.439 81.7959V90.1978C182.439 91.398 182.839 91.7982 184.04 91.7982C188.841 91.7982 192.441 92.9984 195.242 96.9992C196.842 98.9996 197.643 102.2 197.643 104.601V121.405C197.643 127.806 194.042 132.207 187.64 133.407C185.24 133.807 182.039 133.807 179.639 133.007C175.238 131.807 172.437 127.806 172.037 123.405C172.037 122.205 172.437 122.605 173.237 122.605H183.64C184.84 122.605 185.24 122.205 185.24 121.004V110.202C185.24 107.401 183.64 105.401 180.439 105.401H164.435C163.635 105.401 163.235 105.801 163.235 106.601C164.435 109.802 164.435 113.803 164.435 118.604ZM171.237 85.3967C171.237 79.7955 171.637 79.7955 165.236 79.7955C164.435 79.7955 164.035 80.1955 164.035 80.9958V89.7976C164.035 90.5979 164.435 90.9979 165.236 90.9979H170.037C170.837 90.9979 171.237 90.5979 171.237 89.7976L171.237 85.3967Z" fill="currentColor"/></svg>`,
       wechat: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.7 5.2c-4 0-7.2 2.6-7.2 5.8 0 1.8 1 3.4 2.6 4.4l-.7 2.2 2.6-1.3c.8.2 1.7.4 2.7.4.3 0 .6 0 .9-.1-.3-.7-.5-1.4-.5-2.1 0-2.9 2.9-5.2 6.4-5.2.1 0 .3 0 .4.1-.9-2.5-3.7-4.2-7.2-4.2Zm-2.5 4.7c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm5 0c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm4.5.8c-3 0-5.3 1.8-5.3 4.1s2.4 4.1 5.3 4.1c.7 0 1.4-.1 2-.3l2.1 1-.5-1.8c1.2-.8 1.9-1.9 1.9-3.1 0-2.2-2.5-4-5.5-4Zm-1.8 3.5c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Zm3.8 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Z"/></svg>`,
       linkedin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15v-15Zm3.1 6v6.5h2v-6.5h-2Zm1-3.2c-.7 0-1.1.4-1.1 1s.4 1 1.1 1 1.1-.4 1.1-1-.4-1-1.1-1Zm2.7 3.2v6.5h2v-3.5c0-.9.5-1.5 1.3-1.5.7 0 1.1.5 1.1 1.5v3.5h2v-3.8c0-2-1.1-2.9-2.6-2.9-.9 0-1.5.4-1.8 1v-.8h-2Z"/></svg>`
     };
@@ -1600,7 +1492,7 @@
               ${footerColumn("SERVICES/", footerServices)}
               <nav class="ultra-footer-column ultra-footer-contact-column" aria-label="Contact">
                 <h4>CONTACT/</h4>
-                ${footerContactText.map(item => `<a class="ultra-footer-link" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}"><span>${esc(item.label)}</span></a>`).join("")}
+                ${footerContactText.map(item => `<a class="ultra-footer-link ultra-footer-rolling ultra-split-rolling" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}" aria-label="${esc(item.label)}">${rollingButtonText(item.label)}</a>`).join("")}
                 <div class="ultra-footer-contact-buttons" aria-label="Contact buttons">
                   ${socialItems.map(item => `<a class="ultra-social-card" href="${esc(item.href)}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`).join("")}
                 </div>
@@ -2102,7 +1994,6 @@
                   <h3 data-reveal-text>${esc(zh ? pillar.zhTitle : pillar.title)}</h3>
                   <strong>${esc(text(pillar.subtitle, pillar.zhSubtitle))}</strong>
                   <p>${esc(text(pillar.description, pillar.zhDescription))}</p>
-                  <div class="ultra-services-step-tags">${pillar.steps.map(step => `<span>${esc(step)}</span>`).join("")}</div>
                 </article>
               `).join("")}
             </div>
@@ -3367,6 +3258,54 @@
     return `<div class="ultra-case-modal" data-case-modal>${caseDetailPage(id, lang, { modal: true })}</div>`;
   }
 
+  function applyPageIntro(root, path) {
+    if (!root || path === "/admin") return;
+    const firstScreen = root.querySelector(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .ultra-services .ultra-services-hero, .ultra-main > .ultra-contact-page .ultra-contact-hero, .ultra-main > .ultra-case-detail.is-page");
+    if (firstScreen) firstScreen.classList.add("ultra-page-intro-scope");
+    const selectors = [
+      ".ultra-main > .ultra-hero .ultra-kicker",
+      ".ultra-main > .ultra-hero h1",
+      ".ultra-main > .ultra-hero p",
+      ".ultra-main > .ultra-hero .ultra-hero-actions",
+      ".ultra-about-hero-copy > .ultra-about-kicker",
+      ".ultra-about-hero-copy > h1",
+      ".ultra-about-hero-copy > p",
+      ".ultra-about-hero-copy > .ultra-about-stats > *",
+      ".ultra-about-system-frame",
+      ".ultra-services-hero-copy > .ultra-services-kicker",
+      ".ultra-services-hero-copy > h1",
+      ".ultra-services-hero-copy > p",
+      ".ultra-services-hero-copy > strong",
+      ".ultra-services-hero-copy > .ultra-services-hero-actions",
+      ".ultra-services-system",
+      ".ultra-cases-index .ultra-section-head",
+      ".ultra-cases-index .ultra-filter",
+      ".ultra-cases-index .ultra-case-grid > [data-case-item]:not(.is-hidden) .ultra-case-card",
+      ".ultra-case-detail.is-page .ultra-case-detail-logo",
+      ".ultra-case-detail.is-page .ultra-case-detail-title",
+      ".ultra-case-detail.is-page .ultra-case-detail-line",
+      ".ultra-case-detail.is-page .ultra-case-detail-meta",
+      ".ultra-case-detail.is-page .ultra-case-detail-intro",
+      ".ultra-case-detail.is-page .ultra-case-detail-gallery",
+      ".ultra-contact-hero-copy > .ultra-contact-kicker",
+      ".ultra-contact-hero-copy > h1",
+      ".ultra-contact-hero-copy > .ultra-contact-hero-reveal-title",
+      ".ultra-contact-hero-copy > p",
+      ".ultra-contact-hero-copy > .ultra-contact-actions",
+      ".ultra-contact-promise > article"
+    ];
+    const items = [];
+    selectors.forEach(selector => {
+      root.querySelectorAll(selector).forEach(node => {
+        if (!items.includes(node)) items.push(node);
+      });
+    });
+    items.forEach((node, index) => {
+      node.classList.add("ultra-page-intro-item");
+      node.style.setProperty("--page-intro-delay", `${500 + Math.min(index, 6) * 140}ms`);
+    });
+  }
+
   function splitUltraTypeRevealText(node, lineIndex = 0) {
     if (!node || node.dataset.revealReady === "true") return;
     const original = node.textContent || "";
@@ -3795,6 +3734,12 @@
   function renderAppPage(path, lang) {
     applyLocaleAttributes(lang);
     applyDocumentMeta(path, lang);
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const introKey = path.startsWith("/cases/") ? path : path.split("#")[0];
+    const playIntro = path !== "/admin" && !reduced && document.body.dataset.pageIntroPath !== introKey;
+    if (playIntro) {
+      resetIntroForRoute();
+    }
     let root = document.getElementById("ultra-app");
     if (!root) {
       root = document.createElement("div");
@@ -3815,11 +3760,23 @@
       const siteClass = path === "/services" ? "ultra-site ultra-services-site" : path === "/contact" ? "ultra-site ultra-contact-site" : "ultra-site";
       root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     }
-    initNavScramble(root);
     root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
       node.setAttribute("data-animate", "");
       node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
     });
+    triggerNavIntroOnce();
+    applyPageIntro(root, path);
+    if (playIntro) {
+      window.requestAnimationFrame(() => {
+        document.body.classList.remove("is-intro-reset");
+        document.body.classList.add("is-ready");
+        document.body.dataset.pageIntroPath = introKey;
+      });
+    } else {
+      document.body.classList.remove("is-intro-reset");
+      document.body.classList.add("is-ready");
+      document.body.dataset.pageIntroPath = introKey;
+    }
     initAboutPage(root);
     initUltraTypeReveal(root);
     initServicesPage(root);
@@ -4127,7 +4084,7 @@
       ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
       : "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.";
     const titleText = heroTitle.join(" ");
-    const titleLines = heroTitle.map(line => `<span class="hero-focus-line">${esc(line)}</span>`).join("");
+    const titleLines = heroTitle.map((line, index) => `<span class="hero-focus-line" style="--intro-index:${index}">${esc(line)}</span>`).join("");
     const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
     const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
 
@@ -4140,8 +4097,8 @@
           </h1>
         </div>
         <div class="ultra-home-hero-rebuilt-bottom">
-          <p>${heroCopy}</p>
-          <div class="ultra-home-hero-rebuilt-actions">
+          <p class="ultra-home-intro-copy">${esc(heroCopy)}</p>
+          <div class="ultra-home-hero-rebuilt-actions ultra-home-intro-actions">
             <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
             <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
           </div>
@@ -4222,11 +4179,28 @@
     applyDocumentMeta("/", lang);
     document.documentElement.classList.remove("ultra-app-active");
     document.documentElement.classList.add("ultra-home-active");
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const playIntro = !reduced && document.body.dataset.pageIntroPath !== "/";
+    if (playIntro) resetIntroForRoute();
     const root = document.getElementById("ultra-app");
     if (root) root.innerHTML = `<div class="ultra-site ultra-home-shell">${navHTML(lang, "/")}</div>`;
-    if (root) initNavScramble(root);
+    triggerNavIntroOnce();
     const container = document.getElementById("container");
-    if (container) renderHomeContent(container, lang);
+    if (container) {
+      container.innerHTML = "";
+      renderHomeContent(container, lang);
+    }
+    if (playIntro) {
+      window.requestAnimationFrame(() => {
+        document.body.classList.remove("is-intro-reset");
+        document.body.classList.add("is-ready");
+        document.body.dataset.pageIntroPath = "/";
+      });
+    } else {
+      document.body.classList.remove("is-intro-reset");
+      document.body.classList.add("is-ready");
+      document.body.dataset.pageIntroPath = "/";
+    }
     const switcher = document.querySelector(".ultra-home-lang");
     if (switcher) switcher.remove();
   }
@@ -5110,12 +5084,15 @@
           return;
         }
         const targetHash = link.dataset.scrollTarget || (new URL(link.href, window.location.href)).hash.replace(/^#/, "");
+        const current = currentPath();
+        const nextIntroKey = path.startsWith("/cases/") ? path : path.split("#")[0];
+        const shouldResetIntro = path !== "/admin" && current !== nextIntroKey;
+        if (shouldResetIntro) resetIntroForRoute();
+        if (!targetHash) window.scrollTo({ top: 0, behavior: "auto" });
         history.pushState({}, "", `${routeLink(path)}${targetHash ? `#${targetHash}` : ""}`);
         render();
         if (targetHash) {
-          scrollToHashTarget(targetHash);
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          scrollToHashTarget(targetHash, "auto");
         }
       }
     }
@@ -5343,6 +5320,15 @@
       setCaseModal("");
     }
   });
+  window.addEventListener("load", () => {
+    if (currentPath() === "/") return;
+    window.requestAnimationFrame(() => {
+      document.body.classList.add("is-ready");
+    });
+  }, { once: true });
   window.addEventListener("DOMContentLoaded", render);
-  setTimeout(render, 900);
+  setTimeout(() => {
+    const app = document.getElementById("ultra-app");
+    if (!app || !app.children.length) render();
+  }, 900);
 })();
