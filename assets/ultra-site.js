@@ -1225,6 +1225,11 @@
     `;
   }
 
+  function statRollingText(label) {
+    const safeLabel = esc(label || "");
+    return `<span class="ultra-stat-roll-track" aria-hidden="true"><span>${safeLabel}</span><span>${safeLabel}</span></span>`;
+  }
+
   function homeHeroHTML(lang) {
     const zh = lang === "zh";
     const heroTitle = homeHeroTitle(lang);
@@ -1634,10 +1639,10 @@
           <div class="ultra-about-wrap ultra-about-hero-grid">
             <div class="ultra-about-hero-copy">
               <div class="ultra-about-kicker">${zh ? "\u5173\u4e8e\u7693\u521b / \u5c55\u4f1a\u4e0e\u51fa\u6d77" : "ABOUT ULTRA / EXHIBITION & ABROAD"}</div>
-              <h1>${zh ? "\u8ba9<span>\u4e2d\u56fd\u54c1\u724c</span><br>\u5728<span>\u6d77\u5916</span>\u5448\u73b0\u672c\u5730\u54c1\u724c\u59ff\u6001" : "We make <span>Chinese brands</span><br>look at home <span>overseas.</span>"}</h1>
+              <h1>${zh ? "\u8ba9\u4e2d\u56fd\u54c1\u724c<br>\u5728\u6d77\u5916<br>\u5448\u73b0\u672c\u5730\u54c1\u724c\u59ff\u6001" : "We make<br>Chinese brands<br>look at home overseas."}</h1>
               <p>${zh ? "\u7693\u521b\u5c55\u89c8 Ultra Expo \u6210\u7acb\u4e8e\u4e2d\u56fd\u82cf\u5dde\uff0c\u4e13\u6ce8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u7684\u6d77\u5916\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u96f6\u552e\u7a7a\u95f4\u9879\u76ee\u3002\u6211\u4eec\u63d0\u4f9b\u4ece\u7b56\u7565\u3001\u7a7a\u95f4\u8bbe\u8ba1\u5230\u6d77\u5916\u672c\u5730\u5316\u751f\u4ea7\u3001\u7269\u6d41\u3001\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u7684\u4e00\u4f53\u5316\u670d\u52a1\u3002" : "Ultra Expo is a global exhibition delivery team based in Suzhou, China. We help Chinese brands show up professionally in overseas exhibitions, product launches, and retail spaces, from strategy and spatial design to localized production, logistics, construction, and on-site delivery."}</p>
               <div class="ultra-about-stats">
-                ${aboutStats.map((stat, index) => `<div class="ultra-split-rolling"><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong class="ultra-about-stat-number" aria-label="${esc(stat[0])}">${rollingButtonText(stat[0])}</strong><span>${esc(stat[1])}</span></div>`).join("")}
+                ${aboutStats.map((stat, index) => `<div><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong class="ultra-about-stat-number ultra-stat-split" aria-label="${esc(stat[0])}">${statRollingText(stat[0])}</strong><span class="ultra-about-stat-label">${esc(stat[1])}</span></div>`).join("")}
               </div>
             </div>
             <div class="ultra-about-system" aria-hidden="true">
@@ -1691,7 +1696,7 @@
           <div class="ultra-about-wrap ultra-about-delivery-grid">
             <div>
               ${sectionIntro("", zh ? "\u5168\u7403\u4ea4\u4ed8\uff0c\u672c\u5730\u6267\u884c" : "Global delivery, local execution.", zh ? "5 \u4e2a\u81ea\u6709\u5de5\u5382 / 3 \u5927\u533a\u57df\u529e\u516c\u5ba4 / 20+ \u6d77\u5916\u642d\u5efa\u4f19\u4f34\u3002\u5168\u7403\u672c\u5730\u5316\u751f\u4ea7\uff0c\u610f\u5473\u7740\u66f4\u77ed\u7684\u7269\u6d41\u8ddd\u79bb\u3001\u66f4\u4f4e\u7684\u5173\u7a0e\u98ce\u9669\u3001\u66f4\u5feb\u7684\u73b0\u573a\u54cd\u5e94\u3002" : "5 owned factories / 3 regional offices / 20+ overseas build partners. Localized production means shorter logistics routes, lower tariff risks, and faster on-site response.")}
-              <div class="ultra-about-node-list">${deliveryNodes.map((node, index) => `<article data-about-reveal data-about-node="${index}"><strong>${esc(node[0])}</strong><span>${esc(node[1])}</span></article>`).join("")}</div>
+              <div class="ultra-about-node-list">${deliveryNodes.map((node, index) => `<article class="ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal data-about-node="${index}"><strong data-reveal-text>${esc(node[0])}</strong><span>${esc(node[1])}</span></article>`).join("")}</div>
             </div>
             <div class="ultra-about-map" data-about-reveal aria-label="${zh ? "\u5168\u7403\u4ea4\u4ed8\u8282\u70b9" : "Global delivery nodes"}">
               ${deliveryNodes.map((node, index) => `<button type="button" class="map-dot dot-${index}" aria-label="${esc(node[0])}"><span>${esc(node[0])}</span></button>`).join("")}
@@ -1794,6 +1799,52 @@
         ${sectionHead(zh ? "合作客户" : "CLIENTS", zh ? "服务全球与中国品牌。" : "Trusted by global and Chinese brands.", "")}
         ${tokenList(clients)}
       </div></section>
+    `;
+  }
+
+  function ServiceRasterBackground() {
+    return `
+      <div class="service-raster-bg" data-service-raster-background aria-hidden="true">
+        <canvas class="service-raster-dot-canvas"></canvas>
+        <div class="service-raster-dot-grid"></div>
+        <div class="service-raster-columns">
+          <span class="service-raster-column service-raster-column--01"></span>
+          <span class="service-raster-column service-raster-column--02"></span>
+          <span class="service-raster-column service-raster-column--03"></span>
+          <span class="service-raster-column service-raster-column--04"></span>
+          <span class="service-raster-column service-raster-column--05"></span>
+          <span class="service-raster-column service-raster-column--06"></span>
+          <span class="service-raster-column service-raster-column--07"></span>
+          <span class="service-raster-column service-raster-column--08"></span>
+        </div>
+        <div class="service-raster-grain"></div>
+        <div class="service-raster-shadow-mask"></div>
+      </div>
+    `;
+  }
+
+  function CasesRasterBackground() {
+    return `
+      <div class="cases-raster-bg" aria-hidden="true">
+        <div class="cases-corner-glow"></div>
+        <div class="service-raster-columns columns cases-columns">
+          <span class="service-raster-column column cases-column cases-column--01"></span>
+          <span class="service-raster-column column cases-column cases-column--02"></span>
+          <span class="service-raster-column column cases-column cases-column--03"></span>
+          <span class="service-raster-column column cases-column cases-column--04"></span>
+          <span class="service-raster-column column cases-column cases-column--05"></span>
+          <span class="service-raster-column column cases-column cases-column--06"></span>
+          <span class="service-raster-column column cases-column cases-column--07"></span>
+          <span class="service-raster-column column cases-column cases-column--08"></span>
+          <span class="service-raster-column column cases-column cases-column--09"></span>
+          <span class="service-raster-column column cases-column cases-column--10"></span>
+          <span class="service-raster-column column cases-column cases-column--11"></span>
+          <span class="service-raster-column column cases-column cases-column--12"></span>
+        </div>
+        <div class="service-raster-grain grain cases-grain"></div>
+        <div class="cases-diamond-mask"></div>
+        <div class="cases-edge-fade"></div>
+      </div>
     `;
   }
 
@@ -1909,11 +1960,27 @@
       ["04", "On-site PM", "项目经理现场督导", "Key overseas projects can be coordinated on site to reduce information loss between design, production, and build."]
     ];
     const activeForSystem = ["strategy", "design", "abroad", "build"];
+    const serviceSystemGraphic = `
+      <div class="ultra-services-system ultra-services-solution-system" data-services-system aria-label="${esc(text("Ultra delivery system", "Ultra \u4ea4\u4ed8\u7cfb\u7edf"))}">
+        <div class="ultra-services-system-center">
+          <span>ULTRA</span>
+          <strong>${esc(text("DELIVERY SYSTEM", "\u4ea4\u4ed8\u7cfb\u7edf"))}</strong>
+        </div>
+        ${servicePillars.map((pillar, index) => `
+          <button type="button" class="ultra-services-system-node node-${pillar.key} ${pillar.isCore ? "is-active" : ""}" data-system-node="${esc(pillar.key)}">
+            <span>${esc(zh ? pillar.zhTitle : pillar.title)}</span>
+            <small>${esc(zh ? pillar.zhTag : (pillar.isCore ? "CORE DIFFERENCE" : pillar.tag))}</small>
+          </button>
+        `).join("")}
+        ${activeForSystem.map((key, index) => `<i class="ultra-services-system-line line-${key}" aria-hidden="true"></i>`).join("")}
+      </div>
+    `;
 
     return `
       <div class="ultra-services">
+        ${ServiceRasterBackground()}
+        <div class="ultra-services-content">
         <section class="ultra-services-hero" data-services-reveal>
-          <div class="ultra-services-hero-bg" aria-hidden="true"></div>
           <div class="ultra-services-wrap ultra-services-hero-grid">
             <div class="ultra-services-hero-copy">
               <div class="ultra-services-kicker">${esc(text("SERVICES / GLOBAL EXHIBITION DELIVERY", "业务能力 / 全球展会交付"))}</div>
@@ -1924,19 +1991,6 @@
                 <a class="ultra-services-primary" href="${routeLink("/contact")}" data-route="/contact">${esc(text("Start a Project", "咨询项目"))}<span aria-hidden="true">&#8594;</span></a>
                 <a class="ultra-services-secondary" href="#service-process">${esc(text("View Service Process", "查看服务流程"))}</a>
               </div>
-            </div>
-            <div class="ultra-services-system" data-services-system aria-label="${esc(text("Ultra delivery system", "Ultra 交付系统"))}">
-              <div class="ultra-services-system-center">
-                <span>ULTRA</span>
-                <strong>${esc(text("DELIVERY SYSTEM", "交付系统"))}</strong>
-              </div>
-              ${servicePillars.map((pillar, index) => `
-                <button type="button" class="ultra-services-system-node node-${pillar.key} ${pillar.isCore ? "is-active" : ""}" data-system-node="${esc(pillar.key)}">
-                  <span>${esc(zh ? pillar.zhTitle : pillar.title)}</span>
-                  <small>${esc(zh ? pillar.zhTag : (pillar.isCore ? "CORE DIFFERENCE" : pillar.tag))}</small>
-                </button>
-              `).join("")}
-              ${activeForSystem.map((key, index) => `<i class="ultra-services-system-line line-${key}" aria-hidden="true"></i>`).join("")}
             </div>
           </div>
         </section>
@@ -1960,19 +2014,12 @@
 
         <section class="ultra-services-section ultra-services-solution">
           <div class="ultra-services-wrap">
+            ${serviceSystemGraphic}
             <div class="ultra-services-solution-panel" data-services-reveal>
               <div>
                 <div class="ultra-services-kicker">${esc(serviceKicker("THE ULTRA SOLUTION"))}</div>
                 <h2>${esc(text("One team. One timeline. One accountable delivery system.", "一个团队，一条项目线，一个负责到底的交付系统。"))}</h2>
                 <p>${esc(text("Ultra connects strategy, spatial design, overseas localization, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将品牌策划、空间设计、海外落地和工程搭建整合在同一条项目链路中。客户面对的不是多个割裂供应商，而是一套可控、可追踪、可落地的服务系统。"))}</p>
-              </div>
-              <div class="ultra-services-flow-line" aria-hidden="true">
-                ${servicePillars.map((pillar, index) => `<span class="${pillar.isCore ? "is-core" : ""}" data-solution-card="${esc(pillar.key)}" style="--solution-index:${index}">
-                  <b>${esc(pillar.index)}</b>
-                  <em>${esc(zh ? pillar.zhTag : pillar.tag)}</em>
-                  <strong>${esc(zh ? pillar.zhTitle : pillar.title)}</strong>
-                  <small>${esc(zh ? pillar.zhSubtitle.split("/").slice(0, 2).join(" / ").trim() : pillar.subtitle.split("/").slice(0, 2).join(" / ").trim())}</small>
-                </span>`).join("<i></i>")}
               </div>
             </div>
           </div>
@@ -2066,6 +2113,7 @@
           </div>
         </section>
 
+        </div>
       </div>
     `;
   }
@@ -2433,12 +2481,17 @@
     const items = filteredCases(state);
     const initialCount = 24;
     return `
-      <section class="ultra-section ultra-cases-index"><div class="ultra-wrap">
+      <div class="cases-page">
+        ${CasesRasterBackground()}
+        <div class="cases-page-content">
+          <section class="ultra-section ultra-cases-index"><div class="ultra-wrap">
         ${sectionHead(zh ? "案例信息流" : "CASE FEED", labels[lang].allCases, "")}
         ${filtersHTML(lang, state)}
         <div class="ultra-case-grid" data-case-grid>${items.map((c, index) => `<div class="${index >= initialCount ? "is-hidden" : ""}" data-case-item>${caseCard(c, lang)}</div>`).join("")}</div>
         ${items.length > initialCount ? `<div class="ultra-load-more-wrap"><button class="ultra-secondary" type="button" data-load-more>${zh ? "加载更多" : "Load More"}</button></div>` : ""}
-      </div></section>
+          </div></section>
+        </div>
+      </div>
     `;
   }
 
@@ -3260,7 +3313,7 @@
 
   function applyPageIntro(root, path) {
     if (!root || path === "/admin") return;
-    const firstScreen = root.querySelector(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .ultra-services .ultra-services-hero, .ultra-main > .ultra-contact-page .ultra-contact-hero, .ultra-main > .ultra-case-detail.is-page");
+    const firstScreen = root.querySelector(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .cases-page .ultra-cases-index, .ultra-main > .ultra-services .ultra-services-hero, .ultra-main > .ultra-contact-page .ultra-contact-hero, .ultra-main > .ultra-case-detail.is-page");
     if (firstScreen) firstScreen.classList.add("ultra-page-intro-scope");
     const selectors = [
       ".ultra-main > .ultra-hero .ultra-kicker",
@@ -3491,9 +3544,133 @@
     }
   }
 
+  let serviceRasterCleanup = null;
+
+  function initServiceRasterBackground(root) {
+    if (serviceRasterCleanup) {
+      serviceRasterCleanup();
+      serviceRasterCleanup = null;
+    }
+
+    const background = root.querySelector("[data-service-raster-background]");
+    if (!background) return;
+
+    const canvas = background.querySelector(".service-raster-dot-canvas");
+    const context = canvas?.getContext?.("2d", { alpha: true });
+    const columns = [...background.querySelectorAll(".service-raster-column")];
+    if (!canvas || !context || !columns.length) return;
+
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    let width = 0;
+    let height = 0;
+    let highlightedDots = [];
+    let animationFrame = 0;
+    let scrollFrame = 0;
+    let lastAppliedScrollY = -1;
+
+    const resizeCanvas = () => {
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = background.getBoundingClientRect();
+      width = Math.max(1, Math.round(rect.width || window.innerWidth || 1));
+      height = Math.max(1, Math.round(background.offsetHeight || rect.height || (window.innerHeight * 1.25) || 1));
+      canvas.width = Math.floor(width * pixelRatio);
+      canvas.height = Math.floor(height * pixelRatio);
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+      const spacing = width < 720 ? 18 : 20;
+      const cols = Math.ceil(width / spacing);
+      const rows = Math.ceil(height / spacing);
+      const total = cols * rows;
+      const highlightCount = Math.max(12, Math.round(total * 0.0038));
+      const used = new Set();
+      highlightedDots = [];
+
+      while (highlightedDots.length < highlightCount && used.size < total) {
+        const col = Math.floor(Math.random() * cols);
+        const row = Math.floor(Math.random() * rows);
+        const key = `${col}:${row}`;
+        if (used.has(key)) continue;
+        used.add(key);
+        highlightedDots.push({
+          x: col * spacing + spacing / 2,
+          y: row * spacing + spacing / 2,
+          size: width < 720 ? 1.45 : 1.65,
+          phaseA: Math.random() * Math.PI * 2,
+          phaseB: Math.random() * Math.PI * 2,
+          durationA: 7200 + Math.random() * 11800,
+          durationB: 11800 + Math.random() * 18200,
+          baseAlpha: 0.22 + Math.random() * 0.12,
+          peakAlpha: 0.34 + Math.random() * 0.24
+        });
+      }
+    };
+
+    const draw = time => {
+      context.clearRect(0, 0, width, height);
+      highlightedDots.forEach(dot => {
+        const waveA = Math.sin((time / dot.durationA) * Math.PI * 2 + dot.phaseA) * 0.5 + 0.5;
+        const waveB = Math.sin((time / dot.durationB) * Math.PI * 2 + dot.phaseB) * 0.5 + 0.5;
+        const shimmer = Math.pow(waveA * 0.72 + waveB * 0.28, 2.6);
+        const alpha = Math.min(0.88, dot.baseAlpha + shimmer * dot.peakAlpha);
+        context.fillStyle = `rgba(67, 132, 255, ${alpha})`;
+        context.beginPath();
+        context.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        context.fill();
+      });
+      animationFrame = window.requestAnimationFrame(draw);
+    };
+
+    const updateScrollParallax = () => {
+      scrollFrame = 0;
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      if (scrollY === lastAppliedScrollY) return;
+      lastAppliedScrollY = scrollY;
+      columns.forEach(column => {
+        const factor = Number.parseFloat(getComputedStyle(column).getPropertyValue("--scroll-factor")) || 0;
+        column.style.setProperty("--scroll-shift", `${scrollY * factor}px`);
+      });
+    };
+
+    const requestScrollUpdate = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(updateScrollParallax);
+    };
+
+    const handleResize = () => {
+      resizeCanvas();
+      lastAppliedScrollY = -1;
+      updateScrollParallax();
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+    handleResize();
+
+    if (reduced) {
+      draw(0);
+      window.cancelAnimationFrame(animationFrame);
+    } else {
+      animationFrame = window.requestAnimationFrame(draw);
+    }
+
+    serviceRasterCleanup = () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", requestScrollUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+    };
+  }
+
   function initServicesPage(root) {
     const servicesRoot = root.querySelector(".ultra-services");
-    if (!servicesRoot) return;
+    if (!servicesRoot) {
+      if (serviceRasterCleanup) {
+        serviceRasterCleanup();
+        serviceRasterCleanup = null;
+      }
+      return;
+    }
+    initServiceRasterBackground(servicesRoot);
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
     const revealNodes = [...servicesRoot.querySelectorAll("[data-services-reveal]")];
     if (reduced || !("IntersectionObserver" in window)) {
@@ -3526,7 +3703,7 @@
     });
     setActiveSteps("07,08,09,10,11");
 
-    const system = servicesRoot.querySelector("[data-services-system]");
+    const system = servicesRoot.querySelector(".ultra-services-solution-system");
     const setSystemActive = key => {
       system?.querySelectorAll("[data-system-node]").forEach(node => {
         node.classList.toggle("is-active", node.dataset.systemNode === key);
@@ -3566,35 +3743,6 @@
       window.addEventListener("resize", requestPillarUpdate, { passive: true });
     } else {
       pillarCardsForProgress.forEach(card => card.style.setProperty("--pillar-progress", "1"));
-    }
-
-    const solutionPanel = servicesRoot.querySelector(".ultra-services-solution");
-    const solutionCards = [...servicesRoot.querySelectorAll(".ultra-services-flow-line span")];
-    if (solutionPanel && solutionCards.length) {
-      if (reduced) {
-        solutionCards.forEach(card => card.classList.add("is-active"));
-      } else {
-        let solutionTicking = false;
-        const clamp01 = value => Math.min(Math.max(value, 0), 1);
-        const updateSolutionCards = () => {
-          solutionTicking = false;
-          const viewport = window.innerHeight || document.documentElement.clientHeight || 1;
-          solutionCards.forEach((card, index) => {
-            const rect = card.getBoundingClientRect();
-            const local = clamp01((viewport * 0.78 - rect.top - index * 18) / (viewport * 0.28));
-            card.classList.toggle("is-active", local > 0.34);
-            card.style.setProperty("--solution-progress", local.toFixed(4));
-          });
-        };
-        const requestSolutionUpdate = () => {
-          if (solutionTicking) return;
-          solutionTicking = true;
-          window.requestAnimationFrame(updateSolutionCards);
-        };
-        updateSolutionCards();
-        window.addEventListener("scroll", requestSolutionUpdate, { passive: true });
-        window.addEventListener("resize", requestSolutionUpdate, { passive: true });
-      }
     }
 
     const processSection = servicesRoot.querySelector(".ultra-services-process");
@@ -3760,7 +3908,7 @@
       const siteClass = path === "/services" ? "ultra-site ultra-services-site" : path === "/contact" ? "ultra-site ultra-contact-site" : "ultra-site";
       root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     }
-    root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
+    root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .cases-page .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
       node.setAttribute("data-animate", "");
       node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
     });
