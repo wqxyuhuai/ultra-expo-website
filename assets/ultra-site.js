@@ -1,6 +1,7 @@
 (function () {
   const REPO_BASE = window.__ULTRA_BASE_PATH || "/";
-  const ADMIN_CONFIG_KEY = "ultra-admin-config-v1";
+  const ADMIN_CONFIG_KEY = "ultra-admin-config-v20260617-clean01";
+  const LEGACY_ADMIN_CONFIG_KEYS = ["ultra-admin-config-v1"];
   const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
   const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
@@ -33,7 +34,7 @@
       scope: "Delivery Scope",
       value: "Project Value",
       footerCopy: "Global exhibition and spatial design services for Chinese brands going abroad.",
-      tagline: "We make Chinese brands look at home — overseas.",
+      tagline: "Global exhibition delivery for Chinese brands going abroad.",
       copyright: "© 2026 Ultra Expo. All rights reserved."
     },
     zh: {
@@ -53,7 +54,7 @@
       scope: "交付范围",
       value: "项目价值",
       footerCopy: "为中国品牌出海提供全球展会与空间设计落地服务。",
-      tagline: "让中国品牌在海外，呈现出本土品牌的姿态。",
+      tagline: "为中国品牌出海提供全球展会交付服务。",
       copyright: "© 2026 Ultra Expo. 保留所有权利。"
     }
   };
@@ -250,76 +251,6 @@
   };
   filterLabels.en.regions = { Asia: "Asia", Europe: "Europe", "North America": "North America", "South America": "South America", Africa: "Africa", Oceania: "Oceania" };
 
-  const homeText = {
-    enToZh: {
-      "Home": "首页",
-      "About": "公司介绍",
-      "Services": "业务能力",
-      "Cases": "案例中心",
-      "Contact": "联系我们",
-      "Start a Project": "提交展会需求",
-      "Exhibition & Abroad": "展会与海外落地",
-      "EXHIBITION & ABROAD": "展会与海外落地",
-      "We make Chinese brands": "让中国品牌在海外，",
-      "look at home —": "呈现出本土品牌的姿态。",
-      "overseas.": "",
-      "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.": "为中国品牌出海提供全球展会与空间设计落地服务。",
-      "View Cases": "查看案例",
-      "Our Services": "了解服务能力",
-      "Explore Services": "了解服务能力",
-      "Trusted by China's most innovative global brands.": "服务新能源、汽车出行、智能制造、消费科技与全球活动等多个行业客户。",
-      "TRUSTED BY": "我们的合作客户",
-      "Countries & Regions": "覆盖国家与地区",
-      "Projects Delivered": "全球交付项目",
-      "Global Projects": "全球交付项目",
-      "Exhibition Area Built": "累计交付面积",
-      "Delivered Area": "累计交付面积",
-      "Overseas Partners": "海外搭建伙伴",
-      "Overseas Build Partners": "海外搭建伙伴",
-      "Global experience, proven delivery.": "全球项目经验",
-      "A global exhibition delivery team built for Chinese brands going global — from strategy and spatial design to end-to-end local build.": "一支为中国品牌出海而生的全球展会落地团队",
-      "A global exhibition delivery team": "一支为中国品牌出海而生的",
-      "built for Chinese brands": "全球展会落地团队",
-      "going global — from strategy and spatial design to": "",
-      "end-to-end local build.": "",
-      "Ultra Expo was founded in Suzhou, China, with operations spanning 15+ countries. We specialize in overseas exhibitions, product launches, and retail spaces — delivering the full cycle from strategy and design to localized build.": "皓创展览 Ultra Expo 成立于中国苏州，业务覆盖全球 15+ 国家与地区。我们专注于海外展会、新品发布与零售空间，提供从策划、设计到本地化交付的全流程服务。",
-      "We're not just a booth builder — we're the project partner that helps Chinese brands establish a professional, credible, localized presence at global exhibitions. Founded in Suzhou · 15+ countries · 200+ projects delivered.": "我们不只是展台搭建商，而是帮助中国品牌在海外建立专业、可信、本地化形象的项目伙伴。成立于苏州 · 覆盖 15+ 国家 · 交付 200+ 项目。",
-      "Strategy": "Strategy",
-      "Design": "Design",
-      "Abroad": "Abroad",
-      "Build": "Build",
-      "End-to-End Exhibition Services": "核心业务",
-      "Brand Planning": "Brand Planning",
-      "Spatial Design": "Spatial Design",
-      "Overseas Execution": "Overseas Execution",
-      "Engineering & Build": "Engineering & Build",
-      "Overseas strategy · Content & creative direction · Exhibition planning & timeline management": "出海策略 · 内容创意 · 展会规划",
-      "Concept design · 3D visualization & rendering · Construction drawing package": "概念设计 · 3D 渲染 · 施工图深化",
-      "Local sourcing & supplier management · Customs clearance & logistics · Cross-timezone project coordination": "本地供应 · 清关物流 · 跨时区项目管理",
-      "Factory prefabrication · On-site construction & QC · Strike, pack & return logistics": "工厂预制 · 现场施工 · 拆撤回运",
-      "Selected Works": "精选案例",
-      "SELECTED WORKS": "精选案例",
-      "From design to delivery.": "以真实项目，展示从设计到交付的能力。",
-      "Real projects. Real results. Every booth, every country.": "真实项目。真实结果。每个展台，每个国家。",
-      "Why Ultra": "为什么选择 Ultra",
-      "WHY ULTRA": "为什么选择皓创",
-      "Global delivery. Local execution.": "全球资源，本地交付。",
-      "We turn cross-border exhibition uncertainty into controllable delivery.": "把跨国展会的不确定性，变成可控的交付结果。",
-      "Turning cross-border uncertainty into": "把跨国展会的不确定性，",
-      "controlled delivery.": "变成可控的交付结果。",
-      "Localized Supply Chain": "本地化供应链",
-      "Local supplier networks across Europe, North America, and Southeast Asia reduce logistics risk and compress delivery timelines.": "依托中国、欧洲与北美的工厂和仓储资源，我们减少对单一路线运输的依赖，并提升本地响应速度。",
-      "Cross-Timezone Response": "跨时区项目协同",
-      "Real-time project coordination across time zones. Clients stay informed at every stage; issues get resolved fast.": "中国团队与海外伙伴协同工作，支持亚洲、欧洲和北美之间的跨时区沟通。",
-      "Controlled Timeline": "项目周期可控",
-      "From kickoff to strike, every milestone is clearly defined and tracked. Overseas construction never becomes a black box.": "从概念设计、施工图深化、工厂预制、物流到现场搭建，每个阶段都有清晰的节点规划。",
-      "On-Site Management": "现场项目管理",
-      "Dedicated on-site project managers supervise every build phase. Quality visible, milestones controlled, anomalies handled in real time.": "我们与本地搭建团队协同，保障设计还原、施工质量和展期最终呈现。",
-      "Let’s build your global stage.": "让我们一起为你的品牌，在全球搭建舞台。"
-    }
-  };
-  homeText.zhToEn = Object.fromEntries(Object.entries(homeText.enToZh).map(([en, zh]) => [zh, en]).filter(([zh]) => zh));
-
   function locale() {
     return localStorage.getItem(STORAGE_KEY) === "zh" ? "zh" : "en";
   }
@@ -379,6 +310,7 @@
   function applyDocumentMeta(path, lang) {
     const title = titleForPath(path, lang);
     const description = descriptionForPath(path, lang);
+    const robots = path === "/admin" ? "noindex,nofollow" : "index,follow";
     document.title = title;
     setMetaContent('meta[name="title"]', title);
     setMetaContent('meta[property="og:title"]', title);
@@ -386,6 +318,7 @@
     setMetaContent('meta[name="description"]', description);
     setMetaContent('meta[property="og:description"]', description);
     setMetaContent('meta[name="twitter:description"]', description);
+    setMetaContent('meta[name="robots"]', robots);
   }
 
   function stripBase(pathname) {
@@ -565,6 +498,7 @@
   function getAdminConfig() {
     const base = defaultAdminConfig();
     try {
+      LEGACY_ADMIN_CONFIG_KEYS.forEach(key => localStorage.removeItem(key));
       const raw = localStorage.getItem(ADMIN_CONFIG_KEY);
       return raw ? mergeAdminConfig(base, JSON.parse(raw)) : base;
     } catch (error) {
@@ -677,13 +611,13 @@
     const finish = () => callback?.();
     const injectScript = () => {
       const script = document.createElement("script");
-      script.src = routeLink("/assets/ultra-cases.js?v=20260617-content-refresh02");
+      script.src = routeLink("/assets/ultra-cases.js?v=20260617-clean01");
       script.onload = finish;
       script.onerror = () => {};
       document.head.appendChild(script);
     };
     if (window.fetch) {
-      fetch(routeLink("/assets/ultra-cases.js?v=20260617-content-refresh02"), { cache: "no-store" })
+      fetch(routeLink("/assets/ultra-cases.js?v=20260617-clean01"), { cache: "no-store" })
         .then(response => response.ok ? response.text() : "")
         .then(text => {
           if (!text) {
@@ -755,10 +689,26 @@
     return merged;
   }
 
+  function isCurrentCaseAsset(url) {
+    const value = String(url || "").trim();
+    if (!value) return false;
+    if (value.startsWith("./assets/notion/cases/") || value.startsWith("/assets/notion/cases/")) return true;
+    try {
+      return new URL(value, document.baseURI).pathname.includes("/assets/notion/cases/");
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function hasCurrentCaseMedia(item) {
+    if (isCurrentCaseAsset(caseImage(item))) return true;
+    return caseGalleryImages(item).some(isCurrentCaseAsset);
+  }
+
   function activeCases() {
     const override = getAdminConfig().cases?.items;
     const items = mergeContentOverrides(liveContent().cases, override);
-    return sortCases(items.filter(item => item?.isOnline !== false));
+    return sortCases(items.filter(item => item?.isOnline !== false && hasCurrentCaseMedia(item)));
   }
 
   function activeBrands() {
@@ -1122,44 +1072,6 @@
     `;
   }
 
-  function findHomeWhySection(container) {
-    const markers = ["Why Ultra", "为什么选择 Ultra", "为什么选择 ULTRA", "Turning cross-border", "跨境不确定性", "跨国展会的不确定性", "变成可控的交付结果", "Localized Supply Chain", "本地化供应链"];
-    const sections = [...container.querySelectorAll("section")];
-    return sections.find(section => markers.some(marker => section.textContent.includes(marker)));
-  }
-
-  function hideHomeSectionsByMarkers(container, markers, attrName, skipSelector) {
-    [...container.querySelectorAll("section")].forEach(section => {
-      if (
-        section.hasAttribute("data-ultra-home-services") ||
-        section.hasAttribute("data-ultra-home-selected") ||
-        section.hasAttribute("data-ultra-home-why") ||
-        section.hasAttribute("data-ultra-home-bottom")
-      ) return;
-      if (skipSelector && (section.matches(skipSelector) || section.closest(skipSelector) || section.querySelector(skipSelector))) return;
-      if (attrName === "ultraOriginalServices" && !isHomeServicesOriginal(section)) return;
-      if (!markers.some(marker => section.textContent.includes(marker))) return;
-      section.dataset[attrName] = "true";
-      section.hidden = true;
-      section.style.display = "none";
-    });
-  }
-
-  function injectHomeWhySection(lang) {
-    const container = document.getElementById("container");
-    if (!container) return;
-    const existing = container.querySelector("[data-ultra-home-why]");
-    if (existing) existing.remove();
-    const original = container.querySelector("[data-ultra-original-why]") || findHomeWhySection(container);
-    if (!original) return;
-    original.dataset.ultraOriginalWhy = "true";
-    original.hidden = true;
-    original.style.display = "none";
-    original.insertAdjacentHTML("beforebegin", homeWhyCardsHTML(lang));
-    hideHomeSectionsByMarkers(container, ["Why Ultra", "为什么选择 Ultra", "为什么选择 ULTRA", "Turning cross-border", "跨境不确定性", "跨国展会的不确定性", "变成可控的交付结果", "Localized Supply Chain", "本地化供应链"], "ultraOriginalWhy", "[data-ultra-home-why]");
-    container.querySelector("[data-ultra-home-why]")?.setAttribute("data-animate", "");
-  }
-
   function homeServiceIcon(kind) {
     const icons = {
       strategy: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h10M4 17.5h7"></path><path d="m15.5 15 2 2 3.5-4"></path></svg>`,
@@ -1249,73 +1161,14 @@
     `;
   }
 
-  function isHomeServicesOriginal(section) {
-    if (!section || section.hasAttribute("data-ultra-home-services")) return false;
-    const text = section.textContent || "";
-    if (text.includes("End-to-End Exhibition Services")) return true;
-    if (text.includes("核心业务")) return true;
-    if (text.includes("Brand Planning") && text.includes("Construction drawing package")) return true;
-    if (text.includes("Brand Planning") && text.includes("Engineering & Build")) return true;
-    if (text.includes("Brand Planning") && text.includes("Overseas Execution")) return true;
-    if (text.includes("品牌策划") && text.includes("工程搭建")) return true;
-    if (text.includes("Overseas strategy") && text.includes("Factory prefabrication")) return true;
-    if (text.includes("Content & creative direction") && text.includes("On-site construction")) return true;
-    return false;
-  }
-
-  function findHomeServicesSection(container) {
-    const markers = ["End-to-End Exhibition Services", "核心业务", "Brand Planning", "品牌策划", "Overseas strategy", "出海策略", "Spatial Design", "空间设计", "Overseas Execution", "海外落地", "Engineering & Build", "工程搭建"];
-    const sections = [...container.querySelectorAll("section")];
-    return sections.find(section => isHomeServicesOriginal(section));
-  }
-
-  function injectHomeServicesSection(lang) {
-    const container = document.getElementById("container");
-    if (!container) return;
-    container.querySelectorAll("[data-ultra-home-services]").forEach(node => node.remove());
-    container.querySelectorAll("[data-ultra-original-services]").forEach(section => {
-      if (isHomeServicesOriginal(section)) return;
-      delete section.dataset.ultraOriginalServices;
-      section.hidden = false;
-      section.style.display = "";
-    });
-    const original = [...container.querySelectorAll("[data-ultra-original-services]")].find(section => isHomeServicesOriginal(section)) || findHomeServicesSection(container);
-    if (!original) return;
-    original.dataset.ultraOriginalServices = "true";
-    original.hidden = true;
-    original.style.display = "none";
-    original.insertAdjacentHTML("beforebegin", homeServicesHTML(lang));
-    hideHomeSectionsByMarkers(container, ["End-to-End Exhibition Services", "核心业务", "Brand Planning", "品牌策划", "Overseas strategy", "出海策略", "Spatial Design", "空间设计", "Overseas Execution", "海外落地", "Engineering & Build", "工程搭建"], "ultraOriginalServices", "[data-ultra-home-services]");
-    const injected = container.querySelector("[data-ultra-home-services]");
-    if (injected) {
-      injected.hidden = false;
-      injected.style.display = "";
-      delete injected.dataset.ultraOriginalServices;
-      injected.setAttribute("data-animate", "");
-      initUltraTypeReveal(injected);
-    }
-  }
-
   function homeSelectedHTML(lang) {
     const zh = lang === "zh";
-    const cases = activeCases()
-      .filter(item => caseImage(item));
-    const fallback = [
-      "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
-      "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png"
-    ];
-    const items = cases.length ? cases : fallback.map((image, index) => ({
-      id: "selected-fallback-" + index,
-      client: "ULTRA",
-      brandEnglishName: "ULTRA",
-      event: "Selected Work",
-      exhibitionName: "Selected Work",
-      year: "",
-      coverImage: { files: [{ url: image, source: "local-mock" }] },
-      image
-    }));
-    const rowA = [...items.slice(3, 11), ...items.slice(0, 3)];
-    const rowB = [...items.slice(7), ...items.slice(0, 7)];
+    const items = activeCases()
+      .filter(item => caseImage(item))
+      .slice(0, 14);
+    if (!items.length) return "";
+    const rowA = items.slice(0, Math.min(8, items.length));
+    const rowB = items.length > 8 ? items.slice(8, 14) : [...items].reverse();
     const imageCard = item => `
       <a class="ultra-selected-card" href="${routeLink(`/cases/${item.id}`)}" data-route="/cases/${esc(item.id)}" aria-label="${esc(`${item.client} ${item.event || ""}`)}">
         <img src="${esc(caseImage(item))}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item) || ""}`)}" loading="lazy" decoding="async" fetchpriority="low">
@@ -1343,73 +1196,23 @@
           <p>${zh ? "Ultra Expo 为新能源、储能、工业制造、汽车、消费电子和科技行业客户提供展会设计与海外交付服务。" : "Real projects. Real results. Every booth, every country."}</p>
         </div>
         <div class="ultra-home-selected-marquee" aria-label="${zh ? "精选案例图片" : "Selected works gallery"}">
-          ${row(rowA)}
-          ${row(rowB, true)}
+          ${rowA.length ? row(rowA) : ""}
+          ${rowB.length ? row(rowB, true) : ""}
         </div>
       </section>
     `;
   }
 
-  function findHomeSelectedSection(container) {
-    const markers = ["Selected Works", "精选案例", "From design to delivery", "从设计到交付"];
-    const sections = [...container.querySelectorAll("section")];
-    return sections.find(section => markers.some(marker => section.textContent.includes(marker)));
-  }
-
-  function injectHomeSelectedSection(lang) {
-    const container = document.getElementById("container");
-    if (!container) return;
-    container.querySelectorAll("[data-ultra-home-selected]").forEach(node => node.remove());
-    const original = container.querySelector("[data-ultra-original-selected]") || findHomeSelectedSection(container);
-    if (!original) return;
-    original.dataset.ultraOriginalSelected = "true";
-    original.hidden = true;
-    original.style.display = "none";
-    original.insertAdjacentHTML("beforebegin", homeSelectedHTML(lang));
-    container.querySelector("[data-ultra-home-selected]")?.setAttribute("data-animate", "");
-  }
-
-  function findHomeBottomSection(container) {
-    const markers = ["Let's build your", "Let’s build your", "Start a Project", "Submit Project Brief", "Send an Email", "ULTRA EXPO", "让我们一起为你的品牌", "提交项目需求", "发送邮件", "告诉我们你的展会名称"];
-    const sections = [...container.querySelectorAll("section")];
-    return sections.find(section => markers.some(marker => section.textContent.includes(marker)));
-  }
-
-  function injectHomeBottom(lang) {
-    const container = document.getElementById("container");
-    if (!container) return;
-    container.querySelectorAll("[data-ultra-home-bottom]").forEach(node => node.remove());
-    const original = container.querySelector("[data-ultra-original-bottom]") || findHomeBottomSection(container);
-    if (!original) return;
-    original.dataset.ultraOriginalBottom = "true";
-    original.hidden = true;
-    original.style.display = "none";
-    let sibling = original.nextElementSibling;
-    while (sibling) {
-      const text = sibling.textContent || "";
-      if (/ULTRA EXPO|Links|Services|Contact|Copyright|© 2026|联系我们|导航|服务|联系/.test(text)) {
-        sibling.dataset.ultraOriginalBottom = "true";
-        sibling.hidden = true;
-        sibling.style.display = "none";
-        sibling = sibling.nextElementSibling;
-      } else {
-        break;
-      }
-    }
-    original.insertAdjacentHTML("beforebegin", `<div class="ultra-site ultra-home-bottom" data-ultra-home-bottom data-animate>${siteBottomHTML(lang)}</div>`);
-    hideHomeSectionsByMarkers(container, ["Let's build your", "Let’s build your", "Start a Project", "Submit Project Brief", "Send an Email", "让我们一起为你的品牌", "提交项目需求", "发送邮件", "告诉我们你的展会名称"], "ultraOriginalBottom", "[data-ultra-home-bottom]");
-  }
-
   function homeHeroTitle(lang) {
     return lang === "zh"
-      ? ["\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916", "\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001"]
-      : ["We make Chinese brands", "look at home \u2014 overseas."];
+      ? ["\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77", "\u6784\u5efa\u5168\u7403\u5c55\u4f1a\u4ea4\u4ed8\u7cfb\u7edf"]
+      : ["Global exhibition delivery", "for Chinese brands going abroad."];
   }
 
   function homeHeroCopy(lang) {
     return lang === "zh"
-      ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
-      : "Ultra Expo delivers the full stack for Chinese brands going global \u2014 strategy, spatial design, and end-to-end local build.";
+      ? "\u8986\u76d6\u7b56\u7565\u3001\u7a7a\u95f4\u8bbe\u8ba1\u3001\u6d77\u5916\u672c\u5730\u5316\u3001\u5de5\u7a0b\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u7684\u4e00\u4f53\u5316\u670d\u52a1\u3002"
+      : "Strategy, spatial design, overseas localization, engineering, and on-site build in one controlled delivery system.";
   }
 
   function rollingButtonText(label) {
@@ -2631,6 +2434,8 @@
 
   function caseGalleryImages(item) {
     const unique = [];
+    const cover = caseImage(item);
+    if (cover) unique.push(cover);
     (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean).forEach(url => {
       if (!unique.includes(url)) unique.push(url);
     });
@@ -2773,7 +2578,8 @@
   function caseDetailPage(id, lang, options = {}) {
     const zh = lang === "zh";
     const allCases = activeCases();
-    const item = allCases.find(c => c.id === id) || allCases[0];
+    const item = allCases.find(c => c.id === id);
+    if (!item) return caseMissingPage(id, lang);
     const logo = brandLogo(item);
     const area = caseAreaText(item);
     const images = caseGalleryImages(item);
@@ -2805,6 +2611,25 @@
         </div>
         <div class="ultra-case-detail-gallery" data-case-detail-gallery>
           ${images.map((src, index) => `<figure><img src="${esc(src)}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item)} ${index + 1}`)}"></figure>`).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function caseMissingPage(id, lang) {
+    const zh = lang === "zh";
+    const title = zh ? "\u8be5\u6848\u4f8b\u5df2\u4e0b\u7ebf" : "Case no longer available.";
+    const copy = zh
+      ? "\u8fd9\u4e2a\u9879\u76ee\u4e0d\u5728\u5f53\u524d\u53d1\u5e03\u7684\u6848\u4f8b\u6570\u636e\u4e2d\uff0c\u8bf7\u56de\u5230\u6848\u4f8b\u4e2d\u5fc3\u67e5\u770b\u6700\u65b0\u9879\u76ee\u3002"
+      : "This project is not part of the current published case data. Return to the case feed for the latest work.";
+    const label = zh ? "\u8fd4\u56de\u6848\u4f8b\u4e2d\u5fc3" : "Back to Cases";
+    return `
+      <section class="ultra-case-missing">
+        <div class="ultra-case-missing-inner">
+          <span>CASE / ${esc(id || "missing")}</span>
+          <h1>${esc(title)}</h1>
+          <p>${esc(copy)}</p>
+          <a class="ultra-secondary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases">${rollingButtonText(label)}</a>
         </div>
       </section>
     `;
@@ -4276,323 +4101,13 @@
     }
   }
 
-  function replaceText(root, map) {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(node => {
-      const text = node.nodeValue.trim();
-      if (map[text] !== undefined) node.nodeValue = node.nodeValue.replace(text, map[text]);
-    });
-  }
-
-  function replacePhraseText(root, map) {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    const entries = Object.entries(map)
-      .filter(([source]) => source.length > 6)
-      .sort((a, b) => b[0].length - a[0].length);
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(node => {
-      if (node.parentElement?.closest("[data-ultra-static-en]")) return;
-      let next = node.nodeValue;
-      entries.forEach(([source, target]) => {
-        if (next.includes(source)) next = next.split(source).join(target);
-      });
-      if (next !== node.nodeValue) node.nodeValue = next;
-    });
-  }
-
-  function emphasizeHomeCopy(root) {
-    const phrases = [
-      "Countries & Regions",
-      "Projects Delivered",
-      "Exhibition Area Built",
-      "Overseas Partners",
-      "Ultra Expo was founded",
-      "We're not just a booth builder",
-      "Brand Planning",
-      "Spatial Design",
-      "Overseas Execution",
-      "Engineering & Build",
-      "Real projects. Real results.",
-      "国家与地区",
-      "交付项目",
-      "展陈面积",
-      "海外伙伴",
-      "皓创展览成立于",
-      "我们不只是展台搭建商",
-      "品牌策划",
-      "空间设计",
-      "海外执行",
-      "工程搭建",
-      "真实项目"
-    ];
-    root.querySelectorAll("p, span, div").forEach(element => {
-      const text = element.textContent.trim().replace(/\s+/g, " ");
-      if (phrases.some(phrase => text === phrase || text.includes(phrase))) {
-        element.classList.add("ultra-home-copy-strong");
-      }
-    });
-  }
-
-  function localizeHomeContainer(container, lang) {
-    const map = lang === "zh" ? homeText.enToZh : homeText.zhToEn;
-    replaceText(container, map);
-    replacePhraseText(container, map);
-    emphasizeHomeCopy(container);
-    container.querySelectorAll("a").forEach(anchor => {
-      const text = anchor.textContent.trim();
-      const navIndex = labels.en.nav.indexOf(text);
-      const zhIndex = labels.zh.nav.indexOf(text);
-      const index = navIndex >= 0 ? navIndex : zhIndex;
-      if (index >= 0) {
-        const path = navItems[index].path;
-        anchor.setAttribute("href", routeLink(path));
-        anchor.setAttribute("data-route", path);
-      }
-      if (text === "Start a Project" || text === "提交展会需求") {
-        anchor.setAttribute("href", routeLink("/contact"));
-        anchor.setAttribute("data-route", "/contact");
-      }
-    });
-  }
-
-  function markHomeLayout(container) {
-    const clean = value => String(value || "").trim().replace(/\s+/g, " ");
-    const all = [...container.querySelectorAll("h1, h2, h3, p, div, span, a, button")];
-    all.forEach(element => {
-      const text = clean(element.textContent);
-      if (!text) return;
-      if (
-        text.length < 140 &&
-        (
-          text.includes("We make Chinese brands") ||
-          text.includes("look at home") ||
-          text.includes("overseas.") ||
-          text.includes("中国品牌") ||
-          text.includes("本土品牌")
-        )
-      ) {
-        element.classList.add("ultra-home-hero-title-line");
-        const section = element.closest("section") || element.parentElement;
-        section?.classList.add("ultra-home-hero-section");
-      }
-      if (text.includes("Ultra Expo delivers the full stack") && !text.startsWith("Ultra Expo delivers the full stack")) return;
-      if (text.length < 240 && (text.includes("Ultra Expo delivers the full stack") || text.includes("为中国品牌出海提供"))) {
-        element.classList.add("ultra-home-hero-copy");
-      }
-      if (text === "View Cases" || text === "Explore Services" || text === "Our Services" || text === "查看案例" || text === "了解服务能力") {
-        element.classList.add("ultra-home-hero-action");
-        element.parentElement?.classList.add("ultra-home-hero-actions");
-      }
-      if (text.length < 180 && (text.includes("Trusted by China's most innovative global brands") || text.includes("服务新能源"))) {
-        element.classList.add("ultra-home-trusted-title");
-        const section = element.closest("section") || element.parentElement;
-        section?.classList.add("ultra-home-trusted-section");
-      }
-    });
-  }
-
-  function normalizeHomeHeroTitle(container, lang) {
-    const clean = value => String(value || "").trim().replace(/\s+/g, " ");
-    container.querySelectorAll(".ultra-home-hero-title-fixed").forEach(node => node.remove());
-    container.querySelectorAll(".ultra-home-hero-title-hidden").forEach(node => node.classList.remove("ultra-home-hero-title-hidden"));
-    const section = container.querySelector(".ultra-home-hero-section");
-    if (!section) return;
-    const titleNodes = [...section.querySelectorAll(".ultra-home-hero-title-line")]
-      .filter(node => {
-        const text = clean(node.textContent);
-        return text.includes("We make Chinese brands") ||
-          text.includes("look at home") ||
-          text.includes("overseas.") ||
-          text.includes("中国品牌") ||
-          text.includes("本土品牌");
-      });
-    if (!titleNodes.length || section.querySelector(".ultra-home-hero-title-fixed")) return;
-
-    const fixed = document.createElement("div");
-    fixed.className = `ultra-home-hero-title-fixed is-${lang}`;
-    fixed.innerHTML = `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
-    fixed.innerHTML = lang === "zh"
-      ? `<span>让中国品牌在海外</span><span>呈现出本土品牌的姿态</span>`
-      : `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
-    fixed.innerHTML = lang === "zh"
-      ? `<span>\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916</span><span>\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001</span>`
-      : `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
-    titleNodes.forEach(node => node.classList.add("ultra-home-hero-title-hidden"));
-    section.appendChild(fixed);
-  }
-
-  function rebuildHomeHeroContent(container, lang) {
-    const clean = value => String(value || "").trim().replace(/\s+/g, " ");
-    const section = container.querySelector(".ultra-home-hero-section") ||
-      [...container.querySelectorAll("section")].find(node => {
-        const text = clean(node.textContent);
-        return text.includes("We make Chinese brands") || text.includes("look at home") || text.includes("Exhibition & Abroad");
-      });
-    if (!section) return;
-
-    section.classList.add("ultra-home-hero-section", "ultra-home-hero-rebuilt-section");
-    if (!section.dataset.ultraHeroAmbientBound) {
-      section.dataset.ultraHeroAmbientBound = "true";
-      let heroFrame = 0;
-      const setHeroAmbient = (x, y) => {
-        if (heroFrame) cancelAnimationFrame(heroFrame);
-        heroFrame = requestAnimationFrame(() => {
-          const rect = section.getBoundingClientRect();
-          const px = rect.width ? Math.max(0, Math.min(1, (x - rect.left) / rect.width)) : 0.5;
-          const py = rect.height ? Math.max(0, Math.min(1, (y - rect.top) / rect.height)) : 0.42;
-          section.style.setProperty("--ultra-hero-mx", `${(px * 100).toFixed(1)}%`);
-          section.style.setProperty("--ultra-hero-my", `${(py * 100).toFixed(1)}%`);
-          section.style.setProperty("--ultra-hero-shift-x", `${((px - 0.5) * 18).toFixed(1)}px`);
-          section.style.setProperty("--ultra-hero-shift-y", `${((py - 0.42) * 10).toFixed(1)}px`);
-        });
-      };
-      section.addEventListener("pointermove", event => setHeroAmbient(event.clientX, event.clientY), { passive: true });
-      section.addEventListener("pointerleave", () => setHeroAmbient(window.innerWidth / 2, window.innerHeight * 0.42), { passive: true });
-    }
-    section.querySelectorAll(".ultra-home-hero-rebuilt").forEach(node => node.remove());
-    section.querySelectorAll(".ultra-home-hero-title-fixed").forEach(node => node.remove());
-
-    [...section.querySelectorAll("a, button")].forEach(node => {
-      if (!node.closest(".ultra-home-hero-rebuilt")) node.remove();
-    });
-
-    const oldHeroText = [
-      "Exhibition & Abroad",
-      "We make Chinese brands",
-      "look at home",
-      "overseas.",
-      "Ultra Expo delivers the full stack",
-      "\u5c55\u4f1a\u4e0e\u6d77\u5916\u843d\u5730",
-      "\u8ba9\u4e2d\u56fd\u54c1\u724c",
-      "\u672c\u571f\u54c1\u724c",
-      "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b"
-    ];
-    const isOldHeroText = text => oldHeroText.some(fragment => text.includes(fragment));
-    const oldTextElements = [...section.querySelectorAll("*")].filter(node => {
-      if (node === section || node.closest(".ultra-home-hero-rebuilt")) return false;
-      if (node.matches("img, svg, canvas, video, picture, source")) return false;
-      if (node.querySelector("img, svg, canvas, video, picture, source")) return false;
-      const text = clean(node.textContent);
-      return text && text.length < 320 && isOldHeroText(text);
-    });
-    oldTextElements
-      .filter(node => !oldTextElements.some(other => other !== node && node.contains(other)))
-      .forEach(node => node.remove());
-
-    [...section.querySelectorAll("*")].forEach(node => {
-      if (node.closest(".ultra-home-hero-rebuilt")) return;
-      if (node.children.length || clean(node.textContent)) return;
-      if (node.matches("img, svg, canvas, video, picture, source")) return;
-      const rect = node.getBoundingClientRect();
-      if (rect.width >= 16 && rect.width <= 280 && rect.height > 0 && rect.height <= 4) {
-        node.remove();
-      }
-    });
-
-    const zh = lang === "zh";
-    const heroTitle = zh
-      ? ["\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916", "\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001"]
-      : ["We make Chinese brands", "look at home — overseas."];
-    const heroCopy = zh
-      ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
-      : "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.";
-    const titleText = heroTitle.join(" ");
-    const titleLines = heroTitle.map((line, index) => `<span class="hero-focus-line" style="--intro-index:${index}">${esc(line)}</span>`).join("");
-    const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
-    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
-
-    section.insertAdjacentHTML("beforeend", `
-      <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
-        <div class="ultra-home-hero-rebuilt-title">
-          <h1 class="hero-focus-title" aria-label="${esc(titleText)}">
-            <span class="title-blur" aria-hidden="true">${titleLines}</span>
-            <span class="title-sharp" aria-hidden="true">${titleLines}</span>
-          </h1>
-        </div>
-        <div class="ultra-home-hero-rebuilt-bottom">
-          <p class="ultra-home-intro-copy">${esc(heroCopy)}</p>
-          <div class="ultra-home-hero-rebuilt-actions ultra-home-intro-actions">
-            <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
-            <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
-          </div>
-        </div>
-      </div>
-    `);
-
-    const focusTitle = section.querySelector(".hero-focus-title");
-    if (focusTitle && !focusTitle.dataset.ultraFocusBound) {
-      focusTitle.dataset.ultraFocusBound = "true";
-      let currentX = 50;
-      let currentY = 50;
-      let targetX = 50;
-      let targetY = 50;
-      let focusFrame = 0;
-      let focusActive = false;
-      const updateFocus = () => {
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
-        focusTitle.style.setProperty("--title-mx", `${currentX.toFixed(2)}%`);
-        focusTitle.style.setProperty("--title-my", `${currentY.toFixed(2)}%`);
-        if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-          focusFrame = requestAnimationFrame(updateFocus);
-        } else {
-          focusFrame = 0;
-        }
-      };
-      const moveFocus = (x, y) => {
-        const rect = focusTitle.getBoundingClientRect();
-        targetX = rect.width ? Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100)) : 50;
-        targetY = rect.height ? Math.max(0, Math.min(100, ((y - rect.top) / rect.height) * 100)) : 50;
-        if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
-      };
-      const centerFocus = () => {
-        targetX = 50;
-        targetY = 50;
-        if (!focusFrame) focusFrame = requestAnimationFrame(updateFocus);
-      };
-      const handleFocusPointer = event => {
-        const rect = focusTitle.getBoundingClientRect();
-        const inside = event.clientX >= rect.left &&
-          event.clientX <= rect.right &&
-          event.clientY >= rect.top &&
-          event.clientY <= rect.bottom;
-        if (inside) {
-          focusActive = true;
-          moveFocus(event.clientX, event.clientY);
-        } else if (focusActive) {
-          focusActive = false;
-          centerFocus();
-        }
-      };
-      section.addEventListener("pointermove", handleFocusPointer, { passive: true });
-      section.addEventListener("mousemove", handleFocusPointer, { passive: true });
-      section.addEventListener("pointerleave", centerFocus, { passive: true });
-      section.addEventListener("mouseleave", centerFocus, { passive: true });
-      focusTitle.addEventListener("pointermove", event => moveFocus(event.clientX, event.clientY), { passive: true });
-      focusTitle.addEventListener("mousemove", event => moveFocus(event.clientX, event.clientY), { passive: true });
-      focusTitle.addEventListener("pointerleave", centerFocus, { passive: true });
-      focusTitle.addEventListener("mouseleave", centerFocus, { passive: true });
-    }
-
-    const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
-    const textParents = new Set();
-    while (walker.nextNode()) {
-      const parent = walker.currentNode.parentElement;
-      if (parent && !parent.closest(".ultra-home-hero-rebuilt") && clean(walker.currentNode.nodeValue)) {
-        textParents.add(parent);
-      }
-    }
-    [...textParents]
-      .filter(node => ![...textParents].some(other => other !== node && other.contains(node)))
-      .forEach(node => node.remove());
-  }
-
   function enhanceHome(lang) {
     applyLocaleAttributes(lang);
     applyDocumentMeta("/", lang);
+    if (serviceRasterCleanup) {
+      serviceRasterCleanup();
+      serviceRasterCleanup = null;
+    }
     document.documentElement.classList.remove("ultra-app-active");
     document.documentElement.classList.add("ultra-home-active");
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
@@ -4625,7 +4140,7 @@
     const lang = locale();
     const path = currentPath();
     if (path === "/") {
-      setTimeout(() => enhanceHome(lang), 300);
+      enhanceHome(lang);
       return;
     }
     if (typeof homeClientMarqueeStop === "function") {
@@ -5766,12 +5281,47 @@
       setCaseModal("");
     }
   });
+
+  function registerUltraAssetCache() {
+    if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
+    const basePath = window.__ULTRA_BASE_PATH || "/";
+    const scope = basePath.endsWith("/") ? basePath : `${basePath}/`;
+    const serviceWorkerUrl = `${scope}ultra-sw.js?v=20260617-clean01`;
+    const register = () => {
+      navigator.serviceWorker.register(serviceWorkerUrl, { scope }).catch(() => {});
+    };
+    window.UltraAssetCache = {
+      clear() {
+        return navigator.serviceWorker.ready.then(registration => new Promise(resolve => {
+          const worker = registration.active || registration.waiting || registration.installing;
+          if (!worker) {
+            resolve(false);
+            return;
+          }
+          const channel = new MessageChannel();
+          const timeout = window.setTimeout(() => resolve(false), 2000);
+          channel.port1.onmessage = event => {
+            window.clearTimeout(timeout);
+            resolve(event.data?.type === "ULTRA_ASSET_CACHE_CLEARED");
+          };
+          worker.postMessage({ type: "ULTRA_CLEAR_ASSET_CACHE" }, [channel.port2]);
+        }));
+      }
+    };
+    if (document.readyState === "complete") {
+      register();
+    } else {
+      window.addEventListener("load", register, { once: true });
+    }
+  }
+
   window.addEventListener("load", () => {
     if (currentPath() === "/") return;
     window.requestAnimationFrame(() => {
       document.body.classList.add("is-ready");
     });
   }, { once: true });
+  registerUltraAssetCache();
   window.addEventListener("DOMContentLoaded", render);
   setTimeout(() => {
     const app = document.getElementById("ultra-app");

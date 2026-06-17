@@ -8,6 +8,28 @@
   font-display: swap;
 }
 
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #05070c;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#container,
+#ultra-app {
+  width: 100%;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  background: #05070c;
+}
+
 /* Admin control center */
 .ultra-admin-site,
 .ultra-admin-main {
@@ -661,9 +683,15 @@ html.ultra-home-active body {
   display: none;
 }
 
-html.ultra-app-active #ultra-app,
+html.ultra-app-active #ultra-app {
+  display: block;
+}
+
 html.ultra-home-active #ultra-app {
   display: block;
+  height: 0;
+  min-height: 0;
+  background: transparent;
 }
 
 html.ultra-app-active #container {
@@ -3110,7 +3138,12 @@ html.ultra-home-active #container .ultra-home-copy-strong * {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(49, 122, 255,0.68) 0 4%, transparent 4% 18%, rgba(49, 122, 255,0.18) 18% 25%, transparent 25% 70%, rgba(49, 122, 255,0.16) 70% 78%, transparent 78% 86%, rgba(49, 122, 255,0.62) 86% 100%),
+    linear-gradient(180deg, rgba(49, 122, 255,0.72) 0%, rgba(49, 122, 255,0.32) 48%, rgba(0,0,0,0) 100%) left top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.24) 0%, rgba(49, 122, 255,0.12) 48%, rgba(0,0,0,0) 100%) 10% top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.28) 0%, rgba(49, 122, 255,0.14) 48%, rgba(0,0,0,0) 100%) 22% top / 7% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.26) 0%, rgba(49, 122, 255,0.13) 48%, rgba(0,0,0,0) 100%) 71% top / 7% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.24) 0%, rgba(49, 122, 255,0.12) 48%, rgba(0,0,0,0) 100%) 84% top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.66) 0%, rgba(49, 122, 255,0.30) 48%, rgba(0,0,0,0) 100%) right top / 14% 100% no-repeat,
     radial-gradient(circle at 50% 48%, rgba(0,0,0,0.86), var(--theme-black) 54%),
     var(--theme-night);
 }
@@ -4248,14 +4281,16 @@ html.ultra-home-active #container .ultra-home-copy-strong * {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 260px minmax(560px, 1fr) 56px !important;
-  grid-template-rows: auto auto;
-  gap: clamp(54px, 5vw, 86px);
+  grid-template-rows: auto;
+  column-gap: clamp(54px, 5vw, 86px);
+  row-gap: 0;
   align-items: start;
 }
 
 .ultra-footer-brand {
   grid-column: 1 !important;
-  grid-row: 1 / 3 !important;
+  grid-row: 1 !important;
+  align-self: stretch !important;
 }
 
 .ultra-footer-logo {
@@ -5259,7 +5294,10 @@ html.ultra-home-active #container [data-ultra-original-bottom][hidden] {
 .ultra-bottom-ambient {
   background:
     linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 38%, var(--theme-black) 100%) top / 100% clamp(170px, 17vw, 260px) no-repeat,
-    linear-gradient(90deg, rgba(49, 122, 255,0.76) 0 4%, transparent 4% 18%, rgba(49, 122, 255,0.28) 18% 26%, transparent 26% 67%, rgba(49, 122, 255,0.26) 67% 78%, transparent 78% 86%, rgba(49, 122, 255,0.76) 86% 100%) top / 100% clamp(170px, 17vw, 260px) no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.76) 0%, rgba(49, 122, 255,0.30) 46%, rgba(0,0,0,0) 100%) left top / 4% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.28) 0%, rgba(49, 122, 255,0.12) 46%, rgba(0,0,0,0) 100%) 18% top / 8% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.26) 0%, rgba(49, 122, 255,0.11) 46%, rgba(0,0,0,0) 100%) 67% top / 11% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255,0.76) 0%, rgba(49, 122, 255,0.30) 46%, rgba(0,0,0,0) 100%) right top / 14% 100% no-repeat,
     var(--theme-black) !important;
 }
 
@@ -5305,7 +5343,7 @@ html.ultra-home-active #container [data-ultra-original-bottom][hidden] {
 }
 
 .ultra-footer {
-  padding: clamp(62px, 5.4vw, 96px) 0 clamp(26px, 3vw, 46px) !important;
+  padding: clamp(54px, 4.8vw, 82px) 0 clamp(18px, 2.2vw, 34px) !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -5321,9 +5359,10 @@ html.ultra-home-active #container [data-ultra-original-bottom][hidden] {
 }
 
 .ultra-footer-brand {
-  min-height: clamp(270px, 24vw, 390px);
+  min-height: clamp(190px, 16vw, 270px);
   display: flex;
   flex-direction: column;
+  align-self: stretch !important;
 }
 
 .ultra-footer-brand small {
@@ -6233,58 +6272,6 @@ html[data-ultra-locale="zh"] .ultra-about-head h2 {
   animation-play-state: paused;
 }
 
-.ultra-about-cta {
-  text-align: center;
-  background:
-    linear-gradient(120deg, rgba(49, 122, 255,0.2), transparent 34%, rgba(49, 122, 255,0.12) 72%, transparent),
-    #07101f;
-}
-
-.ultra-about-cta .ultra-about-wrap {
-  max-width: 980px;
-}
-
-.ultra-about-cta h2 {
-  margin: 22px auto 0;
-  color: var(--theme-white);
-  font-size: clamp(42px, 5.2vw, 86px);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-html[data-ultra-locale="zh"] .ultra-about-cta h2 {
-  letter-spacing: 0;
-  line-height: 1.12;
-}
-
-.ultra-about-cta p {
-  max-width: 760px;
-  margin: 28px auto 0;
-  color: var(--about-muted);
-  font-size: clamp(16px, 1.1vw, 20px);
-  line-height: 1.72;
-}
-
-.ultra-about-cta-actions {
-  display: inline-flex;
-  margin-top: 36px;
-}
-
-.ultra-about-cta-actions .ultra-primary,
-.ultra-about-cta-actions .ultra-secondary {
-  min-height: 62px;
-  padding: 0 34px;
-  border-color: rgba(255,255,255,0.18);
-  font-size: 16px;
-}
-
-.ultra-about-cta-actions .ultra-secondary {
-  background: transparent;
-  color: var(--theme-white);
-  border-left: 0;
-}
-
 @keyframes ultraAboutLightSweep {
   0% { transform: translateX(-4%); opacity: 0.56; }
   50% { transform: translateX(4%); opacity: 0.92; }
@@ -6388,16 +6375,6 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
     min-height: 340px;
   }
 
-  .ultra-about-cta-actions {
-    display: grid;
-    width: 100%;
-  }
-
-  .ultra-about-cta-actions .ultra-primary,
-  .ultra-about-cta-actions .ultra-secondary {
-    width: 100%;
-    border-left: 1px solid rgba(255,255,255,0.18);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6540,8 +6517,7 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
   background: var(--theme-paper) !important;
 }
 
-.ultra-about-delivery,
-.ultra-about-cta {
+.ultra-about-delivery {
   background: var(--theme-night) !important;
   color: var(--theme-white) !important;
   border-bottom-color: rgba(255,255,255,0.14) !important;
@@ -6563,18 +6539,15 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
   color: rgba(5, 7, 12, 0.56) !important;
 }
 
-.ultra-about-delivery .ultra-about-head,
-.ultra-about-cta .ultra-about-head {
+.ultra-about-delivery .ultra-about-head {
   border-color: rgba(255,255,255,0.18);
 }
 
-.ultra-about-delivery .ultra-about-head h2,
-.ultra-about-cta h2 {
+.ultra-about-delivery .ultra-about-head h2 {
   color: var(--theme-white) !important;
 }
 
-.ultra-about-delivery .ultra-about-head p,
-.ultra-about-cta p {
+.ultra-about-delivery .ultra-about-head p {
   color: rgba(255,255,255,0.64) !important;
 }
 
@@ -6724,37 +6697,6 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
   border-top: 1px solid rgba(5, 7, 12, 0.12);
   border-bottom: 1px solid rgba(5, 7, 12, 0.12);
   padding: 10px 0;
-}
-
-.ultra-about-cta {
-  background: var(--theme-night) !important;
-}
-
-.ultra-about-cta::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: clamp(72px, 8vw, 130px);
-  width: min(720px, calc(100% - 64px));
-  height: 1px;
-  transform: translateX(-50%);
-  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.56) 0 6px, transparent 6px 14px);
-}
-
-.ultra-about-cta h2 {
-  font-weight: 400 !important;
-}
-
-.ultra-about-cta-actions .ultra-primary {
-  background: var(--theme-blue) !important;
-  border-color: var(--theme-blue) !important;
-  color: var(--theme-night) !important;
-}
-
-.ultra-about-cta-actions .ultra-secondary {
-  background: transparent !important;
-  color: var(--theme-white) !important;
-  border-color: rgba(255,255,255,0.28) !important;
 }
 
 @media (max-width: 760px) {
@@ -7099,23 +7041,6 @@ html[data-ultra-locale="zh"] .ultra-about-head h2 {
   background: var(--theme-white) !important;
 }
 
-.ultra-about-cta {
-  min-height: 70vh;
-  display: grid;
-  align-items: center;
-  background:
-    linear-gradient(180deg, var(--theme-white) 0, var(--theme-white) 18%, transparent 18%),
-    linear-gradient(180deg, rgba(49, 122, 255,0.08), rgba(49, 122, 255,0.46) 56%, var(--theme-night) 56%) !important;
-}
-
-.ultra-about-cta::before {
-  display: none !important;
-}
-
-.ultra-about-cta .ultra-about-kicker {
-  color: rgba(255,255,255,0.54) !important;
-}
-
 @media (max-width: 1100px) {
   .ultra-about-hero-copy h1 {
     font-size: clamp(70px, 12vw, 124px) !important;
@@ -7370,29 +7295,6 @@ html[data-ultra-locale="zh"] .ultra-about-head h2 {
   font-size: 18px !important;
 }
 
-.ultra-about-cta {
-  min-height: auto !important;
-  padding: clamp(104px, 8vw, 150px) 0 !important;
-}
-
-.ultra-about-cta h2 {
-  max-width: 760px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  font-size: clamp(40px, 4.6vw, 76px) !important;
-  line-height: 1.02 !important;
-}
-
-html[data-ultra-locale="zh"] .ultra-about-cta h2 {
-  font-size: clamp(34px, 4vw, 64px) !important;
-  line-height: 1.14 !important;
-}
-
-.ultra-about-cta p {
-  max-width: 680px !important;
-  font-size: clamp(15px, 1vw, 18px) !important;
-}
-
 @media (max-width: 1100px) {
   .ultra-about-wrap {
     width: min(100% - 48px, 1280px) !important;
@@ -7457,24 +7359,21 @@ html[data-ultra-locale="zh"] .ultra-about-hero-copy h1 {
   padding: clamp(72px, 6vw, 108px) 0 !important;
 }
 
-.ultra-about-head h2,
-.ultra-about-cta h2 {
+.ultra-about-head h2 {
   max-width: 760px !important;
   font-size: clamp(30px, 3.25vw, 52px) !important;
   line-height: 1.06 !important;
   letter-spacing: -0.034em !important;
 }
 
-html[data-ultra-locale="zh"] .ultra-about-head h2,
-html[data-ultra-locale="zh"] .ultra-about-cta h2 {
+html[data-ultra-locale="zh"] .ultra-about-head h2 {
   max-width: 720px !important;
   font-size: clamp(30px, 3vw, 48px) !important;
   line-height: 1.2 !important;
   letter-spacing: 0 !important;
 }
 
-.ultra-about-head p,
-.ultra-about-cta p {
+.ultra-about-head p {
   max-width: 640px !important;
   font-size: clamp(14px, 0.95vw, 17px) !important;
   line-height: 1.68 !important;
@@ -7506,10 +7405,6 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
   font-size: clamp(32px, 2.8vw, 48px) !important;
 }
 
-.ultra-about-cta {
-  padding: clamp(84px, 7vw, 124px) 0 !important;
-}
-
 @media (max-width: 760px) {
   .ultra-about-hero-copy h1 {
     font-size: clamp(36px, 10vw, 52px) !important;
@@ -7519,8 +7414,7 @@ html[data-ultra-locale="zh"] .ultra-about-cta h2 {
     font-size: clamp(30px, 8.8vw, 42px) !important;
   }
 
-  .ultra-about-head h2,
-  .ultra-about-cta h2 {
+  .ultra-about-head h2 {
     font-size: clamp(28px, 8vw, 40px) !important;
   }
 }
@@ -7798,8 +7692,7 @@ html.ultra-app-active:has(.ultra-about) body {
   text-transform: uppercase;
 }
 
-.ultra-about-hero-copy .ultra-about-kicker,
-.ultra-about-cta .ultra-about-kicker {
+.ultra-about-hero-copy .ultra-about-kicker {
   background: transparent !important;
   padding: 0 !important;
 }
@@ -21680,7 +21573,6 @@ html.ultra-home-active body,
 .ultra-lang-icon,
 #container a[href="#contact"][style*="padding: 11px 26px"],
 .ultra-contact-page .ultra-primary,
-.ultra-about-cta-actions .ultra-primary,
 .ultra-services-primary,
 .ultra-bottom-actions .ultra-bottom-primary,
 .ultra-home-hero-rebuilt-primary,
@@ -21694,7 +21586,6 @@ html.ultra-home-active body,
 .ultra-nav .ultra-primary:hover,
 #container a[href="#contact"][style*="padding: 11px 26px"]:hover,
 .ultra-contact-page .ultra-primary:hover,
-.ultra-about-cta-actions .ultra-primary:hover,
 .ultra-services-primary:hover,
 .ultra-bottom-actions .ultra-bottom-primary:hover,
 .ultra-home-hero-rebuilt-primary:hover,
@@ -25255,14 +25146,287 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
 
 /* Screenshot fixes 2026-06-17: theme blue, about service cards, contact promise dots. */
 
+:root {
+  --ultra-selection-bg: var(--theme-black);
+  --ultra-selection-fg: var(--theme-white);
+}
+
 ::selection {
-  background: var(--theme-blue);
-  color: var(--theme-white);
+  background: var(--ultra-selection-bg);
+  color: var(--ultra-selection-fg);
 }
 
 ::-moz-selection {
-  background: var(--theme-blue);
-  color: var(--theme-white);
+  background: var(--ultra-selection-bg);
+  color: var(--ultra-selection-fg);
+}
+
+:where(
+  .ultra-nav,
+  .ultra-footer,
+  .ultra-bottom-cta,
+  .home-hero-scene,
+  .ultra-home-hero-section,
+  .ultra-home-trusted-section,
+  .ultra-about-hero,
+  .ultra-about-services,
+  .ultra-about-delivery,
+  .ultra-about-shows,
+  .ultra-services-site,
+  .ultra-services,
+  .ultra-contact-site,
+  .ultra-contact-hero,
+  .ultra-case-detail-site,
+  .ultra-case-detail,
+  .ultra-admin-site,
+  .ultra-admin-main,
+  .ultra-admin-shell
+) {
+  --ultra-selection-bg: var(--theme-white);
+  --ultra-selection-fg: var(--theme-black);
+}
+
+:where(
+  .ultra-home-services,
+  .ultra-home-services-section,
+  .ultra-home-selected,
+  .ultra-home-selected-section,
+  .ultra-home-why,
+  .ultra-home-why-card,
+  .ultra-case-card,
+  .ultra-form-panel,
+  .ultra-placeholder,
+  .ultra-about,
+  .ultra-about-section,
+  .ultra-about-statement,
+  .ultra-about-shows,
+  .ultra-about-reasons,
+  .ultra-about-trust,
+  .ultra-about-stats div,
+  .ultra-about-metric-row article,
+  .ultra-about-reason-grid article,
+  .ultra-about-cert-grid article,
+  .ultra-about-brand-card,
+  .ultra-about-show-cloud,
+  .ultra-about-client-marquee span,
+  .ultra-services-pillars,
+  .ultra-services-pillar,
+  .ultra-services-process,
+  .ultra-services-process-card,
+  .ultra-services-deliver,
+  .ultra-services-deliver-card,
+  .ultra-admin-section,
+  .ultra-admin-login,
+  .ultra-admin,
+  .ultra-admin-panel
+) {
+  --ultra-selection-bg: var(--theme-black);
+  --ultra-selection-fg: var(--theme-white);
+}
+
+:where(
+  .ultra-nav,
+  .ultra-footer,
+  .ultra-bottom-cta,
+  .ultra-home-bottom,
+  .home-hero-scene,
+  .ultra-home-hero-section,
+  .ultra-home-trusted-section,
+  .ultra-about-hero,
+  .ultra-about-services,
+  .ultra-about-delivery,
+  .ultra-exhibition-logo-card,
+  .ultra-about-map .map-dot span,
+  .ultra-services-hero,
+  .ultra-services-solution-panel,
+  .ultra-services-solution-system,
+  .ultra-services-system,
+  .ultra-services-system-center,
+  .ultra-services-flow-line span,
+  .ultra-services-process-card.is-abroad,
+  .ultra-contact-site,
+  .ultra-contact-page,
+  .ultra-contact-hero,
+  .ultra-case-detail-site,
+  .ultra-case-detail,
+  .ultra-admin-site,
+  .ultra-admin-main,
+  .ultra-admin-shell,
+  .ultra-admin-workspace
+) {
+  --ultra-selection-bg: var(--theme-white);
+  --ultra-selection-fg: var(--theme-black);
+}
+
+:where(
+  .ultra-kicker,
+  .ultra-section-kicker,
+  .ultra-home-services-kicker,
+  .ultra-home-selected-kicker,
+  .ultra-home-why-kicker,
+  .ultra-admin-view-head span,
+  .ultra-admin-status,
+  .ultra-case-detail-brand,
+  .ultra-contact-info h3,
+  .ultra-contact-info-card h3,
+  [style*="color: var(--theme-blue)"],
+  [style*="color:#317AFF"],
+  [style*="color: #317AFF"],
+  [style*="color:#317aff"],
+  [style*="color: #317aff"]
+) {
+  --ultra-selection-fg: currentColor;
+}
+
+:where(
+  .ultra-kicker,
+  .ultra-section-kicker,
+  .ultra-home-services-kicker,
+  .ultra-home-selected-kicker,
+  .ultra-home-why-kicker,
+  .ultra-admin-view-head span,
+  .ultra-admin-status,
+  .ultra-case-detail-brand,
+  .ultra-contact-info h3,
+  .ultra-contact-info-card h3,
+  [style*="color: var(--theme-blue)"],
+  [style*="color:#317AFF"],
+  [style*="color: #317AFF"],
+  [style*="color:#317aff"],
+  [style*="color: #317aff"]
+)::selection {
+  color: currentColor;
+}
+
+:where(
+  .ultra-kicker,
+  .ultra-section-kicker,
+  .ultra-home-services-kicker,
+  .ultra-home-selected-kicker,
+  .ultra-home-why-kicker,
+  .ultra-admin-view-head span,
+  .ultra-admin-status,
+  .ultra-case-detail-brand,
+  .ultra-contact-info h3,
+  .ultra-contact-info-card h3,
+  [style*="color: var(--theme-blue)"],
+  [style*="color:#317AFF"],
+  [style*="color: #317AFF"],
+  [style*="color:#317aff"],
+  [style*="color: #317aff"]
+)::-moz-selection {
+  color: currentColor;
+}
+
+:where(
+  .ultra-home-why h2 span,
+  .ultra-home-why-num,
+  .ultra-cases-index .ultra-section-head h2,
+  .ultra-cases-index .ultra-filter button:hover,
+  .ultra-cases-index .ultra-filter button.is-active:hover,
+  .ultra-contact-kicker,
+  .ultra-contact-section-head span,
+  .ultra-contact-form-head span,
+  .ultra-contact-info-card > span,
+  .ultra-contact-direct a,
+  .ultra-contact-info-list a,
+  .ultra-contact-process .ultra-contact-section-head > span,
+  .ultra-bottom-kicker,
+  .ultra-about-kicker,
+  .ultra-about-hero-copy h1 span,
+  .ultra-about-head h2 span,
+  .ultra-about-service-grid .num,
+  .ultra-services-kicker,
+  .ultra-services-secondary:hover,
+  .ultra-services-system-center span,
+  .ultra-services-solution-panel strong,
+  .ultra-services-pillar-top span,
+  .ultra-services-process-top span,
+  .ultra-services-pillar.is-core .ultra-services-pillar-top b,
+  .ultra-services-process-card.is-abroad .ultra-services-process-top b,
+  .ultra-services-process-card i,
+  .ultra-services-problem-card span,
+  .ultra-case-detail-meta strong,
+  .ultra-case-detail-meta article > span,
+  .ultra-admin-status-pill.is-new,
+  .ultra-admin-confirm-card span,
+  .ultra-admin-list li > button:hover
+) {
+  --ultra-selection-fg: currentColor;
+}
+
+:where(
+  .ultra-home-why h2 span,
+  .ultra-home-why-num,
+  .ultra-cases-index .ultra-section-head h2,
+  .ultra-cases-index .ultra-filter button:hover,
+  .ultra-cases-index .ultra-filter button.is-active:hover,
+  .ultra-contact-kicker,
+  .ultra-contact-section-head span,
+  .ultra-contact-form-head span,
+  .ultra-contact-info-card > span,
+  .ultra-contact-direct a,
+  .ultra-contact-info-list a,
+  .ultra-contact-process .ultra-contact-section-head > span,
+  .ultra-bottom-kicker,
+  .ultra-about-kicker,
+  .ultra-about-hero-copy h1 span,
+  .ultra-about-head h2 span,
+  .ultra-about-service-grid .num,
+  .ultra-services-kicker,
+  .ultra-services-secondary:hover,
+  .ultra-services-system-center span,
+  .ultra-services-solution-panel strong,
+  .ultra-services-pillar-top span,
+  .ultra-services-process-top span,
+  .ultra-services-pillar.is-core .ultra-services-pillar-top b,
+  .ultra-services-process-card.is-abroad .ultra-services-process-top b,
+  .ultra-services-process-card i,
+  .ultra-services-problem-card span,
+  .ultra-case-detail-meta strong,
+  .ultra-case-detail-meta article > span,
+  .ultra-admin-status-pill.is-new,
+  .ultra-admin-confirm-card span,
+  .ultra-admin-list li > button:hover
+)::selection {
+  color: currentColor;
+}
+
+:where(
+  .ultra-home-why h2 span,
+  .ultra-home-why-num,
+  .ultra-cases-index .ultra-section-head h2,
+  .ultra-cases-index .ultra-filter button:hover,
+  .ultra-cases-index .ultra-filter button.is-active:hover,
+  .ultra-contact-kicker,
+  .ultra-contact-section-head span,
+  .ultra-contact-form-head span,
+  .ultra-contact-info-card > span,
+  .ultra-contact-direct a,
+  .ultra-contact-info-list a,
+  .ultra-contact-process .ultra-contact-section-head > span,
+  .ultra-bottom-kicker,
+  .ultra-about-kicker,
+  .ultra-about-hero-copy h1 span,
+  .ultra-about-head h2 span,
+  .ultra-about-service-grid .num,
+  .ultra-services-kicker,
+  .ultra-services-secondary:hover,
+  .ultra-services-system-center span,
+  .ultra-services-solution-panel strong,
+  .ultra-services-pillar-top span,
+  .ultra-services-process-top span,
+  .ultra-services-pillar.is-core .ultra-services-pillar-top b,
+  .ultra-services-process-card.is-abroad .ultra-services-process-top b,
+  .ultra-services-process-card i,
+  .ultra-services-problem-card span,
+  .ultra-case-detail-meta strong,
+  .ultra-case-detail-meta article > span,
+  .ultra-admin-status-pill.is-new,
+  .ultra-admin-confirm-card span,
+  .ultra-admin-list li > button:hover
+)::-moz-selection {
+  color: currentColor;
 }
 
 #container .ultra-about-services .ultra-about-service-grid article,
@@ -26560,4 +26724,831 @@ html.ultra-home-active #ultra-app .ultra-selected-card:hover img {
 #container :where(button:disabled, [aria-disabled="true"]),
 #ultra-app .ultra-site :where(button:disabled, [aria-disabled="true"]) {
   cursor: not-allowed !important;
+}
+
+/* Visual alignment pass - 2026-06-17. */
+
+/* Stronger glass navigation. */
+#container .ultra-nav,
+#ultra-app .ultra-nav,
+#container .ultra-site:has(.ultra-about) .ultra-nav,
+#ultra-app .ultra-site:has(.ultra-about) .ultra-nav,
+#container .ultra-site:has(.ultra-services) .ultra-nav,
+#ultra-app .ultra-site:has(.ultra-services) .ultra-nav,
+#container .ultra-site:has(.cases-page) .ultra-nav,
+#ultra-app .ultra-site:has(.cases-page) .ultra-nav,
+#container .ultra-contact-site .ultra-nav,
+#ultra-app .ultra-contact-site .ultra-nav {
+  background: rgba(12, 15, 20, 0.66) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  -webkit-backdrop-filter: saturate(1.28) blur(28px) !important;
+  backdrop-filter: saturate(1.28) blur(28px) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 46px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Home hero: remove the center glow and align the title group above the CTAs. */
+html.ultra-home-active #container .ultra-home-hero-rebuilt-section::after,
+html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-section::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 4, 8, 0.48) 0%,
+      rgba(2, 4, 8, 0.36) 36%,
+      rgba(4, 14, 26, 0.58) 58%,
+      rgba(16, 128, 240, 0.84) 77%,
+      rgba(182, 232, 255, 1) 100%
+    ) !important;
+  background-blend-mode: normal !important;
+}
+
+html.ultra-home-active #container .hero-focus-title .title-blur,
+html.ultra-home-active #ultra-app .hero-focus-title .title-blur {
+  text-shadow: none !important;
+}
+
+html.ultra-home-active #container .hero-focus-title .title-sharp,
+html.ultra-home-active #ultra-app .hero-focus-title .title-sharp {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.24) !important;
+}
+
+@media (min-width: 761px) {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
+    top: clamp(282px, 32.5svh, 352px) !important;
+    width: min(1180px, calc(100% - 72px)) !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt h1,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt h1 {
+    font-size: clamp(50px, 4.95vw, 71px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: 0 !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: block !important;
+    transform: none !important;
+    pointer-events: none !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt p,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
+    position: absolute !important;
+    top: clamp(510px, 53svh, 590px) !important;
+    left: 50% !important;
+    width: min(860px, calc(100% - 64px)) !important;
+    transform: translateX(-50%) !important;
+    font-size: clamp(17px, 1.08vw, 20px) !important;
+    line-height: 1.45 !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: clamp(84px, 11.5svh, 136px) !important;
+    margin-top: 0 !important;
+    transform: translateX(-50%) !important;
+    pointer-events: auto !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt h1,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt h1 {
+    font-size: clamp(40px, 14vw, 58px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+/* Services hero: keep the subtitle visible near the fold and center the title above it. */
+@media (min-width: 761px) {
+  #container .ultra-services-hero-copy h1,
+  #ultra-app .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy h1 {
+    top: clamp(430px, 45svh, 500px) !important;
+    width: min(1280px, calc(100vw - 96px)) !important;
+    font-size: clamp(46px, 4.95vw, 71px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: 0 !important;
+  }
+
+  #container .ultra-services-hero-copy p,
+  #ultra-app .ultra-services-hero-copy p,
+  html:has(.ultra-services) #container .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy p {
+    top: calc(100svh - clamp(150px, 12svh, 174px)) !important;
+    transform: translateX(-50%) !important;
+    max-width: min(760px, calc(100vw - 64px)) !important;
+    font-size: clamp(16px, 1.08vw, 20px) !important;
+    line-height: 1.46 !important;
+  }
+}
+
+/* Home services spacing. */
+#container .ultra-home-services,
+#ultra-app .ultra-home-services,
+html.ultra-home-active #container .ultra-home-services,
+html.ultra-home-active #ultra-app .ultra-home-services {
+  padding-bottom: clamp(112px, 7.8vw, 154px) !important;
+}
+
+#container .ultra-home-services-list,
+#ultra-app .ultra-home-services-list,
+html.ultra-home-active #container .ultra-home-services-list,
+html.ultra-home-active #ultra-app .ultra-home-services-list {
+  margin-top: clamp(82px, 6.2vw, 112px) !important;
+}
+
+/* Deliverables: tighter responsive header alignment and faster left-to-right card reveal. */
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal],
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal] {
+  opacity: 0 !important;
+  transform: translate3d(0, 26px, 0) !important;
+  transition:
+    opacity 460ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 460ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: var(--deliver-card-delay, 0ms) !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal]:nth-child(1),
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal]:nth-child(1) {
+  --deliver-card-delay: 0ms;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal]:nth-child(2),
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal]:nth-child(2) {
+  --deliver-card-delay: 70ms;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal]:nth-child(3),
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal]:nth-child(3) {
+  --deliver-card-delay: 140ms;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal]:nth-child(4),
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal]:nth-child(4) {
+  --deliver-card-delay: 210ms;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal]:nth-child(5),
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal]:nth-child(5) {
+  --deliver-card-delay: 280ms;
+}
+
+html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal].is-visible,
+html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal].is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+@media (max-width: 1180px) {
+  html:has(.ultra-services) #container .ultra-services-deliver .ultra-services-head,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver .ultra-services-head {
+    width: min(920px, calc(100% - 48px)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: clamp(68px, 8.5vw, 104px) !important;
+    text-align: left !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-deliver .ultra-services-head h2,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver .ultra-services-head h2 {
+    max-width: 720px !important;
+    font-size: clamp(40px, 7.4vw, 66px) !important;
+    line-height: 1.03 !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-deliver .ultra-services-head p,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver .ultra-services-head p {
+    max-width: 720px !important;
+    margin-left: 0 !important;
+    font-size: clamp(15px, 2.05vw, 19px) !important;
+    line-height: 1.45 !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-deliver-grid,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver-grid {
+    width: min(920px, calc(100% - 48px)) !important;
+    padding-top: clamp(52px, 6.4vw, 76px) !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-deliver-grid::before,
+  html:has(.ultra-services) #container .ultra-services-deliver-grid::after,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver-grid::before,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver-grid::after {
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html:has(.ultra-services) #container .ultra-services-deliver .ultra-services-head,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver .ultra-services-head,
+  html:has(.ultra-services) #container .ultra-services-deliver-grid,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver-grid {
+    width: min(100% - 32px, 520px) !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-deliver .ultra-services-head h2,
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver .ultra-services-head h2 {
+    font-size: clamp(34px, 11vw, 48px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.ultra-services) #container .ultra-services-deliver-card[data-services-reveal],
+  html:has(.ultra-services) #ultra-app .ultra-services-deliver-card[data-services-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* About logo grid dotted border. */
+#container .ultra-about-brand-card::before,
+#ultra-app .ultra-about-brand-card::before,
+html:has(.ultra-about) #container .ultra-about-brand-card::before,
+html:has(.ultra-about) #ultra-app .ultra-about-brand-card::before {
+  background:
+    radial-gradient(circle, rgba(150, 158, 172, 0.82) 1.35px, transparent 1.65px) left top / 13px 4px repeat-x,
+    radial-gradient(circle, rgba(150, 158, 172, 0.82) 1.35px, transparent 1.65px) left bottom / 13px 4px repeat-x,
+    radial-gradient(circle, rgba(150, 158, 172, 0.82) 1.35px, transparent 1.65px) left top / 4px 13px repeat-y,
+    radial-gradient(circle, rgba(150, 158, 172, 0.82) 1.35px, transparent 1.65px) right top / 4px 13px repeat-y !important;
+  opacity: 0.88 !important;
+}
+
+/* Why Ultra cards: remove numeric rails and tighten copy placement. */
+html:has(.ultra-services) #container .ultra-services-why .ultra-services-head h2,
+html:has(.ultra-services) #ultra-app .ultra-services-why .ultra-services-head h2 {
+  margin-top: clamp(12px, 1.25vw, 18px) !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why .ultra-services-head p,
+html:has(.ultra-services) #ultra-app .ultra-services-why .ultra-services-head p {
+  margin-top: clamp(24px, 2.4vw, 34px) !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why-card,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card,
+html:has(.ultra-services) #container .ultra-services-why-card.is-active,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card.is-active {
+  grid-template-columns: minmax(0, 1fr) !important;
+  min-height: clamp(280px, 30vh, 370px) !important;
+  padding: 0 !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why-card > span,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card > span {
+  display: none !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why-card > div,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card > div {
+  grid-column: 1 !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: clamp(48px, 5.2vw, 82px) clamp(64px, 8vw, 150px) !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why-card h3,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card h3 {
+  margin: 0 !important;
+  max-width: 760px !important;
+  font-size: clamp(30px, 2.35vw, 44px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-why-card p,
+html:has(.ultra-services) #ultra-app .ultra-services-why-card p {
+  max-width: 760px !important;
+  margin: clamp(14px, 1.4vw, 22px) 0 0 !important;
+  font-size: clamp(15px, 1vw, 18px) !important;
+  line-height: 1.48 !important;
+}
+
+@media (max-width: 760px) {
+  html:has(.ultra-services) #container .ultra-services-why-card > div,
+  html:has(.ultra-services) #ultra-app .ultra-services-why-card > div {
+    padding: clamp(34px, 9vw, 48px) clamp(22px, 7vw, 34px) !important;
+  }
+
+  html:has(.ultra-services) #container .ultra-services-why-card h3,
+  html:has(.ultra-services) #ultra-app .ultra-services-why-card h3 {
+    font-size: clamp(25px, 8vw, 34px) !important;
+  }
+}
+
+/* Case filter panel: slightly lighter shell. */
+#container .ultra-site:has(.cases-page) .ultra-filter,
+#ultra-app .ultra-site:has(.cases-page) .ultra-filter,
+#container .ultra-cases-index .ultra-filter,
+#ultra-app .ultra-cases-index .ultra-filter {
+  background: rgba(22, 32, 50, 0.76) !important;
+  border-color: rgba(126, 145, 172, 0.24) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 24px 60px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Case detail: fixed ESC, centered left copy, and gallery-only scrolling. */
+#container .ultra-case-modal,
+#ultra-app .ultra-case-modal {
+  overflow: hidden !important;
+  transform: none !important;
+  transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#container .ultra-case-modal.is-closing,
+#ultra-app .ultra-case-modal.is-closing {
+  transform: none !important;
+}
+
+html:has(.ultra-case-modal),
+body:has(.ultra-case-modal) {
+  overflow: hidden !important;
+}
+
+#container .ultra-case-modal .ultra-case-esc,
+#ultra-app .ultra-case-modal .ultra-case-esc,
+#container .ultra-case-esc,
+#ultra-app .ultra-case-esc {
+  position: fixed !important;
+  top: clamp(18px, 2.4vh, 30px) !important;
+  left: clamp(18px, 4.8vw, 122px) !important;
+  z-index: 4000 !important;
+}
+
+@media (min-width: 1101px) {
+  html:has(.ultra-case-detail.is-page),
+  html:has(.ultra-case-detail.is-page) body {
+    overflow: hidden !important;
+  }
+
+  #container .ultra-case-detail.is-modal,
+  #ultra-app .ultra-case-detail.is-modal,
+  #container .ultra-case-detail.is-page,
+  #ultra-app .ultra-case-detail.is-page {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+    align-items: center !important;
+    grid-template-columns: minmax(360px, 520px) minmax(0, 1fr) !important;
+    gap: clamp(70px, 7vw, 150px) !important;
+    padding-top: clamp(92px, 9vh, 128px) !important;
+    padding-bottom: clamp(28px, 4vh, 56px) !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #container .ultra-case-detail.is-page .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-copy {
+    position: relative !important;
+    top: auto !important;
+    align-self: center !important;
+    max-height: calc(100svh - clamp(150px, 18vh, 210px)) !important;
+    overflow: auto !important;
+    padding-right: 8px !important;
+    scrollbar-width: thin !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery {
+    columns: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-content: start !important;
+    height: calc(100svh - clamp(120px, 15vh, 178px)) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding-right: clamp(10px, 1vw, 18px) !important;
+    scrollbar-width: thin !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  html:has(.ultra-case-detail.is-page),
+  html:has(.ultra-case-detail.is-page) body {
+    overflow: auto !important;
+  }
+
+  #container .ultra-case-detail.is-modal,
+  #ultra-app .ultra-case-detail.is-modal,
+  #container .ultra-case-detail.is-page,
+  #ultra-app .ultra-case-detail.is-page {
+    height: auto !important;
+    min-height: 100svh !important;
+    overflow: visible !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #container .ultra-case-detail.is-page .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-copy,
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery {
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* First-screen positioning correction: keep hero controls tied to the viewport, not the long scene. */
+@media (min-width: 761px) {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
+    top: clamp(238px, 27svh, 318px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt p,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
+    top: clamp(420px, 45svh, 500px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
+    top: clamp(742px, 76svh, 842px) !important;
+    bottom: auto !important;
+  }
+
+  #container .ultra-services-hero-copy,
+  #ultra-app .ultra-services-hero-copy,
+  html:has(.ultra-services) #container .ultra-services-hero-copy,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+  }
+
+  #container .ultra-services-hero-copy h1,
+  #ultra-app .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy h1 {
+    top: clamp(430px, 45svh, 620px) !important;
+  }
+
+  #container .ultra-services-hero-copy p,
+  #ultra-app .ultra-services-hero-copy p,
+  html:has(.ultra-services) #container .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy p {
+    top: calc(100svh - clamp(230px, 18svh, 300px)) !important;
+  }
+}
+
+/* User screenshot fine-tune: lift home CTAs and re-center the services hero title. */
+@media (min-width: 761px) {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
+    top: clamp(690px, 70svh, 785px) !important;
+  }
+
+  #container .ultra-services-hero-copy h1,
+  #ultra-app .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy h1 {
+    top: clamp(300px, 30svh, 370px) !important;
+  }
+}
+
+/* Follow-up visual tuning - 2026-06-17. */
+
+/* Home metric values: keep each metric on one adaptive line. */
+#container .ultra-home-why-card,
+#ultra-app .ultra-home-why-card,
+html.ultra-home-active #container .ultra-home-why-card,
+html.ultra-home-active #ultra-app .ultra-home-why-card {
+  min-width: 0 !important;
+}
+
+#container .ultra-home-why-card .ultra-home-why-num,
+#ultra-app .ultra-home-why-card .ultra-home-why-num,
+html.ultra-home-active #container .ultra-home-why-card .ultra-home-why-num,
+html.ultra-home-active #ultra-app .ultra-home-why-card .ultra-home-why-num {
+  align-self: start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin: clamp(28px, 2.4vw, 42px) 0 8px !important;
+  color: var(--theme-blue) !important;
+  font-size: clamp(42px, 3.25vw, 66px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.025em !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-wrap: nowrap !important;
+  transform: none !important;
+}
+
+@media (max-width: 1280px) {
+  #container .ultra-home-why-card .ultra-home-why-num,
+  #ultra-app .ultra-home-why-card .ultra-home-why-num,
+  html.ultra-home-active #container .ultra-home-why-card .ultra-home-why-num,
+  html.ultra-home-active #ultra-app .ultra-home-why-card .ultra-home-why-num {
+    font-size: clamp(34px, 4.9vw, 54px) !important;
+    letter-spacing: -0.03em !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #container .ultra-home-why-card .ultra-home-why-num,
+  #ultra-app .ultra-home-why-card .ultra-home-why-num,
+  html.ultra-home-active #container .ultra-home-why-card .ultra-home-why-num,
+  html.ultra-home-active #ultra-app .ultra-home-why-card .ultra-home-why-num {
+    font-size: clamp(34px, 11vw, 50px) !important;
+  }
+}
+
+/* Services hero: match the About-style sequential upward entrance. */
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal],
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p {
+  opacity: 0 !important;
+  filter: none !important;
+  transition:
+    opacity 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1 {
+  transform: translate(-50%, calc(-50% + 34px)) !important;
+  transition-delay: 80ms !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p {
+  transform: translate(-50%, calc(-50% + 30px)) !important;
+  transition-delay: 250ms !important;
+}
+
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy h1,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy h1,
+html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy p,
+html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy p {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) !important;
+    transition: none !important;
+  }
+}
+
+/* Align the case ESC button with the left edge of the detail content. */
+#container .ultra-case-modal .ultra-case-esc,
+#ultra-app .ultra-case-modal .ultra-case-esc {
+  left: clamp(42px, 6vw, 140px) !important;
+}
+
+.ultra-case-missing {
+  min-height: calc(100svh - 112px);
+  display: grid;
+  place-items: center;
+  padding: clamp(132px, 12vw, 220px) 24px;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(49, 122, 255, 0.22), transparent 42%),
+    var(--theme-night);
+  color: var(--theme-white);
+}
+
+.ultra-case-missing-inner {
+  width: min(720px, 100%);
+  text-align: center;
+}
+
+.ultra-case-missing span {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--theme-blue);
+  font-family: var(--ultra-font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ultra-case-missing h1 {
+  margin: 0;
+  font-family: var(--ultra-font-display);
+  font-size: clamp(42px, 5vw, 82px);
+  line-height: 0.98;
+}
+
+.ultra-case-missing p {
+  max-width: 560px;
+  margin: 22px auto 34px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(15px, 1vw, 18px);
+  line-height: 1.7;
+}
+
+@media (min-width: 1101px) {
+  #container .ultra-case-detail.is-page .ultra-case-esc,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-esc {
+    left: max(24px, calc((100vw - 1760px) / 2)) !important;
+  }
+}
+
+/* Unified bottom module: every static page uses the same CTA and footer treatment. */
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta,
+#container .ultra-site > .ultra-bottom-cta,
+#ultra-app .ultra-site > .ultra-bottom-cta {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: auto !important;
+  display: block !important;
+  padding: clamp(88px, 7vw, 132px) 0 clamp(82px, 6.5vw, 124px) !important;
+  background: var(--theme-black, #000) !important;
+  color: var(--theme-white, #fff) !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta::before,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta::before,
+#container .ultra-site > .ultra-bottom-cta::before,
+#ultra-app .ultra-site > .ultra-bottom-cta::before {
+  display: none !important;
+  content: none !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta::after,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta::after,
+#container .ultra-site > .ultra-bottom-cta::after,
+#ultra-app .ultra-site > .ultra-bottom-cta::after {
+  height: clamp(96px, 12vw, 180px) !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), var(--theme-black, #000) 76%) !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-ambient,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-ambient,
+#container .ultra-site > .ultra-bottom-cta .ultra-bottom-ambient,
+#ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-ambient {
+  opacity: 0.58 !important;
+  background:
+    linear-gradient(180deg, rgba(49, 122, 255, 0.40) 0%, rgba(49, 122, 255, 0.21) 48%, rgba(0, 0, 0, 0) 100%) left top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255, 0.22) 0%, rgba(49, 122, 255, 0.12) 48%, rgba(0, 0, 0, 0) 100%) 10% top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255, 0.25) 0%, rgba(49, 122, 255, 0.135) 48%, rgba(0, 0, 0, 0) 100%) 22% top / 7% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255, 0.24) 0%, rgba(49, 122, 255, 0.13) 48%, rgba(0, 0, 0, 0) 100%) 71% top / 7% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255, 0.22) 0%, rgba(49, 122, 255, 0.12) 48%, rgba(0, 0, 0, 0) 100%) 84% top / 5% 100% no-repeat,
+    linear-gradient(180deg, rgba(49, 122, 255, 0.36) 0%, rgba(49, 122, 255, 0.19) 48%, rgba(0, 0, 0, 0) 100%) right top / 13% 100% no-repeat,
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.88), var(--theme-black, #000) 58%),
+    var(--theme-night, #05070c) !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-cta-inner,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-cta-inner,
+#container .ultra-site > .ultra-bottom-cta .ultra-bottom-cta-inner,
+#ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-cta-inner {
+  width: min(1540px, calc(100% - 80px)) !important;
+  min-height: 0 !important;
+  grid-template-columns: minmax(0, 0.96fr) minmax(300px, 0.54fr) !important;
+  gap: clamp(42px, 5vw, 92px) !important;
+  align-items: end !important;
+  padding: 0 !important;
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta h2,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta h2,
+#container .ultra-site > .ultra-bottom-cta h2,
+#ultra-app .ultra-site > .ultra-bottom-cta h2 {
+  max-width: 720px !important;
+  color: var(--theme-white, #fff) !important;
+  font-size: clamp(44px, 4.2vw, 76px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-summary,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-summary,
+#container .ultra-site > .ultra-bottom-cta .ultra-bottom-summary,
+#ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-summary {
+  max-width: 580px !important;
+  justify-self: end !important;
+  align-self: center !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.56) !important;
+  font-size: clamp(17px, 1.12vw, 22px) !important;
+  line-height: 1.56 !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer,
+#container .ultra-site > .ultra-footer,
+#ultra-app .ultra-site > .ultra-footer {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: auto !important;
+  padding: clamp(56px, 4.8vw, 86px) 0 clamp(24px, 2.6vw, 44px) !important;
+  background: var(--theme-black, #000) !important;
+  color: var(--theme-white, #fff) !important;
+  overflow: hidden !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-frame,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-frame,
+#container .ultra-site > .ultra-footer .ultra-footer-frame,
+#ultra-app .ultra-site > .ultra-footer .ultra-footer-frame {
+  display: none !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-inner,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-inner,
+#container .ultra-site > .ultra-footer .ultra-footer-inner,
+#ultra-app .ultra-site > .ultra-footer .ultra-footer-inner {
+  width: min(1540px, calc(100% - 80px)) !important;
+  min-height: 0 !important;
+  grid-template-columns: 280px minmax(0, 1fr) minmax(180px, 0.28fr) !important;
+  column-gap: clamp(36px, 4.8vw, 86px) !important;
+  row-gap: 0 !important;
+  align-items: start !important;
+}
+
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-panel,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-panel,
+#container .ultra-site > .ultra-footer .ultra-footer-panel,
+#ultra-app .ultra-site > .ultra-footer .ultra-footer-panel {
+  margin-top: 0 !important;
+  padding: clamp(30px, 3.2vw, 52px) !important;
+  background: rgba(0, 0, 0, 0.82) !important;
+}
+
+@media (max-width: 900px) {
+  #container .ultra-site > main.ultra-main + .ultra-bottom-cta,
+  #ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta,
+  #container .ultra-site > .ultra-bottom-cta,
+  #ultra-app .ultra-site > .ultra-bottom-cta {
+    padding: 78px 0 72px !important;
+  }
+
+  #container .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-cta-inner,
+  #ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-cta-inner,
+  #container .ultra-site > .ultra-bottom-cta .ultra-bottom-cta-inner,
+  #ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-cta-inner,
+  #container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-inner,
+  #ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-inner,
+  #container .ultra-site > .ultra-footer .ultra-footer-inner,
+  #ultra-app .ultra-site > .ultra-footer .ultra-footer-inner {
+    width: min(100% - 32px, 1540px) !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  #container .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-summary,
+  #ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta .ultra-bottom-summary,
+  #container .ultra-site > .ultra-bottom-cta .ultra-bottom-summary,
+  #ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-summary {
+    justify-self: start !important;
+  }
 }
