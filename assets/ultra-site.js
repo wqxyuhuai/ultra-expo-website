@@ -5,6 +5,7 @@
   const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
   let adminPendingConfirm = null;
+  let contentScriptText = null;
   const CONTENT = loadContent();
   const CASES = CONTENT.cases;
   const BRANDS = CONTENT.brands;
@@ -103,6 +104,26 @@
   ];
 
   const clients = ["BMW", "Leadshine", "GEO", "GOODWE", "SAJ", "SUNTECH", "E&E Cable Solutions", "KSTAR", "Elecnova", "SSAM", "CRRC", "WATTSONIC", "SUNGROW", "Molcel", "Coca-Cola", "SCUD", "MUST", "Autocraft", "Furrion", "Xiamen ITG", "TSUN"];
+
+  const staticBrandLogoSource = [
+    { id: "kunshan-gintune-welding", englishName: "KUNSHAN GINTUNE WELDING", originalLogo: "./assets/notion/brands/kunshan-gintune-welding-color-logo-1.png", grayLogo: "./assets/notion/brands/kunshan-gintune-welding-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "fuermu", englishName: "FUERMU", originalLogo: "./assets/notion/brands/fuermu-color-logo-1.png", grayLogo: "./assets/notion/brands/fuermu-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "cathcend", englishName: "Cathcend", originalLogo: "./assets/notion/brands/cathcend-color-logo-1.png", grayLogo: "./assets/notion/brands/cathcend-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "scud", englishName: "SCUD", originalLogo: "./assets/notion/brands/scud-color-logo-1.png", grayLogo: "./assets/notion/brands/scud-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "leadshine", englishName: "Leadshine", originalLogo: "./assets/notion/brands/leadshine-color-logo-1.png", grayLogo: "./assets/notion/brands/leadshine-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "suntech", englishName: "SUNTECH", originalLogo: "./assets/notion/brands/suntech-color-logo-1.png", grayLogo: "./assets/notion/brands/suntech-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "must", englishName: "MUST", originalLogo: "./assets/notion/brands/must-color-logo-1.png", grayLogo: "./assets/notion/brands/must-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "tsun", englishName: "TSUN", originalLogo: "./assets/notion/brands/tsun-color-logo-1.png", grayLogo: "./assets/notion/brands/tsun-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "saj", englishName: "SAJ", originalLogo: "./assets/notion/brands/saj-color-logo-1.png", grayLogo: "./assets/notion/brands/saj-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "sunhome", englishName: "SUNHOME", originalLogo: "./assets/notion/brands/sunhome-color-logo-1.png", grayLogo: "./assets/notion/brands/sunhome-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "geo", englishName: "GEO", originalLogo: "./assets/notion/brands/geo-color-logo-1.png", grayLogo: "./assets/notion/brands/geo-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "crrc", englishName: "CRRC", originalLogo: "./assets/notion/brands/crrc-color-logo-1.png", grayLogo: "./assets/notion/brands/crrc-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "kstar", englishName: "KSTAR", originalLogo: "./assets/notion/brands/kstar-color-logo-1.png", grayLogo: "./assets/notion/brands/kstar-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "ssam", englishName: "SSAM", originalLogo: "./assets/notion/brands/ssam-color-logo-1.png", grayLogo: "./assets/notion/brands/ssam-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "elecnova", englishName: "Elecnova", originalLogo: "./assets/notion/brands/elecnova-color-logo-1.png", grayLogo: "./assets/notion/brands/elecnova-gray-logo-1.png", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "goodwe", englishName: "GOODWE", originalLogo: "./assets/notion/brands/goodwe-color-logo-1.png", grayLogo: "./assets/notion/brands/goodwe-gray-logo-1.png", isFeaturedBrand: true, featuredBrandOrder: null, brandOrder: 18, isOnline: true },
+    { id: "wattsonic", englishName: "Wattsonic", originalLogo: "./assets/notion/brands/wattsonic-color-logo-1.svg", grayLogo: "./assets/notion/brands/wattsonic-gray-logo-1.svg", isFeaturedBrand: false, featuredBrandOrder: null, brandOrder: 18, isOnline: true }
+  ];
 
   const services = [
     {
@@ -439,10 +460,10 @@
       },
       about: {
         serviceMedia: [
-          { title: "STRATEGY", type: "image", url: "", poster: "", alt: "Strategy service media" },
-          { title: "DESIGN", type: "image", url: "", poster: "", alt: "Design service media" },
-          { title: "ABROAD", type: "image", url: "", poster: "", alt: "Abroad service media" },
-          { title: "BUILD", type: "image", url: "", poster: "", alt: "Build service media" }
+          { title: "STRATEGY", type: "image", url: "/assets/about/strategy.png?v=20260617-about-service-media02", poster: "", alt: "Strategy service media" },
+          { title: "DESIGN", type: "image", url: "/assets/about/design.png?v=20260617-about-service-media02", poster: "", alt: "Design service media" },
+          { title: "ABROAD", type: "image", url: "/assets/about/abroad.png?v=20260617-about-service-media02", poster: "", alt: "Abroad service media" },
+          { title: "BUILD", type: "image", url: "/assets/about/build.png?v=20260617-about-service-media02", poster: "", alt: "Build service media" }
         ],
         exhibitionLogos: defaultExhibitionLogos()
       },
@@ -560,10 +581,12 @@
   }
 
   function caseSortValue(item, index) {
-    const explicit = Number(item.casePageOrder);
-    if (Number.isFinite(explicit)) return [0, explicit, index];
-    const year = Number(caseYear(item));
-    return [1, Number.isFinite(year) ? -year : 9999, index];
+    const featured = item?.isFeaturedCase || item?.featured ? 0 : 1;
+    const { dateStart, dateEnd } = caseDateRange(item || {});
+    const dateValue = Date.parse(dateStart || dateEnd || "");
+    const year = Number(caseYear(item || {}));
+    const fallback = Number.isFinite(year) ? Date.UTC(year, 0, 1) : 0;
+    return [featured, -(Number.isFinite(dateValue) ? dateValue : fallback), index];
   }
 
   function sortCases(items) {
@@ -573,18 +596,175 @@
       .map(entry => entry.item);
   }
 
+  function liveContent() {
+    const contentBrands = Array.isArray(window.UltraContent?.brands) ? window.UltraContent.brands : null;
+    const contentCases = Array.isArray(window.UltraContent?.cases) ? window.UltraContent.cases : null;
+    if (contentBrands || contentCases) return normalizeContent(contentBrands || [], contentCases || loadCases());
+    if (Array.isArray(window.UltraBrands) || Array.isArray(window.UltraCases)) {
+      return normalizeContent(Array.isArray(window.UltraBrands) ? window.UltraBrands : [], loadCases());
+    }
+    return CONTENT;
+  }
+
+  function brandHasLogo(item) {
+    const logos = brandLogoUrls(item);
+    return Boolean(logos.grayLogo || logos.colorLogo);
+  }
+
+  function brandLogoUrls(item) {
+    const grayLogo = adminPreviewSrc(adminFileUrl(item?.grayLogo) || adminFileUrl(item?.originalLogo));
+    const colorLogo = adminPreviewSrc(adminFileUrl(item?.originalLogo) || adminFileUrl(item?.grayLogo));
+    return { grayLogo, colorLogo };
+  }
+
+  function syncedBrandSource() {
+    if (Array.isArray(window.UltraContent?.brands) && window.UltraContent.brands.length) {
+      if (window.UltraContent.brands.some(brandHasLogo)) return window.UltraContent.brands;
+    }
+    if (Array.isArray(window.UltraBrands) && window.UltraBrands.length && window.UltraBrands.some(brandHasLogo)) return window.UltraBrands;
+    const loadedBrands = loadBrands();
+    if (loadedBrands.length && loadedBrands.some(brandHasLogo)) return loadedBrands;
+    if (staticBrandLogoSource.length) return staticBrandLogoSource;
+    return [];
+  }
+
+  function explicitBrandSource() {
+    const override = getAdminConfig().brands?.items;
+    const overrideItems = Array.isArray(override) && override.length ? override : [];
+    const syncedItems = syncedBrandSource();
+    if (syncedItems.length) {
+      const overrideById = new Map(overrideItems.map(item => [item?.id, item]).filter(([id]) => id));
+      return syncedItems.map(item => {
+        const overrideItem = overrideById.get(item?.id);
+        if (!overrideItem) return item;
+        return {
+          ...item,
+          isFeaturedBrand: Boolean(overrideItem.isFeaturedBrand ?? item.isFeaturedBrand),
+          featuredBrandOrder: overrideItem.featuredBrandOrder ?? item.featuredBrandOrder,
+          brandOrder: overrideItem.brandOrder ?? item.brandOrder
+        };
+      });
+    }
+    if (overrideItems.some(brandHasLogo)) return overrideItems;
+    return [];
+  }
+
+  function sortBrandsForDisplay(items) {
+    return [...items]
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const aFeatured = a.item?.isFeaturedBrand ? 0 : 1;
+        const bFeatured = b.item?.isFeaturedBrand ? 0 : 1;
+        const aOrder = Number(aFeatured === 0 ? (a.item?.featuredBrandOrder ?? a.item?.brandOrder ?? a.item?.order) : (a.item?.brandOrder ?? a.item?.order));
+        const bOrder = Number(bFeatured === 0 ? (b.item?.featuredBrandOrder ?? b.item?.brandOrder ?? b.item?.order) : (b.item?.brandOrder ?? b.item?.order));
+        return aFeatured - bFeatured ||
+          (Number.isFinite(aOrder) ? aOrder : 9999) - (Number.isFinite(bOrder) ? bOrder : 9999) ||
+          a.index - b.index;
+      })
+      .map(entry => entry.item);
+  }
+
+  let externalContentLoadStarted = false;
+  let externalContentRefreshDone = false;
+
+  function ensureExternalContent(callback) {
+    if (syncedBrandSource().length) {
+      callback?.();
+      return;
+    }
+    if (externalContentLoadStarted) return;
+    externalContentLoadStarted = true;
+    const finish = () => callback?.();
+    const injectScript = () => {
+      const script = document.createElement("script");
+      script.src = routeLink("/assets/ultra-cases.js?v=20260617-content-refresh02");
+      script.onload = finish;
+      script.onerror = () => {};
+      document.head.appendChild(script);
+    };
+    if (window.fetch) {
+      fetch(routeLink("/assets/ultra-cases.js?v=20260617-content-refresh02"), { cache: "no-store" })
+        .then(response => response.ok ? response.text() : "")
+        .then(text => {
+          if (!text) {
+            injectScript();
+            return;
+          }
+          contentScriptText = text;
+          applyContentScriptText(text);
+          finish();
+        })
+        .catch(injectScript);
+      return;
+    }
+    injectScript();
+  }
+
+  function parseContentArray(text, name, nextName) {
+    const pattern = new RegExp(`window\\.${name}\\s*=\\s*(\\[[\\s\\S]*?\\]);\\s*window\\.${nextName}`);
+    const match = String(text || "").match(pattern);
+    if (!match) return [];
+    return JSON.parse(match[1]);
+  }
+
+  function applyContentScriptText(text) {
+    try {
+      const brands = parseContentArray(text, "UltraBrands", "UltraCases");
+      if (brands.length) window.UltraBrands = brands;
+      const cases = parseContentArray(text, "UltraCases", "UltraContent");
+      if (cases.length) window.UltraCases = cases;
+      if (brands.length || cases.length) {
+        window.UltraContent = {
+          ...(window.UltraContent || {}),
+          source: "notion-static",
+          brands: brands.length ? brands : (Array.isArray(window.UltraContent?.brands) ? window.UltraContent.brands : []),
+          cases: cases.length ? cases : (Array.isArray(window.UltraContent?.cases) ? window.UltraContent.cases : [])
+        };
+      }
+    } catch (error) {
+      console.warn("Unable to parse Ultra Expo content data", error);
+    }
+  }
+
+  function maybeRefreshContentBackedLogos(root) {
+    if (externalContentRefreshDone) return;
+    const needsBrandLogos = root.querySelector(".ultra-about-brand-wall, .ultra-home-trusted-section") &&
+      !root.querySelector(".ultra-about-brand-logo, .ultra-home-client-logo");
+    if (!needsBrandLogos) return;
+    ensureExternalContent(() => {
+      if (externalContentRefreshDone || !explicitBrandSource().length) return;
+      externalContentRefreshDone = true;
+      renderAppPage(currentPath(), locale());
+    });
+  }
+
+  function mergeContentOverrides(baseItems, overrideItems) {
+    const merged = Array.isArray(baseItems) ? baseItems.map(item => ({ ...item })) : [];
+    if (!Array.isArray(overrideItems) || !overrideItems.length) return merged;
+    const indexById = new Map(merged.map((item, index) => [item?.id, index]).filter(([id]) => id));
+    overrideItems.forEach(item => {
+      if (!item) return;
+      const id = item.id;
+      if (id && indexById.has(id)) {
+        const index = indexById.get(id);
+        merged[index] = { ...merged[index], ...item };
+        return;
+      }
+      merged.push({ ...item });
+    });
+    return merged;
+  }
+
   function activeCases() {
     const override = getAdminConfig().cases?.items;
-    const items = Array.isArray(override) && override.length ? override : CASES;
+    const items = mergeContentOverrides(liveContent().cases, override);
     return sortCases(items.filter(item => item?.isOnline !== false));
   }
 
   function activeBrands() {
     const override = getAdminConfig().brands?.items;
-    const items = Array.isArray(override) && override.length ? override : BRANDS;
-    return [...items]
-      .filter(item => item?.isOnline !== false)
-      .sort((a, b) => (Number(a.brandOrder) || 9999) - (Number(b.brandOrder) || 9999));
+    const items = mergeContentOverrides(liveContent().brands, override);
+    return sortBrandsForDisplay(items.filter(item => item?.isOnline !== false));
   }
 
   function adminLabel(item, lang) {
@@ -604,12 +784,9 @@
 
   function loadContent() {
     if (window.UltraContent && Array.isArray(window.UltraContent.cases)) {
-      return {
-        brands: Array.isArray(window.UltraContent.brands) ? window.UltraContent.brands : [],
-        cases: window.UltraContent.cases
-      };
+      return normalizeContent(Array.isArray(window.UltraContent.brands) ? window.UltraContent.brands : [], window.UltraContent.cases);
     }
-    return normalizeContent(Array.isArray(window.UltraBrands) ? window.UltraBrands : [], loadCases());
+    return normalizeContent(Array.isArray(window.UltraBrands) ? window.UltraBrands : loadBrands(), loadCases());
   }
 
   function normalizeContent(sourceBrands, sourceCases) {
@@ -687,18 +864,42 @@
     return { brands, cases };
   }
 
-  function loadCases() {
-    if (Array.isArray(window.UltraCases)) return window.UltraCases;
+  function loadContentScriptText() {
     try {
       const script = document.querySelector('script[src*="ultra-cases.js"]');
       const url = script?.src || new URL("assets/ultra-cases.js", document.baseURI).href;
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url, false);
       xhr.send(null);
-      if (xhr.status < 200 || xhr.status >= 300) return [];
-      const match = xhr.responseText.match(/window\.UltraCases\s*=\s*(\[[\s\S]*?\]);\s*(?:\(|$)/);
-      if (!match) return [];
-      const parsed = JSON.parse(match[1]);
+      if (xhr.status < 200 || xhr.status >= 300) return "";
+      contentScriptText = xhr.responseText || "";
+      return contentScriptText;
+    } catch (error) {
+      console.warn("Unable to load Ultra Expo content data", error);
+      return "";
+    }
+  }
+
+  function loadBrands() {
+    if (Array.isArray(window.UltraBrands)) return window.UltraBrands;
+    try {
+      const text = contentScriptText || loadContentScriptText();
+      const parsed = parseContentArray(text, "UltraBrands", "UltraCases");
+      if (!parsed.length) return [];
+      window.UltraBrands = parsed;
+      return parsed;
+    } catch (error) {
+      console.warn("Unable to load Ultra Expo brands", error);
+      return [];
+    }
+  }
+
+  function loadCases() {
+    if (Array.isArray(window.UltraCases)) return window.UltraCases;
+    try {
+      const text = contentScriptText || loadContentScriptText();
+      const parsed = parseContentArray(text, "UltraCases", "UltraContent");
+      if (!parsed.length) return [];
       window.UltraCases = parsed;
       return parsed;
     } catch (error) {
@@ -1098,9 +1299,7 @@
   function homeSelectedHTML(lang) {
     const zh = lang === "zh";
     const cases = activeCases()
-      .filter(item => item.isFeaturedCase && caseImage(item))
-      .sort((a, b) => (Number(a.featuredCaseOrder) || 9999) - (Number(b.featuredCaseOrder) || 9999))
-      .slice(0, 12);
+      .filter(item => caseImage(item));
     const fallback = [
       "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/ac7c08ada3b7308087d07536168733b1e83c67fd.ac7c08ad.png",
       "./_components/v2/b6c9104d28fb320af418bddd3d018fb04857710a/1acb0a430a6aa68b9dff5c5c890aa6e78a887638.1acb0a43.png"
@@ -1119,7 +1318,7 @@
     const rowB = [...items.slice(7), ...items.slice(0, 7)];
     const imageCard = item => `
       <a class="ultra-selected-card" href="${routeLink(`/cases/${item.id}`)}" data-route="/cases/${esc(item.id)}" aria-label="${esc(`${item.client} ${item.event || ""}`)}">
-        <img src="${esc(caseImage(item))}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item) || ""}`)}">
+        <img src="${esc(caseImage(item))}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item) || ""}`)}" loading="lazy" decoding="async" fetchpriority="low">
         <span>
           <strong>${esc(caseBrandName(item))}</strong>
           <em>${esc([caseEventName(item), caseYear(item)].filter(Boolean).join(" / "))}</em>
@@ -1238,22 +1437,28 @@
     const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
     const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
     return `
-      <section class="ultra-home-hero-section ultra-home-hero-rebuilt-section" data-ultra-home-hero data-animate>
-        <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
-          <div class="ultra-home-hero-rebuilt-title">
-            <h1 class="hero-focus-title" aria-label="${esc(titleText)}">
-              <span class="title-blur" aria-hidden="true">${titleLines}</span>
-              <span class="title-sharp" aria-hidden="true">${titleLines}</span>
-            </h1>
-          </div>
-          <div class="ultra-home-hero-rebuilt-bottom">
-            <p class="ultra-home-intro-copy">${esc(homeHeroCopy(lang))}</p>
-            <div class="ultra-home-hero-rebuilt-actions ultra-home-intro-actions">
-              <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
-              <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
+      <section class="home-hero-scene ultra-home-hero-section ultra-home-hero-rebuilt-section" data-ultra-home-hero data-animate>
+        <section class="raster-scroll-scene" data-raster-scene>
+          <div class="raster-sticky">
+            <div class="raster-cols" data-raster-cols aria-hidden="true"></div>
+            <div class="home-hero-content ultra-home-hero-rebuilt" data-ultra-static-en>
+              <div class="ultra-home-hero-rebuilt-title">
+                <h1 class="hero-focus-title" aria-label="${esc(titleText)}">
+                  <span class="title-blur" aria-hidden="true">${titleLines}</span>
+                  <span class="title-sharp" aria-hidden="true">${titleLines}</span>
+                </h1>
+              </div>
+              <div class="ultra-home-hero-rebuilt-bottom">
+                <p class="ultra-home-intro-copy">${esc(homeHeroCopy(lang))}</p>
+                <div class="ultra-home-hero-rebuilt-actions ultra-home-intro-actions">
+                  <a class="ultra-home-hero-rebuilt-primary ultra-split-rolling" href="${routeLink("/cases")}" data-route="/cases" aria-label="${esc(casesLabel)}">${rollingButtonText(casesLabel)}</a>
+                  <a class="ultra-home-hero-rebuilt-secondary ultra-split-rolling" href="${routeLink("/services")}" data-route="/services" aria-label="${esc(servicesLabel)}">${rollingButtonText(servicesLabel)}</a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+        <div class="raster-page-grain" aria-hidden="true"></div>
       </section>
     `;
   }
@@ -1336,17 +1541,87 @@
     const title = lang === "zh"
       ? "\u670d\u52a1\u65b0\u80fd\u6e90\u3001\u6c7d\u8f66\u51fa\u884c\u3001\u667a\u80fd\u5236\u9020\u3001\u6d88\u8d39\u79d1\u6280\u4e0e\u5168\u7403\u6d3b\u52a8\u7b49\u591a\u4e2a\u884c\u4e1a\u5ba2\u6237\u3002"
       : "Trusted by China's most innovative global brands.";
-    const logos = [...clients, ...clients];
+    const brandLogos = sortBrandsForDisplay(explicitBrandSource().filter(item => item?.isOnline !== false))
+      .map((brand, index) => {
+        const label = brand?.englishName || brand?.name || brand?.id || "Brand";
+        const { grayLogo, colorLogo } = brandLogoUrls(brand);
+        return { id: brand?.id || `brand-${index}`, label, grayLogo, colorLogo };
+      })
+      .filter(brand => brand.grayLogo || brand.colorLogo);
+    const logos = [...brandLogos, ...brandLogos];
+    const logoHTML = logos.map(brand => `
+              <span class="ultra-home-client" data-brand-id="${esc(brand.id)}" title="${esc(brand.label)}">
+                ${brand.grayLogo ? `<img class="ultra-home-client-logo is-gray" src="${esc(brand.grayLogo)}" alt="${esc(brand.label)}" loading="lazy">` : ""}
+                ${brand.colorLogo ? `<img class="ultra-home-client-logo is-color" src="${esc(brand.colorLogo)}" alt="" loading="lazy" aria-hidden="true">` : ""}
+                ${!brand.grayLogo && !brand.colorLogo ? `<span>${esc(brand.label)}</span>` : ""}
+              </span>
+            `).join("");
     return `
       <section class="ultra-home-trusted-section" data-ultra-home-trusted data-animate>
         <h2 class="ultra-home-trusted-title">${esc(title)}</h2>
         <div class="ultra-home-client-marquee" aria-label="${lang === "zh" ? "\u5408\u4f5c\u5ba2\u6237" : "Client logos"}">
           <div class="ultra-home-client-track">
-            ${logos.map(name => `<span class="ultra-home-client">${esc(name)}</span>`).join("")}
+            ${logoHTML}
           </div>
         </div>
       </section>
     `;
+  }
+
+  let homeClientMarqueeStop = null;
+
+  function initHomeClientMarquee(root) {
+    if (typeof homeClientMarqueeStop === "function") {
+      homeClientMarqueeStop();
+      homeClientMarqueeStop = null;
+    }
+    const marquee = root?.querySelector?.(".ultra-home-client-marquee");
+    const track = root?.querySelector?.(".ultra-home-client-track");
+    if (!marquee || !track) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    track.classList.add("is-js-marquee");
+    let position = 0;
+    let currentSpeed = 0;
+    let targetSpeed = 0;
+    let loopWidth = 0;
+    let frame = 0;
+    let lastTime = 0;
+    const durationSeconds = 46;
+    const easeMs = 640;
+    const updateMetrics = () => {
+      loopWidth = Math.max(1, track.scrollWidth / 2);
+      targetSpeed = loopWidth / durationSeconds;
+      if (!currentSpeed) currentSpeed = targetSpeed;
+    };
+    const setPaused = paused => {
+      updateMetrics();
+      targetSpeed = paused ? 0 : loopWidth / durationSeconds;
+    };
+    const tick = time => {
+      if (!track.isConnected) return;
+      if (!lastTime) lastTime = time;
+      const dt = Math.min(time - lastTime, 64);
+      lastTime = time;
+      const blend = 1 - Math.exp(-dt / easeMs);
+      currentSpeed += (targetSpeed - currentSpeed) * blend;
+      position -= currentSpeed * (dt / 1000);
+      if (position <= -loopWidth) position += loopWidth;
+      track.style.setProperty("--home-client-x", `${position.toFixed(2)}px`);
+      frame = window.requestAnimationFrame(tick);
+    };
+    updateMetrics();
+    frame = window.requestAnimationFrame(tick);
+    marquee.addEventListener("pointerenter", () => setPaused(true), { passive: true });
+    marquee.addEventListener("pointerleave", () => setPaused(false), { passive: true });
+    marquee.addEventListener("focusin", () => setPaused(true));
+    marquee.addEventListener("focusout", () => setPaused(false));
+    window.addEventListener("resize", updateMetrics, { passive: true });
+    homeClientMarqueeStop = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateMetrics);
+      track.classList.remove("is-js-marquee");
+      track.style.removeProperty("--home-client-x");
+    };
   }
 
   function renderHomeContent(container, lang) {
@@ -1362,6 +1637,8 @@
       section.setAttribute("data-animate", "");
     });
     bindHomeHeroSection(container.querySelector(".ultra-home-hero-rebuilt-section"));
+    initHomeClientMarquee(container);
+    window.UltraHomeRasterBackground?.init?.(container);
     initUltraTypeReveal(container);
   }
 
@@ -1542,6 +1819,12 @@
       ["ABROAD", "Abroad", "Local supply / Customs and logistics / Cross-time-zone project management"],
       ["BUILD", "Build", "Factory prefabrication / On-site construction / Dismantling and return logistics"]
     ];
+    const defaultServiceMedia = [
+      { title: "STRATEGY", type: "image", url: "/assets/about/strategy.png?v=20260617-about-service-media02", alt: "Strategy service media" },
+      { title: "DESIGN", type: "image", url: "/assets/about/design.png?v=20260617-about-service-media02", alt: "Design service media" },
+      { title: "ABROAD", type: "image", url: "/assets/about/abroad.png?v=20260617-about-service-media02", alt: "Abroad service media" },
+      { title: "BUILD", type: "image", url: "/assets/about/build.png?v=20260617-about-service-media02", alt: "Build service media" }
+    ];
     const deliveryNodes = zh ? [
       ["\u82cf\u5dde", "\u603b\u90e8 / \u8bbe\u8ba1\u4e2d\u5fc3"],
       ["\u5357\u901a", "6,000 SQM \u4e3b\u5de5\u5382"],
@@ -1584,15 +1867,10 @@
       ["ISO 45001", "Occupational Health and Safety"],
       ["HK Entity", "Hong Kong Registered Entity / International Settlement"]
     ];
-    const brandSource = activeBrands();
-    const featuredBrands = brandSource.filter(item => item?.isFeaturedBrand);
-    const brandWallBrands = (featuredBrands.length ? featuredBrands : brandSource)
-      .slice()
-      .sort((a, b) => {
-        const aOrder = Number(a?.featuredBrandOrder ?? a?.brandOrder ?? a?.order ?? 9999);
-        const bOrder = Number(b?.featuredBrandOrder ?? b?.brandOrder ?? b?.order ?? 9999);
-        return (Number.isFinite(aOrder) ? aOrder : 9999) - (Number.isFinite(bOrder) ? bOrder : 9999);
-      });
+    const explicitBrands = sortBrandsForDisplay(explicitBrandSource().filter(item => item?.isOnline !== false));
+    const activeLogoBrands = activeBrands().filter(brandHasLogo);
+    const brandSource = explicitBrands.length ? explicitBrands : activeLogoBrands;
+    const brandWallBrands = sortBrandsForDisplay(brandSource.filter(brandHasLogo));
     const sectionIntro = (kicker, title, body, options = {}) => `
       <div class="ultra-about-head${options.revealTitle ? " ultra-character-block-reveal" : ""}" data-about-reveal${options.revealTitle ? " data-ultra-character-block-reveal" : ""}>
         ${kicker ? `<div class="ultra-about-kicker">${esc(kicker)}</div>` : ""}
@@ -1604,9 +1882,12 @@
     const renderServiceMedia = (media, title) => {
       const item = media && typeof media === "object" ? media : {};
       const type = String(item.type || "image").toLowerCase();
-      const url = String(item.url || "").trim();
-      const poster = String(item.poster || "").trim();
+      let url = adminPreviewSrc(String(item.url || "").trim());
+      const poster = adminPreviewSrc(String(item.poster || "").trim());
       const alt = item.alt || `${title} media`;
+      if (/\/assets\/about\/(?:strategy|design|abroad|build)\.png(?:$|\?)/.test(url)) {
+        url = `${url.split("?")[0]}?v=20260617-about-service-media02`;
+      }
       if (url && type === "video") {
         return `<video src="${esc(url)}" ${poster ? `poster="${esc(poster)}"` : ""} muted playsinline loop preload="metadata" aria-label="${esc(alt)}"></video>`;
       }
@@ -1624,8 +1905,11 @@
       const englishName = brand?.englishName || brand?.name || brand?.id || "Brand";
       const chineseName = brand?.chineseName || englishName;
       const label = zh ? chineseName : englishName;
-      const logo = adminFileUrl(brand?.grayLogo) || adminFileUrl(brand?.originalLogo);
-      return `<article class="ultra-about-brand-card" data-brand-scroll-card style="--about-card-index:${index}; --brand-progress:0">${logo ? `<img src="${esc(logo)}" alt="${esc(label)}" loading="lazy">` : `<span>${esc(label)}</span>`}</article>`;
+      const { grayLogo, colorLogo } = brandLogoUrls(brand);
+      const logoMarkup = grayLogo || colorLogo
+        ? `${grayLogo ? `<img class="ultra-about-brand-logo is-gray" src="${esc(grayLogo)}" alt="${esc(label)}" loading="lazy">` : ""}${colorLogo ? `<img class="ultra-about-brand-logo is-color" src="${esc(colorLogo)}" alt="" loading="lazy" aria-hidden="true">` : ""}`
+        : `<span>${esc(label)}</span>`;
+      return `<article class="ultra-about-brand-card" data-brand-scroll-card data-brand-id="${esc(brand?.id || `brand-${index}`)}" title="${esc(label)}" style="--about-card-index:${index}; --brand-progress:0">${logoMarkup}</article>`;
     };
     const exhibitionRows = [
       exhibitionLogos.filter((_, index) => index % 2 === 0),
@@ -1677,7 +1961,8 @@
           <div class="ultra-about-wrap">
             ${sectionIntro("", zh ? "\u4e00\u4f53\u5316\u5c55\u4f1a\u51fa\u6d77\u670d\u52a1" : "End-to-End Exhibition Services", zh ? "\u5176\u4e2d\u300c\u6d77\u5916\u843d\u5730\u300d\u662f\u6211\u4eec\u7684\u6838\u5fc3\u5dee\u5f02\u5316\u80fd\u529b\u3002" : "ABROAD is where our global delivery capability becomes the key difference.")}
             <div class="ultra-about-service-grid">${serviceCards.map((card, index) => {
-              const media = configuredServiceMedia[index] || {};
+              const configuredMedia = configuredServiceMedia[index] || {};
+              const media = String(configuredMedia?.url || "").trim() ? configuredMedia : defaultServiceMedia[index] || {};
               return `<article class="${card[0] === "ABROAD" ? "is-featured " : ""}ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal style="--service-card-index:${index}">
                 <div class="ultra-about-service-card-top">
                   <h3 data-reveal-text>${esc(card[1])}</h3>
@@ -2142,27 +2427,24 @@
   }
 
   function filterOptions(field) {
-    const fixed = {
-      year: ["All", "2026", "2025", "2024"],
-      brand: ["All", ...activeBrands().map(brand => brand.id)],
-      industry: ["All", "Energy", "Battery", "Industrial", "Automotive", "Consumer Tech", "Telecom", "Water Treatment", "Retail", "Launch Event", "Smart Manufacturing", "Exhibition"],
-      region: ["All", "Asia", "Europe", "North America", "South America", "Africa", "Oceania"],
-      area: ["All", "lt50", "50-100", "100-200", "200plus"]
+    const order = {
+      industry: ["Energy", "Battery", "Industrial", "Automotive", "Consumer Tech", "Telecom", "Water Treatment", "Retail", "Launch Event", "Smart Manufacturing", "Exhibition", "Welding Material"],
+      region: ["Asia", "Europe", "North America", "South America", "Africa", "Oceania"],
+      area: ["lt50", "50-100", "100-200", "200plus"]
     };
     const values = activeCases()
       .map(item => field === "brand" ? item.brandId : field === "area" ? areaBucket(item.areaSqm) : field === "year" ? caseYear(item) : field === "region" ? caseRegion(item) : item[field])
       .filter(Boolean)
       .map(value => String(value));
-    const merged = [...new Set([...(fixed[field] || ["All"]), ...values])];
+    const available = [...new Set(values)];
     if (field === "year") {
-      return ["All", ...merged.filter(value => value !== "All").sort((a, b) => Number(b) - Number(a))];
+      return ["All", ...available.sort((a, b) => Number(b) - Number(a))];
     }
     if (field === "brand") {
-      return ["All", ...activeBrands().map(brand => brand.id).filter(id => merged.includes(id))];
+      return ["All", ...activeBrands().map(brand => brand.id).filter(id => available.includes(id))];
     }
-    if (field === "area") return fixed.area;
-    if (field === "region") return fixed.region;
-    return merged;
+    const preferred = order[field] || [];
+    return ["All", ...preferred.filter(value => available.includes(value)), ...available.filter(value => !preferred.includes(value)).sort()];
   }
 
   function optionLabel(field, value, lang) {
@@ -2344,21 +2626,14 @@
 
   function brandLogo(item) {
     const brand = brandForCase(item);
-    return fileUrl(brand?.grayLogo?.files?.[0]) || fileUrl(brand?.originalLogo?.files?.[0]) || item.brandLogoGray || item.brandLogoOriginal || "";
+    return fileUrl(brand?.originalLogo?.files?.[0]) || fileUrl(brand?.grayLogo?.files?.[0]) || item.brandLogoOriginal || item.brandLogoGray || "";
   }
 
   function caseGalleryImages(item) {
-    const gallery = (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean);
-    const cover = caseImage(item);
     const unique = [];
-    [cover, ...gallery].filter(Boolean).forEach(url => {
+    (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean).forEach(url => {
       if (!unique.includes(url)) unique.push(url);
     });
-    if (unique.length < 8) {
-      activeCases().map(caseImage).filter(Boolean).forEach(url => {
-        if (unique.length < 8 && !unique.includes(url)) unique.push(url);
-      });
-    }
     return unique;
   }
 
@@ -2511,7 +2786,7 @@
     const shellClass = `ultra-case-detail ${options.modal ? "is-modal" : "is-page"} ${images.length <= 4 ? "is-short-gallery" : ""}`;
     return `
       <section class="${shellClass}" data-case-detail="${esc(item.id)}">
-        ${options.modal ? `<button class="ultra-case-esc ultra-split-rolling" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}">${rollingButtonText("ESC")}<i aria-hidden="true">&times;</i></button>` : ""}
+        ${options.modal && !options.hideClose ? `<button class="ultra-case-esc ultra-split-rolling" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}">${rollingButtonText("ESC")}<i aria-hidden="true">&times;</i></button>` : ""}
         <div class="ultra-case-detail-copy">
           <div class="ultra-case-detail-logo">
             ${logo ? `<img src="${esc(logo)}" alt="${esc(caseBrandDisplayName(item, lang))} logo">` : `<strong>${esc(caseBrandDisplayName(item, lang))}</strong>`}
@@ -2877,12 +3152,12 @@
 
   function adminBrands() {
     const items = getAdminConfig().brands?.items;
-    return Array.isArray(items) ? items : activeBrands();
+    return sortBrandsForDisplay(mergeContentOverrides(liveContent().brands, items).filter(item => item?.isOnline !== false));
   }
 
   function adminCases() {
     const items = getAdminConfig().cases?.items;
-    return Array.isArray(items) ? items : activeCases();
+    return sortCases(mergeContentOverrides(liveContent().cases, items).filter(item => item?.isOnline !== false));
   }
 
   function adminBrandById(id) {
@@ -3308,7 +3583,8 @@
   function caseModalHTML(lang, forcedId = "") {
     const id = forcedId;
     if (!id || !activeCases().some(item => item.id === id)) return "";
-    return `<div class="ultra-case-modal" data-case-modal>${caseDetailPage(id, lang, { modal: true })}</div>`;
+    const zh = lang === "zh";
+    return `<div class="ultra-case-modal" data-case-modal><button class="ultra-case-esc ultra-split-rolling" type="button" data-case-modal-close aria-label="${zh ? "关闭案例" : "Close case"}">${rollingButtonText("ESC")}<i aria-hidden="true">&times;</i></button>${caseDetailPage(id, lang, { modal: true, hideClose: true })}</div>`;
   }
 
   function applyPageIntro(root, path) {
@@ -3507,39 +3783,24 @@
 
     const brandCards = [...about.querySelectorAll("[data-brand-scroll-card]")];
     if (brandCards.length) {
-      const setBrandProgress = () => {
-        const viewport = window.innerHeight || document.documentElement.clientHeight || 900;
-        brandCards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const styleIndex = Number(card.style.getPropertyValue("--about-card-index")) || 0;
-          const column = styleIndex % 5;
-          const raw = (viewport - rect.top - column * 42) / (viewport * 0.34);
-          const progress = Math.max(0, Math.min(1, raw));
-          card.style.setProperty("--brand-progress", progress.toFixed(3));
-          card.style.setProperty("--brand-y", `${((1 - progress) * 42).toFixed(1)}px`);
-          card.style.setProperty("--brand-clip", `${((1 - progress) * 22).toFixed(2)}%`);
-          card.classList.toggle("is-brand-active", progress > 0.02);
-        });
+      const revealBrandCard = card => {
+        card.style.setProperty("--brand-progress", "1");
+        card.style.setProperty("--brand-y", "0px");
+        card.style.setProperty("--brand-clip", "0%");
+        card.classList.add("is-visible");
+        card.classList.add("is-brand-active");
       };
-      if (reduced) {
-        brandCards.forEach(card => {
-          card.style.setProperty("--brand-progress", "1");
-          card.style.setProperty("--brand-y", "0px");
-          card.style.setProperty("--brand-clip", "0%");
-        });
+      if (reduced || !("IntersectionObserver" in window)) {
+        brandCards.forEach(revealBrandCard);
       } else {
-        let ticking = false;
-        const requestBrandProgress = () => {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(() => {
-            ticking = false;
-            setBrandProgress();
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            revealBrandCard(entry.target);
+            observer.unobserve(entry.target);
           });
-        };
-        window.addEventListener("scroll", requestBrandProgress, { passive: true });
-        window.addEventListener("resize", requestBrandProgress, { passive: true });
-        setBrandProgress();
+        }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+        brandCards.forEach(card => observer.observe(card));
       }
     }
   }
@@ -3878,13 +4139,19 @@
   }
 
   let activeCaseModalId = "";
+  let skipNextCasesIntro = false;
+  let suppressNextCaseModalPopRender = false;
 
   function renderAppPage(path, lang) {
     applyLocaleAttributes(lang);
     applyDocumentMeta(path, lang);
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const introKey = path.startsWith("/cases/") ? path : path.split("#")[0];
-    const playIntro = path !== "/admin" && !reduced && document.body.dataset.pageIntroPath !== introKey;
+    const pathCaseId = path.startsWith("/cases/") ? path.split("/").pop() : "";
+    const modalCaseId = history.state?.ultraCaseModal && activeCaseModalId && activeCaseModalId === pathCaseId ? pathCaseId : "";
+    const introKey = modalCaseId ? "/cases" : path.startsWith("/cases/") ? path : path.split("#")[0];
+    const skipIntro = Boolean(modalCaseId) || (skipNextCasesIntro && path === "/cases");
+    skipNextCasesIntro = false;
+    const playIntro = path !== "/admin" && !skipIntro && !reduced && document.body.dataset.pageIntroPath !== introKey;
     if (playIntro) {
       resetIntroForRoute();
     }
@@ -3896,8 +4163,6 @@
     }
     document.documentElement.classList.remove("ultra-home-active");
     document.documentElement.classList.add("ultra-app-active");
-    const pathCaseId = path.startsWith("/cases/") ? path.split("/").pop() : "";
-    const modalCaseId = history.state?.ultraCaseModal && activeCaseModalId && activeCaseModalId === pathCaseId ? pathCaseId : "";
     if (path === "/admin") {
       root.innerHTML = `<div class="ultra-site ultra-admin-site"><main class="ultra-main ultra-admin-main">${routeContent(path, lang)}</main></div>`;
     } else if (modalCaseId) {
@@ -3908,12 +4173,14 @@
       const siteClass = path === "/services" ? "ultra-site ultra-services-site" : path === "/contact" ? "ultra-site ultra-contact-site" : "ultra-site";
       root.innerHTML = `<div class="${siteClass}">${navHTML(lang, path)}<main class="ultra-main">${routeContent(path, lang)}</main>${footerHTML(lang)}</div>`;
     }
-    root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .cases-page .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
-      node.setAttribute("data-animate", "");
-      node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
-    });
+    if (!modalCaseId) {
+      root.querySelectorAll(".ultra-main > .ultra-hero, .ultra-main > .ultra-section, .ultra-main > .cases-page .ultra-section, .ultra-bottom-cta, .ultra-footer").forEach((node, index) => {
+        node.setAttribute("data-animate", "");
+        node.style.animationDelay = `${Math.min(index * 90, 360)}ms`;
+      });
+    }
     triggerNavIntroOnce();
-    applyPageIntro(root, path);
+    if (!modalCaseId) applyPageIntro(root, path);
     if (playIntro) {
       window.requestAnimationFrame(() => {
         document.body.classList.remove("is-intro-reset");
@@ -3931,6 +4198,7 @@
     initContactPage(root);
     initCasesMasonry(root);
     initCaseDetail(root);
+    maybeRefreshContentBackedLogos(root);
     if (window.location.hash) scrollToHashTarget(window.location.hash, "auto");
   }
 
@@ -4360,6 +4628,11 @@
       setTimeout(() => enhanceHome(lang), 300);
       return;
     }
+    if (typeof homeClientMarqueeStop === "function") {
+      homeClientMarqueeStop();
+      homeClientMarqueeStop = null;
+    }
+    window.UltraHomeRasterBackground?.destroy?.();
     document.documentElement.classList.remove("ultra-home-active");
     const switcher = document.querySelector(".ultra-home-lang");
     if (switcher) switcher.remove();
@@ -4393,15 +4666,28 @@
       render();
       return;
     }
-    activeCaseModalId = "";
-    params.delete("case");
-    const query = params.toString();
-    if (history.state?.ultraCaseModal) {
-      history.back();
+    const close = () => {
+      activeCaseModalId = "";
+      skipNextCasesIntro = true;
+      params.delete("case");
+      const query = params.toString();
+      if (history.state?.ultraCaseModal) {
+        suppressNextCaseModalPopRender = true;
+        modal?.remove();
+        history.back();
+        return;
+      }
+      modal?.remove();
+      history.replaceState({}, "", `${routeLink("/cases")}${query ? "?" + query : ""}`);
+    };
+    const modal = document.querySelector("[data-case-modal]");
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (!modal || modal.classList.contains("is-closing") || reduced) {
+      close();
       return;
     }
-    history.replaceState({}, "", `${routeLink("/cases")}${query ? "?" + query : ""}`);
-    render();
+    modal.classList.add("is-closing");
+    window.setTimeout(close, 220);
   }
 
   function setAdminStatus(root, message, isError = false) {
@@ -5044,7 +5330,7 @@
       const id = deleteBrand.dataset.adminDeleteBrand;
       openAdminConfirm("Delete brand?", "This brand will be removed from the local mock data.", () => {
         const config = getAdminConfig();
-        saveAdminSection({ ...config, brands: { items: adminBrands().filter(item => item.id !== id) } }, "brands", "Brand deleted.");
+        saveAdminSection({ ...config, brands: { items: adminBrands().map(item => item.id === id ? { ...item, isOnline: false } : item) } }, "brands", "Brand deleted.");
       });
       return;
     }
@@ -5084,7 +5370,7 @@
       const id = deleteCase.dataset.adminDeleteCase;
       openAdminConfirm("Delete case?", "This case will be removed from the local mock data.", () => {
         const config = getAdminConfig();
-        saveAdminSection({ ...config, cases: { items: adminCases().filter(item => item.id !== id) } }, "cases", "Case deleted.");
+        saveAdminSection({ ...config, cases: { items: adminCases().map(item => item.id === id ? { ...item, isOnline: false } : item) } }, "cases", "Case deleted.");
       });
       return;
     }
@@ -5461,7 +5747,19 @@
     handleContactSubmit(form);
   });
 
-  window.addEventListener("popstate", render);
+  window.addEventListener("popstate", () => {
+    if (suppressNextCaseModalPopRender) {
+      suppressNextCaseModalPopRender = false;
+      skipNextCasesIntro = false;
+      activeCaseModalId = "";
+      document.querySelector("[data-case-modal]")?.remove();
+      document.body.classList.remove("is-intro-reset");
+      document.body.classList.add("is-ready");
+      document.body.dataset.pageIntroPath = currentPath().split("#")[0];
+      return;
+    }
+    render();
+  });
   window.addEventListener("keydown", event => {
     if (event.key === "Escape" && document.querySelector("[data-case-modal]")) {
       event.preventDefault();

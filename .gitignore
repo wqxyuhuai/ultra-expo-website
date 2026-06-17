@@ -1,0 +1,12 @@
+.env
+.env.local
+.env.brands
+.env.brands.local
+.env.cases
+.env.cases.local
+node_modules/
+npm-debug.log*
+sync-brands.cmd
+sync-brands-dry.cmd
+sync-cases.cmd
+sync-cases-dry.cmd
