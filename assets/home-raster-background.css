@@ -1,0 +1,342 @@
+@property --inner-y {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0vh;
+}
+
+html.ultra-home-active #container {
+  --scene-overlap: 60svh;
+}
+
+html.ultra-home-active #container .home-hero-scene {
+  --raster-cols: 16;
+  --scene-height: 160svh;
+  --grain-opacity: .50;
+  --raster-handoff: 0;
+  --raster-blue-bridge: 0;
+  position: relative !important;
+  width: 100%;
+  height: auto !important;
+  min-height: var(--scene-height) !important;
+  overflow: visible !important;
+  background: #000 !important;
+  isolation: isolate;
+}
+
+html.ultra-home-active #container .home-hero-scene.ultra-home-hero-rebuilt-section::before,
+html.ultra-home-active #container .home-hero-scene.ultra-home-hero-rebuilt-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+html.ultra-home-active #container .raster-scroll-scene {
+  position: relative;
+  width: 100%;
+  height: var(--scene-height);
+  background: #000;
+}
+
+html.ultra-home-active #container .raster-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+}
+
+html.ultra-home-active #container .raster-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 34svh 0 8svh;
+  z-index: 7;
+  pointer-events: none;
+  opacity: var(--raster-blue-bridge, 0);
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse at 56% 28%, rgba(88, 142, 255, .16), transparent 58%),
+    linear-gradient(90deg, rgba(12, 30, 74, .22) 0 6.25%, rgba(44, 98, 220, .12) 6.25% 12.5%, rgba(11, 28, 76, .18) 12.5% 18.75%, rgba(60, 118, 236, .10) 18.75% 25%, rgba(10, 27, 68, .18) 25% 31.25%, rgba(39, 90, 214, .12) 31.25% 37.5%, rgba(12, 31, 75, .16) 37.5% 43.75%, rgba(56, 111, 232, .09) 43.75% 50%, rgba(8, 23, 62, .18) 50% 56.25%, rgba(42, 96, 224, .11) 56.25% 62.5%, rgba(8, 22, 58, .18) 62.5% 68.75%, rgba(40, 94, 220, .10) 68.75% 75%, rgba(7, 20, 52, .18) 75% 81.25%, rgba(34, 82, 206, .10) 81.25% 87.5%, rgba(6, 18, 48, .17) 87.5% 93.75%, rgba(29, 74, 190, .08) 93.75% 100%),
+    linear-gradient(180deg, transparent 0%, rgba(32, 88, 210, .10) 25%, rgba(14, 42, 118, .13) 62%, transparent 100%);
+  filter: saturate(1.1);
+}
+
+html.ultra-home-active #container .raster-sticky::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 6;
+  height: 42svh;
+  pointer-events: none;
+  opacity: var(--raster-handoff, 0);
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .72) 58%, #000 100%);
+  transition: opacity 120ms linear;
+}
+
+html.ultra-home-active #container .raster-cols {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--raster-cols), minmax(0, 1fr));
+  align-items: start;
+  gap: 0;
+  background: #000;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html.ultra-home-active #container .raster-col {
+  position: relative;
+  width: calc(100% + 2px);
+  margin-left: -1px;
+  min-width: 0;
+  height: var(--col-h, 440svh);
+  overflow: hidden;
+  transform: translate3d(0, var(--scroll-y, 0vh), 0);
+  opacity: 0;
+  background: #000;
+  animation: rasterPanelIn 980ms cubic-bezier(.18, .82, .22, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+  will-change: transform;
+}
+
+html.ultra-home-active #container .raster-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -18svh;
+  height: var(--fill-h, 462svh);
+  pointer-events: none;
+  opacity: var(--fill-opacity, 1);
+  background:
+    linear-gradient(
+      180deg,
+      var(--c0) 0svh,
+      var(--c1) var(--s1),
+      var(--c2) var(--s2),
+      var(--c3) var(--s3),
+      var(--c4) var(--s4),
+      var(--c5) var(--s5),
+      var(--c6) var(--s6),
+      var(--c7) var(--s7),
+      var(--c8) var(--s8),
+      var(--c9) var(--s9),
+      #000000 var(--s10),
+      #000000 100%
+    );
+  transform: translate3d(0, var(--color-y, 0vh), 0);
+  filter: saturate(var(--fill-sat, 1.06)) brightness(var(--fill-brightness, 1.01));
+  will-change: transform, opacity;
+}
+
+html.ultra-home-active #container .raster-shine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--shine-top, 10svh);
+  height: var(--shine-h, 72svh);
+  pointer-events: none;
+  opacity: var(--shine-live, .34);
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(43, 91, 220, .035) 10%,
+      var(--shine-a) 28%,
+      var(--shine-b) 50%,
+      var(--shine-c) 68%,
+      rgba(20, 58, 170, .055) 82%,
+      transparent 100%
+    );
+  transform: translate3d(0, calc(var(--inner-y, 0vh) + var(--shine-y, 0vh)), 0);
+  filter: blur(var(--shine-blur, .25px)) saturate(var(--shine-sat, 1.12)) brightness(var(--shine-brightness, 1.02));
+  animation: rasterInnerFlow var(--flow-speed, 18s) ease-in-out infinite;
+  animation-delay: var(--flow-delay, 0s);
+  will-change: transform, opacity;
+}
+
+html.ultra-home-active #container .raster-col::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--noise-h, 170svh);
+  z-index: 3;
+  pointer-events: none;
+  opacity: var(--grain, var(--grain-opacity));
+  mix-blend-mode: overlay;
+  background-image:
+    radial-gradient(circle, rgba(142, 184, 255, .82) 0 1.18px, transparent 1.68px),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.08' numOctaves='5' seed='71' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.94'/%3E%3C/svg%3E");
+  background-size: 15px 15px, 150px 150px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+}
+
+html.ultra-home-active #container .raster-page-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .20;
+  mix-blend-mode: soft-light;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.96' numOctaves='4' seed='29' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.88'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+html.ultra-home-active #container .home-hero-content {
+  z-index: 20;
+}
+
+html.ultra-home-active #container .ultra-home-hero-rebuilt-primary,
+html.ultra-home-active #container .ultra-home-hero-rebuilt-primary:hover,
+html.ultra-home-active #container .ultra-home-hero-rebuilt-primary:focus-visible {
+  position: relative !important;
+  isolation: isolate;
+  border-color: rgba(255, 255, 255, .18) !important;
+  background: #000 !important;
+  color: var(--theme-white) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, calc(var(--raster-handoff, 0) * .05)) inset !important;
+}
+
+html.ultra-home-active #container .ultra-home-hero-rebuilt-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--raster-handoff, 0);
+  background: #15181d;
+  transition: opacity 120ms linear;
+}
+
+html.ultra-home-active #container .ultra-home-hero-rebuilt-primary .ultra-rolling-btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+html.ultra-home-active #container .ultra-home-trusted-section {
+  background: #000 !important;
+  color: var(--theme-white) !important;
+  min-height: clamp(210px, 24vh, 300px) !important;
+  justify-content: flex-start !important;
+  z-index: 2 !important;
+  margin-top: calc(-1 * var(--scene-overlap, 60svh) - 1px) !important;
+  padding: clamp(99px, 11.25vh, 162px) 0 clamp(140px, 11.25vw, 216px) !important;
+}
+
+html.ultra-home-active #container .ultra-home-trusted-title {
+  color: rgba(247, 248, 251, .92) !important;
+  margin-top: 0 !important;
+  margin-bottom: clamp(42px, 4vw, 72px) !important;
+}
+
+html.ultra-home-active #container .ultra-home-services {
+  --ultra-home-services-black-head: clamp(170px, 12vw, 204px);
+  background:
+    linear-gradient(
+      180deg,
+      #000 0,
+      #000 var(--ultra-home-services-black-head),
+      #f4f4f6 var(--ultra-home-services-black-head),
+      #f4f4f6 100%
+    ) !important;
+}
+
+html.ultra-home-active #container .ultra-home-services-head {
+  color: var(--theme-white) !important;
+}
+
+html.ultra-home-active #container .ultra-home-services-head::before {
+  background-image: radial-gradient(circle, rgba(247, 248, 251, .46) 1.35px, transparent 1.65px) !important;
+}
+
+html.ultra-home-active #container .ultra-home-services-kicker {
+  background: rgba(247, 248, 251, .10) !important;
+  color: rgba(247, 248, 251, .92) !important;
+}
+
+html.ultra-home-active #container .ultra-home-services-list {
+  background: #f4f4f6 !important;
+}
+
+#container .ultra-home-trusted-section .ultra-home-client,
+#ultra-app .ultra-home-trusted-section .ultra-home-client {
+  color: rgba(247, 248, 251, .42) !important;
+}
+
+#container .ultra-home-trusted-section .ultra-home-client-logo.is-gray,
+#ultra-app .ultra-home-trusted-section .ultra-home-client-logo.is-gray {
+  opacity: .76 !important;
+  filter: grayscale(1) invert(1) brightness(1.28) contrast(.92) !important;
+}
+
+#container .ultra-home-trusted-section .ultra-home-client-logo.is-color,
+#ultra-app .ultra-home-trusted-section .ultra-home-client-logo.is-color {
+  filter: none !important;
+}
+
+@keyframes rasterPanelIn {
+  0% {
+    opacity: 0;
+    filter: brightness(.72) saturate(.94);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes rasterInnerFlow {
+  0%,
+  100% {
+    --inner-y: -1.15vh;
+  }
+
+  50% {
+    --inner-y: 1.55vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  html.ultra-home-active #container {
+    --scene-overlap: 50svh;
+  }
+
+  html.ultra-home-active #container .home-hero-scene {
+    --raster-cols: 12;
+    --scene-height: 150svh;
+    --grain-opacity: .44;
+  }
+}
+
+@media (max-width: 680px) {
+  html.ultra-home-active #container {
+    --scene-overlap: 45svh;
+  }
+
+  html.ultra-home-active #container .home-hero-scene {
+    --raster-cols: 8;
+    --scene-height: 145svh;
+    --grain-opacity: .40;
+  }
+
+  html.ultra-home-active #container .raster-col::after {
+    background-size: 14px 14px, 145px 145px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.ultra-home-active #container .raster-col,
+  html.ultra-home-active #container .raster-shine {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

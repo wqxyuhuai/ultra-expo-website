@@ -1,0 +1,18 @@
+{
+  "name": "ultra-expo-static-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website source for ultra_expo.com.",
+  "scripts": {
+    "serve": "npx --yes http-server . -p 4173 -c-1",
+    "check:html": "npx --yes htmlhint \"**/*.html\"",
+    "sync:notion": "node scripts/sync-notion.mjs --help",
+    "sync:notion:brands": "node scripts/sync-notion.mjs --brands",
+    "sync:notion:brands:dry": "node scripts/sync-notion.mjs --brands --dry-run",
+    "sync:notion:cases": "node scripts/sync-notion.mjs --cases",
+    "sync:notion:cases:dry": "node scripts/sync-notion.mjs --cases --dry-run",
+    "format": "npx --yes prettier --write AGENTS.md package.json",
+    "format:check": "npx --yes prettier --check AGENTS.md package.json",
+    "check": "npm run check:html && npm run format:check"
+  }
+}
