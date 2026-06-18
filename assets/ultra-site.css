@@ -28021,6 +28021,22 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
   overflow: hidden !important;
 }
 
+#container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer::before,
+#ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer::before,
+#container .ultra-site > .ultra-footer::before,
+#ultra-app .ultra-site > .ultra-footer::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: max(40px, calc((100% - 1540px) / 2)) !important;
+  right: max(40px, calc((100% - 1540px) / 2)) !important;
+  height: 2px !important;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.52) 1px, transparent 1.5px) !important;
+  background-size: 12px 2px !important;
+  background-repeat: repeat-x !important;
+}
+
 #container .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-frame,
 #ultra-app .ultra-site > main.ultra-main + .ultra-bottom-cta + .ultra-footer .ultra-footer-frame,
 #container .ultra-site > .ultra-footer .ultra-footer-frame,
