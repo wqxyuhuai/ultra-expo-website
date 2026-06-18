@@ -4,7 +4,7 @@
   "private": true,
   "description": "Static website source for ultra_expo.com.",
   "scripts": {
-    "serve": "npx --yes http-server . -p 4173 -c-1",
+    "serve": "node scripts/serve-static.mjs",
     "check:html": "npx --yes htmlhint \"**/*.html\"",
     "sync:notion": "node scripts/sync-notion.mjs --help",
     "sync:notion:brands": "node scripts/sync-notion.mjs --brands",

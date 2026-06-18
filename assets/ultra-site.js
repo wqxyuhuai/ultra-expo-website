@@ -2631,15 +2631,6 @@
   }
 
   function caseGalleryImages(item) {
-    if (item?.id === "wattsonic-solar-and-storage-live-2026") {
-      return [
-        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
-        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
-        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
-        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
-        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg"
-      ];
-    }
     const unique = [];
     (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean).forEach(url => {
       if (!unique.includes(url)) unique.push(url);

@@ -564,7 +564,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "2-png",
+          "name": "wattsonic-elmia-solar-2026-cover-1",
           "url": "./assets/notion/cases/wattsonic-elmia-solar-2026-cover-1.png",
           "source": "notion"
         }
@@ -614,7 +614,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260519175509-1790-101-jpg",
+          "name": "goodwe-solartech-2026-cover-1",
           "url": "./assets/notion/cases/goodwe-solartech-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -664,7 +664,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260519175520-1792-101-1-jpg",
+          "name": "goodwe-solar-and-storage-2026-cover-1",
           "url": "./assets/notion/cases/goodwe-solar-and-storage-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -714,7 +714,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260519175500-1788-101-jpg",
+          "name": "goodwe-build-expo-2026-cover-1",
           "url": "./assets/notion/cases/goodwe-build-expo-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -764,7 +764,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260519175553-1794-101-jpg",
+          "name": "kstar-smart-energy-2026-cover-1",
           "url": "./assets/notion/cases/kstar-smart-energy-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -814,7 +814,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260519175735-1797-101-1-jpg",
+          "name": "elecnova-battery-forum-2026-cover-1",
           "url": "./assets/notion/cases/elecnova-battery-forum-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -864,7 +864,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260304134936-173-35-jpg",
+          "name": "elecnova-green-energy-2026-cover-1",
           "url": "./assets/notion/cases/elecnova-green-energy-2026-cover-1.jpg",
           "source": "notion"
         }
@@ -914,7 +914,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "0c4478bcbe18f3c3520cf078a3f7c5f0-jpg",
+          "name": "elecnova-genera-madrid-spain-2025-cover-1",
           "url": "./assets/notion/cases/elecnova-genera-madrid-spain-2025-cover-1.jpg",
           "source": "notion"
         }
@@ -964,7 +964,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "wechatimg1107-jpg",
+          "name": "kunshan-gintune-welding-schweissen-schneiden-2025-cover-1",
           "url": "./assets/notion/cases/kunshan-gintune-welding-schweissen-schneiden-2025-cover-1.jpg",
           "source": "notion"
         }
@@ -1014,58 +1014,8 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "jpg",
+          "name": "goodwe-inter-solution-2025-cover-1",
           "url": "./assets/notion/cases/goodwe-inter-solution-2025-cover-1.jpg",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "elecnova-key-energy-2026",
-    "notionPageId": "3816cfcd-f85b-80cb-b586-d48dd98b9a70",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "Elecnova",
-    "event": "Key Energy",
-    "location": "Italy",
-    "country": "Italy",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-04",
-    "dateEnd": "2026-03-06",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/42f9ac57-a8c9-4406-843a-6f79abf026d9/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304135008_174_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=11f9b5a8ba0842cc90050d679b760e43dd2428483688308cef57c0174b596511&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "Elecnova booth is dominated by white and blue tones, with a striking double-layer square suspended ceiling. Large energy storage units are displayed upfront, walls printed with brand vision and global layout, neatly arranged reception and lounge areas show the enterprise’s solid strength in energy storage.",
-      "zh": "Elecnova 展台以白蓝为主色调，双层方形悬浮吊顶造型立体吸睛，大型储能设备直观陈列。墙面印有品牌愿景与全球业务版图，前台、洽谈区布局规整，整体简约大气，彰显储能企业硬核实力。"
-    },
-    "title": "Elecnova · Key Energy · 2026",
-    "brandId": "elecnova",
-    "brandEnglishName": "Elecnova",
-    "exhibitionName": "Key Energy",
-    "area": "64 sqm",
-    "areaSqm": 64,
-    "chineseIntro": "Elecnova 展台以白蓝为主色调，双层方形悬浮吊顶造型立体吸睛，大型储能设备直观陈列。墙面印有品牌愿景与全球业务版图，前台、洽谈区布局规整，整体简约大气，彰显储能企业硬核实力。",
-    "englishIntro": "Elecnova booth is dominated by white and blue tones, with a striking double-layer square suspended ceiling. Large energy storage units are displayed upfront, walls printed with brand vision and global layout, neatly arranged reception and lounge areas show the enterprise’s solid strength in energy storage.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260304135008-174-35-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/42f9ac57-a8c9-4406-843a-6f79abf026d9/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304135008_174_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=11f9b5a8ba0842cc90050d679b760e43dd2428483688308cef57c0174b596511&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
           "source": "notion"
         }
       ]
@@ -1114,7 +1064,7 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "sunhome-asew-jpg",
+          "name": "sunhome-asew-2025-cover-1",
           "url": "./assets/notion/cases/sunhome-asew-2025-cover-1.jpg",
           "source": "notion"
         }
@@ -1164,208 +1114,8 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "eab3364dba6975d3935bd1f7a8fbe26c-jpg",
+          "name": "tsun-solar-solutions-2025-cover-1",
           "url": "./assets/notion/cases/tsun-solar-solutions-2025-cover-1.jpg",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "saj-solar-solutions-2025",
-    "notionPageId": "3816cfcd-f85b-80ff-b338-dacb3b9ccbfa",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SAJ",
-    "event": "Solar Solutions",
-    "location": "Germany",
-    "country": "Germany",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-12-03",
-    "dateEnd": "2025-12-04",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ba369e9c-e6b8-4914-82ef-3e71f9d48c30/20260202-155300.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=86e772d7d64ce89dab80133dcdd033fc088234bbdf78ba9694ba7bb07857939e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "The SAJ booth features an innovative layout with a branded promotional van inside, highlighted by striking red-and-white logos. A green forest backdrop printed with German brand values stands beside neatly divided product display and lounge areas, blending creativity with professional energy storage brand charm.",
-      "zh": "SAJ 三晶展台设计新颖亮眼，展场内停放品牌宣传整车，红白标识视觉冲击力强。侧边绿植背景墙搭配德语品牌理念，设备展示区与休闲洽谈区分区清晰，兼具创意与专业储能品牌气质。"
-    },
-    "title": "SAJ · Solar Solutions · 2025",
-    "brandId": "saj",
-    "brandEnglishName": "SAJ",
-    "exhibitionName": "Solar Solutions",
-    "area": "56 sqm",
-    "areaSqm": 56,
-    "chineseIntro": "SAJ 三晶展台设计新颖亮眼，展场内停放品牌宣传整车，红白标识视觉冲击力强。侧边绿植背景墙搭配德语品牌理念，设备展示区与休闲洽谈区分区清晰，兼具创意与专业储能品牌气质。",
-    "englishIntro": "The SAJ booth features an innovative layout with a branded promotional van inside, highlighted by striking red-and-white logos. A green forest backdrop printed with German brand values stands beside neatly divided product display and lounge areas, blending creativity with professional energy storage brand charm.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260202-155300-jpeg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ba369e9c-e6b8-4914-82ef-3e71f9d48c30/20260202-155300.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=86e772d7d64ce89dab80133dcdd033fc088234bbdf78ba9694ba7bb07857939e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "saj-solar-solutions-2026",
-    "notionPageId": "3816cfcd-f85b-80f0-a97f-cf96ecf1e9bb",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SAJ",
-    "event": "Solar Solutions",
-    "location": "Netherlands",
-    "country": "Netherlands",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-10",
-    "dateEnd": "2026-03-12",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/eb3c443a-a567-4a49-9e61-708ab1cfeea7/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310200906_1203_101.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=f3480cf303389f2286564c3fe52312458f6179fb7c19d6fde0baee96deb3d389&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "The SAJ booth boasts a clean minimalist style with distinctive multi-layer suspended luminous logos and eye-catching red-white brand signs. Neatly arranged home energy storage units, casual negotiation tables and a special touch screen create an open space that highlights smart energy storage technology.",
-      "zh": "SAJ 简约清爽，多层悬空发光 LOGO 极具辨识度，红白品牌标识醒目。家用储能设备有序陈列，搭配休闲洽谈桌椅与异形触控一体机，整体布局通透，凸显智能储能产品科技感。"
-    },
-    "title": "SAJ · Solar Solutions · 2026",
-    "brandId": "saj",
-    "brandEnglishName": "SAJ",
-    "exhibitionName": "Solar Solutions",
-    "area": "56 sqm",
-    "areaSqm": 56,
-    "chineseIntro": "SAJ 简约清爽，多层悬空发光 LOGO 极具辨识度，红白品牌标识醒目。家用储能设备有序陈列，搭配休闲洽谈桌椅与异形触控一体机，整体布局通透，凸显智能储能产品科技感。",
-    "englishIntro": "The SAJ booth boasts a clean minimalist style with distinctive multi-layer suspended luminous logos and eye-catching red-white brand signs. Neatly arranged home energy storage units, casual negotiation tables and a special touch screen create an open space that highlights smart energy storage technology.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260310200906-1203-101-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/eb3c443a-a567-4a49-9e61-708ab1cfeea7/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310200906_1203_101.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=f3480cf303389f2286564c3fe52312458f6179fb7c19d6fde0baee96deb3d389&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "kstar-solar-solutions-2026",
-    "notionPageId": "3816cfcd-f85b-80d6-85d4-fc76c61463ab",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "KSTAR",
-    "event": "Solar Solutions",
-    "location": "Netherlands",
-    "country": "Netherlands",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-10",
-    "dateEnd": "2026-03-12",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/a1b32690-a5b2-454e-8013-4bd8f28b74ee/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070711_177_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=83bae63233863abe15a3e03a39ce7cfa3a84b15ab808bc8384ef48790a145710&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "KSTAR booth features minimalist white and blue tones, divided into K-Home residential and commercial energy storage zones. House-shaped walls restore household scenes, eye-catching suspended logos and open lounge areas fully display full-scenario energy storage solutions.",
-      "zh": "KSTAR 展台以白蓝配色简约大气，分 K-Home 家用、商用储能两大展示区，房屋造型墙面还原家用场景，悬浮发光 LOGO 醒目，洽谈区开阔，清晰呈现全场景储能解决方案。"
-    },
-    "title": "KSTAR · Solar Solutions · 2026",
-    "brandId": "kstar",
-    "brandEnglishName": "KSTAR",
-    "exhibitionName": "Solar Solutions",
-    "area": "48 sqm",
-    "areaSqm": 48,
-    "chineseIntro": "KSTAR 展台以白蓝配色简约大气，分 K-Home 家用、商用储能两大展示区，房屋造型墙面还原家用场景，悬浮发光 LOGO 醒目，洽谈区开阔，清晰呈现全场景储能解决方案。",
-    "englishIntro": "KSTAR booth features minimalist white and blue tones, divided into K-Home residential and commercial energy storage zones. House-shaped walls restore household scenes, eye-catching suspended logos and open lounge areas fully display full-scenario energy storage solutions.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260310070711-177-35-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/a1b32690-a5b2-454e-8013-4bd8f28b74ee/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070711_177_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=83bae63233863abe15a3e03a39ce7cfa3a84b15ab808bc8384ef48790a145710&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "elecnova-solar-solutions-2026",
-    "notionPageId": "3816cfcd-f85b-801c-8ab3-e12e58cd80dc",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "Elecnova",
-    "event": "Solar Solutions",
-    "location": "Netherlands",
-    "country": "Netherlands",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-10",
-    "dateEnd": "2026-03-12",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/466dea96-dfb5-4554-8111-8912cbf256a3/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070714_178_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=4bcd11f72c51a740f92ad22882207e3f23df9b2db43e1ca00405f3b5ce6677c8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "Elecnova booth adopts deep brand blue as its main tone, with double-layer luminous facades for high recognition. Large energy storage devices are neatly displayed, while walls show certifications and global layouts, presenting a steady, international style of power energy enterprise.",
-      "zh": "Elecnova 以深邃品牌蓝为主色调，双层发光门头辨识度拉满，大型储能设备整齐陈列。墙面展示资质与海外市场版图，空间开阔规整，尽显电力能源企业沉稳专业的国际化气质。"
-    },
-    "title": "Elecnova · Solar Solutions · 2026",
-    "brandId": "elecnova",
-    "brandEnglishName": "Elecnova",
-    "exhibitionName": "Solar Solutions",
-    "area": "32 sqm",
-    "areaSqm": 32,
-    "chineseIntro": "Elecnova 以深邃品牌蓝为主色调，双层发光门头辨识度拉满，大型储能设备整齐陈列。墙面展示资质与海外市场版图，空间开阔规整，尽显电力能源企业沉稳专业的国际化气质。",
-    "englishIntro": "Elecnova booth adopts deep brand blue as its main tone, with double-layer luminous facades for high recognition. Large energy storage devices are neatly displayed, while walls show certifications and global layouts, presenting a steady, international style of power energy enterprise.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260310070714-178-35-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/466dea96-dfb5-4554-8111-8912cbf256a3/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070714_178_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=4bcd11f72c51a740f92ad22882207e3f23df9b2db43e1ca00405f3b5ce6677c8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
           "source": "notion"
         }
       ]
@@ -1414,458 +1164,8 @@ window.UltraCases = [
     "coverImage": {
       "files": [
         {
-          "name": "20260304134932-171-35-jpg",
+          "name": "wattsonic-enex-2026-cover-1",
           "url": "./assets/notion/cases/wattsonic-enex-2026-cover-1.jpg",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "saj-enex-2026",
-    "notionPageId": "3816cfcd-f85b-8073-a73f-f382e0a18998",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SAJ",
-    "event": "ENEX",
-    "location": "Poland",
-    "country": "Poland",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-04",
-    "dateEnd": "2026-03-05",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/30a70646-3609-4fb2-ba53-a949d64a26b2/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134934_172_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=0a8fda22d3e5d3b8e018c791f3155659e7978dd774793c2b8e483657d4e1ca17&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "SAJ booth takes pure white as the base, decorated with striking red logos. Long suspended light strips extend the visual space. Energy storage units are displayed frontally, with global layout and AI energy solutions on walls, presenting a neat, professional tech vibe.",
-      "zh": "SAJ 三晶展台以纯白为基底，搭配醒目的红色品牌标识，吊顶长条发光灯箱延伸视觉。储能主机直观陈列，墙面标注全球布局与 AI 储能方案，布局简约规整，尽显专业科技质感。"
-    },
-    "title": "SAJ · ENEX · 2026",
-    "brandId": "saj",
-    "brandEnglishName": "SAJ",
-    "exhibitionName": "ENEX",
-    "area": "52 sqm",
-    "areaSqm": 52,
-    "chineseIntro": "SAJ 三晶展台以纯白为基底，搭配醒目的红色品牌标识，吊顶长条发光灯箱延伸视觉。储能主机直观陈列，墙面标注全球布局与 AI 储能方案，布局简约规整，尽显专业科技质感。",
-    "englishIntro": "SAJ booth takes pure white as the base, decorated with striking red logos. Long suspended light strips extend the visual space. Energy storage units are displayed frontally, with global layout and AI energy solutions on walls, presenting a neat, professional tech vibe.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260304134934-172-35-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/30a70646-3609-4fb2-ba53-a949d64a26b2/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134934_172_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=0a8fda22d3e5d3b8e018c791f3155659e7978dd774793c2b8e483657d4e1ca17&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "kstar-enex-2026",
-    "notionPageId": "3816cfcd-f85b-804e-a7cc-e5edd931a495",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "KSTAR",
-    "event": "ENEX",
-    "location": "Poland",
-    "country": "Poland",
-    "region": "",
-    "year": 2026,
-    "dateStart": "2026-03-04",
-    "dateEnd": "2026-03-05",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/48b27e3e-ac4f-42ea-a25e-6e763c1e8be5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134919_169_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1346d9b0b872fd32745c61c063fe41df83d91176faecf14df279d4ebe239ac22&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "KSTAR booth adopts gray and blue tones, with eye-catching multi-layer suspended light boxes and brand flags. Residential and commercial energy storage devices are displayed separately. The spacious lounge area presents a steady and professional image, showing the brand’s strong strength in energy storage.",
-      "zh": "KSTAR 展台以灰蓝为主色调，多层立体悬浮灯箱大气醒目，搭配道旗强化品牌视觉。家用、商用储能设备分区陈列，洽谈区宽敞整洁，整体沉稳专业，凸显储能设备品牌硬核实力。"
-    },
-    "title": "KSTAR · ENEX · 2026",
-    "brandId": "kstar",
-    "brandEnglishName": "KSTAR",
-    "exhibitionName": "ENEX",
-    "area": "88 sqm",
-    "areaSqm": 88,
-    "chineseIntro": "KSTAR 展台以灰蓝为主色调，多层立体悬浮灯箱大气醒目，搭配道旗强化品牌视觉。家用、商用储能设备分区陈列，洽谈区宽敞整洁，整体沉稳专业，凸显储能设备品牌硬核实力。",
-    "englishIntro": "KSTAR booth adopts gray and blue tones, with eye-catching multi-layer suspended light boxes and brand flags. Residential and commercial energy storage devices are displayed separately. The spacious lounge area presents a steady and professional image, showing the brand’s strong strength in energy storage.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20260304134919-169-35-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/48b27e3e-ac4f-42ea-a25e-6e763c1e8be5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134919_169_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1346d9b0b872fd32745c61c063fe41df83d91176faecf14df279d4ebe239ac22&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "sunhome-installer-show-2025",
-    "notionPageId": "3816cfcd-f85b-8074-8fd1-dfff43437c20",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SUNHOME",
-    "event": "Installer show",
-    "location": "UK",
-    "country": "UK",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-06-24",
-    "dateEnd": "2025-06-26",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/1db63b92-ff2e-4de1-bdfa-c8f681ede90f/20250625-MOU04442.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=cf3a8f8c7392677b08535736d5b990b017b88cab1f57738e8874978fbc9c1911&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "SUNHOME booth features fresh white and orange tones. House-shaped walls display residential PV energy storage systems, a green plant photo wall adds vitality, and a world map for partnership recruitment matches its positioning of home new energy promotion.",
-      "zh": "SUNHOME 展台以白橙搭配清新亮眼，房屋造型墙面直观展示家用光伏储能系统，绿植打卡墙增添活力，招商板块配套世界地图，洽谈区整洁舒适，完美贴合家用新能源招商展示定位。"
-    },
-    "title": "SUNHOME · Installer show · 2025",
-    "brandId": "sunhome",
-    "brandEnglishName": "SUNHOME",
-    "exhibitionName": "Installer show",
-    "area": "45 sqm",
-    "areaSqm": 45,
-    "chineseIntro": "SUNHOME 展台以白橙搭配清新亮眼，房屋造型墙面直观展示家用光伏储能系统，绿植打卡墙增添活力，招商板块配套世界地图，洽谈区整洁舒适，完美贴合家用新能源招商展示定位。",
-    "englishIntro": "SUNHOME booth features fresh white and orange tones. House-shaped walls display residential PV energy storage systems, a green plant photo wall adds vitality, and a world map for partnership recruitment matches its positioning of home new energy promotion.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "20250625-mou04442-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/1db63b92-ff2e-4de1-bdfa-c8f681ede90f/20250625-MOU04442.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=cf3a8f8c7392677b08535736d5b990b017b88cab1f57738e8874978fbc9c1911&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "ssam-the-battery-show-2025",
-    "notionPageId": "3816cfcd-f85b-8016-bb84-dad7cd589825",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SSAM",
-    "event": "The Battery Show",
-    "location": "United States",
-    "country": "United States",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-10-06",
-    "dateEnd": "2025-10-09",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/36b63a23-053d-4621-b1e2-38c049855269/WechatIMG32521.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=22c9d4a4d393dbe692bc19041681f8662d2507f8701e86e6bdb5af3b73bfd376&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "SSAM booth adopts white and blue as main tones, with avant-garde multi-layer suspended ceiling. Equipped with large screens and green plants, it has neatly divided display and negotiation zones, presenting an innovative and professional tech brand image.",
-      "zh": "SSAM 展台以白蓝为主色调，多层异形悬浮吊顶造型前卫吸睛，搭配大屏与绿植装饰。产品展示区、洽谈区划分清晰，整体简约清爽，凸显科技企业创新专业的品牌形象。"
-    },
-    "title": "SSAM · The Battery Show · 2025",
-    "brandId": "ssam",
-    "brandEnglishName": "SSAM",
-    "exhibitionName": "The Battery Show",
-    "area": "72 sqm",
-    "areaSqm": 72,
-    "chineseIntro": "SSAM 展台以白蓝为主色调，多层异形悬浮吊顶造型前卫吸睛，搭配大屏与绿植装饰。产品展示区、洽谈区划分清晰，整体简约清爽，凸显科技企业创新专业的品牌形象。",
-    "englishIntro": "SSAM booth adopts white and blue as main tones, with avant-garde multi-layer suspended ceiling. Equipped with large screens and green plants, it has neatly divided display and negotiation zones, presenting an innovative and professional tech brand image.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "wechatimg32521-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/36b63a23-053d-4621-b1e2-38c049855269/WechatIMG32521.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=22c9d4a4d393dbe692bc19041681f8662d2507f8701e86e6bdb5af3b73bfd376&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "geo-the-battery-show-2025",
-    "notionPageId": "3816cfcd-f85b-8049-b4da-f3104d6465e1",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "GEO",
-    "event": "The Battery Show",
-    "location": "United States",
-    "country": "United States",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-10-06",
-    "dateEnd": "2025-10-09",
-    "industry": "Battery",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Battery"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0dca418f-a96a-4ed4-a198-7e21ef0642ce/WechatIMG32517.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=dfcd974486df63dfca96628db7d993433646d14f42d4ba4f0036199f9a2f594e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "GEO booth features eco-friendly design with eye-catching gradient green suspended ceiling, and wall green plants echo the green energy theme. With an open layout, screens, product displays and lounge areas are neatly arranged, highlighting the brand’s low-carbon sustainable concept.",
-      "zh": "GEO 展台充满环保设计感，渐变青绿悬浮吊顶灵动吸睛，墙面绿植呼应绿色能源主题。展台布局通透，大屏、产品展示与洽谈区有序划分，清新简约，凸显低碳可持续的品牌理念。"
-    },
-    "title": "GEO · The Battery Show · 2025",
-    "brandId": "geo",
-    "brandEnglishName": "GEO",
-    "exhibitionName": "The Battery Show",
-    "area": "72 sqm",
-    "areaSqm": 72,
-    "chineseIntro": "GEO 展台充满环保设计感，渐变青绿悬浮吊顶灵动吸睛，墙面绿植呼应绿色能源主题。展台布局通透，大屏、产品展示与洽谈区有序划分，清新简约，凸显低碳可持续的品牌理念。",
-    "englishIntro": "GEO booth features eco-friendly design with eye-catching gradient green suspended ceiling, and wall green plants echo the green energy theme. With an open layout, screens, product displays and lounge areas are neatly arranged, highlighting the brand’s low-carbon sustainable concept.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "wechatimg32517-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0dca418f-a96a-4ed4-a198-7e21ef0642ce/WechatIMG32517.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=dfcd974486df63dfca96628db7d993433646d14f42d4ba4f0036199f9a2f594e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "goodwe-intersalor-2025",
-    "notionPageId": "3816cfcd-f85b-80cd-9b89-fe6b25823aa7",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "GOODWE",
-    "event": "Intersalor",
-    "location": "Brazil",
-    "country": "Brazil",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-08-26",
-    "dateEnd": "2025-08-28",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/8e7f6b1d-d6af-4ef6-9bc8-8243adf36b9e/347671761702033_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=99442a271b6095d5bad686726e225c2a5c4ffb8b2203be7294b9b1831f4782cd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "GoodWe booth features a minimalist modern style with warm wooden flooring and eye-catching red luminous overhead logos. Split into residential and commercial energy storage zones, equipped with large screens and neatly arranged devices, it fully showcases the tech sense of integrated smart PV solutions.",
-      "zh": "GOODWE展台简约现代，木质地面温润大气，顶部红色发光 LOGO 极具辨识度。展区分家用、商用两大储能展示区，大屏搭配整齐设备，动线通透，尽显智能光伏一体化解决方案的科技感。"
-    },
-    "title": "GOODWE · Intersalor · 2025",
-    "brandId": "goodwe",
-    "brandEnglishName": "GOODWE",
-    "exhibitionName": "Intersalor",
-    "area": "150 sqm",
-    "areaSqm": 150,
-    "chineseIntro": "GOODWE展台简约现代，木质地面温润大气，顶部红色发光 LOGO 极具辨识度。展区分家用、商用两大储能展示区，大屏搭配整齐设备，动线通透，尽显智能光伏一体化解决方案的科技感。",
-    "englishIntro": "GoodWe booth features a minimalist modern style with warm wooden flooring and eye-catching red luminous overhead logos. Split into residential and commercial energy storage zones, equipped with large screens and neatly arranged devices, it fully showcases the tech sense of integrated smart PV solutions.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "347671761702033-pic-hd-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/8e7f6b1d-d6af-4ef6-9bc8-8243adf36b9e/347671761702033_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=99442a271b6095d5bad686726e225c2a5c4ffb8b2203be7294b9b1831f4782cd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "suntech-solar-and-storage-live-2025",
-    "notionPageId": "3816cfcd-f85b-8036-a8aa-ea266e724a86",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SUNTECH",
-    "event": "Solar & Storage Live",
-    "location": "UK",
-    "country": "UK",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-09-23",
-    "dateEnd": "2025-09-25",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/e048ac14-2bf3-4dfa-8420-2f536544c2b3/347501761701816_.pic_hd%281%29.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=8f7b7298931e7b553fe58a83115e76d5803f11d6d60486fcb5d36c81895f7d4a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "Suntech booth adopts the brand’s red and white color scheme with a sleek, spacious layout. A suspended three-dimensional logo stands out, various PV panels are displayed clearly, and the backdrop highlights corporate strength, delivering an industrial and international aesthetic.",
-      "zh": "Suntech 展台以品牌红白为主色调，造型简约大气，悬空立体 LOGO 十分醒目。多款光伏组件直观陈列，背景墙展示品牌实力，动线开阔，整体兼具工业质感与国际化大气格调。"
-    },
-    "title": "SUNTECH · Solar & Storage Live · 2025",
-    "brandId": "suntech",
-    "brandEnglishName": "SUNTECH",
-    "exhibitionName": "Solar & Storage Live",
-    "area": "48 sqm",
-    "areaSqm": 48,
-    "chineseIntro": "Suntech 展台以品牌红白为主色调，造型简约大气，悬空立体 LOGO 十分醒目。多款光伏组件直观陈列，背景墙展示品牌实力，动线开阔，整体兼具工业质感与国际化大气格调。",
-    "englishIntro": "Suntech booth adopts the brand’s red and white color scheme with a sleek, spacious layout. A suspended three-dimensional logo stands out, various PV panels are displayed clearly, and the backdrop highlights corporate strength, delivering an industrial and international aesthetic.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "347501761701816-pic-hd-1-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/e048ac14-2bf3-4dfa-8420-2f536544c2b3/347501761701816_.pic_hd%281%29.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=8f7b7298931e7b553fe58a83115e76d5803f11d6d60486fcb5d36c81895f7d4a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "sunhome-solar-and-storage-live-2025",
-    "notionPageId": "3816cfcd-f85b-80b9-a6a6-c011b63ffb92",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "SUNHOME",
-    "event": "Solar & Storage Live",
-    "location": "UK",
-    "country": "UK",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-09-23",
-    "dateEnd": "2025-09-25",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/6a251cf4-3330-456a-b892-cc0a0741001a/347571761701844_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1d95f288b4a131094b776bfd0d03044dcf25328252e6e1fdebe4c5c8d47d2b1e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "SUNHOME booth features white and orange as its main tones, with eye-catching double-layer suspended light signs. A house-shaped model displays PV energy storage systems. The spacious reception area with clear slogans presents a fresh style, highlighting the home-oriented attribute of new energy products.",
-      "zh": "SUNHOME 展台以白橙为主色调，双层悬空发光招牌醒目亮眼，搭配房屋造型实景展示光伏储能系统。接待区开阔整洁，标语清晰，整体风格清新明快，充分凸显家用新能源产品的居家属性。"
-    },
-    "title": "SUNHOME · Solar & Storage Live · 2025",
-    "brandId": "sunhome",
-    "brandEnglishName": "SUNHOME",
-    "exhibitionName": "Solar & Storage Live",
-    "area": "96 sqm",
-    "areaSqm": 96,
-    "chineseIntro": "SUNHOME 展台以白橙为主色调，双层悬空发光招牌醒目亮眼，搭配房屋造型实景展示光伏储能系统。接待区开阔整洁，标语清晰，整体风格清新明快，充分凸显家用新能源产品的居家属性。",
-    "englishIntro": "SUNHOME booth features white and orange as its main tones, with eye-catching double-layer suspended light signs. A house-shaped model displays PV energy storage systems. The spacious reception area with clear slogans presents a fresh style, highlighting the home-oriented attribute of new energy products.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "347571761701844-pic-hd-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/6a251cf4-3330-456a-b892-cc0a0741001a/347571761701844_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1d95f288b4a131094b776bfd0d03044dcf25328252e6e1fdebe4c5c8d47d2b1e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        }
-      ]
-    },
-    "galleryImages": {
-      "files": []
-    },
-    "isFeaturedCase": false,
-    "featuredCaseOrder": null,
-    "casePageOrder": 29,
-    "isOnline": true,
-    "notes": ""
-  },
-  {
-    "id": "goodwe-solar-and-storage-live-2025",
-    "notionPageId": "3806cfcd-f85b-8019-a717-dec22434623e",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-    "client": "GOODWE",
-    "event": "Solar & Storage Live",
-    "location": "UK",
-    "country": "UK",
-    "region": "",
-    "year": 2025,
-    "dateStart": "2025-09-23",
-    "dateEnd": "2025-09-25",
-    "industry": "Energy",
-    "type": "",
-    "services": [],
-    "tags": [
-      "Energy"
-    ],
-    "featured": false,
-    "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/509e5476-4ebc-4d7a-b15d-c2be06b57fb8/347461761701803_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=9f8919890926e26ea774db27511bf5b6b209ca2e2a8c0ba83a3c6f15088c0f0d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": {
-      "en": "GoodWe PV booth boasts a minimalist modern design dominated by white and red tones. Suspended luminous logos stand out prominently. Various energy storage inverters are neatly displayed, with Tier 1 credentials marked on the backdrop. The tidy layout fully showcases the tech vibe of the new energy brand.",
-      "zh": "GOODWE光伏展台现代简约，白红主调清爽大气，悬空发光字标识醒目。多款储能逆变器整齐陈列，背景墙标注 Tier1 资质，整体布局规整专业，尽显新能源品牌科技质感。"
-    },
-    "title": "GOODWE · Solar & Storage Live · 2025",
-    "brandId": "goodwe",
-    "brandEnglishName": "GOODWE",
-    "exhibitionName": "Solar & Storage Live",
-    "area": "72 sqm",
-    "areaSqm": 72,
-    "chineseIntro": "GOODWE光伏展台现代简约，白红主调清爽大气，悬空发光字标识醒目。多款储能逆变器整齐陈列，背景墙标注 Tier1 资质，整体布局规整专业，尽显新能源品牌科技质感。",
-    "englishIntro": "GoodWe PV booth boasts a minimalist modern design dominated by white and red tones. Suspended luminous logos stand out prominently. Various energy storage inverters are neatly displayed, with Tier 1 credentials marked on the backdrop. The tidy layout fully showcases the tech vibe of the new energy brand.",
-    "coverImage": {
-      "files": [
-        {
-          "name": "347461761701803-pic-hd-jpg",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/509e5476-4ebc-4d7a-b15d-c2be06b57fb8/347461761701803_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=9f8919890926e26ea774db27511bf5b6b209ca2e2a8c0ba83a3c6f15088c0f0d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
           "source": "notion"
         }
       ]
@@ -1882,7 +1182,7 @@ window.UltraCases = [
   {
     "id": "wattsonic-solar-and-storage-live-2026",
     "notionPageId": "37e6cfcd-f85b-806a-9d6d-d8fa06143e27",
-    "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
+    "notionLastEditedTime": "2026-06-18T01:26:00.000Z",
     "client": "Wattsonic",
     "event": "Solar & Storage Live",
     "location": "UK",
@@ -1921,43 +1221,63 @@ window.UltraCases = [
       ]
     },
     "galleryImages": {
-        "files": [
-          {
-            "name": "page-image-1",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-2",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-3",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-4",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-5",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
-            "source": "github"
-          }
-        ]
-      },
+      "files": [
+        {
+          "name": "page-image-1",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-2.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-2",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-3",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-4",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-5",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-6.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-6",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-7.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-7",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-8.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-8",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-9",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
+          "source": "github"
+        }
+      ]
+    },
     "isFeaturedCase": true,
     "featuredCaseOrder": null,
-    "casePageOrder": 29,
+    "casePageOrder": 15,
     "isOnline": true,
     "notes": ""
   }
 ];
 window.UltraContent = {
-  "version": "2026-06-17",
+  "version": "2026-06-18",
   "source": "notion-sync",
   "sync": {
     "notion": {
@@ -2573,7 +1893,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "2-png",
+            "name": "wattsonic-elmia-solar-2026-cover-1",
             "url": "./assets/notion/cases/wattsonic-elmia-solar-2026-cover-1.png",
             "source": "notion"
           }
@@ -2623,7 +1943,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260519175509-1790-101-jpg",
+            "name": "goodwe-solartech-2026-cover-1",
             "url": "./assets/notion/cases/goodwe-solartech-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2673,7 +1993,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260519175520-1792-101-1-jpg",
+            "name": "goodwe-solar-and-storage-2026-cover-1",
             "url": "./assets/notion/cases/goodwe-solar-and-storage-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2723,7 +2043,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260519175500-1788-101-jpg",
+            "name": "goodwe-build-expo-2026-cover-1",
             "url": "./assets/notion/cases/goodwe-build-expo-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2773,7 +2093,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260519175553-1794-101-jpg",
+            "name": "kstar-smart-energy-2026-cover-1",
             "url": "./assets/notion/cases/kstar-smart-energy-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2823,7 +2143,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260519175735-1797-101-1-jpg",
+            "name": "elecnova-battery-forum-2026-cover-1",
             "url": "./assets/notion/cases/elecnova-battery-forum-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2873,7 +2193,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260304134936-173-35-jpg",
+            "name": "elecnova-green-energy-2026-cover-1",
             "url": "./assets/notion/cases/elecnova-green-energy-2026-cover-1.jpg",
             "source": "notion"
           }
@@ -2923,7 +2243,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "0c4478bcbe18f3c3520cf078a3f7c5f0-jpg",
+            "name": "elecnova-genera-madrid-spain-2025-cover-1",
             "url": "./assets/notion/cases/elecnova-genera-madrid-spain-2025-cover-1.jpg",
             "source": "notion"
           }
@@ -2973,7 +2293,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "wechatimg1107-jpg",
+            "name": "kunshan-gintune-welding-schweissen-schneiden-2025-cover-1",
             "url": "./assets/notion/cases/kunshan-gintune-welding-schweissen-schneiden-2025-cover-1.jpg",
             "source": "notion"
           }
@@ -3023,58 +2343,8 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "jpg",
+            "name": "goodwe-inter-solution-2025-cover-1",
             "url": "./assets/notion/cases/goodwe-inter-solution-2025-cover-1.jpg",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "elecnova-key-energy-2026",
-      "notionPageId": "3816cfcd-f85b-80cb-b586-d48dd98b9a70",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "Elecnova",
-      "event": "Key Energy",
-      "location": "Italy",
-      "country": "Italy",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-04",
-      "dateEnd": "2026-03-06",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/42f9ac57-a8c9-4406-843a-6f79abf026d9/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304135008_174_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=11f9b5a8ba0842cc90050d679b760e43dd2428483688308cef57c0174b596511&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "Elecnova booth is dominated by white and blue tones, with a striking double-layer square suspended ceiling. Large energy storage units are displayed upfront, walls printed with brand vision and global layout, neatly arranged reception and lounge areas show the enterprise’s solid strength in energy storage.",
-        "zh": "Elecnova 展台以白蓝为主色调，双层方形悬浮吊顶造型立体吸睛，大型储能设备直观陈列。墙面印有品牌愿景与全球业务版图，前台、洽谈区布局规整，整体简约大气，彰显储能企业硬核实力。"
-      },
-      "title": "Elecnova · Key Energy · 2026",
-      "brandId": "elecnova",
-      "brandEnglishName": "Elecnova",
-      "exhibitionName": "Key Energy",
-      "area": "64 sqm",
-      "areaSqm": 64,
-      "chineseIntro": "Elecnova 展台以白蓝为主色调，双层方形悬浮吊顶造型立体吸睛，大型储能设备直观陈列。墙面印有品牌愿景与全球业务版图，前台、洽谈区布局规整，整体简约大气，彰显储能企业硬核实力。",
-      "englishIntro": "Elecnova booth is dominated by white and blue tones, with a striking double-layer square suspended ceiling. Large energy storage units are displayed upfront, walls printed with brand vision and global layout, neatly arranged reception and lounge areas show the enterprise’s solid strength in energy storage.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260304135008-174-35-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/42f9ac57-a8c9-4406-843a-6f79abf026d9/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304135008_174_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=11f9b5a8ba0842cc90050d679b760e43dd2428483688308cef57c0174b596511&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
             "source": "notion"
           }
         ]
@@ -3123,7 +2393,7 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "sunhome-asew-jpg",
+            "name": "sunhome-asew-2025-cover-1",
             "url": "./assets/notion/cases/sunhome-asew-2025-cover-1.jpg",
             "source": "notion"
           }
@@ -3173,208 +2443,8 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "eab3364dba6975d3935bd1f7a8fbe26c-jpg",
+            "name": "tsun-solar-solutions-2025-cover-1",
             "url": "./assets/notion/cases/tsun-solar-solutions-2025-cover-1.jpg",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "saj-solar-solutions-2025",
-      "notionPageId": "3816cfcd-f85b-80ff-b338-dacb3b9ccbfa",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SAJ",
-      "event": "Solar Solutions",
-      "location": "Germany",
-      "country": "Germany",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-12-03",
-      "dateEnd": "2025-12-04",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ba369e9c-e6b8-4914-82ef-3e71f9d48c30/20260202-155300.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=86e772d7d64ce89dab80133dcdd033fc088234bbdf78ba9694ba7bb07857939e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "The SAJ booth features an innovative layout with a branded promotional van inside, highlighted by striking red-and-white logos. A green forest backdrop printed with German brand values stands beside neatly divided product display and lounge areas, blending creativity with professional energy storage brand charm.",
-        "zh": "SAJ 三晶展台设计新颖亮眼，展场内停放品牌宣传整车，红白标识视觉冲击力强。侧边绿植背景墙搭配德语品牌理念，设备展示区与休闲洽谈区分区清晰，兼具创意与专业储能品牌气质。"
-      },
-      "title": "SAJ · Solar Solutions · 2025",
-      "brandId": "saj",
-      "brandEnglishName": "SAJ",
-      "exhibitionName": "Solar Solutions",
-      "area": "56 sqm",
-      "areaSqm": 56,
-      "chineseIntro": "SAJ 三晶展台设计新颖亮眼，展场内停放品牌宣传整车，红白标识视觉冲击力强。侧边绿植背景墙搭配德语品牌理念，设备展示区与休闲洽谈区分区清晰，兼具创意与专业储能品牌气质。",
-      "englishIntro": "The SAJ booth features an innovative layout with a branded promotional van inside, highlighted by striking red-and-white logos. A green forest backdrop printed with German brand values stands beside neatly divided product display and lounge areas, blending creativity with professional energy storage brand charm.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260202-155300-jpeg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ba369e9c-e6b8-4914-82ef-3e71f9d48c30/20260202-155300.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=86e772d7d64ce89dab80133dcdd033fc088234bbdf78ba9694ba7bb07857939e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "saj-solar-solutions-2026",
-      "notionPageId": "3816cfcd-f85b-80f0-a97f-cf96ecf1e9bb",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SAJ",
-      "event": "Solar Solutions",
-      "location": "Netherlands",
-      "country": "Netherlands",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-10",
-      "dateEnd": "2026-03-12",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/eb3c443a-a567-4a49-9e61-708ab1cfeea7/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310200906_1203_101.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=f3480cf303389f2286564c3fe52312458f6179fb7c19d6fde0baee96deb3d389&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "The SAJ booth boasts a clean minimalist style with distinctive multi-layer suspended luminous logos and eye-catching red-white brand signs. Neatly arranged home energy storage units, casual negotiation tables and a special touch screen create an open space that highlights smart energy storage technology.",
-        "zh": "SAJ 简约清爽，多层悬空发光 LOGO 极具辨识度，红白品牌标识醒目。家用储能设备有序陈列，搭配休闲洽谈桌椅与异形触控一体机，整体布局通透，凸显智能储能产品科技感。"
-      },
-      "title": "SAJ · Solar Solutions · 2026",
-      "brandId": "saj",
-      "brandEnglishName": "SAJ",
-      "exhibitionName": "Solar Solutions",
-      "area": "56 sqm",
-      "areaSqm": 56,
-      "chineseIntro": "SAJ 简约清爽，多层悬空发光 LOGO 极具辨识度，红白品牌标识醒目。家用储能设备有序陈列，搭配休闲洽谈桌椅与异形触控一体机，整体布局通透，凸显智能储能产品科技感。",
-      "englishIntro": "The SAJ booth boasts a clean minimalist style with distinctive multi-layer suspended luminous logos and eye-catching red-white brand signs. Neatly arranged home energy storage units, casual negotiation tables and a special touch screen create an open space that highlights smart energy storage technology.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260310200906-1203-101-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/eb3c443a-a567-4a49-9e61-708ab1cfeea7/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310200906_1203_101.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=f3480cf303389f2286564c3fe52312458f6179fb7c19d6fde0baee96deb3d389&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "kstar-solar-solutions-2026",
-      "notionPageId": "3816cfcd-f85b-80d6-85d4-fc76c61463ab",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "KSTAR",
-      "event": "Solar Solutions",
-      "location": "Netherlands",
-      "country": "Netherlands",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-10",
-      "dateEnd": "2026-03-12",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/a1b32690-a5b2-454e-8013-4bd8f28b74ee/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070711_177_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=83bae63233863abe15a3e03a39ce7cfa3a84b15ab808bc8384ef48790a145710&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "KSTAR booth features minimalist white and blue tones, divided into K-Home residential and commercial energy storage zones. House-shaped walls restore household scenes, eye-catching suspended logos and open lounge areas fully display full-scenario energy storage solutions.",
-        "zh": "KSTAR 展台以白蓝配色简约大气，分 K-Home 家用、商用储能两大展示区，房屋造型墙面还原家用场景，悬浮发光 LOGO 醒目，洽谈区开阔，清晰呈现全场景储能解决方案。"
-      },
-      "title": "KSTAR · Solar Solutions · 2026",
-      "brandId": "kstar",
-      "brandEnglishName": "KSTAR",
-      "exhibitionName": "Solar Solutions",
-      "area": "48 sqm",
-      "areaSqm": 48,
-      "chineseIntro": "KSTAR 展台以白蓝配色简约大气，分 K-Home 家用、商用储能两大展示区，房屋造型墙面还原家用场景，悬浮发光 LOGO 醒目，洽谈区开阔，清晰呈现全场景储能解决方案。",
-      "englishIntro": "KSTAR booth features minimalist white and blue tones, divided into K-Home residential and commercial energy storage zones. House-shaped walls restore household scenes, eye-catching suspended logos and open lounge areas fully display full-scenario energy storage solutions.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260310070711-177-35-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/a1b32690-a5b2-454e-8013-4bd8f28b74ee/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070711_177_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=83bae63233863abe15a3e03a39ce7cfa3a84b15ab808bc8384ef48790a145710&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "elecnova-solar-solutions-2026",
-      "notionPageId": "3816cfcd-f85b-801c-8ab3-e12e58cd80dc",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "Elecnova",
-      "event": "Solar Solutions",
-      "location": "Netherlands",
-      "country": "Netherlands",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-10",
-      "dateEnd": "2026-03-12",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/466dea96-dfb5-4554-8111-8912cbf256a3/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070714_178_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=4bcd11f72c51a740f92ad22882207e3f23df9b2db43e1ca00405f3b5ce6677c8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "Elecnova booth adopts deep brand blue as its main tone, with double-layer luminous facades for high recognition. Large energy storage devices are neatly displayed, while walls show certifications and global layouts, presenting a steady, international style of power energy enterprise.",
-        "zh": "Elecnova 以深邃品牌蓝为主色调，双层发光门头辨识度拉满，大型储能设备整齐陈列。墙面展示资质与海外市场版图，空间开阔规整，尽显电力能源企业沉稳专业的国际化气质。"
-      },
-      "title": "Elecnova · Solar Solutions · 2026",
-      "brandId": "elecnova",
-      "brandEnglishName": "Elecnova",
-      "exhibitionName": "Solar Solutions",
-      "area": "32 sqm",
-      "areaSqm": 32,
-      "chineseIntro": "Elecnova 以深邃品牌蓝为主色调，双层发光门头辨识度拉满，大型储能设备整齐陈列。墙面展示资质与海外市场版图，空间开阔规整，尽显电力能源企业沉稳专业的国际化气质。",
-      "englishIntro": "Elecnova booth adopts deep brand blue as its main tone, with double-layer luminous facades for high recognition. Large energy storage devices are neatly displayed, while walls show certifications and global layouts, presenting a steady, international style of power energy enterprise.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260310070714-178-35-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/466dea96-dfb5-4554-8111-8912cbf256a3/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310070714_178_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=4bcd11f72c51a740f92ad22882207e3f23df9b2db43e1ca00405f3b5ce6677c8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
             "source": "notion"
           }
         ]
@@ -3423,458 +2493,8 @@ window.UltraContent = {
       "coverImage": {
         "files": [
           {
-            "name": "20260304134932-171-35-jpg",
+            "name": "wattsonic-enex-2026-cover-1",
             "url": "./assets/notion/cases/wattsonic-enex-2026-cover-1.jpg",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "saj-enex-2026",
-      "notionPageId": "3816cfcd-f85b-8073-a73f-f382e0a18998",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SAJ",
-      "event": "ENEX",
-      "location": "Poland",
-      "country": "Poland",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-04",
-      "dateEnd": "2026-03-05",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/30a70646-3609-4fb2-ba53-a949d64a26b2/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134934_172_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=0a8fda22d3e5d3b8e018c791f3155659e7978dd774793c2b8e483657d4e1ca17&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "SAJ booth takes pure white as the base, decorated with striking red logos. Long suspended light strips extend the visual space. Energy storage units are displayed frontally, with global layout and AI energy solutions on walls, presenting a neat, professional tech vibe.",
-        "zh": "SAJ 三晶展台以纯白为基底，搭配醒目的红色品牌标识，吊顶长条发光灯箱延伸视觉。储能主机直观陈列，墙面标注全球布局与 AI 储能方案，布局简约规整，尽显专业科技质感。"
-      },
-      "title": "SAJ · ENEX · 2026",
-      "brandId": "saj",
-      "brandEnglishName": "SAJ",
-      "exhibitionName": "ENEX",
-      "area": "52 sqm",
-      "areaSqm": 52,
-      "chineseIntro": "SAJ 三晶展台以纯白为基底，搭配醒目的红色品牌标识，吊顶长条发光灯箱延伸视觉。储能主机直观陈列，墙面标注全球布局与 AI 储能方案，布局简约规整，尽显专业科技质感。",
-      "englishIntro": "SAJ booth takes pure white as the base, decorated with striking red logos. Long suspended light strips extend the visual space. Energy storage units are displayed frontally, with global layout and AI energy solutions on walls, presenting a neat, professional tech vibe.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260304134934-172-35-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/30a70646-3609-4fb2-ba53-a949d64a26b2/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134934_172_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=0a8fda22d3e5d3b8e018c791f3155659e7978dd774793c2b8e483657d4e1ca17&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "kstar-enex-2026",
-      "notionPageId": "3816cfcd-f85b-804e-a7cc-e5edd931a495",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "KSTAR",
-      "event": "ENEX",
-      "location": "Poland",
-      "country": "Poland",
-      "region": "",
-      "year": 2026,
-      "dateStart": "2026-03-04",
-      "dateEnd": "2026-03-05",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/48b27e3e-ac4f-42ea-a25e-6e763c1e8be5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134919_169_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1346d9b0b872fd32745c61c063fe41df83d91176faecf14df279d4ebe239ac22&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "KSTAR booth adopts gray and blue tones, with eye-catching multi-layer suspended light boxes and brand flags. Residential and commercial energy storage devices are displayed separately. The spacious lounge area presents a steady and professional image, showing the brand’s strong strength in energy storage.",
-        "zh": "KSTAR 展台以灰蓝为主色调，多层立体悬浮灯箱大气醒目，搭配道旗强化品牌视觉。家用、商用储能设备分区陈列，洽谈区宽敞整洁，整体沉稳专业，凸显储能设备品牌硬核实力。"
-      },
-      "title": "KSTAR · ENEX · 2026",
-      "brandId": "kstar",
-      "brandEnglishName": "KSTAR",
-      "exhibitionName": "ENEX",
-      "area": "88 sqm",
-      "areaSqm": 88,
-      "chineseIntro": "KSTAR 展台以灰蓝为主色调，多层立体悬浮灯箱大气醒目，搭配道旗强化品牌视觉。家用、商用储能设备分区陈列，洽谈区宽敞整洁，整体沉稳专业，凸显储能设备品牌硬核实力。",
-      "englishIntro": "KSTAR booth adopts gray and blue tones, with eye-catching multi-layer suspended light boxes and brand flags. Residential and commercial energy storage devices are displayed separately. The spacious lounge area presents a steady and professional image, showing the brand’s strong strength in energy storage.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20260304134919-169-35-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/48b27e3e-ac4f-42ea-a25e-6e763c1e8be5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260304134919_169_35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1346d9b0b872fd32745c61c063fe41df83d91176faecf14df279d4ebe239ac22&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "sunhome-installer-show-2025",
-      "notionPageId": "3816cfcd-f85b-8074-8fd1-dfff43437c20",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SUNHOME",
-      "event": "Installer show",
-      "location": "UK",
-      "country": "UK",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-06-24",
-      "dateEnd": "2025-06-26",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/1db63b92-ff2e-4de1-bdfa-c8f681ede90f/20250625-MOU04442.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=cf3a8f8c7392677b08535736d5b990b017b88cab1f57738e8874978fbc9c1911&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "SUNHOME booth features fresh white and orange tones. House-shaped walls display residential PV energy storage systems, a green plant photo wall adds vitality, and a world map for partnership recruitment matches its positioning of home new energy promotion.",
-        "zh": "SUNHOME 展台以白橙搭配清新亮眼，房屋造型墙面直观展示家用光伏储能系统，绿植打卡墙增添活力，招商板块配套世界地图，洽谈区整洁舒适，完美贴合家用新能源招商展示定位。"
-      },
-      "title": "SUNHOME · Installer show · 2025",
-      "brandId": "sunhome",
-      "brandEnglishName": "SUNHOME",
-      "exhibitionName": "Installer show",
-      "area": "45 sqm",
-      "areaSqm": 45,
-      "chineseIntro": "SUNHOME 展台以白橙搭配清新亮眼，房屋造型墙面直观展示家用光伏储能系统，绿植打卡墙增添活力，招商板块配套世界地图，洽谈区整洁舒适，完美贴合家用新能源招商展示定位。",
-      "englishIntro": "SUNHOME booth features fresh white and orange tones. House-shaped walls display residential PV energy storage systems, a green plant photo wall adds vitality, and a world map for partnership recruitment matches its positioning of home new energy promotion.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "20250625-mou04442-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/1db63b92-ff2e-4de1-bdfa-c8f681ede90f/20250625-MOU04442.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=cf3a8f8c7392677b08535736d5b990b017b88cab1f57738e8874978fbc9c1911&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "ssam-the-battery-show-2025",
-      "notionPageId": "3816cfcd-f85b-8016-bb84-dad7cd589825",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SSAM",
-      "event": "The Battery Show",
-      "location": "United States",
-      "country": "United States",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-10-06",
-      "dateEnd": "2025-10-09",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/36b63a23-053d-4621-b1e2-38c049855269/WechatIMG32521.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=22c9d4a4d393dbe692bc19041681f8662d2507f8701e86e6bdb5af3b73bfd376&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "SSAM booth adopts white and blue as main tones, with avant-garde multi-layer suspended ceiling. Equipped with large screens and green plants, it has neatly divided display and negotiation zones, presenting an innovative and professional tech brand image.",
-        "zh": "SSAM 展台以白蓝为主色调，多层异形悬浮吊顶造型前卫吸睛，搭配大屏与绿植装饰。产品展示区、洽谈区划分清晰，整体简约清爽，凸显科技企业创新专业的品牌形象。"
-      },
-      "title": "SSAM · The Battery Show · 2025",
-      "brandId": "ssam",
-      "brandEnglishName": "SSAM",
-      "exhibitionName": "The Battery Show",
-      "area": "72 sqm",
-      "areaSqm": 72,
-      "chineseIntro": "SSAM 展台以白蓝为主色调，多层异形悬浮吊顶造型前卫吸睛，搭配大屏与绿植装饰。产品展示区、洽谈区划分清晰，整体简约清爽，凸显科技企业创新专业的品牌形象。",
-      "englishIntro": "SSAM booth adopts white and blue as main tones, with avant-garde multi-layer suspended ceiling. Equipped with large screens and green plants, it has neatly divided display and negotiation zones, presenting an innovative and professional tech brand image.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "wechatimg32521-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/36b63a23-053d-4621-b1e2-38c049855269/WechatIMG32521.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=22c9d4a4d393dbe692bc19041681f8662d2507f8701e86e6bdb5af3b73bfd376&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "geo-the-battery-show-2025",
-      "notionPageId": "3816cfcd-f85b-8049-b4da-f3104d6465e1",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "GEO",
-      "event": "The Battery Show",
-      "location": "United States",
-      "country": "United States",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-10-06",
-      "dateEnd": "2025-10-09",
-      "industry": "Battery",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Battery"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0dca418f-a96a-4ed4-a198-7e21ef0642ce/WechatIMG32517.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=dfcd974486df63dfca96628db7d993433646d14f42d4ba4f0036199f9a2f594e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "GEO booth features eco-friendly design with eye-catching gradient green suspended ceiling, and wall green plants echo the green energy theme. With an open layout, screens, product displays and lounge areas are neatly arranged, highlighting the brand’s low-carbon sustainable concept.",
-        "zh": "GEO 展台充满环保设计感，渐变青绿悬浮吊顶灵动吸睛，墙面绿植呼应绿色能源主题。展台布局通透，大屏、产品展示与洽谈区有序划分，清新简约，凸显低碳可持续的品牌理念。"
-      },
-      "title": "GEO · The Battery Show · 2025",
-      "brandId": "geo",
-      "brandEnglishName": "GEO",
-      "exhibitionName": "The Battery Show",
-      "area": "72 sqm",
-      "areaSqm": 72,
-      "chineseIntro": "GEO 展台充满环保设计感，渐变青绿悬浮吊顶灵动吸睛，墙面绿植呼应绿色能源主题。展台布局通透，大屏、产品展示与洽谈区有序划分，清新简约，凸显低碳可持续的品牌理念。",
-      "englishIntro": "GEO booth features eco-friendly design with eye-catching gradient green suspended ceiling, and wall green plants echo the green energy theme. With an open layout, screens, product displays and lounge areas are neatly arranged, highlighting the brand’s low-carbon sustainable concept.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "wechatimg32517-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0dca418f-a96a-4ed4-a198-7e21ef0642ce/WechatIMG32517.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=dfcd974486df63dfca96628db7d993433646d14f42d4ba4f0036199f9a2f594e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "goodwe-intersalor-2025",
-      "notionPageId": "3816cfcd-f85b-80cd-9b89-fe6b25823aa7",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "GOODWE",
-      "event": "Intersalor",
-      "location": "Brazil",
-      "country": "Brazil",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-08-26",
-      "dateEnd": "2025-08-28",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/8e7f6b1d-d6af-4ef6-9bc8-8243adf36b9e/347671761702033_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=99442a271b6095d5bad686726e225c2a5c4ffb8b2203be7294b9b1831f4782cd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "GoodWe booth features a minimalist modern style with warm wooden flooring and eye-catching red luminous overhead logos. Split into residential and commercial energy storage zones, equipped with large screens and neatly arranged devices, it fully showcases the tech sense of integrated smart PV solutions.",
-        "zh": "GOODWE展台简约现代，木质地面温润大气，顶部红色发光 LOGO 极具辨识度。展区分家用、商用两大储能展示区，大屏搭配整齐设备，动线通透，尽显智能光伏一体化解决方案的科技感。"
-      },
-      "title": "GOODWE · Intersalor · 2025",
-      "brandId": "goodwe",
-      "brandEnglishName": "GOODWE",
-      "exhibitionName": "Intersalor",
-      "area": "150 sqm",
-      "areaSqm": 150,
-      "chineseIntro": "GOODWE展台简约现代，木质地面温润大气，顶部红色发光 LOGO 极具辨识度。展区分家用、商用两大储能展示区，大屏搭配整齐设备，动线通透，尽显智能光伏一体化解决方案的科技感。",
-      "englishIntro": "GoodWe booth features a minimalist modern style with warm wooden flooring and eye-catching red luminous overhead logos. Split into residential and commercial energy storage zones, equipped with large screens and neatly arranged devices, it fully showcases the tech sense of integrated smart PV solutions.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "347671761702033-pic-hd-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/8e7f6b1d-d6af-4ef6-9bc8-8243adf36b9e/347671761702033_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=99442a271b6095d5bad686726e225c2a5c4ffb8b2203be7294b9b1831f4782cd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "suntech-solar-and-storage-live-2025",
-      "notionPageId": "3816cfcd-f85b-8036-a8aa-ea266e724a86",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SUNTECH",
-      "event": "Solar & Storage Live",
-      "location": "UK",
-      "country": "UK",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-09-23",
-      "dateEnd": "2025-09-25",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/e048ac14-2bf3-4dfa-8420-2f536544c2b3/347501761701816_.pic_hd%281%29.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=8f7b7298931e7b553fe58a83115e76d5803f11d6d60486fcb5d36c81895f7d4a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "Suntech booth adopts the brand’s red and white color scheme with a sleek, spacious layout. A suspended three-dimensional logo stands out, various PV panels are displayed clearly, and the backdrop highlights corporate strength, delivering an industrial and international aesthetic.",
-        "zh": "Suntech 展台以品牌红白为主色调，造型简约大气，悬空立体 LOGO 十分醒目。多款光伏组件直观陈列，背景墙展示品牌实力，动线开阔，整体兼具工业质感与国际化大气格调。"
-      },
-      "title": "SUNTECH · Solar & Storage Live · 2025",
-      "brandId": "suntech",
-      "brandEnglishName": "SUNTECH",
-      "exhibitionName": "Solar & Storage Live",
-      "area": "48 sqm",
-      "areaSqm": 48,
-      "chineseIntro": "Suntech 展台以品牌红白为主色调，造型简约大气，悬空立体 LOGO 十分醒目。多款光伏组件直观陈列，背景墙展示品牌实力，动线开阔，整体兼具工业质感与国际化大气格调。",
-      "englishIntro": "Suntech booth adopts the brand’s red and white color scheme with a sleek, spacious layout. A suspended three-dimensional logo stands out, various PV panels are displayed clearly, and the backdrop highlights corporate strength, delivering an industrial and international aesthetic.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "347501761701816-pic-hd-1-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/e048ac14-2bf3-4dfa-8420-2f536544c2b3/347501761701816_.pic_hd%281%29.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=8f7b7298931e7b553fe58a83115e76d5803f11d6d60486fcb5d36c81895f7d4a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "sunhome-solar-and-storage-live-2025",
-      "notionPageId": "3816cfcd-f85b-80b9-a6a6-c011b63ffb92",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "SUNHOME",
-      "event": "Solar & Storage Live",
-      "location": "UK",
-      "country": "UK",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-09-23",
-      "dateEnd": "2025-09-25",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/6a251cf4-3330-456a-b892-cc0a0741001a/347571761701844_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1d95f288b4a131094b776bfd0d03044dcf25328252e6e1fdebe4c5c8d47d2b1e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "SUNHOME booth features white and orange as its main tones, with eye-catching double-layer suspended light signs. A house-shaped model displays PV energy storage systems. The spacious reception area with clear slogans presents a fresh style, highlighting the home-oriented attribute of new energy products.",
-        "zh": "SUNHOME 展台以白橙为主色调，双层悬空发光招牌醒目亮眼，搭配房屋造型实景展示光伏储能系统。接待区开阔整洁，标语清晰，整体风格清新明快，充分凸显家用新能源产品的居家属性。"
-      },
-      "title": "SUNHOME · Solar & Storage Live · 2025",
-      "brandId": "sunhome",
-      "brandEnglishName": "SUNHOME",
-      "exhibitionName": "Solar & Storage Live",
-      "area": "96 sqm",
-      "areaSqm": 96,
-      "chineseIntro": "SUNHOME 展台以白橙为主色调，双层悬空发光招牌醒目亮眼，搭配房屋造型实景展示光伏储能系统。接待区开阔整洁，标语清晰，整体风格清新明快，充分凸显家用新能源产品的居家属性。",
-      "englishIntro": "SUNHOME booth features white and orange as its main tones, with eye-catching double-layer suspended light signs. A house-shaped model displays PV energy storage systems. The spacious reception area with clear slogans presents a fresh style, highlighting the home-oriented attribute of new energy products.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "347571761701844-pic-hd-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/6a251cf4-3330-456a-b892-cc0a0741001a/347571761701844_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=1d95f288b4a131094b776bfd0d03044dcf25328252e6e1fdebe4c5c8d47d2b1e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          }
-        ]
-      },
-      "galleryImages": {
-        "files": []
-      },
-      "isFeaturedCase": false,
-      "featuredCaseOrder": null,
-      "casePageOrder": 29,
-      "isOnline": true,
-      "notes": ""
-    },
-    {
-      "id": "goodwe-solar-and-storage-live-2025",
-      "notionPageId": "3806cfcd-f85b-8019-a717-dec22434623e",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
-      "client": "GOODWE",
-      "event": "Solar & Storage Live",
-      "location": "UK",
-      "country": "UK",
-      "region": "",
-      "year": 2025,
-      "dateStart": "2025-09-23",
-      "dateEnd": "2025-09-25",
-      "industry": "Energy",
-      "type": "",
-      "services": [],
-      "tags": [
-        "Energy"
-      ],
-      "featured": false,
-      "image": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/509e5476-4ebc-4d7a-b15d-c2be06b57fb8/347461761701803_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=9f8919890926e26ea774db27511bf5b6b209ca2e2a8c0ba83a3c6f15088c0f0d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-      "description": {
-        "en": "GoodWe PV booth boasts a minimalist modern design dominated by white and red tones. Suspended luminous logos stand out prominently. Various energy storage inverters are neatly displayed, with Tier 1 credentials marked on the backdrop. The tidy layout fully showcases the tech vibe of the new energy brand.",
-        "zh": "GOODWE光伏展台现代简约，白红主调清爽大气，悬空发光字标识醒目。多款储能逆变器整齐陈列，背景墙标注 Tier1 资质，整体布局规整专业，尽显新能源品牌科技质感。"
-      },
-      "title": "GOODWE · Solar & Storage Live · 2025",
-      "brandId": "goodwe",
-      "brandEnglishName": "GOODWE",
-      "exhibitionName": "Solar & Storage Live",
-      "area": "72 sqm",
-      "areaSqm": 72,
-      "chineseIntro": "GOODWE光伏展台现代简约，白红主调清爽大气，悬空发光字标识醒目。多款储能逆变器整齐陈列，背景墙标注 Tier1 资质，整体布局规整专业，尽显新能源品牌科技质感。",
-      "englishIntro": "GoodWe PV booth boasts a minimalist modern design dominated by white and red tones. Suspended luminous logos stand out prominently. Various energy storage inverters are neatly displayed, with Tier 1 credentials marked on the backdrop. The tidy layout fully showcases the tech vibe of the new energy brand.",
-      "coverImage": {
-        "files": [
-          {
-            "name": "347461761701803-pic-hd-jpg",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/509e5476-4ebc-4d7a-b15d-c2be06b57fb8/347461761701803_.pic_hd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466VB2V6NKZ%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T093944Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCHPdxoMn8Uv88wiLMxu69fGvFXpfhBSu0eY3N%2FSIz%2FgQIgRJG6U0lyxOtu2syRQD19JLpMPpMU2yCaRkPK807kIV4qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDHFD1mfxuBBvdUdCyircA5OInKNcrMHyhYgIAdWyLwX1QPVPy7Dz5BvOuKYgPrk7ZUskW4Ae4uTBLWj6EShbAj8fhXIj2Jp2CtfM%2FaFP2RTjQTCvtkB57uGCkMqgDL2rH0r2vKvIZigRJrzqRsmLfkh9QL5Q2yXk%2B9bQdRnrJ1vYPRS55guXqanvU3zD7XcEUrbrTYQg%2BUKpxdVgYayF5pKG1aNwzZv2k8QBkhz%2Fup6VMTmsx%2B4acAXAUQbVeDlJjAzg3qKq9kiW%2BqtEAn%2B6Me5RHJglaDvq47OfD85JNyaURQb%2F2y8RY77kOOxpyu7k9iwp0ZDWpQIy2ZGa%2FUSRjMWK6ID%2BLWPXSmhrCmQ9xuDJjjiDxC8rHc%2FKoFzp4bf5FTivQnqjhhV0yWwpC7eL6Zrt2TxQXfB3XmODc4PcSBEXqmRJ%2F%2F3mFipA8B5kZfefJbBwzuflnVwP74YU1Yu2tvXrskBQ%2Fj3sXGP4Sm44pMQ8fjgdCYcBNQX%2B4hOhbXlH3Uwtj2rciiEw1YBQXSY6eiiE6njMC0IfKWq5HfVtWuo3kSeILRaBwRz3rpjpvp62IDmkmDuYV5WFb%2FOZFQxawBfQLkYsco6WAVbS%2F%2B0Ahu6%2BNEIZyLBolQF99vrxa5Tr8YOVE86IkEiuiF3TMMvBydEGOqUBZT6to6THv86%2Fn62cdp4y8KieGYU4io5Cv%2Fj8fSlEBrtg2DeZR6JM4EiwD56%2BWHoIVusWHMu7S%2BW0QTraDldz2F%2FuUEQ0xXHRGERt0ueCADHBEgnEvkcqqiTPImDP6Oz46np1lxoqai5oZey%2FdTNR9Ar255Hwazx0gFIWybyU7uQfVFoZyvMEGsYr0bapWudQwvsWFTgxfNuP6R%2BZXd7%2FoJ226m95&X-Amz-Signature=9f8919890926e26ea774db27511bf5b6b209ca2e2a8c0ba83a3c6f15088c0f0d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
             "source": "notion"
           }
         ]
@@ -3891,7 +2511,7 @@ window.UltraContent = {
     {
       "id": "wattsonic-solar-and-storage-live-2026",
       "notionPageId": "37e6cfcd-f85b-806a-9d6d-d8fa06143e27",
-      "notionLastEditedTime": "2026-06-17T09:06:00.000Z",
+      "notionLastEditedTime": "2026-06-18T01:26:00.000Z",
       "client": "Wattsonic",
       "event": "Solar & Storage Live",
       "location": "UK",
@@ -3930,37 +2550,57 @@ window.UltraContent = {
         ]
       },
       "galleryImages": {
-        "files": [
-          {
-            "name": "page-image-1",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-2",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-3",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-4",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
-            "source": "github"
-          },
-          {
-            "name": "page-image-5",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
-            "source": "github"
-          }
-        ]
-      },
+      "files": [
+        {
+          "name": "page-image-1",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-2.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-2",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-3",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-4",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-5",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-6.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-6",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-7.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-7",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-8.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-8",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
+          "source": "github"
+        },
+        {
+          "name": "page-image-9",
+          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
+          "source": "github"
+        }
+      ]
+    },
       "isFeaturedCase": true,
       "featuredCaseOrder": null,
-      "casePageOrder": 29,
+      "casePageOrder": 15,
       "isOnline": true,
       "notes": ""
     }
