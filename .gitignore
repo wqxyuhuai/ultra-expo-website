@@ -6,6 +6,8 @@
 .env.cases.local
 node_modules/
 npm-debug.log*
+_archives/*.zip
+_archives/**/*.zip
 sync-brands.cmd
 sync-brands-dry.cmd
 sync-cases.cmd
