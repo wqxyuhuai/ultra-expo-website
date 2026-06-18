@@ -47,7 +47,8 @@ html.ultra-home-active #container .raster-sticky {
 }
 
 html.ultra-home-active #container .raster-sticky::before {
-  content: "";
+  content: none;
+  display: none;
   position: absolute;
   inset: 34svh 0 8svh;
   z-index: 7;
@@ -62,16 +63,17 @@ html.ultra-home-active #container .raster-sticky::before {
 }
 
 html.ultra-home-active #container .raster-sticky::after {
-  content: "";
+  content: none;
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
   bottom: -1px;
   z-index: 6;
-  height: 42svh;
+  height: 72svh;
   pointer-events: none;
-  opacity: var(--raster-handoff, 0);
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .72) 58%, #000 100%);
+  opacity: 1;
+  background: linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0, 0, 0, .62) 48%, #000 72%, #000 100%);
   transition: opacity 120ms linear;
 }
 
@@ -85,7 +87,9 @@ html.ultra-home-active #container .raster-cols {
   gap: 0;
   background: #000;
   overflow: hidden;
+  opacity: calc(1 - var(--raster-handoff, 0));
   pointer-events: none;
+  transition: opacity 120ms linear;
 }
 
 html.ultra-home-active #container .raster-col {

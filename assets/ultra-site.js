@@ -5,6 +5,7 @@
   const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
   const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
+  const CONTACT_SUBMISSION_ENDPOINT = "https://ultra-contact-notion.wqxyuhuai.workers.dev";
   let adminPendingConfirm = null;
   let contentScriptText = null;
   const CONTENT = loadContent();
@@ -2658,7 +2659,6 @@
       { value: "Retail Space", zh: "零售空间与快闪空间", en: "Retail Space", copyZh: "门店、展厅、临展与品牌空间。", copyEn: "Retail, showroom, temporary display, and brand spaces." },
       { value: "General Inquiry", zh: "其他合作咨询", en: "General Inquiry", copyZh: "任何出海展示与空间落地问题。", copyEn: "Any global display or spatial delivery question." }
     ];
-    const budgets = zh ? ["50,000 美元以下", "50,000-100,000 美元", "100,000-300,000 美元", "300,000 美元以上"] : ["Under 50K USD", "50K-100K USD", "100K-300K USD", "300K+ USD"];
     const responseSteps = zh ? [
       ["提交", "你提交项目需求"],
       ["评估", "我们确认展会时间、国家、面积与目标"],
@@ -2742,14 +2742,6 @@
                 ${contactField("countryRegion", zh ? "展会国家或地区" : "Country / Region")}
                 ${contactField("expectedDate", zh ? "预计时间" : "Expected Date")}
                 ${contactField("boothArea", zh ? "展位面积" : "Booth Area")}
-                <label class="ultra-contact-field">
-                  <span>${zh ? "预算范围" : "Budget Range"}</span>
-                  <select name="budgetRange">
-                    <option value="">${zh ? "待沟通" : "To be discussed"}</option>
-                    ${budgets.map(item => `<option>${esc(item)}</option>`).join("")}
-                  </select>
-                  <em data-field-error="budgetRange"></em>
-                </label>
                 <label class="ultra-contact-field is-wide">
                   <span>${zh ? "留言内容" : "Message"} *</span>
                   <textarea name="message" required placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
@@ -4034,10 +4026,10 @@
 
   function alignCaseDetailEsc(root = document) {
     const esc = root.querySelector?.(".ultra-case-esc") || document.querySelector(".ultra-case-esc");
-    const anchor = root.querySelector?.(".ultra-case-detail.is-modal .ultra-case-detail-copy") || document.querySelector(".ultra-case-detail.is-modal .ultra-case-detail-copy");
+    const anchor = root.querySelector?.(".ultra-case-detail .ultra-case-detail-copy") || document.querySelector(".ultra-case-detail .ultra-case-detail-copy");
     if (!esc || !anchor) return;
-    const left = Math.max(18, Math.floor(anchor.getBoundingClientRect().left));
-    esc.style.left = `${left}px`;
+    const left = Math.max(18, Math.round(anchor.getBoundingClientRect().left));
+    esc.style.setProperty("left", `${left}px`, "important");
   }
 
   function initCaseDetail(root) {
@@ -4533,7 +4525,6 @@
       ["Country / Region", item.countryRegion],
       ["Expected Date", item.expectedDate],
       ["Booth Area", item.boothArea],
-      ["Budget Range", item.budgetRange],
       ["Language", item.language],
       ["Source Page", item.sourcePage]
     ].filter(row => row[1]);
@@ -4618,13 +4609,38 @@
       countryRegion: value("countryRegion"),
       expectedDate: value("expectedDate"),
       boothArea: value("boothArea"),
-      budgetRange: value("budgetRange"),
       sourcePage: "contact",
       language: locale(),
       status: "new",
       internalNote: "",
       userAgent: navigator.userAgent
     };
+  }
+
+  function contactSubmissionEndpoint() {
+    return String(window.ULTRA_CONTACT_ENDPOINT || CONTACT_SUBMISSION_ENDPOINT || "").trim();
+  }
+
+  async function submitContactMessageToEndpoint(message) {
+    const endpoint = contactSubmissionEndpoint();
+    if (!endpoint) return { submitted: false };
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(message)
+    });
+    let payload = null;
+    try {
+      payload = await response.json();
+    } catch {
+      payload = null;
+    }
+    if (!response.ok || payload?.ok === false) {
+      throw new Error(payload?.error || `Contact endpoint failed with ${response.status}`);
+    }
+    return { submitted: true, payload };
   }
 
   function validateContactForm(form) {
@@ -4661,10 +4677,15 @@
         button.textContent = zh ? "提交中..." : "Sending...";
       }
       await new Promise(resolve => setTimeout(resolve, 420));
+      const message = collectContactMessage(form);
+      const remote = await submitContactMessageToEndpoint(message);
       const config = getAdminConfig();
-      const items = [collectContactMessage(form), ...adminContactMessages()];
+      const items = [message, ...adminContactMessages()];
       saveAdminConfig({ ...config, contactMessages: { items } });
-      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong><span>${zh ? "留言已进入后台存档，方便后续跟进管理。" : "Your message has been saved for follow-up."}</span>`);
+      const savedNote = remote.submitted
+        ? (zh ? "留言已同步到 Notion 数据库。" : "Your message has been synced to the Notion database.")
+        : (zh ? "留言已进入本地后台存档。配置同步接口后可写入 Notion。" : "Your message has been saved locally. Configure the sync endpoint to write to Notion.");
+      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong><span>${savedNote}</span>`);
       form.reset();
       form.querySelectorAll(".ultra-contact-type-card.is-active").forEach(card => card.classList.remove("is-active"));
     } catch (error) {

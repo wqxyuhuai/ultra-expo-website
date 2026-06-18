@@ -26703,6 +26703,66 @@ html.ultra-home-active #ultra-app .ultra-selected-card:hover img {
   transform: scale(1.018) !important;
 }
 
+/* Home service cards: stagger the four cards upward from left to right. */
+html.ultra-home-active #container .ultra-home-service-row,
+html.ultra-home-active #ultra-app .ultra-home-service-row {
+  opacity: 0 !important;
+  transform: translateY(34px) !important;
+  filter: blur(8px) !important;
+  transition:
+    opacity 680ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 680ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: var(--reveal-group-delay, 0ms) !important;
+  will-change: opacity, transform, filter;
+}
+
+html.ultra-home-active #container .ultra-home-service-row.is-visible,
+html.ultra-home-active #ultra-app .ultra-home-service-row.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+}
+
+/* About certification cards: restore staggered upward reveal after typography guards. */
+#container .ultra-about-cert-grid article[data-about-reveal],
+#ultra-app .ultra-about-cert-grid article[data-about-reveal],
+html:has(.ultra-about) #container .ultra-about-cert-grid article[data-about-reveal],
+html:has(.ultra-about) #ultra-app .ultra-about-cert-grid article[data-about-reveal] {
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  filter: blur(8px) !important;
+  transition:
+    opacity 660ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 660ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 660ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 180ms ease,
+    color 180ms ease !important;
+  transition-delay: calc(var(--about-card-index, 0) * 95ms) !important;
+  will-change: opacity, transform, filter;
+}
+
+#container .ultra-about-cert-grid article[data-about-reveal].is-visible,
+#ultra-app .ultra-about-cert-grid article[data-about-reveal].is-visible,
+html:has(.ultra-about) #container .ultra-about-cert-grid article[data-about-reveal].is-visible,
+html:has(.ultra-about) #ultra-app .ultra-about-cert-grid article[data-about-reveal].is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.ultra-home-active #container .ultra-home-service-row,
+  html.ultra-home-active #ultra-app .ultra-home-service-row,
+  #container .ultra-about-cert-grid article[data-about-reveal],
+  #ultra-app .ultra-about-cert-grid article[data-about-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
 /* Engineer cursor: replace the default hand pointer on front-end interactive areas. */
 :root {
   --ultra-engineer-cursor: url("./wrench-cursor.svg") 4 4, pointer;
@@ -26776,45 +26836,52 @@ html.ultra-home-active #ultra-app .hero-focus-title .title-sharp {
 @media (min-width: 761px) {
   html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
-    top: clamp(282px, 32.5svh, 352px) !important;
+    top: clamp(245px, 35svh, 420px) !important;
     width: min(1180px, calc(100% - 72px)) !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt h1,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt h1 {
-    font-size: clamp(50px, 4.95vw, 71px) !important;
-    line-height: 1.04 !important;
+    font-size: clamp(54px, 4.95vw, 71px) !important;
+    line-height: 1.09 !important;
     letter-spacing: 0 !important;
+    padding-bottom: 0.08em !important;
+    overflow: visible !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
-    inset: 0 !important;
-    width: 100% !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: clamp(64px, 10svh, 128px) !important;
+    left: 50% !important;
+    width: min(760px, calc(100% - 64px)) !important;
     max-width: none !important;
-    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    display: grid !important;
+    justify-items: center !important;
     transform: none !important;
+    translate: -50% 0 !important;
     pointer-events: none !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt p,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
-    position: absolute !important;
-    top: clamp(510px, 53svh, 590px) !important;
-    left: 50% !important;
-    width: min(860px, calc(100% - 64px)) !important;
-    transform: translateX(-50%) !important;
+    position: static !important;
+    width: 100% !important;
+    transform: none !important;
+    translate: none !important;
     font-size: clamp(17px, 1.08vw, 20px) !important;
     line-height: 1.45 !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
-    position: absolute !important;
-    left: 50% !important;
-    bottom: clamp(84px, 11.5svh, 136px) !important;
-    margin-top: 0 !important;
-    transform: translateX(-50%) !important;
+    position: static !important;
+    margin-top: clamp(18px, 2.4svh, 30px) !important;
+    transform: none !important;
+    translate: none !important;
     pointer-events: auto !important;
   }
 }
@@ -27086,7 +27153,7 @@ body:has(.ultra-case-modal) {
 #ultra-app .ultra-case-esc {
   position: fixed !important;
   top: clamp(18px, 2.4vh, 30px) !important;
-  left: clamp(18px, 4.8vw, 122px) !important;
+  left: max(clamp(56px, 6vw, 120px), calc((100vw - 1540px) / 2)) !important;
   z-index: 4000 !important;
 }
 
@@ -27100,25 +27167,33 @@ body:has(.ultra-case-modal) {
   #ultra-app .ultra-case-detail.is-modal,
   #container .ultra-case-detail.is-page,
   #ultra-app .ultra-case-detail.is-page {
+    --case-detail-pad-top: clamp(92px, 9vh, 128px);
+    --case-detail-pad-bottom: clamp(28px, 4vh, 56px);
+    width: min(calc(100% - clamp(112px, 12vw, 240px)), 1540px) !important;
     height: 100svh !important;
     min-height: 100svh !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     overflow: hidden !important;
-    align-items: center !important;
-    grid-template-columns: minmax(360px, 520px) minmax(0, 1fr) !important;
-    gap: clamp(70px, 7vw, 150px) !important;
-    padding-top: clamp(92px, 9vh, 128px) !important;
-    padding-bottom: clamp(28px, 4vh, 56px) !important;
+    align-items: start !important;
+    justify-content: center !important;
+    grid-template-columns: minmax(300px, 470px) minmax(0, 940px) !important;
+    gap: clamp(56px, 5.8vw, 118px) !important;
+    padding-top: var(--case-detail-pad-top) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: var(--case-detail-pad-bottom) !important;
   }
 
   #container .ultra-case-detail.is-modal .ultra-case-detail-copy,
   #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-copy,
   #container .ultra-case-detail.is-page .ultra-case-detail-copy,
   #ultra-app .ultra-case-detail.is-page .ultra-case-detail-copy {
-    position: relative !important;
-    top: auto !important;
-    align-self: center !important;
+    position: sticky !important;
+    top: clamp(180px, 22vh, 260px) !important;
+    align-self: start !important;
     max-height: calc(100svh - clamp(150px, 18vh, 210px)) !important;
-    overflow: auto !important;
+    overflow: hidden !important;
     padding-right: 8px !important;
     scrollbar-width: thin !important;
   }
@@ -27131,11 +27206,30 @@ body:has(.ultra-case-modal) {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     align-content: start !important;
-    height: calc(100svh - clamp(120px, 15vh, 178px)) !important;
+    height: calc(100svh - var(--case-detail-pad-top) - var(--case-detail-pad-bottom)) !important;
+    max-height: calc(100svh - var(--case-detail-pad-top) - var(--case-detail-pad-bottom)) !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    overscroll-behavior: contain !important;
     padding-right: clamp(10px, 1vw, 18px) !important;
     scrollbar-width: thin !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery figure,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery figure,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery figure,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery figure {
+    overflow: visible !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery img,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery img,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery img,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
   }
 }
 
@@ -27172,27 +27266,27 @@ body:has(.ultra-case-modal) {
 @media (min-width: 761px) {
   html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
-    top: 0 !important;
-    right: 0 !important;
-    bottom: auto !important;
-    left: 0 !important;
-    height: 100svh !important;
-    max-height: 100svh !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: clamp(64px, 10svh, 128px) !important;
+    left: 50% !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
-    top: clamp(238px, 27svh, 318px) !important;
+    top: clamp(245px, 35svh, 420px) !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt p,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
-    top: clamp(420px, 45svh, 500px) !important;
+    top: auto !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
-    top: clamp(742px, 76svh, 842px) !important;
+    top: auto !important;
     bottom: auto !important;
   }
 
@@ -27227,7 +27321,7 @@ body:has(.ultra-case-modal) {
 @media (min-width: 761px) {
   html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
-    top: clamp(690px, 70svh, 785px) !important;
+    top: auto !important;
   }
 
   #container .ultra-services-hero-copy h1,
@@ -27340,7 +27434,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 /* Align the case ESC button with the left edge of the detail content. */
 #container .ultra-case-modal .ultra-case-esc,
 #ultra-app .ultra-case-modal .ultra-case-esc {
-  left: clamp(42px, 6vw, 140px) !important;
+  left: max(clamp(56px, 6vw, 120px), calc((100vw - 1540px) / 2)) !important;
 }
 
 .ultra-case-missing {
@@ -27388,7 +27482,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 @media (min-width: 1101px) {
   #container .ultra-case-detail.is-page .ultra-case-esc,
   #ultra-app .ultra-case-detail.is-page .ultra-case-esc {
-    left: max(24px, calc((100vw - 1760px) / 2)) !important;
+    left: max(clamp(56px, 6vw, 120px), calc((100vw - 1540px) / 2)) !important;
   }
 }
 
@@ -27838,10 +27932,8 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 @media (min-width: 761px) {
   html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title,
-  html.ultra-home-active #container .ultra-home-hero-rebuilt p,
-  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p,
-  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
-  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
     translate: -50% 0 !important;
     transform: none !important;
   }
@@ -27940,6 +28032,63 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
     font-size: clamp(14px, 4vw, 16px) !important;
   }
 
+  html.ultra-home-active #container .ultra-nav,
+  html.ultra-home-active #ultra-app .ultra-nav {
+    grid-template-columns: minmax(88px, auto) minmax(0, 1fr) !important;
+    gap: 10px 8px !important;
+  }
+
+  html.ultra-home-active #container .ultra-brand,
+  html.ultra-home-active #ultra-app .ultra-brand {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+  }
+
+  html.ultra-home-active #container .ultra-brand img,
+  html.ultra-home-active #ultra-app .ultra-brand img {
+    width: clamp(92px, 27vw, 118px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-actions,
+  html.ultra-home-active #ultra-app .ultra-actions {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    gap: 6px !important;
+    justify-content: end !important;
+  }
+
+  html.ultra-home-active #container .ultra-lang,
+  html.ultra-home-active #ultra-app .ultra-lang {
+    flex: 0 0 clamp(82px, 24vw, 96px) !important;
+    min-width: 0 !important;
+  }
+
+  html.ultra-home-active #container .ultra-lang-icon,
+  html.ultra-home-active #ultra-app .ultra-lang-icon {
+    width: clamp(40px, 12vw, 46px) !important;
+    min-width: clamp(40px, 12vw, 46px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-nav .ultra-primary,
+  html.ultra-home-active #ultra-app .ultra-nav .ultra-primary {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: clamp(12px, 3.6vw, 14px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-links,
+  html.ultra-home-active #ultra-app .ultra-links {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+  }
+
   #container .ultra-links,
   #ultra-app .ultra-links,
   #container .ultra-contact-site .ultra-links,
@@ -27977,7 +28126,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
-    top: clamp(198px, 25svh, 248px) !important;
+    top: clamp(190px, 35svh, 295px) !important;
     width: min(100% - 32px, 430px) !important;
   }
 
@@ -27989,37 +28138,40 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
-    inset: 0 !important;
-    width: 100% !important;
-    display: block !important;
+    top: auto !important;
+    right: 16px !important;
+    bottom: clamp(30px, 10svh, 72px) !important;
+    left: 16px !important;
+    width: auto !important;
+    display: grid !important;
+    justify-items: center !important;
     transform: none !important;
+    translate: none !important;
     pointer-events: none !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt p,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
-    position: absolute !important;
-    top: clamp(500px, 58svh, 560px) !important;
-    left: 18px !important;
-    right: 18px !important;
-    width: auto !important;
+    position: static !important;
+    width: min(100%, 460px) !important;
     max-width: none !important;
     transform: none !important;
+    translate: none !important;
     font-size: clamp(14px, 3.75vw, 16px) !important;
     line-height: 1.55 !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
-    position: absolute !important;
+    position: static !important;
     top: auto !important;
-    bottom: clamp(34px, 7svh, 62px) !important;
-    left: 16px !important;
-    right: 16px !important;
-    width: auto !important;
+    bottom: auto !important;
+    width: min(100%, 460px) !important;
+    margin-top: clamp(18px, 3.6svh, 26px) !important;
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     transform: none !important;
+    translate: none !important;
     pointer-events: auto !important;
   }
 
@@ -28366,6 +28518,35 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
     font-size: 14px !important;
   }
 
+  html.ultra-home-active #container .ultra-brand img,
+  html.ultra-home-active #ultra-app .ultra-brand img {
+    width: clamp(88px, 25vw, 100px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-actions,
+  html.ultra-home-active #ultra-app .ultra-actions {
+    gap: 5px !important;
+  }
+
+  html.ultra-home-active #container .ultra-lang,
+  html.ultra-home-active #ultra-app .ultra-lang {
+    flex-basis: clamp(76px, 22vw, 86px) !important;
+    min-width: 0 !important;
+  }
+
+  html.ultra-home-active #container .ultra-lang-icon,
+  html.ultra-home-active #ultra-app .ultra-lang-icon {
+    width: clamp(36px, 10.8vw, 42px) !important;
+    min-width: clamp(36px, 10.8vw, 42px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-nav .ultra-primary,
+  html.ultra-home-active #ultra-app .ultra-nav .ultra-primary {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: clamp(11px, 3.25vw, 13px) !important;
+  }
+
   #container .ultra-links a,
   #ultra-app .ultra-links a,
   #container .ultra-contact-site .ultra-links a,
@@ -28379,7 +28560,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
-    top: clamp(196px, 25svh, 236px) !important;
+    top: clamp(184px, 35svh, 282px) !important;
     width: calc(100% - 28px) !important;
   }
 
@@ -28390,15 +28571,19 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt p,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
-    top: clamp(492px, 58svh, 540px) !important;
     width: calc(100% - 30px) !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
+    left: 14px !important;
+    right: 14px !important;
+    bottom: clamp(28px, 9svh, 58px) !important;
   }
 
   html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
   html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
-    left: 14px !important;
-    right: 14px !important;
-    width: auto !important;
+    width: calc(100% - 30px) !important;
   }
 
   #container .ultra-services-hero-copy h1,
