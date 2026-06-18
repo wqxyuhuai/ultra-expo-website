@@ -1921,59 +1921,34 @@ window.UltraCases = [
       ]
     },
     "galleryImages": {
-      "files": [
-        {
-          "name": "page-image-1",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/2d3f0e29-364e-47ae-9aee-019c2d59f9a5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162325_300_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UOWUMO7K%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCkJgek3K5xj%2Fc%2FByJ%2FbK5yRzt5CFOovrM%2Fmu5zmEsOhwIhAJQVtLE9aC46p8Rlygi79YK0RvkUWczAhU96kVDePdULKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igy10EKInNT7m7p%2Fzdwq3AMPkHkqG%2BELdpilRcdPhTyXo5yyeRFPjMKkgK3eb1kvnRnP2U4hTlkBft7PBYUPrNtbXAH6HdDbDq71K5YRT17c1v5RLCjfU4D4CuoQkz%2F5HRK4gCRt0RQSn5FQyFyJsWl4pebvyy%2FX60r17NaBepsa6kHkjGZ7E5ghYiUI73r88iILW3YZmnNpA0QjE2lh8iR%2FPcjrWsLhUaBi65sYZSZUOmMdbm3f7KeNDKpMyKO7vkQ%2BdUFPUejjDaZb0ct9k985kSZzKU2gFyI4TpMUo0WmRfYLJEn%2FZ5Jk1CygA3l24F2ysVGYgQwexA6PjWZoMqdoPmgvWzTc%2FCAFlFevFSBNUw2jKK9XMdDI8UOVel%2B%2FCcjgp5twwtkLoMPoa0ID20upBVqq9Iobw6V7hBFVjcFxl7R0fLgTlmlCIOiyVe8XBF0oGkYcEUz5Mh0eC26EbsUP40YqqCqLNvP3Zn7QKk%2Fz%2B2bT1C2O62dZ8O3l%2Bh5bQLaD8pLzlASZrkle1ErYQ0zGzQJGLaw3YQrH4EMj0WVDa1quP1Lor1M%2Bfp13h%2BOSBKd1V05gKhUKXYbOdB7p0sVTRtn5na%2FHuzCjSRZWeRVBVXFI8qPZrvzQSpl4cGuif%2FB7k4MdR0NyaOTqqDD%2BwMnRBjqkATGsKJIYonI%2BOHvXNplnmoLD5cH01Rpo1U5OOCopF5Y8fjt2U1Vfyd3D5QCsdqgogxN34EUa5TlPm4ioPLNPjMhcgsR%2B0wbEtvfBUumHp897YyI3NoMI75igpXm3UgDEp8Yh1YPN7hSAtOZidQ68WwMsFK676WCANoGAq%2FRnvZpT2rBnKR%2FgfqACXdf6a8Mr3qadUeGAY1izR1c3t%2BqSr%2FUJzPPM&X-Amz-Signature=b79525cfd4299cfd510be4bc691c336b20b71ea96a743479b6de3a0139f319d0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-2",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0e111cd5-43da-4596-ae1a-6d5c3e13e8d8/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429172545_313_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UOWUMO7K%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCkJgek3K5xj%2Fc%2FByJ%2FbK5yRzt5CFOovrM%2Fmu5zmEsOhwIhAJQVtLE9aC46p8Rlygi79YK0RvkUWczAhU96kVDePdULKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igy10EKInNT7m7p%2Fzdwq3AMPkHkqG%2BELdpilRcdPhTyXo5yyeRFPjMKkgK3eb1kvnRnP2U4hTlkBft7PBYUPrNtbXAH6HdDbDq71K5YRT17c1v5RLCjfU4D4CuoQkz%2F5HRK4gCRt0RQSn5FQyFyJsWl4pebvyy%2FX60r17NaBepsa6kHkjGZ7E5ghYiUI73r88iILW3YZmnNpA0QjE2lh8iR%2FPcjrWsLhUaBi65sYZSZUOmMdbm3f7KeNDKpMyKO7vkQ%2BdUFPUejjDaZb0ct9k985kSZzKU2gFyI4TpMUo0WmRfYLJEn%2FZ5Jk1CygA3l24F2ysVGYgQwexA6PjWZoMqdoPmgvWzTc%2FCAFlFevFSBNUw2jKK9XMdDI8UOVel%2B%2FCcjgp5twwtkLoMPoa0ID20upBVqq9Iobw6V7hBFVjcFxl7R0fLgTlmlCIOiyVe8XBF0oGkYcEUz5Mh0eC26EbsUP40YqqCqLNvP3Zn7QKk%2Fz%2B2bT1C2O62dZ8O3l%2Bh5bQLaD8pLzlASZrkle1ErYQ0zGzQJGLaw3YQrH4EMj0WVDa1quP1Lor1M%2Bfp13h%2BOSBKd1V05gKhUKXYbOdB7p0sVTRtn5na%2FHuzCjSRZWeRVBVXFI8qPZrvzQSpl4cGuif%2FB7k4MdR0NyaOTqqDD%2BwMnRBjqkATGsKJIYonI%2BOHvXNplnmoLD5cH01Rpo1U5OOCopF5Y8fjt2U1Vfyd3D5QCsdqgogxN34EUa5TlPm4ioPLNPjMhcgsR%2B0wbEtvfBUumHp897YyI3NoMI75igpXm3UgDEp8Yh1YPN7hSAtOZidQ68WwMsFK676WCANoGAq%2FRnvZpT2rBnKR%2FgfqACXdf6a8Mr3qadUeGAY1izR1c3t%2BqSr%2FUJzPPM&X-Amz-Signature=a00167bf376c80631bae7a2f130df5793af668429bf372040459e31d2e741652&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-3",
-          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-4",
-          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-5",
-          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-6",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/d713652d-0959-4c73-83a2-4cd78049d916/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162335_301_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=7e9858b538d5c7a3d458150095e2515e4d5639a07ae21ceaa086925d7612f229&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-7",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/825a0453-80c2-45ba-90e2-b4725f2c3331/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162351_302_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=4b8e157b1d5800a9a8f56d5e3aac509dd3ccf9bec6f91cc852253f965379ff9f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-8",
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ae13f79b-1079-42f3-89d5-57fa5c21fe4a/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429172553_314_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=684a3c5c7d6329e6bee35bad61e637a100031d3d02b258789f31470c138e9b04&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-9",
-          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
-          "source": "notion"
-        },
-        {
-          "name": "page-image-10",
-          "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
-          "source": "notion"
-        }
-      ]
-    },
+        "files": [
+          {
+            "name": "page-image-1",
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
+            "source": "github"
+          },
+          {
+            "name": "page-image-2",
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
+            "source": "github"
+          },
+          {
+            "name": "page-image-3",
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
+            "source": "github"
+          },
+          {
+            "name": "page-image-4",
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
+            "source": "github"
+          },
+          {
+            "name": "page-image-5",
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
+            "source": "github"
+          }
+        ]
+      },
     "isFeaturedCase": true,
     "featuredCaseOrder": null,
     "casePageOrder": 29,
@@ -3958,53 +3933,28 @@ window.UltraContent = {
         "files": [
           {
             "name": "page-image-1",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/2d3f0e29-364e-47ae-9aee-019c2d59f9a5/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162325_300_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UOWUMO7K%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCkJgek3K5xj%2Fc%2FByJ%2FbK5yRzt5CFOovrM%2Fmu5zmEsOhwIhAJQVtLE9aC46p8Rlygi79YK0RvkUWczAhU96kVDePdULKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igy10EKInNT7m7p%2Fzdwq3AMPkHkqG%2BELdpilRcdPhTyXo5yyeRFPjMKkgK3eb1kvnRnP2U4hTlkBft7PBYUPrNtbXAH6HdDbDq71K5YRT17c1v5RLCjfU4D4CuoQkz%2F5HRK4gCRt0RQSn5FQyFyJsWl4pebvyy%2FX60r17NaBepsa6kHkjGZ7E5ghYiUI73r88iILW3YZmnNpA0QjE2lh8iR%2FPcjrWsLhUaBi65sYZSZUOmMdbm3f7KeNDKpMyKO7vkQ%2BdUFPUejjDaZb0ct9k985kSZzKU2gFyI4TpMUo0WmRfYLJEn%2FZ5Jk1CygA3l24F2ysVGYgQwexA6PjWZoMqdoPmgvWzTc%2FCAFlFevFSBNUw2jKK9XMdDI8UOVel%2B%2FCcjgp5twwtkLoMPoa0ID20upBVqq9Iobw6V7hBFVjcFxl7R0fLgTlmlCIOiyVe8XBF0oGkYcEUz5Mh0eC26EbsUP40YqqCqLNvP3Zn7QKk%2Fz%2B2bT1C2O62dZ8O3l%2Bh5bQLaD8pLzlASZrkle1ErYQ0zGzQJGLaw3YQrH4EMj0WVDa1quP1Lor1M%2Bfp13h%2BOSBKd1V05gKhUKXYbOdB7p0sVTRtn5na%2FHuzCjSRZWeRVBVXFI8qPZrvzQSpl4cGuif%2FB7k4MdR0NyaOTqqDD%2BwMnRBjqkATGsKJIYonI%2BOHvXNplnmoLD5cH01Rpo1U5OOCopF5Y8fjt2U1Vfyd3D5QCsdqgogxN34EUa5TlPm4ioPLNPjMhcgsR%2B0wbEtvfBUumHp897YyI3NoMI75igpXm3UgDEp8Yh1YPN7hSAtOZidQ68WwMsFK676WCANoGAq%2FRnvZpT2rBnKR%2FgfqACXdf6a8Mr3qadUeGAY1izR1c3t%2BqSr%2FUJzPPM&X-Amz-Signature=b79525cfd4299cfd510be4bc691c336b20b71ea96a743479b6de3a0139f319d0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
+            "source": "github"
           },
           {
             "name": "page-image-2",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/0e111cd5-43da-4596-ae1a-6d5c3e13e8d8/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429172545_313_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UOWUMO7K%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCkJgek3K5xj%2Fc%2FByJ%2FbK5yRzt5CFOovrM%2Fmu5zmEsOhwIhAJQVtLE9aC46p8Rlygi79YK0RvkUWczAhU96kVDePdULKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igy10EKInNT7m7p%2Fzdwq3AMPkHkqG%2BELdpilRcdPhTyXo5yyeRFPjMKkgK3eb1kvnRnP2U4hTlkBft7PBYUPrNtbXAH6HdDbDq71K5YRT17c1v5RLCjfU4D4CuoQkz%2F5HRK4gCRt0RQSn5FQyFyJsWl4pebvyy%2FX60r17NaBepsa6kHkjGZ7E5ghYiUI73r88iILW3YZmnNpA0QjE2lh8iR%2FPcjrWsLhUaBi65sYZSZUOmMdbm3f7KeNDKpMyKO7vkQ%2BdUFPUejjDaZb0ct9k985kSZzKU2gFyI4TpMUo0WmRfYLJEn%2FZ5Jk1CygA3l24F2ysVGYgQwexA6PjWZoMqdoPmgvWzTc%2FCAFlFevFSBNUw2jKK9XMdDI8UOVel%2B%2FCcjgp5twwtkLoMPoa0ID20upBVqq9Iobw6V7hBFVjcFxl7R0fLgTlmlCIOiyVe8XBF0oGkYcEUz5Mh0eC26EbsUP40YqqCqLNvP3Zn7QKk%2Fz%2B2bT1C2O62dZ8O3l%2Bh5bQLaD8pLzlASZrkle1ErYQ0zGzQJGLaw3YQrH4EMj0WVDa1quP1Lor1M%2Bfp13h%2BOSBKd1V05gKhUKXYbOdB7p0sVTRtn5na%2FHuzCjSRZWeRVBVXFI8qPZrvzQSpl4cGuif%2FB7k4MdR0NyaOTqqDD%2BwMnRBjqkATGsKJIYonI%2BOHvXNplnmoLD5cH01Rpo1U5OOCopF5Y8fjt2U1Vfyd3D5QCsdqgogxN34EUa5TlPm4ioPLNPjMhcgsR%2B0wbEtvfBUumHp897YyI3NoMI75igpXm3UgDEp8Yh1YPN7hSAtOZidQ68WwMsFK676WCANoGAq%2FRnvZpT2rBnKR%2FgfqACXdf6a8Mr3qadUeGAY1izR1c3t%2BqSr%2FUJzPPM&X-Amz-Signature=a00167bf376c80631bae7a2f130df5793af668429bf372040459e31d2e741652&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
+            "source": "github"
           },
           {
             "name": "page-image-3",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
-            "source": "notion"
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
+            "source": "github"
           },
           {
             "name": "page-image-4",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
-            "source": "notion"
+            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
+            "source": "github"
           },
           {
             "name": "page-image-5",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
-            "source": "notion"
-          },
-          {
-            "name": "page-image-6",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/d713652d-0959-4c73-83a2-4cd78049d916/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162335_301_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=7e9858b538d5c7a3d458150095e2515e4d5639a07ae21ceaa086925d7612f229&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          },
-          {
-            "name": "page-image-7",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/825a0453-80c2-45ba-90e2-b4725f2c3331/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429162351_302_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=4b8e157b1d5800a9a8f56d5e3aac509dd3ccf9bec6f91cc852253f965379ff9f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          },
-          {
-            "name": "page-image-8",
-            "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1eaebe7c-0038-46c4-9b9e-a4046735a4c6/ae13f79b-1079-42f3-89d5-57fa5c21fe4a/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429172553_314_1577.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667QPX3H27%2F20260617%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260617T095516Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDME9YKXHimfb0FBOfzazFYH64c1DNYHnwF02YIzELcEAIhALdj8bQ3i2eeaT5JXimlZ5kTGTcwUePDuzcMp6RrjNoFKogECIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzSvhY4Uvu8eXoY8Lkq3APmmULXZPTVkvFKRBle60427s4O9PzPahpP6qYc7JO4OaepR7lb6sLWybcTM8k9%2Fdictwd%2B3bbQQjeKDhsejCvWQY3nrHzs%2BHTRpL%2Fs3pA8VTrtZ80TqhwiWM%2BMcQLIlSm6Gv1JsnPpUyv%2B5Nga5pMDJThRYNajrCBlGq26%2FCTm%2FpbHsf7WasP1QsMl3a3uMgIsN8Xqe6sP2KL9y4mYE3y%2BMh62mEupJy%2FdO%2BDcaO6dLrBIL3EmdnKokiojEhTa1KISVwdjssr2GqakXXOLDGV2ObQtw4K3jnfJ8Kt3R3zhJ1lZM%2FeFEKS8vVUBCvzvUBqBMWNd3K8bINZ%2FS%2BOGVldOkNwNs%2F1I%2FanB6RaVwphxUe%2FKUMpKtOV9CpsqNrhN44UlcpnQf3XK3%2Bk5pqmQR5bBty66T7cDiBp0Esop%2BrHtFYGhz9FVJvPt9VQznEFh4tzFtOC5hOQS2YiQHPz8wr3jGujAIFDK5Py%2B%2Bz1Qk7V6n1KUTUuIkoYv%2FK2e3krO%2FdlGagMuwOZ9iSykOYsXJrPQ%2FHgWV3q1n3v65%2BqEch%2FkzoCJS5OCCqZBUflvMKfPhwHtVkN6TNAIWNpm93kHA6307jOhw6nNgm%2B5B3FT%2FNSKkqDdLvQNi%2BM3%2FwJnnjCGwsnRBjqkAQgSWGbHa4zlAJuj4kDe8t76CtLYmBoo%2B%2BqMjvhRUAVxfxCavKeGAO3ZHhs6I%2FnjA7qRaAv0GkItyfE%2BUs2Q%2B9KrkeRKyAHeiKqQZEYlb71XSAlg5zhnO2w5NpmCSY%2FSasIfI5B3b4SPjASGGEtmuokEhIxz8JZ0DqbmOHjrr%2Fe8VIFJ%2F7w60hrn1MG57DN%2BOab1Vld%2BEp398FXetRH8MAkSdGWt&X-Amz-Signature=684a3c5c7d6329e6bee35bad61e637a100031d3d02b258789f31470c138e9b04&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-            "source": "notion"
-          },
-          {
-            "name": "page-image-9",
-            "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
-            "source": "notion"
-          },
-          {
-            "name": "page-image-10",
             "url": "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg",
-            "source": "notion"
+            "source": "github"
           }
         ]
       },

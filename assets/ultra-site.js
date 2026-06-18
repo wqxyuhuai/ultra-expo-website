@@ -4,6 +4,7 @@
   const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
   const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
+  const CONTACT_SUBMISSION_ENDPOINT = "https://ultra-contact-notion.wqxyuhuai.workers.dev";
   let adminPendingConfirm = null;
   let contentScriptText = null;
   const CONTENT = loadContent();
@@ -2630,6 +2631,15 @@
   }
 
   function caseGalleryImages(item) {
+    if (item?.id === "wattsonic-solar-and-storage-live-2026") {
+      return [
+        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-3.jpg",
+        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-4.jpg",
+        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-5.jpg",
+        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-9.jpg",
+        "./assets/notion/cases/wattsonic-solar-and-storage-live-2026-gallery-10.jpg"
+      ];
+    }
     const unique = [];
     (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean).forEach(url => {
       if (!unique.includes(url)) unique.push(url);
@@ -2833,7 +2843,6 @@
       { value: "Retail Space", zh: "零售空间与快闪空间", en: "Retail Space", copyZh: "门店、展厅、临展与品牌空间。", copyEn: "Retail, showroom, temporary display, and brand spaces." },
       { value: "General Inquiry", zh: "其他合作咨询", en: "General Inquiry", copyZh: "任何出海展示与空间落地问题。", copyEn: "Any global display or spatial delivery question." }
     ];
-    const budgets = zh ? ["50,000 美元以下", "50,000-100,000 美元", "100,000-300,000 美元", "300,000 美元以上"] : ["Under 50K USD", "50K-100K USD", "100K-300K USD", "300K+ USD"];
     const responseSteps = zh ? [
       ["提交", "你提交项目需求"],
       ["评估", "我们确认展会时间、国家、面积与目标"],
@@ -2915,16 +2924,8 @@
                 </label>
                 ${contactField("eventName", zh ? "展会名称" : "Event Name")}
                 ${contactField("countryRegion", zh ? "展会国家或地区" : "Country / Region")}
-                ${contactField("expectedDate", zh ? "预计时间" : "Expected Date")}
+                ${contactDateField("expectedDate", zh ? "预计时间" : "Expected Date")}
                 ${contactField("boothArea", zh ? "展位面积" : "Booth Area")}
-                <label class="ultra-contact-field">
-                  <span>${zh ? "预算范围" : "Budget Range"}</span>
-                  <select name="budgetRange">
-                    <option value="">${zh ? "待沟通" : "To be discussed"}</option>
-                    ${budgets.map(item => `<option>${esc(item)}</option>`).join("")}
-                  </select>
-                  <em data-field-error="budgetRange"></em>
-                </label>
                 <label class="ultra-contact-field is-wide">
                   <span>${zh ? "留言内容" : "Message"} *</span>
                   <textarea name="message" required placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
@@ -2980,6 +2981,38 @@
       <label class="ultra-contact-field">
         <span>${esc(label)}${required ? " *" : ""}</span>
         <input name="${esc(name)}" type="${esc(type)}" ${required ? "required" : ""}>
+        <em data-field-error="${esc(name)}"></em>
+      </label>
+    `;
+  }
+
+  function contactDateField(name, label, required = false) {
+    return `
+      <label class="ultra-contact-field ultra-contact-date-field">
+        <span>${esc(label)}${required ? " *" : ""}</span>
+        <div class="ultra-contact-date-control">
+          <input class="ultra-contact-date-display" type="text" value="" placeholder="YYYY / MM / DD" readonly data-contact-date-display data-contact-date-trigger aria-label="${esc(label)}">
+          <button class="ultra-contact-date-button" type="button" data-contact-date-trigger tabindex="-1" aria-label="${esc(label)}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v3M17 2v3M4.5 9h15M6.5 5h11c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2h-11c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Z"/></svg>
+          </button>
+          <input class="ultra-contact-date-value" name="${esc(name)}" type="hidden" data-contact-date-value ${required ? "required" : ""}>
+          <div class="ultra-contact-date-popover" data-contact-date-popover hidden>
+            <div class="ultra-contact-date-head">
+              <button type="button" data-contact-date-prev aria-label="Previous month">‹</button>
+              <div class="ultra-contact-date-title" data-contact-date-title>
+                <select data-contact-date-month aria-label="Month"></select>
+                <select data-contact-date-year aria-label="Year"></select>
+              </div>
+              <button type="button" data-contact-date-next aria-label="Next month">›</button>
+            </div>
+            <div class="ultra-contact-date-weekdays" data-contact-date-weekdays></div>
+            <div class="ultra-contact-date-grid" data-contact-date-grid></div>
+            <div class="ultra-contact-date-foot">
+              <button type="button" data-contact-date-clear></button>
+              <button type="button" data-contact-date-today></button>
+            </div>
+          </div>
+        </div>
         <em data-field-error="${esc(name)}"></em>
       </label>
     `;
@@ -4218,6 +4251,7 @@
   function initCaseDetail(root) {
     alignCaseDetailEsc(root);
     window.requestAnimationFrame(() => alignCaseDetailEsc(root));
+    window.setTimeout(() => alignCaseDetailEsc(root), 650);
     if (!caseDetailResizeBound) {
       caseDetailResizeBound = true;
       window.addEventListener("resize", () => {
@@ -5018,7 +5052,6 @@
       ["Country / Region", item.countryRegion],
       ["Expected Date", item.expectedDate],
       ["Booth Area", item.boothArea],
-      ["Budget Range", item.budgetRange],
       ["Language", item.language],
       ["Source Page", item.sourcePage]
     ].filter(row => row[1]);
@@ -5087,6 +5120,152 @@
     feedback.innerHTML = message;
   }
 
+  function contactSubmissionEndpoint() {
+    return String(window.ULTRA_CONTACT_ENDPOINT || CONTACT_SUBMISSION_ENDPOINT || "").trim();
+  }
+
+  async function submitContactMessageToEndpoint(message) {
+    const endpoint = contactSubmissionEndpoint();
+    if (!endpoint) return { submitted: false };
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(message)
+    });
+    let payload = null;
+    try {
+      payload = await response.json();
+    } catch {
+      payload = null;
+    }
+    if (!response.ok || payload?.ok === false) {
+      throw new Error(payload?.error || `Contact endpoint failed with ${response.status}`);
+    }
+    return { submitted: true, payload };
+  }
+
+  function formatContactDateForDisplay(value) {
+    const text = String(value || "").trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text.replaceAll("-", " / ") : "";
+  }
+
+  function contactDatePad(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function contactDateISO(date) {
+    return `${date.getFullYear()}-${contactDatePad(date.getMonth() + 1)}-${contactDatePad(date.getDate())}`;
+  }
+
+  function contactDateFromISO(value) {
+    const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) return null;
+    const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+
+  function contactDateMonthTitle(year, month) {
+    if (locale() === "zh") return `${year}年${contactDatePad(month + 1)}月`;
+    return new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(new Date(year, month, 1));
+  }
+
+  function contactDateMonthNames() {
+    if (locale() === "zh") return Array.from({ length: 12 }, (_, index) => `${index + 1}月`);
+    const formatter = new Intl.DateTimeFormat("en", { month: "long" });
+    return Array.from({ length: 12 }, (_, index) => formatter.format(new Date(2026, index, 1)));
+  }
+
+  function closeContactDatePickers(exceptField = null) {
+    document.querySelectorAll(".ultra-contact-date-field").forEach(field => {
+      if (exceptField && field === exceptField) return;
+      field.classList.remove("is-open");
+      field.querySelector("[data-contact-date-popover]")?.setAttribute("hidden", "");
+    });
+  }
+
+  function syncContactDateInput(input) {
+    if (!input || !input.matches("[data-contact-date-value]")) return;
+    const field = input.closest(".ultra-contact-date-field");
+    const display = field?.querySelector("[data-contact-date-display]");
+    if (display) display.value = formatContactDateForDisplay(input.value);
+    field?.classList.toggle("has-date-value", Boolean(input.value));
+  }
+
+  function renderContactDatePicker(field, viewDate = null) {
+    if (!field) return;
+    const valueInput = field.querySelector("[data-contact-date-value]");
+    const selected = contactDateFromISO(valueInput?.value);
+    const base = viewDate || selected || new Date();
+    const year = base.getFullYear();
+    const month = base.getMonth();
+    field.dataset.dateYear = String(year);
+    field.dataset.dateMonth = String(month);
+
+    const zh = locale() === "zh";
+    const title = field.querySelector("[data-contact-date-title]");
+    const monthSelect = field.querySelector("[data-contact-date-month]");
+    const yearSelect = field.querySelector("[data-contact-date-year]");
+    const weekdays = field.querySelector("[data-contact-date-weekdays]");
+    const grid = field.querySelector("[data-contact-date-grid]");
+    const clear = field.querySelector("[data-contact-date-clear]");
+    const today = field.querySelector("[data-contact-date-today]");
+    if (title) title.setAttribute("aria-label", contactDateMonthTitle(year, month));
+    if (monthSelect) {
+      const monthNames = contactDateMonthNames();
+      monthSelect.innerHTML = monthNames.map((name, index) => `<option value="${index}"${index === month ? " selected" : ""}>${esc(name)}</option>`).join("");
+    }
+    if (yearSelect) {
+      const currentYear = new Date().getFullYear();
+      const startYear = Math.min(currentYear - 1, year - 3);
+      const endYear = Math.max(currentYear + 6, year + 3);
+      const years = [];
+      for (let optionYear = startYear; optionYear <= endYear; optionYear += 1) {
+        years.push(`<option value="${optionYear}"${optionYear === year ? " selected" : ""}>${optionYear}</option>`);
+      }
+      yearSelect.innerHTML = years.join("");
+    }
+    if (clear) clear.textContent = zh ? "清除" : "Clear";
+    if (today) today.textContent = zh ? "今天" : "Today";
+    if (weekdays) {
+      const labels = zh ? ["日", "一", "二", "三", "四", "五", "六"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      weekdays.innerHTML = labels.map(item => `<span>${esc(item)}</span>`).join("");
+    }
+    if (!grid) return;
+
+    const first = new Date(year, month, 1);
+    const start = new Date(year, month, 1 - first.getDay());
+    const todayISO = contactDateISO(new Date());
+    const selectedISO = selected ? contactDateISO(selected) : "";
+    const days = [];
+    for (let index = 0; index < 42; index += 1) {
+      const date = new Date(start);
+      date.setDate(start.getDate() + index);
+      const iso = contactDateISO(date);
+      const classes = [
+        date.getMonth() === month ? "" : "is-muted",
+        iso === todayISO ? "is-today" : "",
+        iso === selectedISO ? "is-selected" : ""
+      ].filter(Boolean).join(" ");
+      days.push(`<button type="button" class="${esc(classes)}" data-contact-date-day="${esc(iso)}">${date.getDate()}</button>`);
+    }
+    grid.innerHTML = days.join("");
+  }
+
+  function openContactDatePicker(trigger, forceOpen = false) {
+    const field = trigger?.closest(".ultra-contact-date-field");
+    const control = field?.querySelector(".ultra-contact-date-control");
+    const popover = field?.querySelector("[data-contact-date-popover]");
+    if (!field || !popover) return;
+    const nextOpen = forceOpen || !field.classList.contains("is-open");
+    closeContactDatePickers(nextOpen ? field : null);
+    field.classList.toggle("is-open", nextOpen);
+    popover.hidden = !nextOpen;
+    if (nextOpen) renderContactDatePicker(field);
+    control?.focus({ preventScroll: true });
+  }
+
   function collectContactMessage(form) {
     const value = name => String(form.elements[name]?.value || "").trim();
     const now = new Date().toISOString();
@@ -5103,8 +5282,7 @@
       countryRegion: value("countryRegion"),
       expectedDate: value("expectedDate"),
       boothArea: value("boothArea"),
-      budgetRange: value("budgetRange"),
-      sourcePage: "contact",
+      sourcePage: window.location.href || "contact",
       language: locale(),
       status: "new",
       internalNote: "",
@@ -5146,11 +5324,17 @@
         button.textContent = zh ? "提交中..." : "Sending...";
       }
       await new Promise(resolve => setTimeout(resolve, 420));
+      const message = collectContactMessage(form);
+      const remote = await submitContactMessageToEndpoint(message);
       const config = getAdminConfig();
-      const items = [collectContactMessage(form), ...adminContactMessages()];
+      const items = [message, ...adminContactMessages()];
       saveAdminConfig({ ...config, contactMessages: { items } });
-      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong><span>${zh ? "留言已进入后台存档，方便后续跟进管理。" : "Your message has been saved for follow-up."}</span>`);
+      setContactFeedback(form, "success", `<strong>${zh ? "已收到你的咨询，我们会尽快与你联系。" : "Thanks, your inquiry has been received."}</strong>`);
       form.reset();
+      form.querySelectorAll("[data-contact-date-value]").forEach(input => {
+        input.value = "";
+        syncContactDateInput(input);
+      });
       form.querySelectorAll(".ultra-contact-type-card.is-active").forEach(card => card.classList.remove("is-active"));
     } catch (error) {
       console.warn("Contact submit failed", error);
@@ -5244,6 +5428,68 @@
   }
 
   document.addEventListener("click", event => {
+    const activeDateField = event.target.closest(".ultra-contact-date-field");
+    if (!activeDateField) closeContactDatePickers();
+
+    const contactDateDay = event.target.closest("[data-contact-date-day]");
+    if (contactDateDay) {
+      event.preventDefault();
+      const field = contactDateDay.closest(".ultra-contact-date-field");
+      const input = field?.querySelector("[data-contact-date-value]");
+      if (input) {
+        input.value = contactDateDay.dataset.contactDateDay || "";
+        syncContactDateInput(input);
+        setContactFieldError(input.form, input.name, "");
+      }
+      closeContactDatePickers();
+      return;
+    }
+
+    const contactDateNav = event.target.closest("[data-contact-date-prev], [data-contact-date-next]");
+    if (contactDateNav) {
+      event.preventDefault();
+      const field = contactDateNav.closest(".ultra-contact-date-field");
+      const year = Number(field?.dataset.dateYear || new Date().getFullYear());
+      const month = Number(field?.dataset.dateMonth || new Date().getMonth());
+      renderContactDatePicker(field, new Date(year, month + (contactDateNav.matches("[data-contact-date-next]") ? 1 : -1), 1));
+      return;
+    }
+
+    const contactDateToday = event.target.closest("[data-contact-date-today]");
+    if (contactDateToday) {
+      event.preventDefault();
+      const field = contactDateToday.closest(".ultra-contact-date-field");
+      const input = field?.querySelector("[data-contact-date-value]");
+      if (input) {
+        input.value = contactDateISO(new Date());
+        syncContactDateInput(input);
+        setContactFieldError(input.form, input.name, "");
+      }
+      closeContactDatePickers();
+      return;
+    }
+
+    const contactDateClear = event.target.closest("[data-contact-date-clear]");
+    if (contactDateClear) {
+      event.preventDefault();
+      const field = contactDateClear.closest(".ultra-contact-date-field");
+      const input = field?.querySelector("[data-contact-date-value]");
+      if (input) {
+        input.value = "";
+        syncContactDateInput(input);
+        setContactFieldError(input.form, input.name, "");
+      }
+      closeContactDatePickers();
+      return;
+    }
+
+    const contactDateTrigger = event.target.closest("[data-contact-date-trigger]");
+    if (contactDateTrigger) {
+      event.preventDefault();
+      openContactDatePicker(contactDateTrigger);
+      return;
+    }
+
     const contactScroll = event.target.closest("[data-contact-scroll]");
     if (contactScroll) {
       event.preventDefault();
@@ -5539,6 +5785,7 @@
     const contactInput = event.target.closest("[data-contact-form] input, [data-contact-form] textarea, [data-contact-form] select");
     if (contactInput?.name) {
       setContactFieldError(contactInput.form, contactInput.name, "");
+      syncContactDateInput(contactInput);
     }
   });
 
@@ -5568,6 +5815,20 @@
   });
 
   document.addEventListener("change", event => {
+    const contactDateJump = event.target.closest("[data-contact-date-month], [data-contact-date-year]");
+    if (contactDateJump) {
+      const field = contactDateJump.closest(".ultra-contact-date-field");
+      const month = Number(field?.querySelector("[data-contact-date-month]")?.value || new Date().getMonth());
+      const year = Number(field?.querySelector("[data-contact-date-year]")?.value || new Date().getFullYear());
+      renderContactDatePicker(field, new Date(year, month, 1));
+      return;
+    }
+
+    const contactDateInput = event.target.closest("[data-contact-date-value]");
+    if (contactDateInput) {
+      syncContactDateInput(contactDateInput);
+    }
+
     if (event.target.closest("[data-admin-message-filter]")) {
       applyAdminMessageFilters();
       return;
@@ -5761,6 +6022,18 @@
     render();
   });
   window.addEventListener("keydown", event => {
+    const contactDateTrigger = event.target.closest?.("[data-contact-date-trigger]");
+    if (contactDateTrigger && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      openContactDatePicker(contactDateTrigger, true);
+      return;
+    }
+
+    if (event.key === "Escape" && document.querySelector(".ultra-contact-date-field.is-open")) {
+      closeContactDatePickers();
+      return;
+    }
+
     if (event.key === "Escape" && document.querySelector("[data-case-modal]")) {
       event.preventDefault();
       setCaseModal("");

@@ -20032,6 +20032,94 @@ html:has(.ultra-contact-page) body,
   align-self: center;
 }
 
+@media (min-width: 1101px) {
+  html:has(.ultra-case-detail.is-page),
+  html:has(.ultra-case-detail.is-page) body,
+  html:has(.ultra-case-modal),
+  html:has(.ultra-case-modal) body {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .ultra-case-modal {
+    overflow: hidden !important;
+  }
+
+  .ultra-case-detail-site,
+  .ultra-case-detail-main {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .ultra-case-detail.is-page,
+  .ultra-case-detail.is-modal {
+    --case-detail-pad-top: clamp(92px, 9vh, 128px);
+    --case-detail-pad-bottom: clamp(28px, 4vh, 56px);
+    width: min(calc(100% - clamp(112px, 12vw, 240px)), 1540px) !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    margin: 0 auto !important;
+    grid-template-columns: minmax(300px, 470px) minmax(0, 940px) !important;
+    gap: clamp(56px, 5.8vw, 118px) !important;
+    align-items: start !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    padding: var(--case-detail-pad-top) 0 var(--case-detail-pad-bottom) !important;
+  }
+
+  .ultra-case-detail.is-page .ultra-case-detail-copy,
+  .ultra-case-detail.is-modal .ultra-case-detail-copy {
+    position: sticky !important;
+    top: clamp(180px, 22vh, 260px) !important;
+    align-self: start !important;
+    max-height: calc(100svh - clamp(150px, 18vh, 210px)) !important;
+    overflow: hidden !important;
+    padding-right: 8px !important;
+  }
+
+  .ultra-case-detail.is-page .ultra-case-detail-gallery,
+  .ultra-case-detail.is-modal .ultra-case-detail-gallery {
+    width: min(940px, 100%) !important;
+    height: calc(100svh - var(--case-detail-pad-top) - var(--case-detail-pad-bottom)) !important;
+    max-height: calc(100svh - var(--case-detail-pad-top) - var(--case-detail-pad-bottom)) !important;
+    display: block !important;
+    columns: 2 !important;
+    column-gap: 20px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    padding-right: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .ultra-case-detail.is-page .ultra-case-detail-gallery::-webkit-scrollbar,
+  .ultra-case-detail.is-modal .ultra-case-detail-gallery::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  .ultra-case-detail.is-page .ultra-case-detail-gallery figure,
+  .ultra-case-detail.is-modal .ultra-case-detail-gallery figure {
+    display: block !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin: 0 0 20px !important;
+    overflow: visible !important;
+  }
+
+  .ultra-case-detail.is-page .ultra-case-detail-gallery img,
+  .ultra-case-detail.is-modal .ultra-case-detail-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+  }
+}
+
 .ultra-case-esc {
   position: fixed;
   left: clamp(22px, 5vw, 187px);
@@ -26560,4 +26648,303 @@ html.ultra-home-active #ultra-app .ultra-selected-card:hover img {
 #container :where(button:disabled, [aria-disabled="true"]),
 #ultra-app .ultra-site :where(button:disabled, [aria-disabled="true"]) {
   cursor: not-allowed !important;
+}
+
+/* Contact form date picker: readonly display with a themed calendar panel. */
+#container .ultra-contact-date-field,
+#ultra-app .ultra-contact-date-field {
+  position: relative;
+  z-index: 2;
+}
+
+#container .ultra-contact-date-field.is-open,
+#ultra-app .ultra-contact-date-field.is-open {
+  z-index: 120;
+}
+
+#container .ultra-contact-form-card,
+#ultra-app .ultra-contact-form-card,
+#container .ultra-contact-form-grid,
+#ultra-app .ultra-contact-form-grid {
+  overflow: visible;
+}
+
+#container .ultra-contact-date-control,
+#ultra-app .ultra-contact-date-control {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--theme-night-soft);
+  cursor: pointer;
+}
+
+#container .ultra-contact-date-control:focus-visible,
+#ultra-app .ultra-contact-date-control:focus-visible,
+#container .ultra-contact-date-control:focus-within,
+#ultra-app .ultra-contact-date-control:focus-within {
+  border-color: #317AFF;
+  background: rgba(4, 9, 18, 0.82);
+  box-shadow: 0 10px 34px rgba(49, 122, 255, 0.12), 0 1px 0 rgba(49, 122, 255, 0.8);
+  outline: none;
+}
+
+#container .ultra-contact-date-display,
+#ultra-app .ultra-contact-date-display {
+  min-height: 52px;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--theme-white);
+  padding: 0 48px 0 12px !important;
+  font-family: var(--ultra-font) !important;
+  font-size: var(--type-body-small-size) !important;
+  font-weight: var(--type-body-small-weight) !important;
+  line-height: 1.45 !important;
+  cursor: pointer;
+}
+
+#container .ultra-contact-date-display:focus,
+#ultra-app .ultra-contact-date-display:focus {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+#container .ultra-contact-date-display::placeholder,
+#ultra-app .ultra-contact-date-display::placeholder {
+  color: rgba(247, 248, 251, 0.56);
+  font-family: var(--ultra-font);
+  font-weight: var(--type-body-small-weight);
+  opacity: 1;
+}
+
+#container .ultra-contact-date-button,
+#ultra-app .ultra-contact-date-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(247, 248, 251, 0.9);
+  transform: translateY(-50%);
+}
+
+#container .ultra-contact-date-button svg,
+#ultra-app .ultra-contact-date-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#container .ultra-contact-date-popover,
+#ultra-app .ultra-contact-date-popover {
+  position: absolute;
+  z-index: 121;
+  left: 0;
+  top: calc(100% + 8px);
+  width: min(360px, 100%);
+  padding: 16px;
+  border: 1px solid rgba(49, 122, 255, 0.42);
+  background: #080c13;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  color: var(--theme-white);
+}
+
+#container .ultra-contact-date-popover[hidden],
+#ultra-app .ultra-contact-date-popover[hidden] {
+  display: none;
+}
+
+#container .ultra-contact-date-head,
+#ultra-app .ultra-contact-date-head,
+#container .ultra-contact-date-foot,
+#ultra-app .ultra-contact-date-foot {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+}
+
+#container .ultra-contact-date-title,
+#ultra-app .ultra-contact-date-title {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(76px, 0.75fr);
+  gap: 8px;
+}
+
+#container .ultra-contact-date-title select,
+#ultra-app .ultra-contact-date-title select {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  background: #05080d;
+  color: var(--theme-white);
+  padding: 0 8px;
+  font-family: var(--ultra-font);
+  font-size: 13px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+#container .ultra-contact-date-title select:focus,
+#ultra-app .ultra-contact-date-title select:focus {
+  border-color: rgba(49, 122, 255, 0.75);
+  box-shadow: 0 0 0 1px rgba(49, 122, 255, 0.25);
+}
+
+#container .ultra-contact-date-title option,
+#ultra-app .ultra-contact-date-title option {
+  background: #05080d;
+  color: var(--theme-white);
+}
+
+#container .ultra-contact-date-head button,
+#ultra-app .ultra-contact-date-head button,
+#container .ultra-contact-date-foot button,
+#ultra-app .ultra-contact-date-foot button {
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(247, 248, 251, 0.86);
+  font-family: var(--ultra-font);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#container .ultra-contact-date-head button:hover,
+#ultra-app .ultra-contact-date-head button:hover,
+#container .ultra-contact-date-foot button:hover,
+#ultra-app .ultra-contact-date-foot button:hover {
+  border-color: rgba(49, 122, 255, 0.65);
+  color: var(--theme-white);
+  background: rgba(49, 122, 255, 0.14);
+}
+
+#container .ultra-contact-date-weekdays,
+#ultra-app .ultra-contact-date-weekdays,
+#container .ultra-contact-date-grid,
+#ultra-app .ultra-contact-date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+}
+
+#container .ultra-contact-date-weekdays,
+#ultra-app .ultra-contact-date-weekdays {
+  margin-top: 14px;
+  margin-bottom: 7px;
+}
+
+#container .ultra-contact-date-weekdays span,
+#ultra-app .ultra-contact-date-weekdays span {
+  color: rgba(247, 248, 251, 0.52);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#container .ultra-contact-date-grid button,
+#ultra-app .ultra-contact-date-grid button {
+  min-width: 0;
+  min-height: 34px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(247, 248, 251, 0.84);
+  font-family: var(--ultra-font);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#container .ultra-contact-date-grid button:hover,
+#ultra-app .ultra-contact-date-grid button:hover {
+  border-color: rgba(49, 122, 255, 0.58);
+  background: rgba(49, 122, 255, 0.12);
+  color: var(--theme-white);
+}
+
+#container .ultra-contact-date-grid button.is-muted,
+#ultra-app .ultra-contact-date-grid button.is-muted {
+  color: rgba(247, 248, 251, 0.28);
+}
+
+#container .ultra-contact-date-grid button.is-today,
+#ultra-app .ultra-contact-date-grid button.is-today {
+  border-color: rgba(242, 162, 58, 0.6);
+  color: var(--theme-amber);
+}
+
+#container .ultra-contact-date-grid button.is-selected,
+#ultra-app .ultra-contact-date-grid button.is-selected {
+  border-color: var(--theme-blue);
+  background: var(--theme-blue);
+  color: var(--theme-white);
+}
+
+#container .ultra-contact-date-foot,
+#ultra-app .ultra-contact-date-foot {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 14px;
+}
+
+#container .ultra-contact-date-foot button:first-child,
+#ultra-app .ultra-contact-date-foot button:first-child {
+  color: rgba(247, 248, 251, 0.62);
+}
+
+@media (max-width: 520px) {
+  #container .ultra-contact-date-popover,
+  #ultra-app .ultra-contact-date-popover {
+    width: 100%;
+  }
+}
+
+/* Contact form validation messages need real layout space on every breakpoint. */
+#container .ultra-contact-form-card .ultra-contact-form-grid,
+#ultra-app .ultra-contact-form-card .ultra-contact-form-grid {
+  row-gap: 14px;
+}
+
+#container .ultra-contact-form-card .ultra-contact-field,
+#ultra-app .ultra-contact-form-card .ultra-contact-field {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(46px, auto) 20px;
+  gap: 6px;
+}
+
+#container .ultra-contact-form-card .ultra-contact-field.is-wide,
+#ultra-app .ultra-contact-form-card .ultra-contact-field.is-wide {
+  grid-template-rows: auto minmax(116px, auto) 20px;
+}
+
+#container .ultra-contact-form-card .ultra-contact-field em,
+#ultra-app .ultra-contact-form-card .ultra-contact-field em {
+  position: static;
+  display: block;
+  min-height: 20px;
+  color: #ff9b93;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.25;
+}
+
+#container .ultra-contact-form-card .ultra-contact-field em:empty,
+#ultra-app .ultra-contact-form-card .ultra-contact-field em:empty {
+  display: block;
+  visibility: hidden;
 }
