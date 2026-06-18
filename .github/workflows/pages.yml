@@ -28,10 +28,35 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Build publish directory
+        shell: bash
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          for path in \
+            .nojekyll \
+            404.html \
+            index.html \
+            ultra-sw.js \
+            about \
+            services \
+            cases \
+            contact \
+            assets \
+            _components \
+            _json \
+            _runtimes
+          do
+            if [ -e "$path" ]; then
+              cp -a "$path" _site/
+            fi
+          done
+          find _site \( -name ".DS_Store" -o -name "Thumbs.db" -o -name "desktop.ini" \) -delete
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -18,7 +18,7 @@
 
   const labels = {
     en: {
-      brandSub: "Global Exhibition Delivery",
+      brandSub: "Global Exhibition & Spatial Delivery",
       nav: ["Home", "About", "Services", "Cases", "Contact"],
       cta: "Start a Project",
       viewCases: "View Cases",
@@ -33,12 +33,12 @@
       strategy: "Design Strategy",
       scope: "Delivery Scope",
       value: "Project Value",
-      footerCopy: "Global exhibition and spatial design services for Chinese brands going abroad.",
-      tagline: "We make Chinese brands look at home — overseas.",
+      footerCopy: "Global exhibition and spatial delivery services for brands across global markets.",
+      tagline: "Design-led. Engineering-backed. Locally delivered.",
       copyright: "© 2026 Ultra Expo. All rights reserved."
     },
     zh: {
-      brandSub: "全球展会落地服务",
+      brandSub: "全球展会与空间交付",
       nav: ["首页", "公司介绍", "业务能力", "案例中心", "联系我们"],
       cta: "提交展会需求",
       viewCases: "查看案例",
@@ -53,8 +53,8 @@
       strategy: "设计策略",
       scope: "交付范围",
       value: "项目价值",
-      footerCopy: "为中国品牌出海提供全球展会与空间设计落地服务。",
-      tagline: "让中国品牌在海外，呈现出本土品牌的姿态。",
+      footerCopy: "为全球市场提供展会与空间设计落地服务。",
+      tagline: "设计驱动，工程支撑，本地交付。",
       copyright: "© 2026 Ultra Expo. 保留所有权利。"
     }
   };
@@ -77,7 +77,7 @@
       admin: "Admin | Ultra Expo"
     },
     zh: {
-      home: "皓创展览 Ultra Expo｜全球展会与空间设计落地服务",
+      home: "皓创展览 Ultra Expo｜全球展会与空间交付",
       about: "公司介绍｜Ultra Expo 皓创展览",
       services: "业务能力｜Ultra Expo 皓创展览",
       cases: "案例中心｜Ultra Expo 皓创展览",
@@ -88,11 +88,11 @@
 
   const pageDescriptions = {
     en: {
-      home: "Ultra Expo provides global exhibition and spatial design delivery services for Chinese brands going abroad, covering strategy, space design, overseas localization, engineering, and on-site build.",
+      home: "Ultra Expo provides global exhibition and spatial delivery services, covering strategy, space design, localized production, engineering, and on-site build for brands across global markets.",
       contact: "Contact Ultra Expo for overseas exhibition booth design, brand spaces, product launches, and end-to-end local delivery support."
     },
     zh: {
-      home: "皓创展览 Ultra Expo 为中国品牌出海提供全球展会与空间设计落地服务，覆盖品牌策划、空间设计、海外本地化、工程搭建与现场交付。",
+      home: "Ultra Expo 皓创展览提供全球展会与空间设计落地服务，覆盖策略、空间设计、本地化生产、工程搭建与现场交付。",
       contact: "联系 Ultra Expo 皓创展览，咨询海外展会、展台设计、品牌空间、新品发布与本地化落地服务。"
     }
   };
@@ -138,28 +138,28 @@
     },
     {
       code: "02 DESIGN",
-      enTitle: "Space Design",
-      zhTitle: "空间设计",
-      enDesc: "We translate brand language into spatial structure, connecting identity, product display, lighting, material, and high-visibility brand elements.",
-      zhDesc: "将品牌语言转化为空间结构，结合视觉识别、产品陈列、灯光材料和高位品牌识别系统。",
+      enTitle: "Spatial Experience Design",
+      zhTitle: "空间体验设计",
+      enDesc: "We translate brand language into spatial structure, connecting visual identity, product display, lighting, materials, and visitor movement.",
+      zhDesc: "我们将品牌语言转化为空间结构，结合视觉识别、产品陈列、灯光材料与观众动线进行系统设计。",
       enScope: ["Concept design", "3D visualization", "Spatial planning", "Product display system", "Construction drawing development"],
       zhScope: ["概念设计", "3D 渲染", "空间规划", "产品展示系统", "施工图深化"]
     },
     {
-      code: "03 ABROAD",
-      enTitle: "Overseas Delivery",
-      zhTitle: "海外落地",
-      enDesc: "Our core differentiator is connecting local supply, customs, logistics, cross-time-zone project management, and on-site execution.",
-      zhDesc: "核心差异化能力是整合本地供应、清关物流、跨时区项目管理和海外现场执行。",
-      enScope: ["Local supply", "Overseas production", "Customs & logistics", "Cross-time-zone project management", "Local build partner coordination"],
-      zhScope: ["本地供应", "海外生产", "清关物流", "跨时区项目管理", "本地搭建伙伴协同"]
+      code: "03 DELIVERY",
+      enTitle: "Localized Delivery",
+      zhTitle: "本地化交付",
+      enDesc: "We coordinate local supply, production, customs, logistics, cross-time-zone project management, and regional build partners to reduce uncertainty in cross-border delivery.",
+      zhDesc: "我们整合本地供应、制作生产、清关物流、跨时区项目管理与区域搭建伙伴，降低跨国项目交付中的不确定性。",
+      enScope: ["Local supply", "Localized production", "Customs & logistics", "Cross-time-zone project management", "Regional build partner coordination"],
+      zhScope: ["本地供应", "本地化生产", "清关物流", "跨时区项目管理", "区域搭建伙伴协同"]
     },
     {
       code: "04 BUILD",
-      enTitle: "Engineering & Build",
-      zhTitle: "工程搭建",
-      enDesc: "From prefabrication to on-site build, we focus on design accuracy, schedule control, material quality, safety, and stable execution.",
-      zhDesc: "从工厂预制到现场搭建，关注设计还原、工期控制、材料质量、施工安全和展期稳定运行。",
+      enTitle: "Engineering & On-site Build",
+      zhTitle: "工程搭建与现场执行",
+      enDesc: "From prefabrication to on-site construction, we focus on design accuracy, schedule control, material quality, safety, and stable execution.",
+      zhDesc: "从工厂预制到现场施工，我们关注设计还原、工期控制、材料质量、施工安全与展期稳定运行。",
       enScope: ["Factory prefabrication", "Material and structure confirmation", "On-site construction", "Exhibition period maintenance", "Dismantling and return logistics"],
       zhScope: ["工厂预制", "材料与结构确认", "现场施工", "展期维护", "拆撤与回运"]
     }
@@ -259,16 +259,16 @@
       "Cases": "案例中心",
       "Contact": "联系我们",
       "Start a Project": "提交展会需求",
-      "Exhibition & Abroad": "展会与海外落地",
-      "EXHIBITION & ABROAD": "展会与海外落地",
-      "We make Chinese brands": "让中国品牌在海外，",
-      "look at home —": "呈现出本土品牌的姿态。",
+      "Exhibition & Abroad": "展会与空间交付",
+      "EXHIBITION & ABROAD": "展会与空间交付",
+      "We make Chinese brands": "不止完成展台，",
+      "look at home —": "更完成一次被信任的品牌亮相",
       "overseas.": "",
-      "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.": "为中国品牌出海提供全球展会与空间设计落地服务。",
+      "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.": "皓创展览 Ultra Expo 为全球市场提供展会空间、新品发布、零售空间与品牌环境的策略、设计、本地化生产、工程搭建与现场交付服务。",
       "View Cases": "查看案例",
       "Our Services": "了解服务能力",
       "Explore Services": "了解服务能力",
-      "Trusted by China's most innovative global brands.": "服务新能源、汽车出行、智能制造、消费科技与全球活动等多个行业客户。",
+      "Trusted by China's most innovative global brands.": "服务全球品牌与高成长行业客户",
       "TRUSTED BY": "我们的合作客户",
       "Countries & Regions": "覆盖国家与地区",
       "Projects Delivered": "全球交付项目",
@@ -277,22 +277,22 @@
       "Delivered Area": "累计交付面积",
       "Overseas Partners": "海外搭建伙伴",
       "Overseas Build Partners": "海外搭建伙伴",
-      "Global experience, proven delivery.": "全球项目经验",
-      "A global exhibition delivery team built for Chinese brands going global — from strategy and spatial design to end-to-end local build.": "一支为中国品牌出海而生的全球展会落地团队",
-      "A global exhibition delivery team": "一支为中国品牌出海而生的",
-      "built for Chinese brands": "全球展会落地团队",
+      "Global experience, proven delivery.": "覆盖全球展会市场的项目交付能力",
+      "A global exhibition delivery team built for Chinese brands going global — from strategy and spatial design to end-to-end local build.": "一支服务跨国展会项目的全球交付团队",
+      "A global exhibition delivery team": "一支服务跨国展会项目的",
+      "built for Chinese brands": "全球交付团队",
       "going global — from strategy and spatial design to": "",
       "end-to-end local build.": "",
-      "Ultra Expo was founded in Suzhou, China, with operations spanning 15+ countries. We specialize in overseas exhibitions, product launches, and retail spaces — delivering the full cycle from strategy and design to localized build.": "皓创展览 Ultra Expo 成立于中国苏州，业务覆盖全球 15+ 国家与地区。我们专注于海外展会、新品发布与零售空间，提供从策划、设计到本地化交付的全流程服务。",
-      "We're not just a booth builder — we're the project partner that helps Chinese brands establish a professional, credible, localized presence at global exhibitions. Founded in Suzhou · 15+ countries · 200+ projects delivered.": "我们不只是展台搭建商，而是帮助中国品牌在海外建立专业、可信、本地化形象的项目伙伴。成立于苏州 · 覆盖 15+ 国家 · 交付 200+ 项目。",
+      "Ultra Expo was founded in Suzhou, China, with operations spanning 15+ countries. We specialize in overseas exhibitions, product launches, and retail spaces — delivering the full cycle from strategy and design to localized build.": "皓创展览 Ultra Expo 成立于中国苏州，业务覆盖全球 15+ 国家与地区。我们将策略、空间设计、本地化生产、物流协调、工程搭建与现场交付整合进同一套项目体系。",
+      "We're not just a booth builder — we're the project partner that helps Chinese brands establish a professional, credible, localized presence at global exhibitions. Founded in Suzhou · 15+ countries · 200+ projects delivered.": "不止完成展台，更完成一次被信任的品牌亮相。成立于苏州 · 覆盖 15+ 国家 · 交付 200+ 项目。",
       "Strategy": "Strategy",
       "Design": "Design",
-      "Abroad": "Abroad",
+      "Abroad": "Delivery",
       "Build": "Build",
       "End-to-End Exhibition Services": "核心业务",
       "Brand Planning": "Brand Planning",
       "Spatial Design": "Spatial Design",
-      "Overseas Execution": "Overseas Execution",
+      "Overseas Execution": "Localized Delivery",
       "Engineering & Build": "Engineering & Build",
       "Overseas strategy · Content & creative direction · Exhibition planning & timeline management": "出海策略 · 内容创意 · 展会规划",
       "Concept design · 3D visualization & rendering · Construction drawing package": "概念设计 · 3D 渲染 · 施工图深化",
@@ -300,8 +300,8 @@
       "Factory prefabrication · On-site construction & QC · Strike, pack & return logistics": "工厂预制 · 现场施工 · 拆撤回运",
       "Selected Works": "精选案例",
       "SELECTED WORKS": "精选案例",
-      "From design to delivery.": "以真实项目，展示从设计到交付的能力。",
-      "Real projects. Real results. Every booth, every country.": "真实项目。真实结果。每个展台，每个国家。",
+      "From design to delivery.": "以真实项目，验证设计、交付与现场执行",
+      "Real projects. Real results. Every booth, every country.": "以真实项目，验证设计、交付与现场执行",
       "Why Ultra": "为什么选择 Ultra",
       "WHY ULTRA": "为什么选择皓创",
       "Global delivery. Local execution.": "全球资源，本地交付。",
@@ -316,7 +316,7 @@
       "From kickoff to strike, every milestone is clearly defined and tracked. Overseas construction never becomes a black box.": "从概念设计、施工图深化、工厂预制、物流到现场搭建，每个阶段都有清晰的节点规划。",
       "On-Site Management": "现场项目管理",
       "Dedicated on-site project managers supervise every build phase. Quality visible, milestones controlled, anomalies handled in real time.": "我们与本地搭建团队协同，保障设计还原、施工质量和展期最终呈现。",
-      "Let’s build your global stage.": "让我们一起为你的品牌，在全球搭建舞台。"
+      "Let’s build your global stage.": "让我们一起完成你的全球展会现场"
     }
   };
   homeText.zhToEn = Object.fromEntries(Object.entries(homeText.enToZh).map(([en, zh]) => [zh, en]).filter(([zh]) => zh));
@@ -1102,7 +1102,7 @@
     return `
       <section class="ultra-home-why" data-ultra-home-why>
         <div class="ultra-home-why-inner">
-          <h2>${zh ? `把跨境不确定性转化为 <span>可控交付。</span>` : `Turning cross-border uncertainty into <span>controlled delivery.</span>`}</h2>
+          <h2>${zh ? `把跨国展会的不确定性，变成 <span>可控的交付结果。</span>` : `Turning cross-border exhibition uncertainty into <span>controllable delivery.</span>`}</h2>
           <div class="ultra-home-why-grid">
             ${cards.map(card => `
               <article class="ultra-home-why-card">
@@ -1181,51 +1181,51 @@
         zhTitle: "策略",
         enSub: "Brand Planning",
         zhSub: "品牌策划",
-        enDesc: "Overseas strategy · Content & creative direction · Exhibition planning & timeline management",
-        zhLead: "出海策略 · 内容创意 · 展会规划",
-        zhDesc: "我们帮助客户在空间设计开始之前明确参展目标、品牌信息层级、产品表达与观众动线，让展台真正服务品牌出海目标。"
+        enDesc: "Exhibition strategy · Content hierarchy · Product storytelling · Visitor flow",
+        zhLead: "展会策略 · 内容层级 · 产品叙事 · 观众动线",
+        zhDesc: "我们在空间设计开始前明确参展目标、内容层级、产品叙事与观众路径。"
       },
       {
         icon: "design",
         code: "02",
         enTitle: "Design",
         zhTitle: "设计",
-        enSub: "Spatial Design",
-        zhSub: "空间设计",
-        enDesc: "Concept design · 3D visualization & rendering · Construction drawing package",
-        zhLead: "概念设计 · 3D 渲染 · 施工图深化",
+        enSub: "Spatial Experience Design",
+        zhSub: "空间体验设计",
+        enDesc: "Concept design · 3D visualization · Product display · Visitor movement",
+        zhLead: "概念设计 · 3D 可视化 · 产品陈列 · 观众动线",
         zhDesc: "我们将品牌语言转化为空间结构，结合视觉识别、产品陈列、灯光材料与观众动线进行系统设计。"
       },
       {
         icon: "abroad",
         code: "03",
-        enTitle: "Abroad",
-        zhTitle: "海外落地",
-        enSub: "Overseas Execution",
-        zhSub: "海外执行",
-        enDesc: "Local sourcing & supplier management · Customs clearance & logistics · Cross-timezone project coordination",
-        zhLead: "本地供应 · 清关物流 · 跨时区项目管理",
-        zhDesc: "通过本地化供应链、海外伙伴与项目管理，我们降低跨国展会交付中的不确定性。"
+        enTitle: "Delivery",
+        zhTitle: "本地化交付",
+        enSub: "Localized Delivery",
+        zhSub: "本地化交付",
+        enDesc: "Local supply · Production · Customs & logistics · Cross-time-zone project management",
+        zhLead: "本地供应 · 制作生产 · 清关物流 · 跨时区项目管理",
+        zhDesc: "通过本地供应、制作生产、清关物流、跨时区项目管理与区域搭建伙伴协同，我们降低跨国项目交付中的不确定性。"
       },
       {
         icon: "build",
         code: "04",
         enTitle: "Build",
         zhTitle: "搭建",
-        enSub: "Engineering & Build",
-        zhSub: "工程搭建",
-        enDesc: "Factory prefabrication · On-site construction & QC · Strike, pack & return logistics",
-        zhLead: "工厂预制 · 现场施工 · 拆撤回运",
-        zhDesc: "从工厂预制到现场搭建，我们关注设计还原、工期控制、材料质量和展期稳定运行。"
+        enSub: "Engineering & On-site Build",
+        zhSub: "工程搭建与现场执行",
+        enDesc: "Factory prefabrication · On-site construction · Safety · Stable execution",
+        zhLead: "工厂预制 · 现场施工 · 安全管理 · 稳定执行",
+        zhDesc: "从工厂预制到现场施工，我们关注设计还原、工期控制、材料质量、施工安全与展期稳定运行。"
       }
     ];
     return `
       <section class="ultra-home-services" data-ultra-home-services data-ultra-static-en>
         <div class="ultra-home-services-inner">
           <div class="ultra-home-services-head">
-            <div class="ultra-home-services-kicker">${zh ? "一体化展会服务" : "END-TO-END EXHIBITION SERVICES"}</div>
-            <h2>${zh ? "从策略到现场的全球展会交付服务" : "End-to-end Exhibition Services"}</h2>
-            <p>${zh ? "海外展会的难点不只是设计，而是策略、空间设计、生产、物流、清关、现场施工和跨时区沟通之间的衔接。Ultra Expo 将这些环节整合进同一套交付体系。" : "Overseas exhibitions are not only about design. Ultra Expo integrates strategy, spatial design, production, logistics, customs clearance, on-site construction, and cross-time-zone communication into one delivery system."}</p>
+            <div class="ultra-home-services-kicker">${zh ? "一体化展会服务" : "END-TO-END DELIVERY"}</div>
+            <h2>${zh ? "从策略到现场的全流程交付服务" : "End-to-end delivery from strategy to site"}</h2>
+            <p>${zh ? "展会项目的难点不只是设计，而是策略、空间设计、制作生产、物流协调、现场施工和跨时区沟通之间的衔接。Ultra Expo 将这些环节整合进同一套交付体系。" : "Exhibition delivery is not only about design. Ultra Expo connects strategy, spatial design, production, logistics, on-site construction, and cross-time-zone communication into one delivery system."}</p>
           </div>
           <div class="ultra-home-services-list">
             ${serviceItems.map((item, index) => `
@@ -1340,8 +1340,8 @@
       <section class="ultra-home-selected" data-ultra-home-selected>
         <div class="ultra-home-selected-head">
           <div class="ultra-home-selected-kicker">${zh ? "精选案例" : "SELECTED WORKS"}</div>
-          <h2>${zh ? "以真实项目，展示从设计到交付的能力。" : "From design to delivery."}</h2>
-          <p>${zh ? "Ultra Expo 为新能源、储能、工业制造、汽车、消费电子和科技行业客户提供展会设计与海外交付服务。" : "Real projects. Real results. Every booth, every country."}</p>
+          <h2>${zh ? "以真实项目，验证设计、交付与现场执行" : "Real projects that prove design, delivery, and execution"}</h2>
+          <p>${zh ? "Ultra Expo 为新能源、储能、工业制造、汽车、消费电子和科技行业客户提供展会设计与现场交付服务。" : "Real projects that prove design, delivery, and execution."}</p>
         </div>
         <div class="ultra-home-selected-marquee" aria-label="${zh ? "精选案例图片" : "Selected works gallery"}">
           ${row(rowA)}
@@ -1403,14 +1403,14 @@
 
   function homeHeroTitle(lang) {
     return lang === "zh"
-      ? ["\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916", "\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001"]
-      : ["We make Chinese brands", "look at home \u2014 overseas."];
+      ? ["不止完成展台，", "更完成一次", "被信任的品牌亮相"]
+      : ["More than a booth \u2014", "a trusted brand presence,", "delivered globally"];
   }
 
   function homeHeroCopy(lang) {
     return lang === "zh"
-      ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
-      : "Ultra Expo delivers the full stack for Chinese brands going global \u2014 strategy, spatial design, and end-to-end local build.";
+      ? "皓创展览 Ultra Expo 为全球市场提供展会空间、新品发布、零售空间与品牌环境的策略、设计、本地化生产、工程搭建与现场交付服务。"
+      : "Ultra Expo designs and delivers exhibitions, product launches, retail spaces, and brand environments through strategy, spatial design, localized production, engineering, and on-site build.";
   }
 
   function rollingButtonText(label) {
@@ -1436,7 +1436,7 @@
     const titleText = heroTitle.join(" ");
     const titleLines = heroTitle.map((line, index) => `<span class="hero-focus-line" style="--intro-index:${index}">${esc(line)}</span>`).join("");
     const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
-    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
+    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1\u80fd\u529b" : "Explore Services";
     return `
       <section class="home-hero-scene ultra-home-hero-section ultra-home-hero-rebuilt-section" data-ultra-home-hero data-animate>
         <section class="raster-scroll-scene" data-raster-scene>
@@ -1540,8 +1540,8 @@
 
   function homeTrustedHTML(lang) {
     const title = lang === "zh"
-      ? "\u670d\u52a1\u65b0\u80fd\u6e90\u3001\u6c7d\u8f66\u51fa\u884c\u3001\u667a\u80fd\u5236\u9020\u3001\u6d88\u8d39\u79d1\u6280\u4e0e\u5168\u7403\u6d3b\u52a8\u7b49\u591a\u4e2a\u884c\u4e1a\u5ba2\u6237\u3002"
-      : "Trusted by China's most innovative global brands.";
+      ? "服务全球品牌与高成长行业客户"
+      : "Trusted by global brands and high-growth industries";
     const brandLogos = sortBrandsForDisplay(explicitBrandSource().filter(item => item?.isOnline !== false))
       .map((brand, index) => {
         const label = brand?.englishName || brand?.name || brand?.id || "Brand";
@@ -1751,13 +1751,13 @@
         <div class="ultra-bottom-ambient" aria-hidden="true"></div>
         <div class="ultra-bottom-cta-inner">
           <div class="ultra-bottom-cta-copy">
-            <h2>${zh ? "让我们一起为你的品牌，在全球搭建舞台。" : "Let’s build your global stage."}</h2>
+            <h2>${zh ? "让我们一起完成你的全球展会现场" : "Let’s build your global stage."}</h2>
             <div class="ultra-bottom-actions">
               <a class="ultra-bottom-primary ultra-split-rolling" href="${routeLink("/contact")}" data-route="/contact" aria-label="${esc(bottomPrimaryLabel)}">${rollingButtonText(bottomPrimaryLabel)}</a>
               <a class="ultra-bottom-secondary ultra-split-rolling" href="mailto:jack@ultraexpo.com" aria-label="${esc(bottomSecondaryLabel)}">${rollingButtonText(bottomSecondaryLabel)}</a>
             </div>
           </div>
-          <p class="ultra-bottom-summary">${zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间，Ultra Expo 将为你评估设计与海外落地方案。" : "Tell us your exhibition, country, city, booth size, and project timeline. Ultra Expo will scope your design and overseas delivery plan."}</p>
+          <p class="ultra-bottom-summary">${zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间，Ultra Expo 将为你评估设计、制作与交付方案。" : "Tell us your exhibition name, country, city, booth size, and project timeline. Ultra Expo will help evaluate your design, production, and delivery needs."}</p>
         </div>
       </section>
       <footer class="ultra-footer" data-ultra-bottom>
@@ -1811,14 +1811,14 @@
     ];
     const serviceCards = zh ? [
       ["STRATEGY", "\u7b56\u7565\u89c4\u5212", "\u51fa\u6d77\u7b56\u7565 / \u5185\u5bb9\u521b\u610f / \u5c55\u4f1a\u89c4\u5212"],
-      ["DESIGN", "\u7a7a\u95f4\u8bbe\u8ba1", "\u6982\u5ff5\u8bbe\u8ba1 / 3D \u6e32\u67d3 / \u65bd\u5de5\u56fe\u6df1\u5316"],
-      ["ABROAD", "\u6d77\u5916\u843d\u5730", "\u672c\u5730\u4f9b\u5e94 / \u6e05\u5173\u7269\u6d41 / \u8de8\u65f6\u533a\u9879\u76ee\u7ba1\u7406"],
-      ["BUILD", "\u5de5\u7a0b\u642d\u5efa", "\u5de5\u5382\u9884\u5236 / \u73b0\u573a\u65bd\u5de5 / \u62c6\u64a4\u56de\u8fd0"]
+      ["DESIGN", "\u7a7a\u95f4\u4f53\u9a8c\u8bbe\u8ba1", "\u6982\u5ff5\u8bbe\u8ba1 / 3D \u53ef\u89c6\u5316 / \u4ea7\u54c1\u9648\u5217"],
+      ["DELIVERY", "\u672c\u5730\u5316\u4ea4\u4ed8", "\u672c\u5730\u4f9b\u5e94 / \u5236\u4f5c\u751f\u4ea7 / \u6e05\u5173\u7269\u6d41 / \u8de8\u65f6\u533a\u9879\u76ee\u7ba1\u7406"],
+      ["BUILD", "\u5de5\u7a0b\u642d\u5efa\u4e0e\u73b0\u573a\u6267\u884c", "\u5de5\u5382\u9884\u5236 / \u73b0\u573a\u65bd\u5de5 / \u65bd\u5de5\u5b89\u5168 / \u7a33\u5b9a\u6267\u884c"]
     ] : [
       ["STRATEGY", "Strategy", "Go-to-market strategy / Content planning / Exhibition planning"],
-      ["DESIGN", "Design", "Concept design / 3D visualization / Technical drawings"],
-      ["ABROAD", "Abroad", "Local supply / Customs and logistics / Cross-time-zone project management"],
-      ["BUILD", "Build", "Factory prefabrication / On-site construction / Dismantling and return logistics"]
+      ["DESIGN", "Spatial Experience Design", "Concept design / 3D visualization / Product display"],
+      ["DELIVERY", "Localized Delivery", "Local supply / Production / Customs and logistics / Cross-time-zone project management"],
+      ["BUILD", "Engineering & On-site Build", "Factory prefabrication / On-site construction / Safety / Stable execution"]
     ];
     const defaultServiceMedia = [
       { title: "STRATEGY", type: "image", url: "/assets/about/strategy.png?v=20260617-about-service-media02", alt: "Strategy service media" },
@@ -1923,9 +1923,9 @@
           <div class="ultra-about-hero-bg" aria-hidden="true"></div>
           <div class="ultra-about-wrap ultra-about-hero-grid">
             <div class="ultra-about-hero-copy">
-              <div class="ultra-about-kicker">${zh ? "\u5173\u4e8e\u7693\u521b / \u5c55\u4f1a\u4e0e\u51fa\u6d77" : "ABOUT ULTRA / EXHIBITION & ABROAD"}</div>
-              <h1>${zh ? "\u8ba9\u4e2d\u56fd\u54c1\u724c<br>\u5728\u6d77\u5916<br>\u5448\u73b0\u672c\u5730\u54c1\u724c\u59ff\u6001" : "We make<br>Chinese brands<br>look at home overseas."}</h1>
-              <p>${zh ? "\u7693\u521b\u5c55\u89c8 Ultra Expo \u6210\u7acb\u4e8e\u4e2d\u56fd\u82cf\u5dde\uff0c\u4e13\u6ce8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u7684\u6d77\u5916\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u96f6\u552e\u7a7a\u95f4\u9879\u76ee\u3002\u6211\u4eec\u63d0\u4f9b\u4ece\u7b56\u7565\u3001\u7a7a\u95f4\u8bbe\u8ba1\u5230\u6d77\u5916\u672c\u5730\u5316\u751f\u4ea7\u3001\u7269\u6d41\u3001\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u7684\u4e00\u4f53\u5316\u670d\u52a1\u3002" : "Ultra Expo is a global exhibition delivery team based in Suzhou, China. We help Chinese brands show up professionally in overseas exhibitions, product launches, and retail spaces, from strategy and spatial design to localized production, logistics, construction, and on-site delivery."}</p>
+              <div class="ultra-about-kicker">${zh ? "\u5173\u4e8e\u7693\u521b" : "ABOUT ULTRA EXPO"}</div>
+              <h1>${(zh ? ["\u4ee5\u7b56\u7565\u3001\u8bbe\u8ba1\u4e0e\u672c\u5730\u6267\u884c\uff0c", "\u5b8c\u6210\u5168\u7403\u5c55\u4f1a\u4ea4\u4ed8"] : ["Global exhibition delivery", "with strategy, design,", "and local execution"]).map(line => `<span>${esc(line)}</span>`).join("")}</h1>
+              <p>${zh ? "Ultra Expo \u662f\u4e00\u5bb6\u6210\u7acb\u4e8e\u4e2d\u56fd\u82cf\u5dde\u7684\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u4ea4\u4ed8\u56e2\u961f\uff0c\u4e1a\u52a1\u8986\u76d6 15+ \u56fd\u5bb6\u4e0e\u5730\u533a\uff0c\u63d0\u4f9b\u7b56\u7565\u3001\u8bbe\u8ba1\u3001\u672c\u5730\u5316\u751f\u4ea7\u3001\u5de5\u7a0b\u642d\u5efa\u4e0e\u73b0\u573a\u4ea4\u4ed8\u670d\u52a1\u3002" : "Ultra Expo is a Suzhou-based global exhibition and spatial delivery team, supporting projects across 15+ countries and regions with strategy, design, localized production, engineering, and on-site build."}</p>
               <div class="ultra-about-stats">
                 ${aboutStats.map((stat, index) => `<div><i class="ultra-about-stat-icon icon-${index}" aria-hidden="true"></i><strong class="ultra-about-stat-number ultra-stat-split" aria-label="${esc(stat[0])}">${statRollingText(stat[0])}</strong><span class="ultra-about-stat-label">${esc(stat[1])}</span></div>`).join("")}
               </div>
@@ -1934,14 +1934,14 @@
               <div class="ultra-about-system-frame">
                 <span class="node suzhou"></span><span class="node poland"></span><span class="node la"></span><span class="node hk"></span>
                 <i class="rail one"></i><i class="rail two"></i><i class="rail three"></i>
-                <div class="system-label">STRATEGY / DESIGN / ABROAD / BUILD</div>
+                <div class="system-label">STRATEGY / DESIGN / DELIVERY / BUILD</div>
               </div>
             </div>
           </div>
         </section>
         <section class="ultra-section ultra-about-section ultra-about-statement">
           <div class="ultra-about-wrap">
-            ${sectionIntro(zh ? "\u6211\u4eec\u662f\u8c01" : "WHO WE ARE", zh ? "\u4e00\u652f\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u800c\u751f\u7684\u5168\u7403\u5c55\u4f1a\u843d\u5730\u56e2\u961f" : "A global exhibition team built for Chinese brands going abroad.", zh ? "\u6211\u4eec\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916\u5e02\u573a\u7684\u9996\u6b21\u4eae\u76f8\u3001\u6301\u7eed\u53c2\u5c55\u4e0e\u7a7a\u95f4\u843d\u5730\u3002\u76f8\u6bd4\u5355\u4e00\u8bbe\u8ba1\u516c\u53f8\u6216\u672c\u5730\u642d\u5efa\u5546\uff0c\u7693\u521b\u66f4\u5173\u6ce8\u4ece\u54c1\u724c\u7b56\u7565\u3001\u7a7a\u95f4\u4f53\u9a8c\u3001\u4f9b\u5e94\u94fe\u3001\u5de5\u7a0b\u6267\u884c\u5230\u73b0\u573a\u7ba1\u7406\u7684\u5b8c\u6574\u94fe\u8def\u3002" : "We support Chinese brands as they enter, present, and grow in overseas markets. Unlike a single design studio or a local booth contractor, Ultra Expo focuses on the full delivery chain: brand strategy, spatial experience, supply chain coordination, engineering execution, and on-site management.")}
+            ${sectionIntro(zh ? "\u6211\u4eec\u662f\u8c01" : "WHO WE ARE", zh ? "\u4e00\u652f\u670d\u52a1\u8de8\u56fd\u5c55\u4f1a\u9879\u76ee\u7684\u5168\u7403\u4ea4\u4ed8\u56e2\u961f" : "A global exhibition delivery team for complex cross-border projects", zh ? "\u6211\u4eec\u670d\u52a1\u54c1\u724c\u5728\u5168\u7403\u5e02\u573a\u7684\u5c55\u4f1a\u4eae\u76f8\u3001\u6301\u7eed\u53c2\u5c55\u4e0e\u7a7a\u95f4\u843d\u5730\u3002\u76f8\u6bd4\u5355\u4e00\u8bbe\u8ba1\u516c\u53f8\u6216\u672c\u5730\u642d\u5efa\u5546\uff0c\u7693\u521b\u66f4\u5173\u6ce8\u4ece\u7b56\u7565\u3001\u7a7a\u95f4\u4f53\u9a8c\u3001\u4f9b\u5e94\u94fe\u3001\u5de5\u7a0b\u6267\u884c\u5230\u73b0\u573a\u7ba1\u7406\u7684\u5b8c\u6574\u94fe\u8def\u3002" : "We support brands as they enter, present, and grow across global markets. Unlike a single design studio or a local booth contractor, Ultra Expo focuses on the full delivery chain: strategy, spatial experience, supply chain coordination, engineering execution, and on-site management.")}
             <div class="ultra-about-statement-points ultra-character-block-reveal" data-ultra-character-block-reveal>
               ${(zh ? [
                 ["\u4ee5\u54c1\u724c\u7b56\u7565\u5f00\u59cb", "\u5728\u7a7a\u95f4\u8bbe\u8ba1\u4e4b\u524d\u5148\u660e\u786e\u5c55\u4f1a\u76ee\u6807\u3001\u4ea7\u54c1\u4e3b\u7ebf\u3001\u89c2\u4f17\u8def\u5f84\u4e0e\u5e02\u573a\u8bed\u5883\u3002"],
@@ -1960,11 +1960,11 @@
         </section>
         <section class="ultra-section ultra-about-section ultra-about-services">
           <div class="ultra-about-wrap">
-            ${sectionIntro("", zh ? "\u4e00\u4f53\u5316\u5c55\u4f1a\u51fa\u6d77\u670d\u52a1" : "End-to-End Exhibition Services", zh ? "\u5176\u4e2d\u300c\u6d77\u5916\u843d\u5730\u300d\u662f\u6211\u4eec\u7684\u6838\u5fc3\u5dee\u5f02\u5316\u80fd\u529b\u3002" : "ABROAD is where our global delivery capability becomes the key difference.")}
+            ${sectionIntro("", zh ? "\u4e00\u4f53\u5316\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u4ea4\u4ed8\u670d\u52a1" : "End-to-end exhibition and spatial delivery services", zh ? "\u5176\u4e2d\u300c\u672c\u5730\u5316\u4ea4\u4ed8\u300d\u662f\u6211\u4eec\u7684\u6838\u5fc3\u5dee\u5f02\u5316\u80fd\u529b\u3002" : "Localized delivery is where our global delivery capability becomes the key difference.")}
             <div class="ultra-about-service-grid">${serviceCards.map((card, index) => {
               const configuredMedia = configuredServiceMedia[index] || {};
               const media = String(configuredMedia?.url || "").trim() ? configuredMedia : defaultServiceMedia[index] || {};
-              return `<article class="${card[0] === "ABROAD" ? "is-featured " : ""}ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal style="--service-card-index:${index}">
+              return `<article class="${card[0] === "DELIVERY" ? "is-featured " : ""}ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal style="--service-card-index:${index}">
                 <div class="ultra-about-service-card-top">
                   <h3 data-reveal-text>${esc(card[1])}</h3>
                   <span class="ultra-about-card-icon icon-${esc(card[0].toLowerCase())}" aria-hidden="true"></span>
@@ -1975,13 +1975,13 @@
                 <div class="ultra-about-service-media">${renderServiceMedia(media, card[0])}</div>
               </article>`;
             }).join("")}</div>
-            <div class="ultra-about-flow" data-about-reveal>${["STRATEGY", "DESIGN", "ABROAD", "BUILD"].map(x => `<span>${x}</span>`).join("<i></i>")}</div>
+            <div class="ultra-about-flow" data-about-reveal>${["STRATEGY", "DESIGN", "DELIVERY", "BUILD"].map(x => `<span>${x}</span>`).join("<i></i>")}</div>
           </div>
         </section>
         <section class="ultra-section ultra-about-section ultra-about-delivery">
           <div class="ultra-about-wrap ultra-about-delivery-grid">
             <div>
-              ${sectionIntro("", zh ? "\u5168\u7403\u4ea4\u4ed8\uff0c\u672c\u5730\u6267\u884c" : "Global delivery, local execution.", zh ? "5 \u4e2a\u81ea\u6709\u5de5\u5382 / 3 \u5927\u533a\u57df\u529e\u516c\u5ba4 / 20+ \u6d77\u5916\u642d\u5efa\u4f19\u4f34\u3002\u5168\u7403\u672c\u5730\u5316\u751f\u4ea7\uff0c\u610f\u5473\u7740\u66f4\u77ed\u7684\u7269\u6d41\u8ddd\u79bb\u3001\u66f4\u4f4e\u7684\u5173\u7a0e\u98ce\u9669\u3001\u66f4\u5feb\u7684\u73b0\u573a\u54cd\u5e94\u3002" : "5 owned factories / 3 regional offices / 20+ overseas build partners. Localized production means shorter logistics routes, lower tariff risks, and faster on-site response.")}
+              ${sectionIntro("", zh ? "\u5168\u7403\u751f\u4ea7\u4e0e\u672c\u5730\u5316\u4ea4\u4ed8\u8d44\u6e90" : "Global production and localized delivery resources", zh ? "5 \u4e2a\u81ea\u6709\u5de5\u5382 / 3 \u5927\u533a\u57df\u529e\u516c\u5ba4 / 20+ \u6d77\u5916\u642d\u5efa\u4f19\u4f34\u3002\u5168\u7403\u672c\u5730\u5316\u751f\u4ea7\u610f\u5473\u7740\u66f4\u77ed\u7684\u7269\u6d41\u8ddd\u79bb\u3001\u66f4\u4f4e\u7684\u8de8\u5883\u98ce\u9669\u548c\u66f4\u5feb\u7684\u73b0\u573a\u54cd\u5e94\u3002" : "5 owned factories / 3 regional offices / 20+ overseas build partners. Localized production means shorter logistics routes, lower cross-border risks, and faster on-site response.")}
               <div class="ultra-about-node-list">${deliveryNodes.map((node, index) => `<article class="ultra-character-block-reveal" data-about-reveal data-ultra-character-block-reveal data-about-node="${index}"><strong data-reveal-text>${esc(node[0])}</strong><span>${esc(node[1])}</span></article>`).join("")}</div>
             </div>
             <div class="ultra-about-map" data-about-reveal aria-label="${zh ? "\u5168\u7403\u4ea4\u4ed8\u8282\u70b9" : "Global delivery nodes"}">
@@ -2026,7 +2026,7 @@
         </section>
         <section class="ultra-section ultra-about-section ultra-about-shows">
           <div class="ultra-about-wrap">
-            ${sectionIntro(zh ? "\u5168\u7403\u5c55\u4f1a\u7248\u56fe" : "GLOBAL EXHIBITIONS", zh ? "\u8986\u76d6\u5173\u952e\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\u7684\u9879\u76ee\u7ecf\u9a8c" : "Experience across key global exhibition platforms", zh ? "Ultra Expo \u670d\u52a1\u8fc7\u591a\u4e2a\u91cd\u8981\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\uff0c\u5e2e\u52a9\u4e2d\u56fd\u54c1\u724c\u5728\u4e0d\u540c\u5730\u533a\u3001\u884c\u4e1a\u4e0e\u5c55\u4f1a\u573a\u666f\u4e2d\u4fdd\u6301\u7a33\u5b9a\u3001\u4e13\u4e1a\u548c\u4e00\u81f4\u7684\u54c1\u724c\u5448\u73b0\u3002" : "Ultra Expo has supported projects across major international exhibition platforms, helping Chinese brands show up consistently across regions, industries, and event formats.")}
+            ${sectionIntro(zh ? "\u5168\u7403\u5c55\u4f1a\u7248\u56fe" : "GLOBAL EXHIBITIONS", zh ? "\u8986\u76d6\u5173\u952e\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\u7684\u9879\u76ee\u7ecf\u9a8c" : "Experience across key global exhibition platforms", zh ? "Ultra Expo \u670d\u52a1\u8fc7\u591a\u4e2a\u91cd\u8981\u56fd\u9645\u5c55\u4f1a\u5e73\u53f0\uff0c\u5e2e\u52a9\u54c1\u724c\u5728\u4e0d\u540c\u5730\u533a\u3001\u884c\u4e1a\u4e0e\u5c55\u4f1a\u573a\u666f\u4e2d\u4fdd\u6301\u7a33\u5b9a\u3001\u4e13\u4e1a\u548c\u4e00\u81f4\u7684\u54c1\u724c\u5448\u73b0\u3002" : "Ultra Expo has supported projects across major international exhibition platforms, helping brands show up consistently across regions, industries, and event formats.")}
             <p class="ultra-exhibition-supporting" data-about-reveal>${zh ? "\u4ece\u65b0\u80fd\u6e90\u4e0e\u50a8\u80fd\u5c55\u4f1a\uff0c\u5230\u79d1\u6280\u3001\u6c7d\u8f66\u3001\u5de5\u4e1a\u5236\u9020\u4e0e\u7efc\u5408\u8d38\u6613\u6d3b\u52a8\uff0c\u6211\u4eec\u7684\u9879\u76ee\u7ecf\u9a8c\u8986\u76d6\u6b27\u6d32\u3001\u5317\u7f8e\u3001\u5357\u7f8e\u3001\u4e9a\u6d32\u3001\u4e2d\u4e1c\u4e0e\u4e2d\u56fd\u5e02\u573a\u3002" : "From energy and battery shows to technology, mobility, industrial, and global trade events, our project experience spans Europe, North America, South America, Asia, the Middle East, and China."}</p>
             <div class="ultra-exhibition-logo-wall" data-about-reveal aria-label="${zh ? "\u5168\u7403\u5c55\u4f1a\u5e73\u53f0 Logo Wall" : "Global exhibition platform logo wall"}">
               ${exhibitionRows.map((row, rowIndex) => `<div class="ultra-exhibition-logo-row ${rowIndex % 2 ? "is-reverse" : ""}"><div>${row.concat(row).map(renderExhibitionLogo).join("")}</div></div>`).join("")}
@@ -2041,13 +2041,13 @@
         </section>
         <section class="ultra-section ultra-about-section ultra-about-trust">
           <div class="ultra-about-wrap">
-            ${sectionIntro(zh ? "\u8ba4\u8bc1\u4e0e\u4f53\u7cfb" : "CERTIFICATIONS", zh ? "\u4ee5\u6807\u51c6\u4ea4\u4ed8" : "Built with standards.", zh ? "\u6211\u4eec\u7684\u4ea4\u4ed8\u6d41\u7a0b\u7531\u8ba4\u53ef\u7684\u7ba1\u7406\u4f53\u7cfb\u3001\u884c\u4e1a\u4f1a\u5458\u8d44\u8d28\u548c\u56fd\u9645\u8fd0\u8425\u4e3b\u4f53\u652f\u6491\uff0c\u5e2e\u52a9\u6d77\u5916\u9879\u76ee\u4fdd\u6301\u53ef\u9760\u3001\u53ef\u8ffd\u6eaf\u548c\u53ef\u7ba1\u7406\u3002" : "Our delivery process is supported by recognized management systems, industry memberships, and international operating entities, helping overseas projects stay reliable, traceable, and manageable.", { revealTitle: true })}
+            ${sectionIntro(zh ? "\u8ba4\u8bc1\u4e0e\u4f53\u7cfb" : "CERTIFICATIONS", zh ? "\u4ee5\u8d28\u91cf\u3001\u5b89\u5168\u4e0e\u56fd\u9645\u8fd0\u8425\u80fd\u529b\u652f\u6491\u9879\u76ee\u4ea4\u4ed8" : "Certified for quality, safety, and international operations", zh ? "\u6211\u4eec\u7684\u4ea4\u4ed8\u6d41\u7a0b\u7531\u8ba4\u53ef\u7684\u7ba1\u7406\u4f53\u7cfb\u3001\u884c\u4e1a\u4f1a\u5458\u8d44\u8d28\u548c\u56fd\u9645\u8fd0\u8425\u4e3b\u4f53\u652f\u6491\uff0c\u5e2e\u52a9\u6d77\u5916\u9879\u76ee\u4fdd\u6301\u53ef\u9760\u3001\u53ef\u8ffd\u6eaf\u548c\u53ef\u7ba1\u7406\u3002" : "Our delivery process is supported by recognized management systems, industry memberships, and international operating entities, helping overseas projects stay reliable, traceable, and manageable.", { revealTitle: true })}
             <div class="ultra-about-cert-grid">${certs.map((cert, index) => `<article data-about-reveal style="--about-card-index:${index}"><strong>${esc(cert[0])}</strong><span>${esc(cert[1])}</span></article>`).join("")}</div>
           </div>
         </section>
         <section class="ultra-section ultra-about-section ultra-about-brand-wall">
           <div class="ultra-about-wrap">
-            ${sectionIntro(zh ? "\u5ba2\u6237\u4e0e\u54c1\u724c" : "TRUSTED BY BRANDS", zh ? "\u6211\u4eec\u670d\u52a1\u8fc7\u7684\u54c1\u724c" : "Brands we've helped show up overseas.", zh ? "\u4ece\u65b0\u80fd\u6e90\u3001\u51fa\u884c\u3001\u6d88\u8d39\u54c1\u724c\u5230\u5de5\u4e1a\u79d1\u6280\uff0c\u7693\u521b\u5c55\u89c8\u670d\u52a1\u4e2d\u56fd\u54c1\u724c\u51fa\u73b0\u5728\u5168\u7403\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u54c1\u724c\u7a7a\u95f4\u73b0\u573a\u3002" : "From energy and mobility to consumer brands and industrial technology, Ultra Expo supports companies across global exhibitions, launches, and branded spaces.")}
+            ${sectionIntro(zh ? "\u5ba2\u6237\u4e0e\u54c1\u724c" : "TRUSTED BY BRANDS", zh ? "\u6211\u4eec\u670d\u52a1\u8fc7\u7684\u54c1\u724c" : "Brands we've helped show up overseas.", zh ? "\u4ece\u65b0\u80fd\u6e90\u3001\u51fa\u884c\u3001\u6d88\u8d39\u54c1\u724c\u5230\u5de5\u4e1a\u79d1\u6280\uff0c\u7693\u521b\u5c55\u89c8\u670d\u52a1\u5ba2\u6237\u51fa\u73b0\u5728\u5168\u7403\u5c55\u4f1a\u3001\u65b0\u54c1\u53d1\u5e03\u4e0e\u54c1\u724c\u7a7a\u95f4\u73b0\u573a\u3002" : "From energy and mobility to consumer brands and industrial technology, Ultra Expo supports companies across global exhibitions, launches, and branded spaces.")}
             <div class="ultra-about-brand-grid">
               ${brandWallBrands.map(renderBrandLogoCard).join("")}
             </div>
@@ -2060,17 +2060,17 @@
   function legacyAboutPage(lang) {
     const zh = lang === "zh";
     return `
-      ${pageHero(zh ? "关于皓创" : "ABOUT ULTRA EXPO", zh ? "一支为中国品牌出海而生的全球展会落地团队" : "A global exhibition delivery team built for Chinese brands going abroad.", zh ? "皓创展览 Ultra Expo 成立于中国苏州，业务覆盖全球 15+ 国家与地区。我们专注于为中国品牌在海外展会、新品发布与零售空间，提供从策划、设计到本地化交付的全流程服务。" : "Ultra Expo was founded in Suzhou, China, with business coverage across 15+ countries and regions. We focus on overseas exhibitions, product launches, and retail spaces, providing full-process services from strategy and design to localized delivery.", lang)}
+      ${pageHero(zh ? "关于皓创" : "ABOUT ULTRA EXPO", zh ? "以策略、设计与本地执行，完成全球展会交付" : "Global exhibition delivery with strategy, design, and local execution", zh ? "Ultra Expo 是一家成立于中国苏州的全球展会与空间交付团队，业务覆盖 15+ 国家与地区，提供策略、设计、本地化生产、工程搭建与现场交付服务。" : "Ultra Expo is a Suzhou-based global exhibition and spatial delivery team, supporting projects across 15+ countries and regions with strategy, design, localized production, engineering, and on-site build.", lang)}
       <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead("BRAND STATEMENT", zh ? "我们不只是展台搭建商，而是帮助中国品牌在海外建立专业形象的项目伙伴。" : "We don’t just build booths. We make Chinese brands look at home — overseas.", zh ? "对出海品牌来说，展会空间不只是一个临时结构，而是品牌可信度、产品价值和市场准备度的公开表达。Ultra Expo 帮助客户将品牌目标转化为空间体验，让中国品牌在海外展会中呈现出更专业、更本地化、更可信的形象。" : "For Chinese brands entering international markets, exhibition spaces are more than temporary structures. They are public expressions of brand credibility, product value, and market readiness. Ultra Expo helps transform brand ambition into spaces that feel professional, localized, and ready for global audiences.")}
+        ${sectionHead("BRAND STATEMENT", zh ? "不止完成展台，更完成一次被信任的品牌亮相。" : "More than a booth \u2014 a trusted brand presence, delivered globally.", zh ? "对全球展会项目来说，展会空间不只是一个临时结构，而是品牌可信度、产品价值和市场准备度的公开表达。Ultra Expo 帮助客户将品牌目标转化为空间体验，让品牌在全球市场中呈现出更专业、更本地化、更可信的形象。" : "For global exhibition projects, spaces are more than temporary structures. They are public expressions of brand credibility, product value, and market readiness. Ultra Expo helps transform brand ambition into spaces that feel professional, localized, and ready for global audiences.")}
         ${statGrid(lang)}
       </div></section>
       <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead("CORE SERVICES", zh ? "四大业务板块" : "End-to-End Exhibition Services", zh ? "其中「海外落地」是我们的核心差异化能力。" : "Overseas Delivery is Ultra Expo’s core differentiator.")}
+        ${sectionHead("CORE SERVICES", zh ? "四大业务板块" : "End-to-End Exhibition Services", zh ? "其中「本地化交付」是我们的核心差异化能力。" : "Localized Delivery is Ultra Expo’s core differentiator.")}
         ${serviceGrid(lang)}
       </div></section>
       <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "全球供应链" : "GLOBAL SUPPLY CHAIN", zh ? "全球生产与落地资源" : "Global production and delivery resources.", zh ? "5 个自有工厂、3 大区域办公室与 20+ 海外搭建伙伴共同支撑本地化生产与现场执行。" : "5 self-owned factories, 3 regional offices, and 20+ overseas build partners support localized production and on-site execution.")}
+        ${sectionHead(zh ? "全球供应链" : "GLOBAL SUPPLY CHAIN", zh ? "全球生产与本地化交付资源" : "Global production and localized delivery resources.", zh ? "5 个自有工厂、3 大区域办公室与 20+ 海外搭建伙伴共同支撑本地化生产与现场执行。" : "5 self-owned factories, 3 regional offices, and 20+ overseas build partners support localized production and on-site execution.")}
         ${nodesGrid(lang)}
       </div></section>
       <section class="ultra-section"><div class="ultra-wrap">
@@ -2082,7 +2082,7 @@
         <div class="ultra-grid cols-3">${certifications.map(c => `<article class="ultra-card"><div class="ultra-section-kicker">${c[0]}</div><h3>${esc(c[0])}</h3><p>${esc(zh ? c[2] : c[1])}</p></article>`).join("")}</div>
       </div></section>
       <section class="ultra-section"><div class="ultra-wrap">
-        ${sectionHead(zh ? "合作客户" : "CLIENTS", zh ? "服务全球与中国品牌。" : "Trusted by global and Chinese brands.", "")}
+        ${sectionHead(zh ? "合作客户" : "CLIENTS", zh ? "服务全球品牌与高成长行业客户。" : "Trusted by global brands and high-growth industries.", "")}
         ${tokenList(clients)}
       </div></section>
     `;
@@ -2148,9 +2148,9 @@
     const stageLabel = value => zh ? String(value || "")
       .replace(/STRATEGY/g, "策略")
       .replace(/DESIGN/g, "设计")
-      .replace(/ABROAD/g, "海外")
+      .replace(/ABROAD/g, "本地化交付")
       .replace(/BUILD/g, "搭建")
-      .replace(/SYSTEM/g, "系统") : value;
+      .replace(/SYSTEM/g, "系统") : String(value || "").replace(/ABROAD/g, "DELIVERY");
     const serviceIntro = (kicker, title, cnTitle, copy, cnCopy) => `
       <div class="ultra-services-head" data-services-reveal>
         <div class="ultra-services-kicker">${esc(serviceKicker(kicker))}</div>
@@ -2169,11 +2169,11 @@
         key: "strategy",
         index: "01",
         title: "STRATEGY",
-        zhTitle: "品牌策划",
-        subtitle: "Market strategy / Content creative / Exhibition planning",
-        zhSubtitle: "出海策略 / 内容创意 / 展会规划",
-        description: "Before space design begins, Ultra clarifies exhibition goals, market context, product focus, audience paths, and the message hierarchy that should be remembered.",
-        zhDescription: "从展会目标、品牌定位、产品重点、观众路径和内容表达出发，先明确为什么参展、如何表达、用什么空间语言建立记忆点。",
+        zhTitle: "策略规划",
+        subtitle: "Market context / Content hierarchy / Product storytelling",
+        zhSubtitle: "市场语境 / 内容层级 / 产品叙事",
+        description: "Before spatial design begins, Ultra clarifies exhibition goals, brand positioning, product hierarchy, product storytelling, and visitor flow.",
+        zhDescription: "在空间设计开始前，我们明确展会目标、品牌定位、产品层级、产品叙事与观众动线。",
         steps: ["01", "02"],
         tag: "PLANNING",
         zhTag: "前期规划"
@@ -2182,11 +2182,11 @@
         key: "design",
         index: "02",
         title: "DESIGN",
-        zhTitle: "空间设计",
-        subtitle: "Concept design / 3D visualization / Construction drawing",
-        zhSubtitle: "概念设计 / 3D 可视化 / 施工图深化",
-        description: "Brand strategy becomes spatial structure, product display, visual focus, and a visitor journey that can be built, reviewed, and controlled.",
-        zhDescription: "将品牌策略转化为空间结构、视觉焦点、产品展示和观众动线，确保方案既有展示效果，也能被真实建造。",
+        zhTitle: "空间体验设计",
+        subtitle: "Concept design / 3D visualization / Product display",
+        zhSubtitle: "概念设计 / 3D 可视化 / 产品陈列",
+        description: "We translate brand language into spatial structure, connecting visual identity, product display, lighting, materials, and visitor movement.",
+        zhDescription: "我们将品牌语言转化为空间结构，结合视觉识别、产品陈列、灯光材料与观众动线进行系统设计。",
         steps: ["03", "04", "05", "06"],
         tag: "BUILDABLE",
         zhTag: "可落地方案"
@@ -2194,12 +2194,12 @@
       {
         key: "abroad",
         index: "03",
-        title: "ABROAD",
-        zhTitle: "海外落地",
-        subtitle: "Local supply / Logistics & customs / Cross-time-zone PM",
-        zhSubtitle: "本地供应 / 物流清关 / 跨时区项目管理",
-        description: "This is Ultra's core difference: making a design cross borders, supply chains, languages, time zones, and local site rules without losing stability.",
-        zhDescription: "海外落地是 Ultra 的核心差异化能力。我们关注的不只是方案设计，而是方案如何跨越国家、供应链、语言、时区和现场规则，最终稳定呈现。",
+        title: "DELIVERY",
+        zhTitle: "本地化交付",
+        subtitle: "Local supply / Production / Customs & logistics / Cross-time-zone PM",
+        zhSubtitle: "本地供应 / 制作生产 / 清关物流 / 跨时区项目管理",
+        description: "We coordinate local supply, production, customs, logistics, cross-time-zone project management, and regional build partners to reduce uncertainty in cross-border delivery.",
+        zhDescription: "我们整合本地供应、制作生产、清关物流、跨时区项目管理与区域搭建伙伴，降低跨国项目交付中的不确定性。",
         steps: ["07", "08", "09", "10", "11"],
         tag: "CORE DIFFERENCE",
         zhTag: "核心差异",
@@ -2209,11 +2209,11 @@
         key: "build",
         index: "04",
         title: "BUILD",
-        zhTitle: "工程搭建",
-        subtitle: "Factory prefabrication / On-site build / Dismantling & storage",
-        zhSubtitle: "工厂预制 / 现场施工 / 拆撤回运",
-        description: "From engineering development and material production to site build, maintenance, dismantling, and return logistics, every build detail stays under control.",
-        zhDescription: "从工程深化、材料制作到现场搭建、开展维护和拆撤回运，控制制作质量、现场效率和最终呈现效果。",
+        zhTitle: "工程搭建与现场执行",
+        subtitle: "Factory prefabrication / On-site construction / Safety / Stable execution",
+        zhSubtitle: "工厂预制 / 现场施工 / 安全管理 / 稳定执行",
+        description: "From prefabrication to on-site construction, we focus on design accuracy, schedule control, material quality, safety, and stable execution.",
+        zhDescription: "从工厂预制到现场施工，我们关注设计还原、工期控制、材料质量、施工安全与展期稳定运行。",
         steps: ["06", "07", "09", "11"],
         tag: "ENGINEERING",
         zhTag: "工程执行"
@@ -2269,10 +2269,10 @@
         <section class="ultra-services-hero" data-services-reveal>
           <div class="ultra-services-wrap ultra-services-hero-grid">
             <div class="ultra-services-hero-copy">
-              <div class="ultra-services-kicker">${esc(text("SERVICES / GLOBAL EXHIBITION DELIVERY", "业务能力 / 全球展会交付"))}</div>
-              <h1>${esc(text("From strategy to build. One system for overseas exhibitions.", "从策略到搭建，一套完整的海外展会交付系统。"))}</h1>
-              <p>${esc(text("Ultra Expo helps Chinese brands turn overseas exhibition ideas into buildable, localized, and on-site-ready brand experiences.", "Ultra Expo 为中国品牌提供从出海策略、空间设计、海外本地化落地到工程搭建的一体化展会服务，让品牌在海外展会中呈现出更专业、更本土、更稳定的形象。"))}</p>
-              <strong>${esc(text("We don't just build booths. We make Chinese brands look at home overseas.", "我们不只是展台搭建商，我们让中国品牌在海外呈现出本土品牌的姿态。"))}</strong>
+              <div class="ultra-services-kicker">${esc(text("CORE SERVICES", "业务能力"))}</div>
+              <h1>${esc(text("A full-process delivery system for global exhibitions and brand spaces", "面向全球展会与品牌空间的全流程交付体系"))}</h1>
+              <p>${esc(text("Ultra Expo connects strategy, spatial design, localized production, logistics, engineering, and on-site build into one delivery system for exhibitions, product launches, retail spaces, and brand environments across global markets.", "Ultra Expo 将策略、空间设计、本地化生产、物流协调、工程深化与现场搭建整合进同一套交付体系，服务全球展会、新品发布、零售空间与品牌环境项目。"))}</p>
+              <strong>${esc(text("More than a booth \u2014 a trusted brand presence, delivered globally", "不止完成展台，更完成一次被信任的品牌亮相"))}</strong>
               <div class="ultra-services-hero-actions">
                 <a class="ultra-services-primary" href="${routeLink("/contact")}" data-route="/contact">${esc(text("Start a Project", "咨询项目"))}<span aria-hidden="true">&#8594;</span></a>
                 <a class="ultra-services-secondary" href="#service-process">${esc(text("View Service Process", "查看服务流程"))}</a>
@@ -2284,7 +2284,7 @@
         <section class="ultra-services-section ultra-services-challenge" id="the-challenge">
           <div class="ultra-services-wrap ultra-services-split">
             <div class="ultra-services-sticky">
-              ${serviceIntro("THE CHALLENGE", "Overseas exhibitions are not just design problems.", "海外展会的难点，从来不只是设计。", "The real challenge is continuity. Strategy, design, production, logistics, customs, on-site build, and exhibition support all need to work as one connected system.", "真正影响海外展会结果的，不只是效果图好不好看，而是策略、设计、制作、物流、清关、现场搭建和展期支持之间能否连续协同。任何一个环节脱节，最终都会反映在现场效果里。")}
+              ${serviceIntro("THE CHALLENGE", "Exhibition delivery is never just a design problem", "展会交付的难点，从来不只是设计", "The real challenge is continuity: strategy, design, production, logistics, customs, on-site build, and exhibition support all need to work as one connected system.", "真正影响项目结果的，是策略、设计、制作、物流、清关、现场搭建与展期支持之间能否连续协同。")}
             </div>
             <div class="ultra-services-challenge-grid">
               ${challengeItems.map(item => `
@@ -2304,8 +2304,8 @@
             <div class="ultra-services-solution-panel" data-services-reveal>
               <div>
                 <div class="ultra-services-kicker">${esc(serviceKicker("THE ULTRA SOLUTION"))}</div>
-                <h2>${esc(text("One team. One timeline. One accountable delivery system.", "一个团队，一条项目线，一个负责到底的交付系统。"))}</h2>
-                <p>${esc(text("Ultra connects strategy, spatial design, overseas localization, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将品牌策划、空间设计、海外落地和工程搭建整合在同一条项目链路中。客户面对的不是多个割裂供应商，而是一套可控、可追踪、可落地的服务系统。"))}</p>
+                <h2>${esc(text("One team. One timeline. One accountable delivery system", "一个团队，一条项目线，一个负责到底的交付系统"))}</h2>
+                <p>${esc(text("Ultra connects strategy, spatial design, localized production, and construction into one project workflow, reducing handover loss and improving delivery certainty.", "Ultra 将策略、空间设计、本地化生产与工程搭建整合在同一条项目链路中，减少交接损耗，提升交付确定性。"))}</p>
               </div>
             </div>
           </div>
@@ -2315,7 +2315,7 @@
 
         <section class="ultra-services-section ultra-services-pillars">
           <div class="ultra-services-wrap">
-            ${serviceIntro("SERVICE PILLARS", "Turning cross-border uncertainty into", "把跨境不确定性转化为可控交付。", "Ultra's service is not a set of isolated capabilities. Strategy, design, abroad execution, and build work together as one managed project system.", "Ultra 的服务不是孤立的单点能力，而是由策略、设计、海外落地和工程搭建共同构成的项目交付体系。")}
+            ${serviceIntro("SERVICE PILLARS", "Turning cross-border uncertainty into controllable delivery", "把跨国不确定性转化为可控交付", "Ultra's service is not a set of isolated capabilities. Strategy, design, localized delivery, and build work together as one managed project system.", "Ultra 的服务不是孤立的单点能力，而是由策略、设计、本地化交付和工程搭建共同构成的项目交付体系。")}
             <div class="ultra-services-pillar-grid">
               ${servicePillars.map(pillar => `
                 <article id="${esc({ strategy: "brand-strategy", design: "space-design", abroad: "overseas-delivery", build: "engineering-build" }[pillar.key] || pillar.key)}" class="ultra-services-pillar ultra-character-block-reveal ${pillar.isCore ? "is-core" : ""}" data-services-reveal data-ultra-character-block-reveal data-pillar="${esc(pillar.key)}" data-steps="${esc(pillar.steps.join(","))}">
@@ -2335,7 +2335,7 @@
 
         <section class="ultra-services-section ultra-services-process" id="service-process">
           <div class="ultra-services-wrap">
-            ${serviceIntro("DETAILED SERVICE PROCESS", "Every step is part of one delivery system.", "每一个服务步骤，都是完整交付系统的一部分。", "From the first brief to dismantling and storage, Ultra keeps every step connected, trackable, and accountable.", "从前期需求、策略方向、概念设计、3D 可视化，到海外制作、物流清关、现场搭建、展期支持和拆撤仓储，Ultra 将每一个服务环节整合进同一条项目交付链路中。")}
+            ${serviceIntro("DETAILED SERVICE PROCESS", "From brief to opening day, every step is controlled", "从需求沟通到现场开展，每一步都可控", "From the first brief to dismantling and storage, Ultra keeps every step connected, trackable, and accountable.", "从前期需求、策略方向、概念设计、3D 可视化，到本地化制作、物流清关、现场搭建、展期支持和拆撤仓储，Ultra 将每一个服务环节整合进同一条项目交付链路中。")}
             <div class="ultra-services-process-grid">
               ${processItems.map(item => {
                 const isAbroad = item[3].includes("ABROAD");
@@ -2349,8 +2349,8 @@
               <article class="ultra-services-process-card ultra-services-system-card" data-services-reveal data-process-card>
                 <div class="ultra-services-process-top"><span>12</span><b>${esc(stageLabel("SYSTEM"))}</b></div>
                 <h3>${esc(text("One connected workflow", "一条连续的项目链路"))}</h3>
-                <h4>${esc(text("Strategy, design, abroad, build", "策略、设计、海外落地与工程搭建"))}</h4>
-                <p>${esc(text("Strategy, design, abroad execution, and build are connected in one managed delivery system.", "策略、设计、海外落地与工程搭建在同一条项目链路中协同推进。"))}</p>
+                <h4>${esc(text("Strategy, design, localized delivery, build", "策略、设计、本地化交付与工程搭建"))}</h4>
+                <p>${esc(text("Strategy, design, localized delivery, and build are connected in one managed delivery system.", "策略、设计、本地化交付与工程搭建在同一条项目链路中协同推进。"))}</p>
               </article>
             </div>
           </div>
@@ -2358,7 +2358,7 @@
 
         <section class="ultra-services-section ultra-services-deliver">
           <div class="ultra-services-wrap">
-            ${serviceIntro("WHAT WE DELIVER", "Not just a booth. A controlled overseas brand presence.", "不只是一个展台，而是一套可控的海外品牌呈现。", "Ultra helps brands reduce uncertainty in cross-border projects and keep strategy, design, production, and delivery aligned.", "Ultra 的价值不只是搭建一个空间，而是帮助品牌降低跨国项目的不确定性，让策略、设计、制作和落地结果保持一致。")}
+            ${serviceIntro("WHAT WE DELIVER", "Not just a booth. A controlled brand presence", "不只是一个展台，而是一套可控的品牌现场", "Ultra helps brands reduce uncertainty in cross-border projects and keep strategy, design, production, and delivery aligned.", "Ultra 的价值不只是搭建一个空间，而是帮助品牌降低跨国项目的不确定性，让策略、设计、制作和交付结果保持一致。")}
             <div class="ultra-services-deliver-grid">
               ${deliverables.map(item => `
                 <article class="ultra-services-deliver-card" data-services-reveal data-deliver-card data-deliver-icon="${esc(item[0])}">
@@ -2381,7 +2381,7 @@
         <section class="ultra-services-section ultra-services-why">
           <div class="ultra-services-wrap ultra-services-split">
             <div class="ultra-services-sticky">
-              ${serviceIntro("WHY ULTRA", "Built for Chinese brands going global.", "为中国品牌出海而建立的交付能力。", "Ultra's service system is built around the real overseas exhibition project chain: design fidelity, cross-border coordination, local execution, and on-site response.", "Ultra 的服务体系围绕海外展会真实项目链路建立，重点解决中国品牌在海外展示中遇到的设计还原、跨国协同、本地执行和现场响应问题。")}
+              ${serviceIntro("WHY ULTRA", "Built for global exhibition delivery", "为全球展会项目而建立的交付能力", "Ultra's service system is built around the real exhibition delivery chain: design fidelity, cross-border coordination, local execution, and on-site response.", "Ultra 的服务体系围绕全球展会真实项目链路建立，重点解决项目中的设计还原、跨国协同、本地执行和现场响应问题。")}
             </div>
             <div class="ultra-services-why-grid">
               ${whyItems.map((item, index) => `
@@ -2480,7 +2480,7 @@
         <div class="ultra-filter-more" data-filter-more-panel>
           ${["industry", "region", "area"].map(field => group(field, true)).join("")}
           <div class="ultra-filter-actions">
-            <button class="ultra-secondary ultra-split-rolling" type="button" data-clear-filters aria-label="${esc(lang === "zh" ? "重置" : "Reset")}">${rollingButtonText(lang === "zh" ? "重置" : "Reset")}</button>
+            <button class="ultra-secondary ultra-split-rolling" type="button" data-clear-filters aria-label="${esc(labels[lang].clear)}">${rollingButtonText(labels[lang].clear)}</button>
             <button class="ultra-primary ultra-split-rolling" type="button" data-apply-filters aria-label="${esc(lang === "zh" ? "应用筛选" : "Apply Filters")}">${rollingButtonText(lang === "zh" ? "应用筛选" : "Apply Filters")}</button>
           </div>
         </div>
@@ -2632,7 +2632,9 @@
 
   function caseGalleryImages(item) {
     const unique = [];
-    (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean).forEach(url => {
+    const gallery = (item.galleryImages?.files || item.images || []).map(fileUrl).filter(Boolean);
+    const fallbackCover = [fileUrl(item.coverImage?.files?.[0]) || fileUrl(item.coverImage) || item.image].filter(Boolean);
+    (gallery.length ? gallery : fallbackCover).forEach(url => {
       if (!unique.includes(url)) unique.push(url);
     });
     return unique;
@@ -2761,7 +2763,7 @@
         ${CasesRasterBackground()}
         <div class="cases-page-content">
           <section class="ultra-section ultra-cases-index"><div class="ultra-wrap">
-        ${sectionHead(zh ? "案例信息流" : "CASE FEED", labels[lang].allCases, "")}
+        ${sectionHead(zh ? "案例中心" : "SELECTED WORKS", zh ? "以真实项目，验证设计、交付与现场执行" : "Real projects that prove design, delivery, and execution", "")}
         ${filtersHTML(lang, state)}
         <div class="ultra-case-grid" data-case-grid>${items.map((c, index) => `<div class="${index >= initialCount ? "is-hidden" : ""}" data-case-item>${caseCard(c, lang)}</div>`).join("")}</div>
         ${items.length > initialCount ? `<div class="ultra-load-more-wrap"><button class="ultra-secondary" type="button" data-load-more>${zh ? "加载更多" : "Load More"}</button></div>` : ""}
@@ -2778,6 +2780,10 @@
     const logo = brandLogo(item);
     const area = caseAreaText(item);
     const images = caseGalleryImages(item);
+    const imageColumns = [[], []];
+    images.forEach((src, index) => {
+      imageColumns[index % 2].push({ src, index });
+    });
     const stats = [
       ["client", zh ? "客户" : "Client", caseBrandDisplayName(item, lang)],
       ["industry", zh ? "行业" : "Industry", translateCaseValue("industry", item.industry, lang)],
@@ -2805,7 +2811,13 @@
           <p class="ultra-case-detail-intro">${esc(caseIntro(item, lang))}</p>
         </div>
         <div class="ultra-case-detail-gallery" data-case-detail-gallery>
-          ${images.map((src, index) => `<figure><img src="${esc(src)}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item)} ${index + 1}`)}"></figure>`).join("")}
+          <div class="ultra-case-detail-gallery-flow">
+            ${imageColumns.map(column => `
+              <div class="ultra-case-detail-gallery-column">
+                ${column.map(({ src, index }) => `<figure style="--case-image-order: ${index};"><img src="${esc(src)}" alt="${esc(`${caseBrandName(item)} ${caseEventName(item)} ${index + 1}`)}"></figure>`).join("")}
+              </div>
+            `).join("")}
+          </div>
         </div>
       </section>
     `;
@@ -2853,13 +2865,13 @@
         <section class="ultra-contact-hero">
           <div class="ultra-contact-shell ultra-contact-hero-grid">
             <div class="ultra-contact-hero-copy">
-              <div class="ultra-contact-kicker">${zh ? "联系我们" : "CONTACT"}</div>
-              <h1>${zh ? `<span>联系</span><span>Ultra Expo</span>` : `<span>Contact</span><span>Ultra Expo</span>`}</h1>
+              <div class="ultra-contact-kicker">${zh ? "联系我们" : "START A PROJECT"}</div>
+              <h1>${zh ? `<span>让我们一起完成</span><span>你的全球展会现场</span>` : `<span>Let\u2019s build</span><span>your global stage</span>`}</h1>
               <div class="ultra-contact-hero-reveal-title ultra-character-block-reveal" data-ultra-character-block-reveal>
-                <h2 data-reveal-text>${zh ? "告诉我们你的项目计划" : "Tell us what you are planning"}</h2>
+                <h2 data-reveal-text>${zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间" : "Tell us your exhibition name, country, city, booth size, and project timeline"}</h2>
               </div>
-              <p>${zh ? "无论是海外展会、新品发布、零售空间，还是品牌出海展示需求，都可以从这里开始。留下你的信息，我们会尽快与你联系。" : "Whether it is an overseas exhibition, product launch, retail space, or brand presence abroad, start here. Share your brief and we will help map the next step."}</p>
-              ${zh ? "" : `<p class="ultra-contact-english">Tell us what you are planning. We will help map the next step.</p>`}
+              <p>${zh ? "Ultra Expo 将为你评估设计、制作与交付方案。" : "Ultra Expo will help evaluate your design, production, and delivery needs."}</p>
+              ${zh ? "" : `<p class="ultra-contact-english">Tell us your exhibition name, country, city, booth size, and project timeline.</p>`}
               <div class="ultra-contact-actions">
                 <a class="ultra-primary" href="#contact-form" data-contact-scroll>${zh ? "提交咨询" : "Send Inquiry"}</a>
                 <a class="ultra-secondary" href="${routeLink("/cases")}" data-route="/cases">${zh ? "查看案例" : "View Cases"}</a>
@@ -2896,15 +2908,15 @@
         <section class="ultra-contact-form-section" id="contact-form">
           <div class="ultra-contact-shell ultra-contact-form-layout">
             <form class="ultra-contact-form-card" data-contact-form novalidate>
-              <input type="text" name="website" tabindex="-1" autocomplete="off" class="ultra-honeypot" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" class="ultra-honeypot" aria-hidden="true" maxlength="80">
               <div class="ultra-contact-form-head">
                 <span>${zh ? "留言表单" : "CONTACT FORM"}</span>
-                <h2>${zh ? "留下必要信息，我们来推进下一步。" : "Leave the essentials. We will take it from there."}</h2>
+                <h2>${zh ? "提交你的项目需求" : "Submit your project brief"}</h2>
               </div>
               <div class="ultra-contact-form-grid">
-                ${contactField("name", zh ? "姓名" : "Name", "text", true)}
-                ${contactField("company", zh ? "公司" : "Company", "text", true)}
-                ${contactField("contact", zh ? "联系方式" : "Email or Phone", "text", true)}
+                ${contactField("name", zh ? "姓名" : "Name", "text", true, 40)}
+                ${contactField("company", zh ? "公司" : "Company", "text", true, 80)}
+                ${contactField("contact", zh ? "联系方式" : "Email or Phone", "text", true, 80)}
                 <label class="ultra-contact-field">
                   <span>${zh ? "咨询类型" : "Inquiry Type"} *</span>
                   <select name="inquiryType" required>
@@ -2913,13 +2925,13 @@
                   </select>
                   <em data-field-error="inquiryType"></em>
                 </label>
-                ${contactField("eventName", zh ? "展会名称" : "Event Name")}
-                ${contactField("countryRegion", zh ? "展会国家或地区" : "Country / Region")}
+                ${contactField("eventName", zh ? "展会名称" : "Event Name", "text", false, 100)}
+                ${contactField("countryRegion", zh ? "展会国家或地区" : "Country / Region", "text", false, 60)}
                 ${contactDateField("expectedDate", zh ? "预计时间" : "Expected Date")}
-                ${contactField("boothArea", zh ? "展位面积" : "Booth Area")}
+                ${contactField("boothArea", zh ? "展位面积" : "Booth Area", "text", false, 40)}
                 <label class="ultra-contact-field is-wide">
                   <span>${zh ? "留言内容" : "Message"} *</span>
-                  <textarea name="message" required placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
+                  <textarea name="message" required maxlength="600" placeholder="${zh ? "请简单说明你的展会、展位面积、时间、国家/地区或目前遇到的问题。" : "Briefly share the event, booth area, timeline, country/region, or the challenge you are working through."}"></textarea>
                   <em data-field-error="message"></em>
                 </label>
               </div>
@@ -2941,7 +2953,7 @@
               </section>
               <section class="ultra-contact-info-card">
                 <span>${zh ? "响应流程" : "RESPONSE PROCESS"}</span>
-                <h3>${zh ? "提交后会发生什么？" : "What happens next?"}</h3>
+                <h3>${zh ? "哪些信息可以帮助我们更快回复？" : "What helps us respond faster?"}</h3>
                 <ol class="ultra-contact-steps">
                   ${responseSteps.map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
                 </ol>
@@ -2955,7 +2967,7 @@
             <section class="ultra-contact-process-card">
               <div class="ultra-contact-section-head">
                 <span>${zh ? "响应流程" : "RESPONSE PROCESS"}</span>
-                <h2>${zh ? "提交后会发生什么？" : "What happens next?"}</h2>
+                <h2>${zh ? "后续沟通流程" : "What helps us respond faster?"}</h2>
               </div>
               <ol class="ultra-contact-steps">
                 ${responseSteps.map(item => `<li><strong>${esc(item[0])}</strong><span>${esc(item[1])}</span></li>`).join("")}
@@ -2967,11 +2979,12 @@
     `;
   }
 
-  function contactField(name, label, type = "text", required = false) {
+  function contactField(name, label, type = "text", required = false, maxLength = 120) {
+    const maxAttr = Number.isFinite(maxLength) && maxLength > 0 ? ` maxlength="${maxLength}"` : "";
     return `
       <label class="ultra-contact-field">
         <span>${esc(label)}${required ? " *" : ""}</span>
-        <input name="${esc(name)}" type="${esc(type)}" ${required ? "required" : ""}>
+        <input name="${esc(name)}" type="${esc(type)}"${maxAttr} ${required ? "required" : ""}>
         <em data-field-error="${esc(name)}"></em>
       </label>
     `;
@@ -4438,13 +4451,13 @@
 
     const fixed = document.createElement("div");
     fixed.className = `ultra-home-hero-title-fixed is-${lang}`;
-    fixed.innerHTML = `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
+    fixed.innerHTML = `<span>More than a booth \u2014</span><span>a trusted brand presence,</span><span>delivered globally</span>`;
     fixed.innerHTML = lang === "zh"
-      ? `<span>让中国品牌在海外</span><span>呈现出本土品牌的姿态</span>`
-      : `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
+      ? `<span>不止完成展台，</span><span>更完成一次</span><span>被信任的品牌亮相</span>`
+      : `<span>More than a booth \u2014</span><span>a trusted brand presence,</span><span>delivered globally</span>`;
     fixed.innerHTML = lang === "zh"
-      ? `<span>\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916</span><span>\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001</span>`
-      : `<span>We make Chinese brands</span><span>look at home — overseas.</span>`;
+      ? `<span>不止完成展台，</span><span>更完成一次</span><span>被信任的品牌亮相</span>`
+      : `<span>More than a booth \u2014</span><span>a trusted brand presence,</span><span>delivered globally</span>`;
     titleNodes.forEach(node => node.classList.add("ultra-home-hero-title-hidden"));
     section.appendChild(fixed);
   }
@@ -4519,15 +4532,15 @@
 
     const zh = lang === "zh";
     const heroTitle = zh
-      ? ["\u8ba9\u4e2d\u56fd\u54c1\u724c\u5728\u6d77\u5916", "\u5448\u73b0\u51fa\u672c\u571f\u54c1\u724c\u7684\u59ff\u6001"]
-      : ["We make Chinese brands", "look at home — overseas."];
+      ? ["不止完成展台，", "更完成一次", "被信任的品牌亮相"]
+      : ["More than a booth \u2014", "a trusted brand presence,", "delivered globally"];
     const heroCopy = zh
-      ? "\u4e3a\u4e2d\u56fd\u54c1\u724c\u51fa\u6d77\u63d0\u4f9b\u5168\u7403\u5c55\u4f1a\u4e0e\u7a7a\u95f4\u8bbe\u8ba1\u843d\u5730\u670d\u52a1\u3002"
-      : "Ultra Expo delivers the full stack for Chinese brands going global — strategy, spatial design, and end-to-end local build.";
+      ? "皓创展览 Ultra Expo 为全球市场提供展会空间、新品发布、零售空间与品牌环境的策略、设计、本地化生产、工程搭建与现场交付服务。"
+      : "Ultra Expo designs and delivers exhibitions, product launches, retail spaces, and brand environments through strategy, spatial design, localized production, engineering, and on-site build.";
     const titleText = heroTitle.join(" ");
     const titleLines = heroTitle.map((line, index) => `<span class="hero-focus-line" style="--intro-index:${index}">${esc(line)}</span>`).join("");
     const casesLabel = zh ? "\u67e5\u770b\u6848\u4f8b" : "View Cases";
-    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1" : "Our Services";
+    const servicesLabel = zh ? "\u4e86\u89e3\u670d\u52a1\u80fd\u529b" : "Explore Services";
 
     section.insertAdjacentHTML("beforeend", `
       <div class="ultra-home-hero-rebuilt" data-ultra-static-en>
@@ -4689,6 +4702,9 @@
       activeCaseModalId = id;
       history.pushState({ ultraCaseModal: true }, "", routeLink(`/cases/${id}`));
       render();
+      window.requestAnimationFrame(() => {
+        document.querySelector("[data-case-modal] [data-case-detail-gallery]")?.scrollTo?.({ top: 0, behavior: "auto" });
+      });
       return;
     }
     const close = () => {
@@ -5257,6 +5273,45 @@
     control?.focus({ preventScroll: true });
   }
 
+  const CONTACT_FIELD_LIMITS = {
+    name: 40,
+    company: 80,
+    contact: 80,
+    eventName: 100,
+    countryRegion: 60,
+    boothArea: 40,
+    message: 600
+  };
+
+  function contactFieldLimit(name) {
+    return CONTACT_FIELD_LIMITS[name] || 0;
+  }
+
+  function contactLengthMessage(limit) {
+    return locale() === "zh" ? `\u8bf7\u63a7\u5236\u5728 ${limit} \u4e2a\u5b57\u7b26\u4ee5\u5185\u3002` : `Please keep this under ${limit} characters.`;
+  }
+
+  function contactFieldValueLength(input) {
+    return String(input?.value || "").trim().length;
+  }
+
+  function contactProjectedLength(input, event) {
+    const value = String(input?.value || "");
+    const start = Number.isFinite(input?.selectionStart) ? input.selectionStart : value.length;
+    const end = Number.isFinite(input?.selectionEnd) ? input.selectionEnd : start;
+    const incoming = event?.inputType?.startsWith("delete") ? "" : String(event?.dataTransfer?.getData("text/plain") || event?.data || "");
+    return `${value.slice(0, start)}${incoming}${value.slice(end)}`.trim().length;
+  }
+
+  function validateContactFieldLength(form, name) {
+    const limit = contactFieldLimit(name);
+    if (!limit) return true;
+    const input = form?.elements[name];
+    if (contactFieldValueLength(input) <= limit) return true;
+    setContactFieldError(form, name, contactLengthMessage(limit));
+    return false;
+  }
+
   function collectContactMessage(form) {
     const value = name => String(form.elements[name]?.value || "").trim();
     const now = new Date().toISOString();
@@ -5288,9 +5343,12 @@
     let valid = true;
     required.forEach(name => {
       const value = String(form.elements[name]?.value || "").trim();
-      const message = value ? "" : (zh ? "请填写此项。" : "Please complete this field.");
+      const message = value ? "" : (zh ? "\u8bf7\u586b\u5199\u6b64\u9879\u3002" : "Please complete this field.");
       setContactFieldError(form, name, message);
       if (message) valid = false;
+    });
+    Object.entries(CONTACT_FIELD_LIMITS).forEach(([name, limit]) => {
+      if (!validateContactFieldLength(form, name)) valid = false;
     });
     return valid;
   }
@@ -5775,10 +5833,28 @@
     if (event.target.closest("[data-admin-message-search]")) applyAdminMessageFilters();
     const contactInput = event.target.closest("[data-contact-form] input, [data-contact-form] textarea, [data-contact-form] select");
     if (contactInput?.name) {
-      setContactFieldError(contactInput.form, contactInput.name, "");
+      if (validateContactFieldLength(contactInput.form, contactInput.name)) {
+        setContactFieldError(contactInput.form, contactInput.name, "");
+      }
       syncContactDateInput(contactInput);
     }
   });
+
+  document.addEventListener("beforeinput", event => {
+    const contactInput = event.target.closest?.("[data-contact-form] input, [data-contact-form] textarea");
+    const limit = contactFieldLimit(contactInput?.name);
+    if (!contactInput || !limit || contactProjectedLength(contactInput, event) <= limit) return;
+    setContactFieldError(contactInput.form, contactInput.name, contactLengthMessage(limit));
+    event.preventDefault();
+  });
+
+  document.addEventListener("wheel", event => {
+    const detail = event.target.closest?.(".ultra-case-detail");
+    const gallery = detail?.querySelector(".ultra-case-detail-gallery");
+    if (!gallery || gallery.scrollHeight <= gallery.clientHeight) return;
+    event.preventDefault();
+    gallery.scrollTop += event.deltaY;
+  }, { passive: false });
 
   document.addEventListener("dragstart", event => {
     const item = event.target.closest("[data-admin-gallery-item]");

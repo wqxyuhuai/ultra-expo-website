@@ -248,11 +248,10 @@ async function pageToCase(page, index) {
   const brandId = textValue(page, "cases", "brandId") || relatedBrand?.id || slug(brandEnglishName, "brand");
   const id = slug([brandEnglishName, exhibitionName, year].filter(Boolean).join("-") || page.id, "case");
   const coverFiles = await localizeFiles(fileValues(page, "cases", "coverImage"), "cases", `${id}-cover`);
-  const gallerySourceFiles = uniqueFiles([
-    ...fileValues(page, "cases", "galleryImages"),
-    ...(await pageBodyImageFiles(page.id))
-  ]);
-  const galleryFiles = await localizeFiles(gallerySourceFiles, "cases", `${id}-gallery`);
+  const notionGalleryFiles = fileValues(page, "cases", "galleryImages");
+  const galleryFiles = notionGalleryFiles.length
+    ? await localizeFiles(notionGalleryFiles, "cases", `${id}-gallery`)
+    : coverFiles.slice(0, 1);
   const areaSqm = numberValue(page, "cases", "areaSqm") || parseArea(textValue(page, "cases", "area"));
   const country = textValue(page, "cases", "country");
   const region = textValue(page, "cases", "region");
