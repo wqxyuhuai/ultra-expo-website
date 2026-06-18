@@ -1,4 +1,4 @@
-const ULTRA_CACHE_VERSION = "20260617-clean01";
+const ULTRA_CACHE_VERSION = "20260618-responsive01";
 const ULTRA_STATIC_CACHE = `ultra-static-${ULTRA_CACHE_VERSION}`;
 const ULTRA_IMAGE_CACHE = `ultra-images-${ULTRA_CACHE_VERSION}`;
 const ULTRA_PAGE_CACHE = `ultra-pages-${ULTRA_CACHE_VERSION}`;

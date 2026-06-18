@@ -5286,7 +5286,7 @@
     if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
     const basePath = window.__ULTRA_BASE_PATH || "/";
     const scope = basePath.endsWith("/") ? basePath : `${basePath}/`;
-    const serviceWorkerUrl = `${scope}ultra-sw.js?v=20260617-clean01`;
+    const serviceWorkerUrl = `${scope}ultra-sw.js?v=20260618-responsive01`;
     const register = () => {
       navigator.serviceWorker.register(serviceWorkerUrl, { scope }).catch(() => {});
     };
