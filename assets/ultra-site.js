@@ -477,9 +477,9 @@
         socialLinks: [
           { key: "phone", icon: "phone", labelEn: "Phone", labelZh: "电话", href: "tel:+8618506144181", enabled: true },
           { key: "email", icon: "email", labelEn: "Email", labelZh: "邮箱", href: "mailto:jack@ultraexpo.com", enabled: true },
-          { key: "rednote", icon: "rednote", labelEn: "RED", labelZh: "小红书", href: "https://www.xiaohongshu.com/search_result?keyword=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", enabled: true },
-          { key: "wechat", icon: "wechat", labelEn: "WeChat", labelZh: "微信公众号", href: "https://weixin.sogou.com/weixin?type=1&query=%E7%9A%93%E5%88%9B%E5%B1%95%E8%A7%88", enabled: true },
-          { key: "linkedin", icon: "linkedin", labelEn: "LinkedIn", labelZh: "领英", href: "https://www.linkedin.com/search/results/companies/?keywords=Ultra%20Expo", enabled: true }
+          { key: "rednote", icon: "rednote", labelEn: "RED", labelZh: "小红书", href: "", enabled: false },
+          { key: "wechat", icon: "wechat", labelEn: "WeChat", labelZh: "微信公众号", href: "", enabled: false },
+          { key: "linkedin", icon: "linkedin", labelEn: "LinkedIn", labelZh: "领英", href: "", enabled: false }
         ]
       },
       integrations: {
@@ -542,12 +542,46 @@
     };
   }
 
+  function normalizeFooterSocialItem(item) {
+    const key = item?.key;
+    const href = String(item?.href || "");
+    const pendingKeys = ["rednote", "wechat", "linkedin"];
+    const legacyPlaceholder = {
+      rednote: "xiaohongshu.com/search_result",
+      wechat: "weixin.sogou.com/weixin",
+      linkedin: "linkedin.com/search/results/companies"
+    };
+    if (pendingKeys.includes(key) && (!href || href.includes(legacyPlaceholder[key]))) {
+      return { ...item, href: "", enabled: false };
+    }
+    return item;
+  }
+
+  function mergeFooterItems(baseItems, savedItems, normalizeItem = item => item) {
+    const merged = Array.isArray(baseItems) ? baseItems.map(item => ({ ...item })) : [];
+    if (!Array.isArray(savedItems) || !savedItems.length) return merged.map(normalizeItem);
+    const indexByKey = new Map(merged.map((item, index) => [item?.key, index]).filter(([key]) => key));
+    savedItems.forEach(item => {
+      if (!item) return;
+      const key = item.key;
+      if (key && indexByKey.has(key)) {
+        const index = indexByKey.get(key);
+        merged[index] = { ...merged[index], ...item };
+        return;
+      }
+      merged.push({ ...item });
+    });
+    return merged.map(normalizeItem);
+  }
+
   function mergeAdminConfig(base, saved) {
     if (!saved || typeof saved !== "object") return base;
     const output = { ...base, ...saved };
     output.modules = { ...base.modules, ...(saved.modules || {}) };
     output.modules.home = { ...base.modules.home, ...(saved.modules?.home || {}) };
     output.footer = { ...base.footer, ...(saved.footer || {}) };
+    output.footer.contactLinks = mergeFooterItems(base.footer.contactLinks, saved.footer?.contactLinks);
+    output.footer.socialLinks = mergeFooterItems(base.footer.socialLinks, saved.footer?.socialLinks, normalizeFooterSocialItem);
     output.about = { ...base.about, ...(saved.about || {}) };
     output.about.serviceMedia = Array.isArray(saved.about?.serviceMedia) ? saved.about.serviceMedia : base.about.serviceMedia;
     output.about.exhibitionLogos = Array.isArray(saved.about?.exhibitionLogos) ? saved.about.exhibitionLogos : base.about.exhibitionLogos;
@@ -777,6 +811,79 @@
     if (item.route) return routeLink(item.route);
     const href = item.href || "#";
     return href.startsWith("/") ? routeLink(href) : href;
+  }
+
+  function isPhoneFooterItem(item) {
+    const href = String(item?.href || item?.value || "");
+    return item?.key === "phone" || item?.icon === "phone" || href.toLowerCase().startsWith("tel:");
+  }
+
+  function phoneFooterValue(item) {
+    const raw = String(item?.phone || item?.href || item?.value || "");
+    return raw.replace(/^tel:/i, "").trim();
+  }
+
+  function shouldCopyFooterPhoneOnClick() {
+    return typeof window.matchMedia === "function" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  }
+
+  function copyText(value) {
+    const text = String(value || "").trim();
+    if (!text) return Promise.reject(new Error("Nothing to copy"));
+    if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(text);
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.left = "-9999px";
+    document.body.appendChild(field);
+    field.select();
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } finally {
+      field.remove();
+    }
+    return copied ? Promise.resolve() : Promise.reject(new Error("Copy failed"));
+  }
+
+  function showUltraToast(message) {
+    let toast = document.querySelector("[data-ultra-toast]");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "ultra-toast";
+      toast.setAttribute("data-ultra-toast", "");
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.hidden = false;
+    toast.classList.add("is-visible");
+    window.clearTimeout(showUltraToast.timer);
+    showUltraToast.timer = window.setTimeout(() => {
+      toast.classList.remove("is-visible");
+      window.setTimeout(() => {
+        if (!toast.classList.contains("is-visible")) toast.hidden = true;
+      }, 240);
+    }, 1800);
+  }
+
+  function adminFooterStatusHTML(items, lang) {
+    const zh = lang === "zh";
+    const rows = (Array.isArray(items) ? items : []).map(item => {
+      const visible = item?.enabled !== false;
+      const value = item?.href || item?.route || item?.value || (isPhoneFooterItem(item) ? phoneFooterValue(item) : "");
+      return `
+        <div class="ultra-admin-footer-status-row ${visible ? "is-visible" : "is-hidden"}">
+          <span class="ultra-admin-footer-pill ${visible ? "is-visible" : "is-hidden"}">${visible ? (zh ? "显示" : "Visible") : (zh ? "隐藏" : "Hidden")}</span>
+          <strong>${esc(item?.key || item?.icon || "-")}</strong>
+          <em>${esc(adminLabel(item || {}, lang) || "-")}</em>
+          <code>${esc(value || (zh ? "待填写" : "Pending"))}</code>
+        </div>
+      `;
+    }).join("");
+    return `<div class="ultra-admin-footer-status" aria-label="${zh ? "底部联系方式状态" : "Footer contact status"}">${rows}</div>`;
   }
 
   function adminJSON(value) {
@@ -1730,7 +1837,8 @@
     const footerContactText = footerContact.filter(item => !["phone", "phone-consultation", "email", "wechat", "wechat-official", "rednote", "linkedin"].includes(item.key));
     const socialItems = (adminConfig.footer.socialLinks || [])
       .filter(item => item.enabled !== false)
-      .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }));
+      .map(item => ({ ...item, label: adminLabel(item, lang), href: adminHref(item) }))
+      .filter(item => item.href && item.href !== "#");
     const footerColumn = (heading, items) => `
       <nav class="ultra-footer-column" aria-label="${esc(heading.replace("/", ""))}">
         <h4>${esc(heading)}</h4>
@@ -1743,6 +1851,12 @@
       rednote: `<svg viewBox="0 0 200 200" aria-hidden="true"><path d="M114.825 132.607H93.2201C92.0198 132.607 91.6198 132.607 92.42 131.407C94.0204 128.206 95.6206 124.205 98.0211 121.004C98.4211 120.204 98.8213 119.804 100.022 119.804H110.424C111.624 119.804 111.624 119.404 111.624 118.204V81.396C111.624 80.1957 111.224 79.7956 110.024 80.1957H104.022C102.822 80.1957 102.422 79.7957 102.422 78.9954V68.9933C102.422 67.7931 102.822 67.3929 104.023 67.3929H131.629C132.429 67.3929 132.829 67.3929 132.829 68.5932V78.9954C132.829 79.7956 132.429 80.1957 131.629 80.1957H125.627C124.427 80.1957 124.027 80.5957 124.027 81.796V118.604C124.027 119.404 124.427 119.804 125.227 119.804H135.629C136.829 119.804 137.23 120.204 137.23 121.405V131.407C137.23 132.607 136.829 133.007 135.629 133.007C129.228 132.607 122.026 132.607 114.825 132.607ZM40.0087 92.9985V121.004C40.0087 123.005 39.6087 125.405 38.4083 127.406C36.0078 131.407 32.407 132.607 27.606 132.207C22.805 131.807 20.0043 129.406 18.8042 125.005C17.6039 120.604 17.6039 121.405 21.6047 120.604C23.2051 120.604 25.2055 121.405 26.8058 120.204C27.606 119.404 27.2059 117.404 27.2059 115.403V62.992C27.2059 61.7917 27.6059 61.3916 28.8063 61.3916H38.4083C39.6086 61.3916 40.0087 61.7917 40.0087 62.992V92.9985Z" fill="currentColor"/><path d="M97.621 104.201C96.0208 107.001 94.8205 110.202 93.2201 113.003C92.42 115.003 91.2197 115.403 89.6193 115.403H80.0173C79.2171 115.403 78.4169 115.403 77.6168 115.003C74.8161 114.203 74.016 112.203 74.8161 109.002C76.4165 104.201 79.2171 100.2 81.2175 95.3989C81.6176 94.5987 82.0177 94.1987 82.4179 92.9984H74.016C70.8153 92.1982 69.2149 90.1978 70.8153 86.5971C72.0156 82.9962 74.016 78.9954 76.0164 75.7947C78.0169 72.1939 79.6172 67.793 82.0177 63.7921C82.4177 62.9919 82.8179 62.5918 84.0181 62.5918H94.0204C95.2205 62.5918 95.2205 62.9919 94.8204 63.7921C92.42 68.9933 89.6193 73.7942 87.2188 78.9954C86.8188 79.3954 86.8188 79.7955 86.4188 80.5958C86.0188 81.396 86.4188 81.7959 87.2188 82.196C88.019 82.596 88.019 81.796 88.419 81.3959C88.8192 80.5958 89.2193 80.1956 90.4196 80.1956H100.422C101.622 80.1956 101.622 80.5956 101.222 81.3959C98.0212 87.7972 94.8205 94.5987 91.6198 101C90.4196 103.401 90.8196 104.201 93.6202 104.201H97.621ZM8.00183 126.606C5.6013 121.805 3.20077 117.404 0.800244 112.603C0.400244 112.203 0.400244 111.803 0.800244 111.402C2.40064 107.802 2.40064 103.801 2.40064 99.3997C2.80064 92.9984 3.20077 86.9971 3.60091 80.9958C3.60091 80.1956 4.00091 79.7955 4.80117 79.7955H15.6034C16.4037 79.7955 16.8037 79.7955 16.8037 80.9958C16.0036 90.1978 15.6034 99.3997 14.4032 109.002C13.6032 115.003 11.6026 121.005 7.60183 125.805C8.40183 125.805 8.00183 126.205 8.00183 126.606ZM55.612 79.7955H60.8132C62.0135 79.7955 62.0135 80.1955 62.4135 81.3959C62.8135 89.7976 63.6138 98.1995 64.4139 106.601C64.4139 107.401 64.4139 108.602 64.814 109.402C65.6141 111.002 65.214 112.603 64.414 114.603C62.8136 117.804 61.2132 121.805 59.2128 125.005C58.8128 126.206 58.4127 126.206 57.6124 125.005C54.8119 120.204 52.8115 115.803 51.6111 110.202C50.411 105.001 50.411 99.7999 50.0108 94.5987C49.6108 89.7976 49.2107 85.7968 48.8106 80.9958C48.8106 79.7955 48.8106 79.3955 50.411 79.3955C52.0112 80.1955 53.6116 79.7955 55.612 79.7955ZM76.0164 132.607C73.6159 132.607 69.6151 133.007 66.8144 132.207C65.6141 131.807 65.2141 131.407 66.0144 130.606C68.0147 127.006 69.6151 123.405 71.6155 119.804C72.0155 119.404 72.0155 118.604 72.8157 119.004C75.6164 120.204 79.2171 119.804 82.4179 119.804H90.8196C91.6198 119.804 92.0198 120.204 91.6198 121.004C89.6193 124.605 88.0191 128.206 86.0185 132.207C85.6185 133.007 85.2185 133.007 84.4183 133.007C82.0177 132.607 79.6172 132.607 76.0164 132.607ZM190.041 79.7955C185.64 79.7955 185.64 79.7955 185.64 75.3946C185.64 74.1943 185.64 72.594 186.04 70.9936C186.84 67.793 189.641 65.7926 193.642 66.1926C196.442 66.5926 199.243 69.3933 199.243 72.994C199.243 76.5948 196.842 78.9954 193.242 79.3954C192.041 79.7955 191.241 79.7955 190.041 79.7955ZM164.435 118.604V131.407C164.435 132.607 164.035 133.007 162.835 133.007H152.833C151.633 133.007 151.233 132.607 151.233 131.407V106.201C151.233 105.001 150.833 104.601 149.632 104.601H140.03C138.83 104.601 138.43 104.601 138.43 103.401V92.9984C138.43 91.7982 138.83 91.7982 140.03 91.7982H150.032C151.233 91.7982 151.633 91.398 151.233 90.1978V82.196C151.233 80.9958 150.833 80.9958 149.632 80.9958H143.631C142.831 80.9958 142.431 80.9958 142.431 79.7955V69.3933C142.431 68.5933 142.831 68.193 143.631 68.193H149.632C150.432 68.193 150.833 67.793 150.833 66.9927C150.833 64.1922 150.833 64.1922 154.033 64.1922H162.435C163.235 64.1922 163.635 64.5922 163.635 65.3925C163.635 68.193 163.635 68.193 166.436 68.193C170.037 68.193 173.637 68.9933 176.438 70.5935C180.839 72.994 182.439 77.395 182.439 81.7959V90.1978C182.439 91.398 182.839 91.7982 184.04 91.7982C188.841 91.7982 192.441 92.9984 195.242 96.9992C196.842 98.9996 197.643 102.2 197.643 104.601V121.405C197.643 127.806 194.042 132.207 187.64 133.407C185.24 133.807 182.039 133.807 179.639 133.007C175.238 131.807 172.437 127.806 172.037 123.405C172.037 122.205 172.437 122.605 173.237 122.605H183.64C184.84 122.605 185.24 122.205 185.24 121.004V110.202C185.24 107.401 183.64 105.401 180.439 105.401H164.435C163.635 105.401 163.235 105.801 163.235 106.601C164.435 109.802 164.435 113.803 164.435 118.604ZM171.237 85.3967C171.237 79.7955 171.637 79.7955 165.236 79.7955C164.435 79.7955 164.035 80.1955 164.035 80.9958V89.7976C164.035 90.5979 164.435 90.9979 165.236 90.9979H170.037C170.837 90.9979 171.237 90.5979 171.237 89.7976L171.237 85.3967Z" fill="currentColor"/></svg>`,
       wechat: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.7 5.2c-4 0-7.2 2.6-7.2 5.8 0 1.8 1 3.4 2.6 4.4l-.7 2.2 2.6-1.3c.8.2 1.7.4 2.7.4.3 0 .6 0 .9-.1-.3-.7-.5-1.4-.5-2.1 0-2.9 2.9-5.2 6.4-5.2.1 0 .3 0 .4.1-.9-2.5-3.7-4.2-7.2-4.2Zm-2.5 4.7c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm5 0c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9Zm4.5.8c-3 0-5.3 1.8-5.3 4.1s2.4 4.1 5.3 4.1c.7 0 1.4-.1 2-.3l2.1 1-.5-1.8c1.2-.8 1.9-1.9 1.9-3.1 0-2.2-2.5-4-5.5-4Zm-1.8 3.5c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Zm3.8 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7Z"/></svg>`,
       linkedin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15v-15Zm3.1 6v6.5h2v-6.5h-2Zm1-3.2c-.7 0-1.1.4-1.1 1s.4 1 1.1 1 1.1-.4 1.1-1-.4-1-1.1-1Zm2.7 3.2v6.5h2v-3.5c0-.9.5-1.5 1.3-1.5.7 0 1.1.5 1.1 1.5v3.5h2v-3.8c0-2-1.1-2.9-2.6-2.9-.9 0-1.5.4-1.8 1v-.8h-2Z"/></svg>`
+    };
+    const footerSocialCard = item => {
+      const external = /^https?:\/\//i.test(item.href);
+      const phoneValue = isPhoneFooterItem(item) ? phoneFooterValue(item) : "";
+      const phoneAttrs = phoneValue ? ` data-footer-phone="${esc(phoneValue)}"` : "";
+      return `<a class="ultra-social-card" href="${esc(item.href)}" target="${external ? "_blank" : "_self"}" rel="${external ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}"${phoneAttrs}>${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`;
     };
     const bottomPrimaryLabel = zh ? "\u63d0\u4ea4\u9879\u76ee\u9700\u6c42" : "Submit Project Brief";
     const bottomSecondaryLabel = zh ? "\u53d1\u9001\u90ae\u4ef6" : "Send an Email";
@@ -1777,13 +1891,13 @@
                 <h4>CONTACT/</h4>
                 ${footerContactText.map(item => `<a class="ultra-footer-link ultra-footer-rolling ultra-split-rolling" href="${esc(item.href)}" ${item.route ? `data-route="${esc(item.route)}"` : ""} ${item.targetId ? `data-scroll-target="${esc(item.targetId)}"` : ""} data-label="${esc(item.label)}" aria-label="${esc(item.label)}">${rollingButtonText(item.label)}</a>`).join("")}
                 <div class="ultra-footer-contact-buttons" aria-label="Contact buttons">
-                  ${socialItems.map(item => `<a class="ultra-social-card" href="${esc(item.href)}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`).join("")}
+                  ${socialItems.map(footerSocialCard).join("")}
                 </div>
               </nav>
             </div>
           </div>
           <div class="ultra-footer-social" aria-label="${zh ? "社媒与联系方式" : "Social and contact links"}">
-            ${socialItems.map(item => `<a class="ultra-social-card" href="${esc(item.href)}" target="${item.href.startsWith("http") ? "_blank" : "_self"}" rel="${item.href.startsWith("http") ? "noopener" : ""}" aria-label="${esc(item.label)}" data-label="${esc(item.label)}">${iconSVG[item.icon] || iconSVG.email}<span>${esc(item.label)}</span></a>`).join("")}
+            ${socialItems.map(footerSocialCard).join("")}
           </div>
         </div>
       </footer>
@@ -3417,7 +3531,11 @@
   }
 
   function adminContactSection(contact) {
+    const config = getAdminConfig();
     const entries = Array.isArray(contact.footerEntries) ? contact.footerEntries : [];
+    const footerSocialLinks = Array.isArray(config.footer?.socialLinks) ? config.footer.socialLinks : [];
+    const footerContactLinks = Array.isArray(config.footer?.contactLinks) ? config.footer.contactLinks : [];
+    const lang = locale();
     return `
       <section class="ultra-admin-view ${adminActiveView() === "contact" ? "is-active" : ""}" data-admin-view="contact">
         <div class="ultra-admin-view-head"><span>Contact</span><h1>Contact Management</h1></div>
@@ -3430,7 +3548,12 @@
             ${adminTextArea("addressZh", "Chinese Address", contact.addressZh || "")}
             ${adminTextArea("addressEn", "English Address", contact.addressEn || "")}
           </div>
+          <h2>Footer Social Buttons</h2>
+          <p class="ultra-admin-note">Manage the visible state and destination for each footer contact button. Set enabled to false to keep a platform configured but hidden.</p>
+          ${adminFooterStatusHTML(footerSocialLinks, lang)}
+          ${adminTextArea("footerSocialLinks", "Social Buttons JSON", JSON.stringify(footerSocialLinks, null, 2), "spellcheck=\"false\"")}
           <h2>Footer Contact Entries</h2>
+          ${adminFooterStatusHTML(footerContactLinks, lang)}
           <div class="ultra-admin-repeater" data-admin-footer-entries>
             ${[...entries, { labelZh: "", labelEn: "", value: "" }].map((entry, index) => `
               <div class="ultra-admin-repeater-row">
@@ -5405,6 +5528,8 @@
       const value = form.elements[`footerValue${index}`]?.value.trim() || "";
       if (labelZh || labelEn || value) entries.push({ labelZh, labelEn, value });
     });
+    const footerSocialLinks = parseAdminTextarea(form, "footerSocialLinks", getAdminConfig().footer?.socialLinks || []);
+    if (!Array.isArray(footerSocialLinks)) throw new Error("footerSocialLinks must be a JSON array.");
     return {
       email: form.elements.email.value.trim(),
       phone: form.elements.phone.value.trim(),
@@ -5412,7 +5537,8 @@
       wechat: form.elements.wechat.value.trim(),
       addressZh: form.elements.addressZh.value.trim(),
       addressEn: form.elements.addressEn.value.trim(),
-      footerEntries: entries
+      footerEntries: entries,
+      footerSocialLinks
     };
   }
 
@@ -5477,6 +5603,25 @@
   }
 
   document.addEventListener("click", event => {
+    const footerPhone = event.target.closest("[data-footer-phone]");
+    if (footerPhone && shouldCopyFooterPhoneOnClick()) {
+      event.preventDefault();
+      const value = footerPhone.dataset.footerPhone || "";
+      copyText(value)
+        .then(() => {
+          const label = footerPhone.dataset.label || "Phone";
+          footerPhone.classList.add("is-copied");
+          footerPhone.setAttribute("aria-label", `${label} copied`);
+          showUltraToast(locale() === "zh" ? "电话号码已复制" : "Phone number copied");
+          window.setTimeout(() => {
+            footerPhone.classList.remove("is-copied");
+            footerPhone.setAttribute("aria-label", label);
+          }, 1200);
+        })
+        .catch(error => console.warn("Unable to copy phone number", error));
+      return;
+    }
+
     const activeDateField = event.target.closest(".ultra-contact-date-field");
     if (!activeDateField) closeContactDatePickers();
 
@@ -5995,17 +6140,22 @@
     const adminContactForm = event.target.closest("[data-admin-contact-form]");
     if (adminContactForm) {
       event.preventDefault();
-      const config = getAdminConfig();
-      const contact = collectAdminContact(adminContactForm);
-      const contactLinks = contact.footerEntries.map((entry, index) => ({
-        key: `contact-${index + 1}`,
-        labelZh: entry.labelZh,
-        labelEn: entry.labelEn,
-        href: entry.value,
-        route: entry.value?.startsWith("/") ? entry.value : "",
-        enabled: true
-      }));
-      saveAdminSection({ ...config, contact, footer: { ...config.footer, contactLinks } }, "contact", "Contact saved.");
+      try {
+        const config = getAdminConfig();
+        const contactInput = collectAdminContact(adminContactForm);
+        const { footerSocialLinks, ...contact } = contactInput;
+        const contactLinks = contact.footerEntries.map((entry, index) => ({
+          key: `contact-${index + 1}`,
+          labelZh: entry.labelZh,
+          labelEn: entry.labelEn,
+          href: entry.value,
+          route: entry.value?.startsWith("/") ? entry.value : "",
+          enabled: true
+        }));
+        saveAdminSection({ ...config, contact, footer: { ...config.footer, contactLinks, socialLinks: footerSocialLinks } }, "contact", "Contact saved.");
+      } catch (error) {
+        setAdminStatus(adminContactForm, "Save failed: " + error.message, true);
+      }
       return;
     }
 
