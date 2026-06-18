@@ -25377,8 +25377,8 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
 /* Screenshot fixes 2026-06-17: theme blue, about service cards, contact promise dots. */
 
 :root {
-  --ultra-selection-bg: var(--theme-black);
-  --ultra-selection-fg: var(--theme-white);
+  --ultra-selection-bg: var(--theme-white);
+  --ultra-selection-fg: var(--theme-black);
 }
 
 ::selection {
@@ -25505,6 +25505,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   [style*="color:#317aff"],
   [style*="color: #317aff"]
 ) {
+  --ultra-selection-bg: var(--theme-white);
   --ultra-selection-fg: currentColor;
 }
 
@@ -25563,7 +25564,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-contact-process .ultra-contact-section-head > span,
   .ultra-bottom-kicker,
   .ultra-about-kicker,
-  .ultra-about-hero-copy h1 span,
   .ultra-about-head h2 span,
   .ultra-about-service-grid .num,
   .ultra-services-kicker,
@@ -25582,6 +25582,7 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-admin-confirm-card span,
   .ultra-admin-list li > button:hover
 ) {
+  --ultra-selection-bg: var(--theme-white);
   --ultra-selection-fg: currentColor;
 }
 
@@ -25600,7 +25601,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-contact-process .ultra-contact-section-head > span,
   .ultra-bottom-kicker,
   .ultra-about-kicker,
-  .ultra-about-hero-copy h1 span,
   .ultra-about-head h2 span,
   .ultra-about-service-grid .num,
   .ultra-services-kicker,
@@ -25637,7 +25637,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-contact-process .ultra-contact-section-head > span,
   .ultra-bottom-kicker,
   .ultra-about-kicker,
-  .ultra-about-hero-copy h1 span,
   .ultra-about-head h2 span,
   .ultra-about-service-grid .num,
   .ultra-services-kicker,
@@ -25697,6 +25696,29 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   align-self: center !important;
   margin-top: 0 !important;
   background: var(--theme-blue) !important;
+}
+
+@media (min-width: 901px) {
+  #container .ultra-about-services .ultra-about-service-grid article,
+  #ultra-app .ultra-about-services .ultra-about-service-grid article,
+  html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-grid article,
+  html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-grid article {
+    grid-template-rows: clamp(138px, 7.4vw, 158px) clamp(118px, 6.4vw, 138px) auto !important;
+  }
+
+  #container .ultra-about-services .ultra-about-service-card-top,
+  #ultra-app .ultra-about-services .ultra-about-service-card-top,
+  html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-card-top,
+  html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-card-top {
+    min-height: 0 !important;
+  }
+
+  #container .ultra-about-services .ultra-about-service-card-copy,
+  #ultra-app .ultra-about-services .ultra-about-service-card-copy,
+  html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-card-copy,
+  html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-card-copy {
+    min-height: 0 !important;
+  }
 }
 
 /* Services card redesign 2026-06-17: challenge matrix and why scroll cards. */
@@ -29748,7 +29770,7 @@ html:has(.ultra-about) #ultra-app .ultra-about-hero-copy h1 {
   max-width: 1180px !important;
   margin-right: auto !important;
   margin-left: auto !important;
-  font-size: 71px !important;
+  font-size: 61px !important;
   line-height: 1.04 !important;
   letter-spacing: 0 !important;
   text-align: center !important;
