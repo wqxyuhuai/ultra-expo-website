@@ -29371,7 +29371,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].
   }
 }
 
-
 /* Final case-gallery override: keep the case copy fixed and scroll the gallery pane. */
 @media (min-width: 1101px) {
   html:has(.ultra-case-detail.is-page),
@@ -29832,5 +29831,277 @@ html:has(.ultra-cases-index) #ultra-app .ultra-cases-index .ultra-section-head h
   #ultra-app .ultra-site > .ultra-bottom-cta .ultra-bottom-summary {
     align-self: start !important;
     margin-top: 0 !important;
+  }
+}
+
+/* About service media ratio fix - keep all four card images square and unwarped. */
+#container .ultra-about-services .ultra-about-service-media,
+#ultra-app .ultra-about-services .ultra-about-service-media,
+html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-media,
+html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-media {
+  display: grid !important;
+  place-items: center !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+#container .ultra-about-services .ultra-about-service-media img,
+#container .ultra-about-services .ultra-about-service-media video,
+#ultra-app .ultra-about-services .ultra-about-service-media img,
+#ultra-app .ultra-about-services .ultra-about-service-media video,
+html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-media img,
+html:has(.ultra-about) #container .ultra-about-services .ultra-about-service-media video,
+html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-media img,
+html:has(.ultra-about) #ultra-app .ultra-about-services .ultra-about-service-media video {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Final mobile hero pass: only first-screen Home/About/Services positioning. */
+@media (max-width: 760px) {
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-title,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-title {
+    top: clamp(148px, 20svh, 196px) !important;
+    left: 50vw !important;
+    right: auto !important;
+    width: min(100% - 36px, 430px) !important;
+    transform: translateX(-50%) !important;
+    translate: none !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt h1,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt h1 {
+    font-size: clamp(34px, 10.2vw, 46px) !important;
+    line-height: 1.04 !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-bottom,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-bottom {
+    bottom: clamp(104px, 18svh, 150px) !important;
+    left: 18px !important;
+    right: 18px !important;
+    width: auto !important;
+    justify-items: center !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt p,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt p {
+    width: min(100%, 390px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions {
+    width: min(100%, 360px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: 58px !important;
+    justify-content: center !important;
+    justify-items: stretch !important;
+  }
+
+  html.ultra-home-active #container .ultra-home-hero-rebuilt-actions a,
+  html.ultra-home-active #ultra-app .ultra-home-hero-rebuilt-actions a {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 58px !important;
+    min-height: 58px !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  #container .ultra-about-hero,
+  #ultra-app .ultra-about-hero,
+  html:has(.ultra-about) #container .ultra-about-hero,
+  html:has(.ultra-about) #ultra-app .ultra-about-hero {
+    align-items: start !important;
+  }
+
+  #container .ultra-about-hero-copy,
+  #ultra-app .ultra-about-hero-copy,
+  html:has(.ultra-about) #container .ultra-about-hero-copy,
+  html:has(.ultra-about) #ultra-app .ultra-about-hero-copy {
+    transform: translateY(clamp(-64px, -7svh, -36px)) !important;
+  }
+
+  #container .ultra-services-hero-copy h1,
+  #ultra-app .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy h1,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy h1 {
+    top: clamp(216px, 26svh, 252px) !important;
+  }
+
+  #container .ultra-services-hero-copy p,
+  #ultra-app .ultra-services-hero-copy p,
+  html:has(.ultra-services) #container .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero-copy p,
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal] .ultra-services-hero-copy p,
+  html:has(.ultra-services) #container .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy p,
+  html:has(.ultra-services) #ultra-app .ultra-services-hero[data-services-reveal].is-visible .ultra-services-hero-copy p {
+    top: clamp(448px, 54svh, 506px) !important;
+  }
+}
+
+/* Mobile case detail: gallery carousel first, project copy below. */
+@media (max-width: 760px) {
+  html:has(.ultra-case-detail.is-page),
+  html:has(.ultra-case-detail.is-page) body {
+    height: auto !important;
+    min-height: 100svh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #container .ultra-case-modal,
+  #ultra-app .ultra-case-modal {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+
+  #container .ultra-case-detail-site,
+  #ultra-app .ultra-case-detail-site,
+  #container .ultra-case-detail-main,
+  #ultra-app .ultra-case-detail-main {
+    height: auto !important;
+    min-height: 100svh !important;
+    overflow: visible !important;
+  }
+
+  #container .ultra-case-detail.is-modal,
+  #ultra-app .ultra-case-detail.is-modal,
+  #container .ultra-case-detail.is-page,
+  #ultra-app .ultra-case-detail.is-page {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-height: 100svh !important;
+    height: auto !important;
+    gap: clamp(24px, 7vw, 34px) !important;
+    overflow: visible !important;
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+  }
+
+  #container .ultra-case-detail.is-modal,
+  #ultra-app .ultra-case-detail.is-modal {
+    padding-top: clamp(92px, 23vw, 118px) !important;
+    padding-bottom: clamp(118px, 28vw, 152px) !important;
+  }
+
+  #container .ultra-case-detail.is-page,
+  #ultra-app .ultra-case-detail.is-page {
+    padding-top: clamp(170px, 42vw, 196px) !important;
+    padding-bottom: clamp(92px, 24vw, 132px) !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery {
+    order: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 0 4px !important;
+    display: block !important;
+    columns: auto !important;
+    column-gap: normal !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery::-webkit-scrollbar,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery::-webkit-scrollbar,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery::-webkit-scrollbar,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery-flow,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery-flow,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery-flow,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery-flow {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: max-content !important;
+    min-width: 100% !important;
+    columns: auto !important;
+    column-gap: normal !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery-column,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery-column,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery-column,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery-column {
+    display: contents !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery figure,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery figure,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery figure,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery figure {
+    order: var(--case-image-order, 0) !important;
+    flex: 0 0 min(82vw, 430px) !important;
+    width: min(82vw, 430px) !important;
+    aspect-ratio: 4 / 3 !important;
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+    background: #05070c !important;
+    scroll-snap-align: center !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-gallery img,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-gallery img,
+  #container .ultra-case-detail.is-page .ultra-case-detail-gallery img,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-gallery img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  #container .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-modal .ultra-case-detail-copy,
+  #container .ultra-case-detail.is-page .ultra-case-detail-copy,
+  #ultra-app .ultra-case-detail.is-page .ultra-case-detail-copy {
+    order: 2 !important;
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 0 !important;
   }
 }
