@@ -477,7 +477,7 @@
         ],
         socialLinks: [
           { key: "phone", icon: "phone", labelEn: "Phone", labelZh: "电话", href: "tel:+8618506144181", enabled: true },
-          { key: "email", icon: "email", labelEn: "Email", labelZh: "邮箱", href: "mailto:jack@ultraexpo.com", enabled: true },
+          { key: "email", icon: "email", labelEn: "Email", labelZh: "邮箱", href: "mailto:jackxu@ultraexpo.cn", enabled: true },
           { key: "rednote", icon: "rednote", labelEn: "RED", labelZh: "小红书", href: "", enabled: false },
           { key: "wechat", icon: "wechat", labelEn: "WeChat", labelZh: "微信公众号", href: "", enabled: false },
           { key: "linkedin", icon: "linkedin", labelEn: "LinkedIn", labelZh: "领英", href: "", enabled: false }
@@ -504,7 +504,7 @@
         }
       },
       contact: {
-        email: "jack@ultraexpo.com",
+        email: "jackxu@ultraexpo.cn",
         phone: "+86 185 0614 4181",
         whatsapp: "",
         wechat: "",
@@ -513,7 +513,7 @@
         footerEntries: [
           { labelZh: "商务合作", labelEn: "Business Partnership", value: "/contact" },
           { labelZh: "电话咨询", labelEn: "Phone Consultation", value: "tel:+8618506144181" },
-          { labelZh: "联系邮箱", labelEn: "Email", value: "mailto:jack@ultraexpo.com" }
+          { labelZh: "联系邮箱", labelEn: "Email", value: "mailto:jackxu@ultraexpo.cn" }
         ]
       },
       contactMessages: {
@@ -1869,7 +1869,7 @@
             <h2>${zh ? "让我们一起完成你的全球展会现场" : "Let’s build your global stage."}</h2>
             <div class="ultra-bottom-actions">
               <a class="ultra-bottom-primary ultra-split-rolling" href="${routeLink("/contact")}" data-route="/contact" aria-label="${esc(bottomPrimaryLabel)}">${rollingButtonText(bottomPrimaryLabel)}</a>
-              <a class="ultra-bottom-secondary ultra-split-rolling" href="mailto:jack@ultraexpo.com" aria-label="${esc(bottomSecondaryLabel)}">${rollingButtonText(bottomSecondaryLabel)}</a>
+              <a class="ultra-bottom-secondary ultra-split-rolling" href="mailto:jackxu@ultraexpo.cn" aria-label="${esc(bottomSecondaryLabel)}">${rollingButtonText(bottomSecondaryLabel)}</a>
             </div>
           </div>
           <p class="ultra-bottom-summary">${zh ? "告诉我们你的展会名称、国家城市、展位面积与项目时间，Ultra Expo 将为你评估设计、制作与交付方案。" : "Tell us your exhibition name, country, city, booth size, and project timeline. Ultra Expo will help evaluate your design, production, and delivery needs."}</p>
@@ -2950,9 +2950,9 @@
   function contactPage(lang) {
     const zh = lang === "zh";
     const contact = getAdminConfig().contact || defaultAdminConfig().contact;
-    const emailHref = contact.email ? `mailto:${contact.email}` : "mailto:jack@ultraexpo.com";
+    const emailHref = contact.email ? `mailto:${contact.email}` : "mailto:jackxu@ultraexpo.cn";
     const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, "")}` : "tel:+8618506144181";
-    const contactEmail = contact.email || "jack@ultraexpo.com";
+    const contactEmail = contact.email || "jackxu@ultraexpo.cn";
     const contactPhone = contact.phone || "+86 185 0614 4181";
     const officeText = zh ? "中国苏州  ·  香港  ·  洛杉矶  ·  柏林" : "Suzhou, China  ·  Hong Kong  ·  Los Angeles  ·  Berlin";
     const inquiryTypes = [
