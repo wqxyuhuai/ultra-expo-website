@@ -4,7 +4,8 @@
   const ADMIN_SESSION_KEY = "ultra-admin-session-v1";
   const ADMIN_VIEW_KEY = "ultra-admin-view-v1";
   const ADMIN_PASSWORD_HASH = "9a7ee57b5b0f2ad1785189fd021fdf1e9b790e958d8c8221aedb60325346526f";
-  const CONTACT_SUBMISSION_ENDPOINT = "https://ultra-contact-notion.wqxyuhuai.workers.dev";
+  const CONTACT_WORKER_FALLBACK_ENDPOINT = "https://ultra-contact-notion.wqxyuhuai.workers.dev";
+  const CONTACT_PRODUCTION_ENDPOINT_PATH = "/api/contact";
   let adminPendingConfirm = null;
   let contentScriptText = null;
   const CONTENT = loadContent();
@@ -5251,7 +5252,12 @@
   }
 
   function contactSubmissionEndpoint() {
-    return String(window.ULTRA_CONTACT_ENDPOINT || CONTACT_SUBMISSION_ENDPOINT || "").trim();
+    if (window.ULTRA_CONTACT_ENDPOINT) return String(window.ULTRA_CONTACT_ENDPOINT).trim();
+    const host = window.location.hostname;
+    if (host === "ultraexpo.cn" || host === "www.ultraexpo.cn" || host === "preview.ultraexpo.cn" || host === "www.preview.ultraexpo.cn") {
+      return new URL(CONTACT_PRODUCTION_ENDPOINT_PATH, window.location.origin).href;
+    }
+    return CONTACT_WORKER_FALLBACK_ENDPOINT;
   }
 
   async function submitContactMessageToEndpoint(message) {

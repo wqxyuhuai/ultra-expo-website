@@ -1,8 +1,8 @@
 # Contact form to Notion sync
 
-This site is deployed on GitHub Pages, so the public page cannot safely call the Notion API directly. Use a small serverless endpoint between the website and Notion.
+This site is static, so the public page cannot safely call the Notion API directly. Use a small serverless endpoint between the website and Notion.
 
-Recommended setup: Cloudflare Worker
+Recommended setup: standalone Cloudflare Worker routed to `/api/contact`. The Worker keeps the Notion token out of the public website while the contact form can submit to a same-origin endpoint.
 
 ## 1. Create the Notion database
 
@@ -33,15 +33,21 @@ If the optional properties are missing or have different types, the Worker will 
 3. Share the target database with that integration.
 4. Copy the database ID from the Notion database URL.
 
-## 3. Deploy the Worker
+## 3. Deploy the Cloudflare Worker
 
-Use `workers/notion-contact-worker.js` as the Worker source.
+Use `workers/notion-contact-worker.js` as the Worker source. In Cloudflare, this is the `ultra-contact-notion` Worker.
 
 Required environment variables:
 
 - `NOTION_TOKEN`: Notion integration secret
 - `NOTION_DATABASE_ID`: target Notion database ID
 - `ALLOWED_ORIGINS`: production site origin, for example `https://your-name.github.io`
+
+For local development plus live and preview Ultra Expo domains, include:
+
+```text
+https://wqxyuhuai.github.io,https://ultraexpo.cn,https://www.ultraexpo.cn,https://preview.ultraexpo.cn,https://www.preview.ultraexpo.cn,http://localhost:4173,http://localhost:5173
+```
 
 Optional environment variables:
 
@@ -63,13 +69,22 @@ The optional property variables are only needed if your Notion column names diff
 
 ## 4. Connect the website
 
-After the Worker is deployed, copy its public URL and set it in `assets/ultra-site.js`:
+On `ultraexpo.cn`, `www.ultraexpo.cn`, `preview.ultraexpo.cn`, and `www.preview.ultraexpo.cn`, the website submits to:
 
-```js
-const CONTACT_SUBMISSION_ENDPOINT = "https://your-worker.your-subdomain.workers.dev";
+```text
+/api/contact
 ```
 
-Then deploy the site to GitHub Pages as usual.
+No public `workers.dev` URL is needed for those domains. Local development continues to use the Worker fallback URL in `assets/ultra-site.js`.
+
+Bind these routes to the `ultra-contact-notion` Worker:
+
+```text
+www.ultraexpo.cn/api/contact*
+ultraexpo.cn/api/contact*
+www.preview.ultraexpo.cn/api/contact*
+preview.ultraexpo.cn/api/contact*
+```
 
 ## 5. Test
 

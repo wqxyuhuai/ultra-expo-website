@@ -1,5 +1,11 @@
 const NOTION_VERSION = "2022-06-28";
 const WORKER_VERSION = "notion-schema-v3";
+const DEFAULT_ALLOWED_ORIGINS = [
+  "https://ultraexpo.cn",
+  "https://www.ultraexpo.cn",
+  "https://preview.ultraexpo.cn",
+  "https://www.preview.ultraexpo.cn"
+];
 
 export default {
   async fetch(request, env) {
@@ -61,6 +67,7 @@ export default {
 };
 
 function originAllowed(origin, env) {
+  if (DEFAULT_ALLOWED_ORIGINS.includes(origin)) return true;
   const raw = String(env.ALLOWED_ORIGINS || "*").trim();
   if (!raw || raw === "*") return true;
   return raw.split(",").map(item => item.trim()).filter(Boolean).includes(origin);
