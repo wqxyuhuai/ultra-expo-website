@@ -25541,7 +25541,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-admin-status,
   .ultra-case-detail-brand,
   .ultra-contact-info h3,
-  .ultra-contact-info-card h3,
   [style*="color: var(--theme-blue)"],
   [style*="color:#317AFF"],
   [style*="color: #317AFF"],
@@ -25562,7 +25561,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-admin-status,
   .ultra-case-detail-brand,
   .ultra-contact-info h3,
-  .ultra-contact-info-card h3,
   [style*="color: var(--theme-blue)"],
   [style*="color:#317AFF"],
   [style*="color: #317AFF"],
@@ -25582,7 +25580,6 @@ html:has(.ultra-services) #ultra-app .ultra-services-solution-panel h2 {
   .ultra-admin-status,
   .ultra-case-detail-brand,
   .ultra-contact-info h3,
-  .ultra-contact-info-card h3,
   [style*="color: var(--theme-blue)"],
   [style*="color:#317AFF"],
   [style*="color: #317AFF"],
@@ -27116,7 +27113,9 @@ html:has(.ultra-about) #ultra-app .ultra-about-cert-grid article[data-about-reve
   position: relative;
   display: grid;
   align-items: center;
-  min-height: 54px;
+  height: 46px;
+  min-height: 46px;
+  box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--theme-night-soft);
   cursor: pointer;
@@ -27134,7 +27133,9 @@ html:has(.ultra-about) #ultra-app .ultra-about-cert-grid article[data-about-reve
 
 #container .ultra-contact-date-display,
 #ultra-app .ultra-contact-date-display {
-  min-height: 52px;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
   border: 0 !important;
   background: transparent !important;
   color: var(--theme-white);
