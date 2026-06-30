@@ -22635,7 +22635,8 @@ html[data-ultra-locale="zh"] #ultra-app .ultra-home-why-kicker {
   html:has(.ultra-services) #ultra-app .ultra-services-pillar,
   html:has(.ultra-services) #ultra-app .ultra-services-pillar.is-core,
   html:has(.ultra-services) #ultra-app .ultra-services-pillar:hover {
-    grid-template-rows: 22px 24px clamp(34px, 2vw, 44px) clamp(40px, 3vw, 52px) 1fr !important;
+    min-height: clamp(320px, 20vw, 380px) !important;
+    grid-template-rows: 46px 42px auto clamp(76px, 5vw, 96px) auto !important;
     align-content: start !important;
   }
 
@@ -22656,7 +22657,7 @@ html[data-ultra-locale="zh"] #ultra-app .ultra-home-why-kicker {
 
   html:has(.ultra-services) #container .ultra-services-pillar h3,
   html:has(.ultra-services) #ultra-app .ultra-services-pillar h3 {
-    margin: 11px 0 0 !important;
+    margin: 18px 0 0 !important;
   }
 
   html:has(.ultra-services) #container .ultra-services-pillar strong,
